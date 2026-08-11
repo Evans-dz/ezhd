@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ezhd.co/sitemap.xml
+Sitemap: https://ez-hd.co/sitemap.xml
