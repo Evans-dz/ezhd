@@ -1808,6 +1808,7 @@ html{scroll-padding-top:4.6rem;}
 }
 
 /* ── form ───────────────────────────────────────────────────────────────── */
+.form__pot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
 .form__box{
   background:var(--panel);border:1px solid var(--dline);
   padding:var(--pad-panel);
@@ -1865,6 +1866,8 @@ html{scroll-padding-top:4.6rem;}
 .form__echo--on{border-color:rgba(79,195,247,.45);}
 .form__echo--on .form__echoV{color:var(--silver);}
 
+.form__status--ok{color:var(--ion);}
+.form__status--warn{color:var(--dash);}
 .form__fine{margin:.9rem 0 0;font-size:var(--fine);line-height:1.55;color:var(--dash-2);text-align:center;}
 .form__link{
   color:var(--ion);text-decoration:none;border-bottom:1px solid rgba(79,195,247,.35);
@@ -2038,7 +2041,7 @@ html{scroll-padding-top:4.6rem;}
     <div class="hero__stats">
 
       <div class="hero__stat">
-        <p class="hero__statN">3&#8211;<span class="ct" data-to="4" data-suffix=" WKS">0</span></p>
+        <p class="hero__statN">1&#8211;<span class="ct" data-to="2" data-suffix=" WKS">0</span></p>
         <p class="hero__statL">Typical build</p>
       </div>
 
@@ -2182,8 +2185,8 @@ html{scroll-padding-top:4.6rem;}
   <div class="wrap">
 
     <p class="eyebrow rv">03 — HOW IT GOES</p>
-    <h2 class="h2 rv">KICKOFF TO LIVE IN <span class="proc__hl">THREE TO FOUR</span> WEEKS.</h2>
-    <p class="lede rv">Assuming assets and feedback come back inside three business days. The schedule moves when they don't — that's the one thing that shifts a launch date.</p>
+    <h2 class="h2 rv">KICKOFF TO LIVE IN <span class="proc__hl">ONE TO TWO</span> WEEKS.</h2>
+    <p class="lede rv">Assuming assets and feedback come back inside two business days. The schedule moves when they don't — that's the one thing that shifts a launch date.</p>
 
     <div class="proc__inset rv">
 
@@ -2200,28 +2203,28 @@ html{scroll-padding-top:4.6rem;}
           <ol class="proc__tl" id="tl">
             <li class="proc__step">
               <span class="proc__node" aria-hidden="true"></span>
-              <p class="proc__wk"><span class="proc__mk" aria-hidden="true"></span>WEEK 0</p>
+              <p class="proc__wk"><span class="proc__mk" aria-hidden="true"></span>DAY 0</p>
               <h3 class="proc__t">KICKOFF</h3>
               <p class="proc__d">Discovery call, brand assets, goals, and content gathering.</p>
             </li>
 
             <li class="proc__step">
               <span class="proc__node" aria-hidden="true"></span>
-              <p class="proc__wk"><span class="proc__mk" aria-hidden="true"></span>WEEKS 1–2</p>
+              <p class="proc__wk"><span class="proc__mk" aria-hidden="true"></span>DAYS 1&#8211;6</p>
               <h3 class="proc__t">BUILD</h3>
               <p class="proc__d">Design and development of the site.</p>
             </li>
 
             <li class="proc__step">
               <span class="proc__node" aria-hidden="true"></span>
-              <p class="proc__wk"><span class="proc__mk" aria-hidden="true"></span>WEEK 3</p>
+              <p class="proc__wk"><span class="proc__mk" aria-hidden="true"></span>DAYS 7&#8211;9</p>
               <h3 class="proc__t">REVIEW</h3>
               <p class="proc__d">You review. Up to two rounds of revisions applied.</p>
             </li>
 
             <li class="proc__step">
               <span class="proc__node" aria-hidden="true"></span>
-              <p class="proc__wk"><span class="proc__mk" aria-hidden="true"></span>WEEK 4</p>
+              <p class="proc__wk"><span class="proc__mk" aria-hidden="true"></span>DAYS 10&#8211;14</p>
               <h3 class="proc__t">LAUNCH</h3>
               <p class="proc__d">Final checks, domain connection, go live. Monthly services begin.</p>
             </li>
@@ -2473,7 +2476,7 @@ html{scroll-padding-top:4.6rem;}
         <h3 class="duty__h">YOU PROVIDE</h3>
         <ul class="duty__list">
           <li class="duty__item">Logo and brand assets</li>
-          <li class="duty__item">Feedback and approvals within 3 business days</li>
+          <li class="duty__item">Feedback and approvals within 2 business days</li>
           <li class="duty__item">Access to your domain, hosting, social, and Google accounts</li>
           <li class="duty__item">Details about your business and services</li>
           <li class="duty__item">Site access for on-site shoots</li>
@@ -2528,6 +2531,12 @@ html{scroll-padding-top:4.6rem;}
           <div class="form__fld">
             <label class="form__lbl" for="f-phone">Phone <span class="form__opt">optional</span></label>
             <input class="form__in" id="f-phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+
+          <!-- Bots fill every field they find; humans never see this one. -->
+          <div class="form__pot" aria-hidden="true">
+            <label for="f-co">Company website</label>
+            <input id="f-co" name="botcheck" type="text" tabindex="-1" autocomplete="off">
           </div>
 
           <div class="form__fld form__fld--wide form__fld--area">
@@ -3924,7 +3933,7 @@ html{scroll-padding-top:4.6rem;}
    Three jobs, all optional — if any node is missing the rest still runs:
      1. duty panels: pointer-tracked ion wash + a list cascade after reveal
      2. #scopeEcho mirrors window.__scope, which the scope builder owns
-     3. submit composes a mailto: no endpoint, no data at rest, nothing to break
+     3. submit POSTs to Web3Forms, falling back to a mailto handoff on failure
    ══════════════════════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
@@ -3933,6 +3942,14 @@ html{scroll-padding-top:4.6rem;}
   var $ = EZ.$, $$ = EZ.$$;
 
   var EMAIL = 'ezhdco@gmail.com';
+
+  /* Form delivery. Paste the Web3Forms access key below and the form starts
+     posting to the inbox; leave the placeholder and it keeps using the mailto
+     handoff, so the site is never broken in between.
+     Get a key at https://web3forms.com — it is emailed to you, free, and has
+     no submission cap. */
+  var ACCESS_KEY = '<PASTE-WEB3FORMS-ACCESS-KEY>';
+  var ENDPOINT = 'https://api.web3forms.com/submit';
   var ITEM_LEAD = 210;  /* ms — items start after the panel's own fade is underway */
   var ITEM_STEP = 55;   /* ms between list items */
 
@@ -4103,13 +4120,63 @@ html{scroll-padding-top:4.6rem;}
 
     L.push('Requested: a 20-minute call.');
 
-    window.location.href = 'mailto:' + EMAIL +
-      '?subject=' + encodeURIComponent('Scope + call request — ' + (biz || name || 'new project')) +
-      '&body=' + encodeURIComponent(L.join('\r\n'));
+    var subject = 'New project enquiry — ' + (biz || name || 'website');
+    var body = L.join('\r\n');
 
-    if (status) {
-      status.textContent = 'Opening your email app. If nothing happens, send it to ' + EMAIL + '.';
+    /* The mailto handoff is the fallback, not the plan: it needs a configured
+       mail client, which plenty of visitors on plenty of devices do not have.
+       A lead that depends on the sender's software is a lead you can lose. */
+    function handoff(note) {
+      if (status) {
+        status.className = 'form__status form__status--warn';
+        status.textContent = note + ' Opening your email app instead — if nothing happens, write to ' + EMAIL + '.';
+      }
+      window.location.href = 'mailto:' + EMAIL +
+        '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(body);
     }
+
+    /* Not configured yet: behave exactly as before rather than post nowhere. */
+    if (!ACCESS_KEY || ACCESS_KEY.charAt(0) === '<') { handoff(''); return; }
+
+    if (trim((($('#f-co') || {}).value) || '')) return;   /* honeypot tripped */
+
+    var btn = $('button[type=submit]', form);
+    if (btn) { btn.disabled = true; btn.dataset.label = btn.textContent; btn.textContent = 'Sending…'; }
+    if (status) { status.className = 'form__status'; status.textContent = 'Sending…'; }
+
+    if (!window.fetch) { handoff('This browser cannot send the form.'); return; }
+
+    window.fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        access_key: ACCESS_KEY,
+        subject: subject,
+        from_name: 'EZHD website',
+        name: name, business: biz, email: email, phone: phone,
+        message: msg,
+        scope: items.length ? items.join(', ') : 'none selected',
+        details: body
+      })
+    }).then(function (r) { return r.json().catch(function () { return { success: r.ok }; }); })
+      .then(function (data) {
+        if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || 'Send it'; }
+        if (data && data.success) {
+          form.reset();
+          for (var q = 0; q < fields.length; q++) mark(fields[q]);
+          if (status) {
+            status.className = 'form__status form__status--ok';
+            status.textContent = 'Sent. We reply within one business day — check your email for our note.';
+          }
+        } else {
+          handoff('That did not go through.');
+        }
+      })
+      .catch(function () {
+        if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || 'Send it'; }
+        handoff('That did not go through.');
+      });
   });
 })();
 /* ═══ 80-system.js ═══ */
