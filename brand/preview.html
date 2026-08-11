@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EZHD mark — colour variants</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#04060A; --panel:#0A0E15; --dline:#1A2231;
+  --silver:#DDE3EA; --dash:#939FAE; --ion:#4FC3F7;
+  --mno:"IBM Plex Mono",ui-monospace,monospace;
+  --dsp:"Archivo",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--void);color:var(--silver);
+  font-family:var(--mno);padding:2.5rem clamp(1rem,4vw,3rem);}
+h1{font-family:var(--dsp);font-variation-settings:"wdth" 112,"wght" 850;
+  text-transform:uppercase;letter-spacing:-.03em;font-size:1.6rem;margin:0 0 .4rem;color:#fff;}
+.sub{color:var(--dash);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;margin:0 0 2.5rem;}
+h2{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ion);
+  margin:2.5rem 0 1rem;font-weight:500;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem;}
+.cell{border:1px solid var(--dline);background:var(--panel);padding:1.4rem;text-align:center;}
+.cell.light{background:#fff;}
+.cell.mid{background:#0F141D;}
+.cell img{width:100%;height:110px;object-fit:contain;display:block;margin-bottom:1rem;}
+.name{font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dash);}
+.cell.light .name{color:#5C6672;}
+.rowlabel{font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dash);margin:0 0 .6rem;}
+.sizes{display:flex;align-items:flex-end;gap:1.6rem;flex-wrap:wrap;
+  border:1px solid var(--dline);background:var(--panel);padding:1.6rem;}
+.sizes figure{margin:0;text-align:center;}
+.sizes img{display:block;object-fit:contain;margin-bottom:.5rem;}
+.s96{width:96px;height:96px}.s48{width:48px;height:48px}
+.s32{width:32px;height:32px}.s24{width:24px;height:24px}.s16{width:16px;height:16px}
+.sizes figcaption{font-size:.6rem;color:var(--dash);letter-spacing:.1em;}
+.lockup{display:flex;align-items:center;gap:.8rem;border:1px solid var(--dline);
+  background:var(--panel);padding:1.2rem 1.5rem;}
+.lockup img{width:34px;height:34px;}
+.lockup span{font-family:var(--dsp);font-variation-settings:"wdth" 112,"wght" 800;
+  font-size:1.05rem;text-transform:uppercase;letter-spacing:-.012em;color:#fff;}
+</style>
+</head>
+<body>
+
+<h1>EZHD mark — colour variants</h1>
+<p class="sub">Ion #4FC3F7 · Drift Silver #DDE3EA · Void #04060A</p>
+
+<h2>On the site background (#04060A)</h2>
+<div class="grid">
+  <div class="cell"><img src="ezhd-mark-silver.svg" alt=""><p class="name">silver mass · ion keyline</p></div>
+  <div class="cell"><img src="ezhd-mark-ion.svg" alt=""><p class="name">ion mass · silver keyline</p></div>
+  <div class="cell"><img src="ezhd-mark-mono-white.svg" alt=""><p class="name">mono white</p></div>
+  <div class="cell"><img src="ezhd-mark-mono-ion.svg" alt=""><p class="name">mono ion</p></div>
+</div>
+
+<h2>On a raised panel (#0F141D)</h2>
+<div class="grid">
+  <div class="cell mid"><img src="ezhd-mark-silver.svg" alt=""><p class="name">silver · ion</p></div>
+  <div class="cell mid"><img src="ezhd-mark-ion.svg" alt=""><p class="name">ion · silver</p></div>
+</div>
+
+<h2>On white — invoices, letterhead, docs</h2>
+<div class="grid">
+  <div class="cell light"><img src="ezhd-mark-light.svg" alt=""><p class="name">black mass · ion keyline</p></div>
+  <div class="cell light"><img src="ezhd-mark-mono-black.svg" alt=""><p class="name">mono black</p></div>
+  <div class="cell light"><img src="ezhd-mark-mono-ion.svg" alt=""><p class="name">mono ion</p></div>
+</div>
+
+<h2>Badge only — the mark that survives small</h2>
+<div class="grid">
+  <div class="cell"><img src="ezhd-badge-silver.svg" alt=""><p class="name">silver · ion</p></div>
+  <div class="cell"><img src="ezhd-badge-ion.svg" alt=""><p class="name">ion · silver</p></div>
+  <div class="cell"><img src="ezhd-badge-mono-white.svg" alt=""><p class="name">mono white</p></div>
+  <div class="cell light"><img src="ezhd-badge-light.svg" alt=""><p class="name">black · ion</p></div>
+</div>
+
+<h2>Legibility as it shrinks — favicon test</h2>
+<p class="rowlabel">full lockup — unreadable below 48</p>
+<div class="sizes">
+  <figure><img class="s96" src="ezhd-mark-silver.svg" alt=""><figcaption>96</figcaption></figure>
+  <figure><img class="s48" src="ezhd-mark-silver.svg" alt=""><figcaption>48</figcaption></figure>
+  <figure><img class="s32" src="ezhd-mark-silver.svg" alt=""><figcaption>32</figcaption></figure>
+  <figure><img class="s24" src="ezhd-mark-silver.svg" alt=""><figcaption>24</figcaption></figure>
+  <figure><img class="s16" src="ezhd-mark-silver.svg" alt=""><figcaption>16</figcaption></figure>
+</div>
+<p class="rowlabel" style="margin-top:1.2rem">badge, silver · ion keyline</p>
+<div class="sizes">
+  <figure><img class="s96" src="ezhd-badge-silver.svg" alt=""><figcaption>96</figcaption></figure>
+  <figure><img class="s48" src="ezhd-badge-silver.svg" alt=""><figcaption>48</figcaption></figure>
+  <figure><img class="s32" src="ezhd-badge-silver.svg" alt=""><figcaption>32</figcaption></figure>
+  <figure><img class="s24" src="ezhd-badge-silver.svg" alt=""><figcaption>24</figcaption></figure>
+  <figure><img class="s16" src="ezhd-badge-silver.svg" alt=""><figcaption>16</figcaption></figure>
+</div>
+<p class="rowlabel" style="margin-top:1.2rem">badge, mono white — one colour, no keyline</p>
+<div class="sizes">
+  <figure><img class="s96" src="ezhd-badge-mono-white.svg" alt=""><figcaption>96</figcaption></figure>
+  <figure><img class="s48" src="ezhd-badge-mono-white.svg" alt=""><figcaption>48</figcaption></figure>
+  <figure><img class="s32" src="ezhd-badge-mono-white.svg" alt=""><figcaption>32</figcaption></figure>
+  <figure><img class="s24" src="ezhd-badge-mono-white.svg" alt=""><figcaption>24</figcaption></figure>
+  <figure><img class="s16" src="ezhd-badge-mono-white.svg" alt=""><figcaption>16</figcaption></figure>
+</div>
+
+<h2>Nav lockup, at real size</h2>
+<div class="lockup"><img src="ezhd-badge-silver.svg" alt=""><span>EZHD</span></div>
+<div class="lockup" style="margin-top:.6rem"><img src="ezhd-badge-ion.svg" alt=""><span>EZHD</span></div>
+
+</body>
+</html>

@@ -1,0 +1,4489 @@
+<!--
+  ═══════════════════════════════════════════════════════════════════════
+  EZHD  ·  ezhd.co  ·  single-file site  ·  no build step, no dependencies
+
+  DEPLOY
+    Push this file as index.html. On Vercel: Framework Preset "Other",
+    Build Command and Output Directory both EMPTY.
+
+  PALETTE   Ion Blue #4FC3F7 · Drift Silver #DDE3EA · Void #04060A
+            All tokens live in the :root block at the top of the CSS.
+
+  MOTION    #introC ring field behind the wordmark (canvas 2D)
+            #sysC   exploded axonometric assembled by scroll (canvas 2D)
+            #flowC  edit-bay timeline: frames, b-roll, audio, playhead
+            Both pause off-screen and when the tab is hidden, and freeze
+            to a single static frame under prefers-reduced-motion.
+
+
+  CONTACT   The form has no backend — it composes a mailto: handoff.
+            Update EMAIL in the contact script if the address changes.
+  ═══════════════════════════════════════════════════════════════════════
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EZHD — Websites, Hosting &amp; Digital Marketing | Utah</title>
+<meta name="description" content="One accountable partner for your website, hosting, SEO, and social media. Utah-based. Build your scope and we price it on a twenty-minute call.">
+<link rel="canonical" href="https://ezhd.co/">
+<meta name="theme-color" content="#04060A">
+<meta name="robots" content="index, follow">
+<meta name="color-scheme" content="dark">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EZHD">
+<meta property="og:title" content="EZHD — Websites, Hosting &amp; Digital Marketing">
+<meta property="og:description" content="Your website, hosting, SEO, and social handled by one accountable partner. Pick your scope, we price it on a call.">
+<meta property="og:url" content="https://ezhd.co/">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ezhd.co/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="EZHD — websites, hosting, local SEO and content, Utah.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ezhd.co/og.png">
+<meta name="twitter:title" content="EZHD — Websites, Hosting &amp; Digital Marketing">
+<meta name="twitter:description" content="One accountable partner for your website, hosting, SEO, and social media. Utah-based.">
+
+<!-- SVG first for browsers that take it; the PNGs cover everything else and
+     the 16px cut is where the traced monogram stops being readable. -->
+<link rel="icon" type="image/svg+xml" href="brand/ezhd-badge-silver.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="brand/favicon/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="brand/favicon/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="brand/favicon/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- display=block, not swap: the preloader covers the first ~1.8s, so the block
+     period is spent behind it and type lands already set in Archivo. With swap
+     the fallback painted first and visibly reflowed the moment the preloader
+     cleared — the one frame a visitor actually looks at. Preloaded so the
+     request starts before the stylesheet is parsed. -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=block">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=block" rel="stylesheet">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"EZHD",
+"url":"https://ezhd.co/",
+"description":"Web design, hosting, SEO, and social media management for local businesses.",
+"email":"ezhdco@gmail.com","telephone":"+1-435-224-6987",
+"founder":{"@type":"Person","name":"Zac Evans"},
+"employee":{"@type":"Person","name":"Dylan Evans","jobTitle":"Social & Content Lead"},
+"areaServed":{"@type":"State","name":"Utah"},
+"address":{"@type":"PostalAddress","addressRegion":"UT","addressCountry":"US"},
+"makesOffer":[
+{"@type":"Offer","name":"Website Design & Development"},
+{"@type":"Offer","name":"Website Care Plan"},
+{"@type":"Offer","name":"Content & Social Media Management"}]}
+</script>
+<style>
+/* ═══ 00-core.css ═══ */
+/* ══════════════════════════════════════════════════════════════════════════
+   EZHD — 00 CORE
+   Tokens, reset, global type, buttons, reveal states, atmosphere layers.
+   This file owns every unprefixed class on the page:
+   .wrap .btn .eyebrow .h2 .lede .hot .rv .sec .center .skip .grain .spot
+   Section files must never redefine them.
+
+   DOM placement note for assembly: .spot goes first inside <body>, .grain
+   last. Their z-indexes assume that order (glow behind content, grain over).
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. TOKENS ─────────────────────────────────────────────────────────── */
+:root{
+  /* black field */
+  --void:    #04060A;   /* page base */
+  --pit:     #06090E;   /* alternating section */
+  --panel:   #0A0E15;   /* cards */
+  --raise:   #0F141D;   /* raised/hover cards */
+  --dline:   #1A2231;   /* hairline borders */
+  --edge:    #26303F;   /* stronger borders */
+
+  /* off-white (Drift Silver) */
+  --silver:  #DDE3EA;   /* primary text on black */
+  --white:   #F4F6F8;   /* max-bright, headlines */
+  --dash:    #939FAE;   /* secondary text */
+  --dash-2:  #7C889A;   /* tertiary / captions — 4.6:1+ on every surface it lands on */
+
+  /* Ion Blue — the ONE accent */
+  --ion:     #4FC3F7;   /* primary accent */
+  --ion-2:   #1E9BD7;   /* deep */
+  --ion-3:   #0A5F91;   /* deepest, for fills behind white text */
+  --glow:    #9BE0FF;   /* highlight / bloom core */
+
+  --grad:    linear-gradient(96deg,#1E9BD7 0%,#4FC3F7 52%,#9BE0FF 100%);
+
+  /* type */
+  --dsp:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --bdy:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mno:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+
+  /* layout */
+  /* ── Small-type scale ────────────────────────────────────────────────
+     One rung per role. Every label, caption and note references a token
+     here, so the scale can only be changed in one place — the file used
+     to carry eighteen different sizes below .9rem. */
+  --ui:       .76rem;   /* interactive mono: buttons, skip link          */
+  --label:    .72rem;   /* mono labels: eyebrows, nav, week markers      */
+  --label-sm: .66rem;   /* dense mono: tags, keys, legends, field labels */
+  --body-sm:  .95rem;   /* sans in-panel body: blurbs, list items, descs  */
+  --small:    .88rem;   /* sans secondary body                           */
+  --fine:     .82rem;   /* sans fine print and notes                     */
+
+  /* One padding for every content panel, one weight for the ion edge. */
+  --pad-panel:clamp(1.45rem,2.7vw,2.1rem);
+  --accent-edge:3px;
+
+  --pad:clamp(1.15rem,4.5vw,4.5rem);
+  --max:1240px;
+
+  /* motion — entrances vs. UI, per the doctrine */
+  --ez-out:cubic-bezier(.16,1,.3,1);
+  --ez-ui:cubic-bezier(.4,0,.2,1);
+}
+
+/* ── 2. RESET ──────────────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;}
+
+html{
+  scroll-behavior:smooth;
+  /* keeps anchor targets clear of any sticky chrome */
+  scroll-padding-top:5rem;
+  -webkit-text-size-adjust:100%;
+}
+
+body,h1,h2,h3,h4,h5,h6,p,figure,blockquote,dl,dd,ul,ol{margin:0;}
+ul[class],ol[class]{list-style:none;padding:0;}
+
+body{
+  min-height:100%;
+  overflow-x:hidden;
+  overflow-x:clip;
+  background:var(--void);
+  color:var(--silver);
+  font-family:var(--bdy);
+  font-size:17px;
+  line-height:1.62;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+}
+
+img,svg,video,canvas{display:block;max-width:100%;}
+img,video{height:auto;}
+
+input,button,textarea,select{font:inherit;color:inherit;letter-spacing:inherit;}
+button{background:none;border:0;cursor:pointer;}
+
+a{
+  color:var(--ion);
+  text-underline-offset:.22em;
+  text-decoration-thickness:1px;
+  transition:color .2s var(--ez-ui);
+}
+a:hover{color:var(--glow);}
+
+strong,b{font-weight:600;color:var(--silver);}
+
+/* ── 3. SELECTION + FOCUS ──────────────────────────────────────────────── */
+::selection{background:var(--ion-3);color:#fff;}
+
+/* Left :focus alone on purpose — modern engines already scope the default
+   ring to keyboard use, and killing it strands older browsers. */
+:focus-visible{outline:2px solid var(--ion);outline-offset:3px;}
+
+/* ── 4. SKIP LINK ──────────────────────────────────────────────────────── */
+.skip{
+  position:absolute;
+  left:-9999px;top:0;
+  z-index:200;
+  padding:.9rem 1.4rem;
+  background:var(--ion-3);
+  color:#fff;
+  font-family:var(--mno);
+  font-size:var(--ui);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  text-decoration:none;
+}
+.skip:focus{left:0;}
+
+/* ── 5. CONTAINER ──────────────────────────────────────────────────────── */
+.wrap{
+  width:100%;
+  max-width:var(--max);
+  margin-inline:auto;
+  padding-inline:var(--pad);
+}
+
+/* ── 6. SECTION SHELL ──────────────────────────────────────────────────── */
+.sec{
+  position:relative;
+  /* Lifts section content above .spot (z-index:0), so the cursor glow reads
+     as light behind the page rather than a wash painted over the type. */
+  z-index:1;
+  padding-block:clamp(4.5rem,9vw,9rem);
+}
+.sec--pit{background:var(--pit);}
+
+.center{text-align:center;}
+.center .lede{margin-inline:auto;}
+.center .eyebrow{justify-content:center;}
+
+/* ── 7. GLOBAL TYPE ────────────────────────────────────────────────────── */
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:.65rem;
+  font-family:var(--mno);
+  font-size:var(--label);
+  font-weight:500;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--dash-2);
+  line-height:1;
+}
+.eyebrow::before{
+  content:"";
+  flex:0 0 auto;
+  width:1.7rem;
+  height:1px;
+  background:var(--grad);
+}
+
+.h2{
+  font-family:var(--dsp);
+  font-variation-settings:"wdth" 112,"wght" 850;
+  font-weight:850;
+  font-size:clamp(2rem,5.2vw,3.9rem);
+  line-height:.92;
+  letter-spacing:-.035em;
+  text-transform:uppercase;
+  color:var(--white);
+  text-wrap:balance;
+}
+
+.lede{
+  font-size:clamp(1.02rem,1.5vw,1.15rem);
+  line-height:1.62;
+  color:var(--dash);
+  /* Light-on-dark needs a shorter measure than dark-on-light to track
+     comfortably line to line — 60ch reads long here. */
+  max-width:55ch;
+  text-wrap:pretty;
+}
+
+/* Section-header rhythm lives here, once, so every section gets the same
+   cadence. .h2 has line-height:.92, so its box is smaller than its ink —
+   without these the eyebrow sits on the cap-line and the lede on the
+   baseline. Services builds its header as a grid and supplies its own
+   gutters, so it opts out below. */
+.eyebrow + .h2{margin-top:clamp(.9rem,1.8vw,1.3rem);}
+.h2 + .lede{margin-top:clamp(1rem,2.1vw,1.5rem);}
+/* (Services once opted out here with its own header grid; it now uses the
+   same stacked rhythm as every other section, so there is nothing to undo.) */
+
+/* One word, not one paragraph. Ion is precious. */
+.hot{
+  background:var(--grad);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  -webkit-text-fill-color:transparent;
+}
+
+/* ── 8. BUTTONS ────────────────────────────────────────────────────────── */
+.btn{
+  position:relative;
+  overflow:hidden;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.6rem;
+  padding:1.05rem 1.75rem;
+  border:1px solid transparent;
+  border-radius:0;
+  font-family:var(--mno);
+  font-size:var(--ui);
+  font-weight:600;
+  letter-spacing:.1em;
+  line-height:1;
+  text-transform:uppercase;
+  text-decoration:none;
+  white-space:nowrap;
+  cursor:pointer;
+  isolation:isolate;
+  transition:color .22s var(--ez-ui),border-color .22s var(--ez-ui),
+             background-color .22s var(--ez-ui),transform .22s var(--ez-ui),
+             box-shadow .22s var(--ez-ui),filter .22s var(--ez-ui);
+}
+.btn:active{transform:translateY(1px);}
+
+/* glare sweep — fires once per hover, purely decorative */
+.btn::after{
+  content:"";
+  position:absolute;
+  top:0;left:-60%;
+  width:40%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.30),transparent);
+  transform:skewX(-18deg);
+  opacity:0;
+  pointer-events:none;
+}
+@keyframes ez-sheen{
+  0%{transform:translateX(0) skewX(-18deg);opacity:0;}
+  18%{opacity:1;}
+  100%{transform:translateX(420%) skewX(-18deg);opacity:0;}
+}
+
+/* Near-black text on the ion gradient: required for contrast, reads premium. */
+.btn--ion{
+  background-image:var(--grad);
+  color:var(--void);
+  border-color:transparent;
+}
+.btn--ion:hover,
+.btn--ion:focus-visible{
+  filter:brightness(1.08);
+  box-shadow:0 12px 34px -14px rgba(79,195,247,.62);
+}
+.btn--ion:hover::after{animation:ez-sheen .72s var(--ez-ui);}
+
+.btn--wire{
+  background-color:transparent;
+  border-color:var(--edge);
+  color:var(--silver);
+}
+/* fill wipes up from the baseline; z-index:-1 keeps it behind the label
+   without needing a wrapper element around the text node */
+.btn--wire::before{
+  content:"";
+  position:absolute;
+  top:0;right:0;bottom:0;left:0;
+  z-index:-1;
+  background:var(--silver);
+  transform:scaleY(0);
+  transform-origin:50% 100%;
+  transition:transform .26s var(--ez-ui);
+}
+.btn--wire:hover,
+.btn--wire:focus-visible{
+  color:var(--void);
+  border-color:var(--silver);
+}
+.btn--wire:hover::before,
+.btn--wire:focus-visible::before{transform:scaleY(1);}
+
+.btn--full{display:flex;width:100%;}
+
+.btn[disabled],.btn[aria-disabled="true"]{
+  opacity:.45;
+  cursor:not-allowed;
+  pointer-events:none;
+}
+
+/* ── 9. REVEAL ─────────────────────────────────────────────────────────── */
+.rv{opacity:0;transform:translateY(20px);}
+.rv.on{
+  opacity:1;
+  transform:none;
+  transition:opacity .75s ease,transform .75s cubic-bezier(.16,1,.3,1);
+}
+
+/* ── 10. GRAIN + VIGNETTE ──────────────────────────────────────────────── */
+/* Pure #04060A across a 4K panel reads as dead digital black. A hair of
+   static noise plus an edge falloff gives it depth for ~0 cost. */
+.grain{
+  position:fixed;
+  top:0;right:0;bottom:0;left:0;
+  z-index:1;
+  pointer-events:none;
+  opacity:.035;
+  background-repeat:repeat;
+  background-size:220px 220px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  top:0;right:0;bottom:0;left:0;
+  z-index:1;
+  pointer-events:none;
+  background:radial-gradient(130% 100% at 50% 38%,transparent 45%,rgba(0,0,0,.42) 100%);
+}
+
+/* ── 11. CURSOR SPOTLIGHT ──────────────────────────────────────────────── */
+/* JS writes --sx/--sy in px; transform keeps it off the layout path. */
+.spot{
+  position:fixed;
+  top:0;left:0;
+  width:46vmax;height:46vmax;
+  z-index:0;
+  pointer-events:none;
+  opacity:.5;
+  will-change:transform;
+  transform:translate3d(calc(var(--sx,50vw) - 23vmax),calc(var(--sy,50vh) - 23vmax),0);
+  background:radial-gradient(circle at 50% 50%,
+              rgba(79,195,247,.17) 0%,
+              rgba(79,195,247,.055) 40%,
+              rgba(79,195,247,0) 70%);
+  filter:blur(30px);
+  transition:opacity .45s var(--ez-ui);
+}
+@media (hover:none),(pointer:coarse){
+  .spot{display:none;}
+}
+
+/* ── 12. REDUCED MOTION ────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+
+  .rv,.rv.on{opacity:1;transform:none;transition:none;}
+  .spot{display:none;}
+  .btn::after{display:none;}
+
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-delay:0ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    transition-delay:0ms !important;
+    scroll-behavior:auto !important;
+  }
+}
+
+/* ═══ 10-chrome.css ═══ */
+/* ══════════════════════════════════════════════════════════════════════════
+   PAGE CHROME — preloader · nav · footer · back-to-top
+   Prefixes: nav__ / foot__ / top__      Keyframes: ez*
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* The sticky bar covers the top of the viewport, so anchor targets have to
+   clear it. Chrome owns the bar, so chrome owns the offset — this is the one
+   unprefixed rule in this file and it sets a single additive property. */
+html{scroll-padding-top:4.6rem;}
+
+/* ── NAV ───────────────────────────────────────────────────────────────── */
+.nav__bar{
+  position:sticky;top:0;z-index:100;
+  display:flex;align-items:center;gap:1.5rem;
+  padding:.78rem var(--pad);
+  background:rgba(4,6,10,.72);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+  backdrop-filter:blur(18px) saturate(160%);
+  border-bottom:1px solid transparent;
+  transition:border-color .28s cubic-bezier(.4,0,.2,1),background-color .28s cubic-bezier(.4,0,.2,1);
+}
+.nav__bar.is-stuck{background:rgba(4,6,10,.86);border-bottom-color:var(--dline);}
+@supports not ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){
+  .nav__bar{background:rgba(4,6,10,.96);}
+  .nav__bar.is-stuck{background:rgba(4,6,10,.98);}
+}
+
+/* Scroll progress, pinned to the bar's bottom edge and covering the hairline. */
+.nav__prog{
+  position:absolute;left:0;bottom:-1px;height:2px;width:0;max-width:100%;
+  background-image:var(--grad);box-shadow:0 0 10px rgba(79,195,247,.4);
+  pointer-events:none;
+}
+
+.nav__mark{
+  display:flex;align-items:center;gap:.6rem;margin-right:auto;
+  text-decoration:none;color:var(--white);
+}
+/* The badge replaces the old ion dot. It carries its own ion keyline, so the
+   pulsing ring that stood in for a mark is gone — two competing ion rings in
+   28px of nav is one too many. */
+.nav__badge{
+  width:1.55rem;height:1.55rem;flex:none;display:block;
+  transition:transform .3s cubic-bezier(.16,1,.3,1);
+}
+.nav__mark:hover .nav__badge{transform:rotate(-8deg) scale(1.06);}
+.nav__name{
+  font-family:var(--dsp);font-variation-settings:"wdth" 112,"wght" 850;
+  font-size:1rem;text-transform:uppercase;letter-spacing:-.012em;
+}
+
+.nav__links{display:flex;gap:1.6rem;}
+.nav__links a{
+  position:relative;font-family:var(--mno);font-size:var(--label);letter-spacing:.12em;
+  text-transform:uppercase;text-decoration:none;color:var(--dash);
+  transition:color .2s cubic-bezier(.4,0,.2,1);white-space:nowrap;
+}
+.nav__links a:hover{color:var(--white);}
+.nav__links a::after{
+  content:"";position:absolute;left:0;right:0;bottom:-.42rem;height:1px;
+  background-image:var(--grad);transform:scaleX(0);transform-origin:left center;
+  transition:transform .24s cubic-bezier(.4,0,.2,1);
+}
+.nav__links a:hover::after,
+.nav__links a:focus-visible::after{transform:scaleX(1);}
+
+.nav__cta{
+  position:relative;overflow:hidden;flex:none;
+  font-family:var(--mno);font-size:var(--label);font-weight:600;letter-spacing:.09em;
+  text-transform:uppercase;text-decoration:none;white-space:nowrap;
+  color:var(--void);background-image:var(--grad);
+  padding:.66rem 1.1rem;
+  transition:box-shadow .22s cubic-bezier(.4,0,.2,1),transform .22s cubic-bezier(.4,0,.2,1);
+}
+.nav__cta:hover{transform:translateY(-1px);box-shadow:0 6px 26px rgba(79,195,247,.24);}
+.nav__cta::after{                                /* one restrained sheen pass */
+  content:"";position:absolute;top:0;left:-45%;width:45%;height:100%;
+  background:linear-gradient(100deg,rgba(244,246,248,0),rgba(244,246,248,.5),rgba(244,246,248,0));
+  transform:translateX(0);
+  transition:transform .6s cubic-bezier(.4,0,.2,1);
+}
+.nav__cta:hover::after{transform:translateX(330%);}
+
+@media(max-width:900px){
+  .nav__bar{gap:1.1rem;}
+  .nav__links{gap:1.2rem;}
+  .nav__links a:nth-child(2),.nav__links a:nth-child(4){display:none;}
+}
+@media(max-width:620px){
+  .nav__links{display:none;}                     /* the CTA always survives */
+}
+@media(max-width:420px){
+  .nav__cta{padding:.6rem .85rem;letter-spacing:.06em;}
+}
+
+/* ── FOOTER ────────────────────────────────────────────────────────────── */
+.foot__root{
+  position:relative;z-index:2;
+  background:var(--pit);border-top:1px solid var(--dline);
+  padding-block:clamp(3rem,6vw,5rem);
+}
+.foot__grid{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2.5rem;align-items:end;
+}
+/* Badge above the wordmark rather than beside it — the footer wordmark runs to
+   7rem, and a badge scaled to match would overpower the whole footer. */
+.foot__badge{
+  display:block;width:clamp(2.6rem,5vw,3.6rem);height:auto;margin:0 0 1.1rem;
+}
+.foot__mark{
+  margin:0 0 .55rem;font-family:var(--dsp);
+  font-variation-settings:"wdth" 118,"wght" 900;
+  font-size:clamp(3rem,11vw,7rem);line-height:.82;
+  text-transform:uppercase;letter-spacing:-.05em;color:var(--white);
+}
+.foot__tag{
+  margin:0;font-family:var(--mno);font-size:var(--label);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--dash);
+}
+.foot__nav{text-align:right;}
+/* --dash-2 is off-limits below 12px (contrast floor), so small mono runs --dash. */
+.foot__navh{
+  margin:0 0 .9rem;font-family:var(--mno);font-size:var(--label);letter-spacing:.18em;
+  text-transform:uppercase;color:var(--dash);
+}
+.foot__list{list-style:none;margin:0;padding:0;display:grid;gap:.6rem;}
+.foot__list a{
+  font-family:var(--mno);font-size:var(--label);letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;color:var(--silver);
+  transition:color .2s cubic-bezier(.4,0,.2,1);
+}
+.foot__list a:hover{color:var(--ion);}
+
+.foot__base{
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem 2rem;
+  margin-top:clamp(2.2rem,5vw,3.4rem);padding-top:1.2rem;
+  border-top:1px solid var(--dline);
+}
+.foot__legal,.foot__note{margin:0;font-size:var(--fine);color:var(--dash-2);}
+.foot__note{max-width:52ch;}
+
+@media(max-width:760px){
+  .foot__grid{grid-template-columns:1fr;gap:2.2rem;align-items:start;}
+  .foot__nav{text-align:left;}
+  .foot__list{grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem 1.2rem;}
+}
+
+/* ── BACK TO TOP ───────────────────────────────────────────────────────── */
+.top__btn{
+  position:fixed;right:clamp(.9rem,2.2vw,1.6rem);bottom:clamp(.9rem,2.2vw,1.6rem);
+  z-index:90;width:2.85rem;height:2.85rem;padding:0;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--edge);background:rgba(10,14,21,.74);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  color:var(--silver);cursor:pointer;
+  opacity:0;transform:translateY(10px);pointer-events:none;
+  /* visibility, not just opacity — an opacity:0 button still takes keyboard
+     focus, which would strand a Tab user on an invisible control. */
+  visibility:hidden;
+  transition:opacity .3s cubic-bezier(.4,0,.2,1),transform .3s cubic-bezier(.4,0,.2,1),
+             visibility 0s linear .3s,
+             color .2s cubic-bezier(.4,0,.2,1),border-color .2s cubic-bezier(.4,0,.2,1);
+}
+.top__btn.on{opacity:1;transform:none;pointer-events:auto;
+  visibility:visible;transition-delay:0s;}
+.top__btn:hover{color:var(--ion);border-color:var(--ion);}
+.top__btn svg{width:.95rem;height:.95rem;display:block;}
+
+/* ── REDUCED MOTION ────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion:reduce){
+  .nav__badge{transition:none;}
+  .nav__cta::after{display:none;}
+  .nav__cta:hover{transform:none;}
+  .top__btn{transform:none;}
+  .top__btn.on{transform:none;}
+}
+
+/* ═══ 20-hero.css ═══ */
+/* ══ HERO ══ prefixes: hero__ / orb__ ═══════════════════════════════════════
+   Entrance timings are tuned to land just after the preloader clears (~1.7s),
+   so the headline rise is the first thing the visitor sees, not a re-run of it. */
+
+.hero{position:relative;overflow:hidden;
+  padding-block:clamp(3.75rem,8.5vw,6.75rem) clamp(3.25rem,7vw,6rem);}
+
+/* minmax(0,…) is load-bearing: a bare `1fr` floors at min-content, and the
+   min-content of an unbreakable "MARKETING" at display size is ~880px — it
+   would eat the row and starve the orb column down to ~150px. */
+/* One column. Nothing shares the row, so the type runs the full measure and
+   "MARKETING" sets the ceiling. */
+.hero{position:relative;overflow:hidden;}
+.hero__grid{display:block;}
+
+/* ── entrance ─────────────────────────────────────────────────────────────
+   Staged with plain animation-delay rather than JS so it survives a failed
+   script; every rule is neutralised in the reduced-motion block below. */
+@keyframes hero__in{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+@keyframes hero__rise{to{transform:translateY(0);}}
+
+.hero__tag,.hero__lede,.hero__acts,.hero__stats{
+  opacity:0;animation:hero__in .9s cubic-bezier(.16,1,.3,1) forwards;}
+.hero__tag{animation-delay:.18s;}
+.hero__lede{animation-delay:.62s;}
+.hero__acts{animation-delay:.74s;}
+.hero__stats{animation-delay:.86s;}
+
+/* ── availability pill ──────────────────────────────────────────────────── */
+.hero__tag{display:inline-flex;align-items:center;gap:.62rem;margin:0 0 1.55rem;
+  font-family:var(--mno);font-size:var(--label);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dash);border:1px solid var(--dline);border-radius:999px;
+  padding:.5rem 1.05rem .5rem .95rem;background:rgba(15,20,29,.55);}
+.hero__pulse{flex:none;width:.42rem;height:.42rem;border-radius:50%;background:var(--ion);
+  box-shadow:0 0 0 0 rgba(79,195,247,.65);animation:hero__pulse 2.6s ease-out infinite;}
+@keyframes hero__pulse{
+  0%{box-shadow:0 0 0 0 rgba(79,195,247,.6);}
+  70%{box-shadow:0 0 0 .55rem rgba(79,195,247,0);}
+  100%{box-shadow:0 0 0 0 rgba(79,195,247,0);}
+}
+
+/* ── headline ─────────────────────────────────────────────────────────────
+   Expanded (wdth 118) against one condensed ion word (wdth 64) — the brand
+   fingerprint. Lines are masked boxes; the inner span slides up out of them. */
+/* Full measure — nothing shares the row, so the type can go as big as the
+   longest word allows. "MARKETING" at wdth 118 sets the ceiling. */
+.hero__h1{margin:0 0 1.45rem;font-family:var(--dsp);
+  font-size:clamp(2.25rem,10vw,8.2rem);font-variation-settings:"wdth" 118,"wght" 900;
+  font-weight:900;text-transform:uppercase;line-height:.86;letter-spacing:-.045em;
+  color:var(--white);}
+.hero__line{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em;}
+.hero__line>span{display:block;transform:translateY(105%);
+  animation:hero__rise .95s cubic-bezier(.16,1,.3,1) forwards;}
+.hero__line:nth-child(1)>span{animation-delay:.26s;}
+.hero__line:nth-child(2)>span{animation-delay:.36s;}
+.hero__line:nth-child(3)>span{animation-delay:.47s;}
+/* JS lifts the mask once the rise is done so the ion glow can bloom past the
+   line box; without JS the type is still correct, just tightly cropped. */
+.hero__h1--open .hero__line{overflow:visible;}
+.hero__h1 em{font-style:normal;font-variation-settings:"wdth" 64,"wght" 900;
+  color:var(--ion);text-shadow:0 0 22px rgba(79,195,247,.42),0 0 56px rgba(30,155,215,.22);}
+
+.hero__lede{margin:0 0 2.15rem;max-width:52ch;
+  font-family:var(--bdy);font-size:clamp(1.02rem,1.35vw,1.16rem);line-height:1.62;
+  color:var(--dash);}
+
+.hero__acts{display:flex;flex-wrap:wrap;gap:.75rem;}
+
+/* ── stats ────────────────────────────────────────────────────────────────
+   One hairline carries the whole row; a short ion segment sits on its left
+   end so the accent is present without being spent. */
+.hero__stats{position:relative;display:grid;grid-template-columns:repeat(4,1fr);
+  margin-top:clamp(2.75rem,6vw,4.75rem);border-top:1px solid var(--dline);}
+.hero__stats::before{content:"";position:absolute;left:0;top:-1px;width:64px;height:1px;
+  background:var(--ion);}
+.hero__stat{padding:clamp(1.25rem,2.4vw,1.75rem) 0 0;}
+.hero__stat + .hero__stat{border-left:1px solid var(--dline);
+  padding-left:clamp(1rem,2.2vw,1.75rem);}
+.hero__statN{margin:0 0 .5rem;font-family:var(--dsp);
+  font-variation-settings:"wdth" 106,"wght" 800;font-weight:800;
+  font-size:clamp(1.55rem,3.1vw,2.35rem);line-height:1;letter-spacing:-.038em;
+  color:var(--white);font-variant-numeric:tabular-nums;white-space:nowrap;}
+.hero__statL{margin:0;font-family:var(--mno);font-size:var(--label);letter-spacing:.15em;
+  text-transform:uppercase;line-height:1.5;color:var(--dash);}
+
+/* ── scroll hint ──────────────────────────────────────────────────────────
+   JS drives the fade so it can be dismissed on first scroll; it starts
+   hidden and stays hidden if the script never runs (it is decorative). */
+.hero__hint{display:flex;flex-direction:column;align-items:center;gap:.7rem;
+  margin-top:clamp(2.25rem,5vw,3.75rem);opacity:0;transform:translateY(10px);
+  transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1);}
+.hero__hint--in{opacity:1;transform:none;}
+.hero__hint--out{opacity:0;transform:translateY(10px);}
+.hero__hintLabel{font-family:var(--mno);font-size:var(--label-sm);letter-spacing:.34em;
+  text-transform:uppercase;color:var(--dash-2);text-indent:.34em;}
+.hero__hintLine{position:relative;display:block;width:1px;height:52px;overflow:hidden;
+  background:linear-gradient(180deg,var(--edge),rgba(38,48,63,0));}
+.hero__hintLine i{position:absolute;left:0;top:0;width:1px;height:16px;
+  background:linear-gradient(180deg,rgba(79,195,247,0),var(--ion));
+  animation:hero__drop 2.4s cubic-bezier(.55,0,.35,1) infinite;}
+@keyframes hero__drop{
+  0%{transform:translateY(-16px);opacity:0;}
+  20%{opacity:1;}
+  76%{opacity:1;}
+  100%{transform:translateY(52px);opacity:0;}
+}
+
+/* ── responsive ─────────────────────────────────────────────────────────── */
+@media (max-width:900px){
+  .hero__lede{max-width:none;}
+}
+@media (max-width:760px){
+  .hero__stats{grid-template-columns:repeat(2,1fr);}
+  .hero__stat:nth-child(odd){border-left:0;padding-left:0;}
+  .hero__stat:nth-child(n+3){border-top:1px solid var(--dline);
+    margin-top:clamp(1.1rem,4vw,1.5rem);}
+  .hero__statN{white-space:normal;}
+}
+@media (max-width:420px){
+  .hero__tag{font-size:var(--label);letter-spacing:.14em;}
+}
+
+/* ── reduced motion: everything lands, nothing moves ──────────────────── */
+@media (prefers-reduced-motion:reduce){
+  .hero__tag,.hero__lede,.hero__acts,.hero__stats{
+    opacity:1;transform:none;animation:none;}
+  .hero__line{overflow:visible;}
+  .hero__line>span{transform:none;animation:none;}
+  .hero__pulse{animation:none;box-shadow:0 0 0 .28rem rgba(79,195,247,.16);}
+  .hero__hint{transition:none;}
+  .hero__hintLine i{animation:none;top:18px;opacity:.85;}
+}
+
+/* ═══ 30-services.css ═══ */
+
+
+/* ══ INTRO ══ prefixes: intro__ ════════════════════════════════════════════ */
+.intro{
+  position:relative;min-height:100svh;min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;background:var(--void);
+}
+.intro__c{position:absolute;inset:0;width:100%;height:100%;display:block;}
+.intro__center{position:relative;z-index:1;text-align:center;padding-inline:var(--pad);}
+
+.intro__badge{
+  width:clamp(78px,11vw,150px);height:auto;margin:0 auto clamp(1.1rem,2.4vw,1.9rem);
+  opacity:0;transform:scale(.86);
+  animation:intro__badge 1.05s cubic-bezier(.16,1,.3,1) .12s forwards;
+}
+@keyframes intro__badge{to{opacity:1;transform:none;}}
+
+.intro__word{
+  margin:0;font-family:var(--dsp);
+  font-variation-settings:"wdth" 118,"wght" 900;font-weight:900;
+  font-size:clamp(3.2rem,15vw,11rem);line-height:.84;
+  letter-spacing:-.045em;text-transform:uppercase;color:var(--white);
+  opacity:0;transform:translateY(16px);
+  animation:intro__rise .95s cubic-bezier(.16,1,.3,1) .30s forwards;
+}
+.intro__line{
+  margin:clamp(1rem,2.2vw,1.6rem) 0 0;font-family:var(--mno);
+  font-size:var(--label);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dash);
+  opacity:0;transform:translateY(12px);
+  animation:intro__rise .95s cubic-bezier(.16,1,.3,1) .52s forwards;
+}
+.intro__sep{color:var(--ion);}
+@keyframes intro__rise{to{opacity:1;transform:none;}}
+
+.intro__hint{
+  position:absolute;left:50%;bottom:clamp(1.4rem,4vh,2.8rem);
+  transform:translateX(-50%);z-index:1;
+  display:flex;flex-direction:column;align-items:center;gap:.7rem;
+  text-decoration:none;
+  opacity:0;animation:intro__rise .9s ease .95s forwards;
+}
+.intro__hintLabel{
+  font-family:var(--mno);font-size:var(--label-sm);letter-spacing:.3em;
+  text-transform:uppercase;color:var(--dash-2);
+  transition:color .25s;
+}
+.intro__hint:hover .intro__hintLabel{color:var(--silver);}
+.intro__hintLine{position:relative;display:block;width:1px;height:46px;
+  background:rgba(38,48,63,.9);overflow:hidden;}
+.intro__hintLine i{position:absolute;left:0;top:-46px;width:1px;height:46px;
+  background:linear-gradient(180deg,rgba(79,195,247,0),var(--ion));
+  animation:intro__drop 2.1s cubic-bezier(.6,0,.4,1) infinite;}
+@keyframes intro__drop{0%{transform:translateY(0);}100%{transform:translateY(92px);}}
+
+/* The nav is absent on the title card and arrives with the content. */
+.nav__bar{opacity:0;pointer-events:none;
+  transition:opacity .45s ease, transform .45s cubic-bezier(.16,1,.3,1);
+  transform:translateY(-8px);}
+.nav__bar.is-lit{opacity:1;pointer-events:auto;transform:none;}
+
+@media (prefers-reduced-motion:reduce){
+  .intro__badge,.intro__word,.intro__line,.intro__hint{
+    opacity:1;transform:none;animation:none;}
+  .intro__hintLine i{animation:none;top:0;}
+  .nav__bar{opacity:1;pointer-events:auto;transform:none;transition:none;}
+}
+
+/* ══ SYSTEM ══ prefixes: sys__ ══════════════════════════════════════════════
+   A tall track with a sticky stage: the drawing holds still in the viewport
+   while the page scrolls past it, and that scroll distance is the assembly. */
+.sys{padding-block:0;background:var(--pit);
+  border-top:1px solid var(--dline);border-bottom:1px solid var(--dline);}
+.sys__track{height:270vh;position:relative;}
+.sys__stick{position:sticky;top:0;height:100vh;min-height:560px;
+  display:flex;align-items:center;overflow:hidden;}
+.sys__inner{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);
+  gap:clamp(1.5rem,4vw,3.5rem);align-items:center;width:100%;}
+.sys__head{max-width:46ch;}
+.sys__hot{color:var(--ion);font-variation-settings:"wdth" 64,"wght" 850;}
+.sys__figure{margin:0;position:relative;}
+.sys__c{display:block;width:100%;height:clamp(360px,62vh,660px);}
+
+@media (max-width:900px){
+  .sys__track{height:230vh;}
+  .sys__stick{height:100vh;min-height:520px;}
+  .sys__inner{grid-template-columns:minmax(0,1fr);gap:clamp(1.1rem,4vw,1.8rem);
+    align-content:center;}
+  .sys__head .lede{margin-bottom:0;}
+  .sys__c{height:clamp(300px,48vh,460px);}
+}
+@media (prefers-reduced-motion:reduce){
+  /* No scroll choreography: one composed sheet, fully assembled. */
+  .sys__track{height:auto;}
+  .sys__stick{position:static;height:auto;min-height:0;
+    padding-block:clamp(3.5rem,8vw,6rem);}
+}
+
+/* ══ SERVICES ═══════════════════════════════════════════════════════════
+   Prefix: svc__   ·   Owns nothing global.
+   Structure is carried by hairlines, not boxes: no radius on panels,
+   radius only on the platform pills. */
+
+/* ── Header: headline left, lede right, eyebrow across the top ───────── */
+/* Stacked, full-width — same as every other section header. A two-column
+   header here starved the headline and split "ONE ACCOUNTABLE PARTNER."
+   across three ragged lines, orphaning the ion accent word. */
+.svc__head{
+  margin-bottom:clamp(2.4rem,5vw,4rem);
+}
+.svc__h{margin:0;}
+/* The width axis is the fingerprint: one condensed ion word inside an
+   expanded headline. Only these two properties are set so any core
+   treatment of .hot survives. */
+.svc__hot{color:var(--ion);font-variation-settings:"wdth" 64,"wght" 850;}
+
+/* ── Grid: 1 + 2 side by side, 3 spanning full width ─────────────────── */
+.svc__grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(1rem,2vw,1.35rem);
+  perspective:1200px;
+  perspective-origin:50% 42%;
+}
+.svc__card--wide{grid-column:1 / -1;}
+
+@media (max-width:820px){
+  .svc__grid{grid-template-columns:1fr;perspective:none;}
+  .svc__card--wide{grid-column:auto;}
+}
+
+/* ── Card ────────────────────────────────────────────────────────────── */
+.svc__card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  padding:var(--pad-panel);
+  background:var(--panel);
+  border:1px solid var(--dline);
+  transform-style:preserve-3d;
+  transition:border-color .26s cubic-bezier(.4,0,.2,1),
+             box-shadow .32s cubic-bezier(.4,0,.2,1),
+             background-color .26s cubic-bezier(.4,0,.2,1);
+}
+
+/* Top accent hairline — draws in from the left on hover. */
+.svc__card::before{
+  content:"";
+  position:absolute;left:-1px;right:-1px;top:-1px;height:2px;
+  background:var(--grad);
+  transform:scaleX(0);
+  transform-origin:0 50%;
+  opacity:0;
+  transition:transform .42s cubic-bezier(.16,1,.3,1),opacity .28s cubic-bezier(.4,0,.2,1);
+  pointer-events:none;
+}
+
+/* Cursor-tracked ion highlight. --mx/--my are written by 30-services.js. */
+.svc__card::after{
+  content:"";
+  position:absolute;inset:0;
+  pointer-events:none;
+  opacity:0;
+  mix-blend-mode:screen;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),
+    rgba(79,195,247,.14),rgba(79,195,247,0) 62%);
+  transition:opacity .3s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── Card contents ───────────────────────────────────────────────────── */
+/* Editorial index number, top-right, sitting behind the content. */
+.svc__ix{
+  position:absolute;
+  top:clamp(.85rem,1.9vw,1.35rem);
+  right:clamp(1.05rem,2.3vw,1.75rem);
+  margin:0;
+  font-family:var(--mno);
+  font-weight:500;
+  font-size:clamp(2.35rem,3.6vw,3rem);
+  line-height:1;
+  letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums;
+  color:var(--edge);
+  opacity:.62;
+  pointer-events:none;
+  user-select:none;
+}
+.svc__name{
+  margin:0 0 .7rem;
+  padding-right:3.4rem;
+  font-family:var(--dsp);
+  font-variation-settings:"wdth" 105,"wght" 800;
+  font-size:1.45rem;
+  line-height:1.08;
+  /* Reserve two lines. Card 1 wraps and card 2 doesn't, and without this
+     their rules and bullet lists sit 25px apart side by side. */
+  min-height:calc(2 * 1.08em);
+  letter-spacing:-.03em;
+  text-transform:uppercase;
+  color:var(--white);
+}
+.svc__blurb{
+  margin:0 0 1.4rem;
+  padding-bottom:1.4rem;
+  border-bottom:1px solid var(--dline);
+  max-width:52ch;
+  font-size:var(--body-sm);
+  line-height:1.6;
+  color:var(--dash);
+}
+
+.svc__list{list-style:none;margin:0;padding:0;}
+.svc__list li{
+  position:relative;
+  padding-left:1.35rem;
+  margin:0 0 .78rem;
+  font-size:var(--body-sm);
+  line-height:1.58;
+  color:var(--silver);
+}
+.svc__list li:last-child{margin-bottom:0;}
+/* Ion dash — a rule, not a bullet. */
+.svc__list li::before{
+  content:"";
+  position:absolute;left:0;top:.78em;
+  width:.55rem;height:1px;
+  background:var(--ion);
+  opacity:.85;
+}
+
+.svc__list--two{
+  columns:2;
+  column-gap:clamp(1.5rem,3.4vw,3rem);
+}
+.svc__list--two li{
+  -webkit-column-break-inside:avoid;
+  break-inside:avoid;
+  margin-bottom:.9rem;
+}
+@media (max-width:820px){
+  .svc__list--two{columns:1;}
+}
+
+/* Pushed to the floor of the card so all cards bottom-align. */
+.svc__note{
+  margin:auto 0 0;
+  padding-top:1.1rem;
+  border-top:1px solid var(--dline);
+  font-size:var(--fine);
+  line-height:1.55;
+  color:var(--dash-2);
+}
+.svc__note-k{
+  display:block;
+  margin-bottom:.3rem;
+  font-family:var(--mno);
+  font-size:var(--label-sm);
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--dash-2);
+}
+
+/* ── Platform pills (card 03) ────────────────────────────────────────── */
+.svc__plat{
+  margin-top:auto;
+  padding-top:1.45rem;
+  border-top:1px solid var(--dline);
+}
+.svc__plat-k{
+  margin:0 0 .75rem;
+  font-family:var(--mno);
+  font-size:var(--label-sm);
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--dash-2);
+}
+.svc__tags{
+  list-style:none;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.45rem;
+  margin:0;padding:0;
+}
+.svc__tags li{
+  padding:.42rem .82rem;
+  border:1px solid var(--dline);
+  border-radius:999px;
+  background:var(--raise);
+  font-family:var(--mno);
+  font-size:var(--label-sm);
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  color:var(--dash);
+  white-space:nowrap;
+  transition:border-color .22s cubic-bezier(.4,0,.2,1),color .22s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── Fine-pointer enrichment: lift, glow, and parallax depth ─────────── */
+@media (hover:hover) and (pointer:fine){
+  .svc__card{will-change:transform;}
+  /* JS writes the tilt matrix inline; this is the fallback lift and the
+     resting transition when the pointer leaves before JS settles. */
+  .svc__card:hover{
+    transform:translateY(-6px);
+    background:var(--raise);
+    border-color:rgba(79,195,247,.34);
+    box-shadow:0 30px 70px -34px rgba(79,195,247,.3),
+               0 20px 54px -30px rgba(4,6,10,.92);
+  }
+  .svc__card:hover::before{transform:scaleX(1);opacity:1;}
+  .svc__card:hover::after{opacity:1;}
+  .svc__card:hover .svc__tags li{border-color:var(--edge);}
+  .svc__tags li:hover{border-color:rgba(79,195,247,.38);color:var(--silver);}
+
+  /* Depth is applied only while hovered, so the resting card is unscaled. */
+  .svc__ix,.svc__name,.svc__blurb,.svc__list,.svc__note,.svc__plat{
+    transition:transform .38s cubic-bezier(.16,1,.3,1);
+  }
+  .svc__card:hover .svc__ix{transform:translateZ(38px);}
+  .svc__card:hover .svc__name{transform:translateZ(26px);}
+  .svc__card:hover .svc__blurb{transform:translateZ(16px);}
+  .svc__card:hover .svc__list{transform:translateZ(10px);}
+  .svc__card:hover .svc__note,
+  .svc__card:hover .svc__plat{transform:translateZ(6px);}
+}
+
+/* ── Calm mode: everything static, nothing lost ──────────────────────── */
+@media (prefers-reduced-motion:reduce){
+  .svc__grid{perspective:none;}
+  .svc__card,
+  .svc__card::before,
+  .svc__card::after,
+  .svc__ix,.svc__name,.svc__blurb,.svc__list,.svc__note,.svc__plat,
+  .svc__tags li{transition:none;}
+  .svc__card:hover{transform:none;box-shadow:none;}
+  .svc__card:hover::after{opacity:0;}
+  .svc__card:hover .svc__ix,
+  .svc__card:hover .svc__name,
+  .svc__card:hover .svc__blurb,
+  .svc__card:hover .svc__list,
+  .svc__card:hover .svc__note,
+  .svc__card:hover .svc__plat{transform:none;}
+}
+
+/* ═══ 40-process.css ═══ */
+/* ══ 02 · PROCESS / TIMELINE ═══════════════════════════════════════
+   Prefix: proc__ / flow__ — nothing here touches global classes.
+   ─────────────────────────────────────────────────────────────── */
+
+/* The condensed width axis against the expanded headline is the brand
+   fingerprint — one phrase only, or it stops reading as emphasis. */
+.proc__hl{
+  font-variation-settings:"wdth" 64,"wght" 850;
+  color:var(--ion);
+}
+
+/* ── the inset ─────────────────────────────────────────────────── */
+/* One notch darker than the --pit section around it, so the panel reads
+   as a window cut into the page rather than a card floating on it. */
+.proc__inset{
+  position:relative;
+  margin-top:clamp(2.25rem,4.5vw,3.5rem);
+  border:1px solid var(--dline);
+  background:var(--void);
+  overflow:hidden;
+}
+
+/* ── terrain banner ────────────────────────────────────────────── */
+.flow__stage{
+  position:relative;
+  height:clamp(260px,26vw,340px);
+  overflow:hidden;
+  background:var(--void);
+}
+/* The timeline fills its stage edge to edge — the reel should run out of
+   frame on both sides, not sit inside a box. */
+.flow__c{
+  display:block;
+  position:absolute;
+  top:0;left:0;
+  width:100%;
+  height:100%;
+  /* single mask layer (no mask-composite) so every engine honours it:
+     dissolves the left and right edges into the panel */
+  -webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,0) 0%,#000 13%,#000 87%,rgba(0,0,0,0) 100%);
+          mask-image:linear-gradient(90deg,rgba(0,0,0,0) 0%,#000 13%,#000 87%,rgba(0,0,0,0) 100%);
+}
+/* Horizon dissolve + a whisper of ion haze where the rows converge.
+   First layer paints on top: glow over fade over the near-edge softener. */
+.flow__veil{
+  position:absolute;
+  top:0;right:0;bottom:0;left:0;
+  pointer-events:none;
+  /* A whisper of ion around the playhead, and the faintest scanline tooth
+     so the panel reads as a monitor rather than a flat fill. The heavy
+     top-down fade the terrain needed would bury the V1 track. */
+  background:
+    radial-gradient(38% 70% at 36% 50%,rgba(79,195,247,.10),rgba(79,195,247,0) 70%),
+    repeating-linear-gradient(180deg,rgba(255,255,255,.014) 0 1px,rgba(0,0,0,0) 1px 3px),
+    linear-gradient(180deg,rgba(4,6,10,.55) 0%,rgba(4,6,10,0) 12%),
+    linear-gradient(0deg,rgba(4,6,10,.55) 0%,rgba(4,6,10,0) 10%);
+}
+
+/* ── timeline shell ────────────────────────────────────────────── */
+.proc__body{
+  border-top:1px solid var(--dline);
+  padding:clamp(1.5rem,3vw,2.4rem) clamp(1.15rem,2.6vw,2.2rem) clamp(1.35rem,2.6vw,2rem);
+}
+.proc__rail{position:relative;}
+
+/* The rail track itself is the list's 1px border; the bar overlays it. */
+.proc__bar{
+  position:absolute;
+  top:-1px;left:0;
+  width:100%;
+  height:2px;
+  background:var(--grad);
+  box-shadow:0 0 18px rgba(79,195,247,.55);
+  z-index:2;
+  /* Scaled, not resized: --proc-p is rewritten on every scroll frame, and
+     transitioning width would relayout the timeline each time. */
+  transform:scaleX(var(--proc-p,0));
+  transform-origin:left center;
+  transition:transform .14s cubic-bezier(.4,0,.2,1);
+}
+
+.proc__tl{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--dline);
+}
+
+.proc__step{
+  position:relative;
+  padding:clamp(1.5rem,2.6vw,2.05rem) clamp(1rem,1.8vw,1.65rem) 0;
+  border-left:1px solid var(--dline);
+}
+/* Column 1 sits flush so the bar's origin and its node share an axis. */
+.proc__step:first-child{padding-left:0;border-left:0;}
+.proc__step:last-child{padding-right:0;}
+
+/* node on the track — dark until the progress bar passes it */
+.proc__node{
+  position:absolute;
+  top:0;left:0;
+  width:9px;height:9px;
+  transform:translate(-50%,-50%);
+  background:var(--pit);
+  border:1px solid var(--edge);
+  z-index:3;
+  transition:background .3s cubic-bezier(.4,0,.2,1),
+             border-color .3s cubic-bezier(.4,0,.2,1),
+             box-shadow .3s cubic-bezier(.4,0,.2,1);
+}
+.proc__step.is-on .proc__node{
+  background:var(--ion);
+  border-color:var(--glow);
+  box-shadow:0 0 0 3px rgba(79,195,247,.12),0 0 16px rgba(79,195,247,.7);
+}
+
+.proc__wk{
+  font-family:var(--mno);
+  font-size:var(--label);
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  font-variant-numeric:tabular-nums;
+  color:var(--dash);
+  margin:0 0 .85rem;
+  transition:color .3s cubic-bezier(.4,0,.2,1);
+}
+.proc__step.is-on .proc__wk{color:var(--ion);}
+
+.proc__mk{
+  display:inline-block;
+  width:6px;height:6px;
+  margin-right:.6rem;
+  vertical-align:baseline;
+  background:var(--edge);
+  transition:background .3s cubic-bezier(.4,0,.2,1),
+             box-shadow .3s cubic-bezier(.4,0,.2,1);
+}
+.proc__step.is-on .proc__mk{
+  background:var(--ion);
+  box-shadow:0 0 10px rgba(79,195,247,.75);
+}
+
+.proc__t{
+  font-family:var(--dsp);
+  font-variation-settings:"wdth" 106,"wght" 820;
+  font-size:clamp(1.35rem,2.35vw,1.95rem);
+  line-height:1.02;
+  letter-spacing:-.03em;
+  text-transform:uppercase;
+  color:var(--silver);
+  margin:0 0 .6rem;
+  transition:color .3s cubic-bezier(.4,0,.2,1);
+}
+.proc__step.is-on .proc__t{color:var(--white);}
+
+.proc__d{
+  margin:0;
+  font-size:var(--body-sm);
+  line-height:1.6;
+  color:var(--dash);
+  max-width:26ch;
+}
+
+/* closing note — 12px floor keeps --dash-2 legible */
+.proc__note{
+  margin:clamp(1.5rem,3vw,2.15rem) 0 0;
+  padding-top:1.05rem;
+  border-top:1px solid var(--dline);
+  font-family:var(--mno);
+  font-size:var(--fine);
+  letter-spacing:.04em;
+  line-height:1.5;
+  color:var(--dash-2);
+}
+.proc__mk--n{background:var(--dash-2);}
+
+/* ── stacked: the rail rotates to a vertical spine ─────────────── */
+@media (max-width:820px){
+  .proc__tl{
+    grid-template-columns:1fr;
+    border-top:0;
+    border-left:1px solid var(--dline);
+  }
+  .proc__bar{
+    top:0;left:-1px;
+    width:2px;
+    height:100%;
+    transform:scaleY(var(--proc-p,0));
+    transform-origin:center top;
+    transition:transform .14s cubic-bezier(.4,0,.2,1);
+  }
+  .proc__step,
+  .proc__step:first-child,
+  .proc__step:last-child{
+    border-left:0;
+    padding:1.5rem 0 1.5rem clamp(1.15rem,4.5vw,1.7rem);
+  }
+  .proc__step:last-child{padding-bottom:0;}
+  .proc__node{top:1.55rem;}
+  .proc__d{max-width:46ch;}
+}
+
+/* ── reduced motion: no scrub, no easing — the finished state ──── */
+@media (prefers-reduced-motion: reduce){
+  .proc__bar,
+  .proc__node,
+  .proc__mk,
+  .proc__wk,
+  .proc__t{transition:none;}
+}
+
+/* ═══ 50-capability.css ═══ */
+/* ══ 03 · CAPABILITY + MARQUEE ═════════════════════════════════════════
+   Prefixes: mq__ (kinetic strip) · cap__ (capability grid)
+   Nothing here redefines a core class; .is-sel / .on are only ever styled
+   as descendants of a prefixed element.                                  */
+
+/* ── MARQUEE ─────────────────────────────────────────────────────────── */
+
+.mq{
+  position:relative;overflow:hidden;
+  border-top:1px solid var(--dline);border-bottom:1px solid var(--dline);
+  padding-block:clamp(.85rem,2.1vw,1.5rem);
+  margin-bottom:clamp(3rem,6.5vw,5.5rem);
+  /* keeps the very wide track from repainting its neighbours */
+  contain:paint;
+}
+
+/* The mask lives on an inner element so the band's hairlines stay full width. */
+.mq__vp{
+  -webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,0) 0,#000 8%,#000 92%,rgba(0,0,0,0) 100%);
+          mask-image:linear-gradient(90deg,rgba(0,0,0,0) 0,#000 8%,#000 92%,rgba(0,0,0,0) 100%);
+}
+
+.mq__track{display:flex;align-items:center;width:max-content;}
+
+/* Animation is opt-in: JS adds .is-live only after it has duplicated the
+   items, because translateX(-50%) is only seamless with two identical halves.
+   Duration is re-set in JS from measured width, so speed is resolution-
+   independent; 40s is the no-JS-yet fallback. */
+.mq__track.is-live{
+  animation:mq__slide 40s linear infinite;
+  will-change:transform;
+}
+/* Off-screen or backgrounded tab — parked by JS. */
+.mq__track.is-hold{animation-play-state:paused;}
+
+@media (hover:hover) and (pointer:fine){
+  .mq:hover .mq__track{animation-play-state:paused;}
+}
+
+@keyframes mq__slide{
+  from{transform:translate3d(0,0,0);}
+  to  {transform:translate3d(-50%,0,0);}
+}
+
+.mq__i{
+  display:flex;align-items:center;flex:none;
+  font-family:var(--dsp);
+  font-variation-settings:"wdth" 116,"wght" 800;
+  font-size:clamp(1.85rem,6.2vw,4.9rem);
+  line-height:1;letter-spacing:-.03em;text-transform:uppercase;
+  color:var(--edge);              /* fallback if text-stroke is unsupported */
+  white-space:nowrap;
+}
+/* Every third item is filled instead of hollow, for rhythm. The lit items are
+   marked in markup rather than :nth-child because JS doubles the list — a
+   positional rule would land differently in the second half and the loop
+   would visibly pop at the seam. */
+.mq__i--lit{color:rgba(79,195,247,.22);}   /* --ion at 22% */
+
+@supports (-webkit-text-stroke:1px #000){
+  .mq__i{-webkit-text-stroke:1px var(--edge);color:transparent;}
+  .mq__i--lit{-webkit-text-stroke:0;color:rgba(79,195,247,.22);}
+}
+
+/* Ion diamond between items. */
+.mq__i::after{
+  content:"";flex:none;
+  width:.46rem;height:.46rem;
+  margin:0 clamp(1.4rem,3vw,3rem);
+  background:var(--ion);transform:rotate(45deg);
+  box-shadow:0 0 12px rgba(79,195,247,.5);
+}
+
+/* ── HEADLINE ACCENT ─────────────────────────────────────────────────── */
+
+/* Archivo's width axis is the brand fingerprint: one condensed ion word
+   inside an expanded headline. */
+.cap__acc{font-variation-settings:"wdth" 64,"wght" 850;color:var(--ion);}
+
+/* ── FILTER BAR ──────────────────────────────────────────────────────── */
+
+.cap__bar{
+  display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;
+  margin:clamp(1.9rem,3.6vw,2.8rem) 0 clamp(1.4rem,2.8vw,2rem);
+}
+.cap__filters{display:flex;flex-wrap:wrap;gap:.45rem;}
+
+.cap__f{
+  font-family:var(--mno);font-size:var(--label);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dash);background:transparent;
+  border:1px solid var(--dline);border-radius:0;
+  padding:.62rem 1.1rem;cursor:pointer;
+  transition:color .2s cubic-bezier(.4,0,.2,1),
+             border-color .2s cubic-bezier(.4,0,.2,1),
+             background-color .2s cubic-bezier(.4,0,.2,1);
+}
+.cap__f:hover{color:var(--white);border-color:var(--edge);}
+.cap__f:focus-visible{outline:2px solid var(--ion);outline-offset:3px;}
+/* Selected reads like the primary CTA: ion gradient, near-black text. */
+.cap__f.is-sel{background:var(--grad);color:var(--void);border-color:transparent;}
+
+.cap__stat{
+  margin:0 0 0 auto;
+  font-family:var(--mno);font-size:var(--label);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dash-2);font-variant-numeric:tabular-nums;
+}
+
+/* ── CAPABILITY GRID ─────────────────────────────────────────────────── */
+
+/* 1px gap + outline (not border): adjacent outlines coincide inside the gap,
+   so the grid reads as a single hairline lattice while a partly-filled last
+   row still looks correct after filtering. */
+.cap__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;}
+
+.cap__tile{
+  position:relative;display:flex;flex-direction:column;
+  background:var(--panel);outline:1px solid var(--dline);border-radius:0;
+  padding:var(--pad-panel);
+  min-height:clamp(188px,19vw,230px);
+  overflow:hidden;
+  transition:background-color .24s cubic-bezier(.4,0,.2,1),
+             outline-color .24s cubic-bezier(.4,0,.2,1);
+}
+/* display:flex would otherwise beat the hidden attribute. */
+.cap__tile[hidden]{display:none;}
+
+/* Ion wash, centred on the pointer when JS is tracking it. */
+.cap__tile::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:0;
+  transition:opacity .3s cubic-bezier(.4,0,.2,1);
+  background:radial-gradient(320px circle at var(--cap-mx,50%) var(--cap-my,0%),
+             rgba(79,195,247,.13),rgba(79,195,247,0) 62%);
+}
+/* Ion rule that draws itself across the top edge on hover. */
+.cap__tile::after{
+  content:"";position:absolute;top:0;right:0;height:1px;width:0;
+  background:var(--ion);opacity:.9;
+  transition:width .38s cubic-bezier(.16,1,.3,1);
+}
+.cap__tile:hover,.cap__tile:focus-within{
+  background:var(--raise);outline-color:var(--ion-2);z-index:1;
+}
+.cap__tile:hover::before,.cap__tile:focus-within::before{opacity:1;}
+.cap__tile:hover::after,.cap__tile:focus-within::after{width:42%;}
+
+.cap__ix{
+  display:inline-flex;align-items:center;justify-content:center;flex:none;
+  width:2.15rem;height:2.15rem;
+  border:1px solid var(--ion-3);color:var(--ion);
+  font-family:var(--mno);font-size:var(--label);letter-spacing:.04em;
+  font-variant-numeric:tabular-nums;
+  transition:border-color .24s cubic-bezier(.4,0,.2,1),
+             box-shadow .24s cubic-bezier(.4,0,.2,1);
+}
+.cap__tile:hover .cap__ix,.cap__tile:focus-within .cap__ix{
+  border-color:var(--ion-2);box-shadow:0 0 0 3px rgba(79,195,247,.07);
+}
+
+.cap__t{
+  font-family:var(--dsp);
+  font-variation-settings:"wdth" 106,"wght" 780;
+  font-size:clamp(1.1rem,1.65vw,1.3rem);
+  line-height:1.06;letter-spacing:-.026em;text-transform:uppercase;
+  color:var(--white);
+  margin:auto 0 .55rem;          /* index pinned top, title/desc sit at the base */
+}
+.cap__d{margin:0;font-size:var(--body-sm);line-height:1.55;color:var(--dash);}
+
+/* Re-entry animation for tiles that survive a filter change. */
+@keyframes cap__rise{
+  from{opacity:0;transform:translate3d(0,14px,0);}
+  to  {opacity:1;transform:none;}
+}
+.cap__tile.on{animation:cap__rise .44s cubic-bezier(.16,1,.3,1) both;}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────────────── */
+
+@media (max-width:980px){
+  .cap__grid{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:620px){
+  .cap__grid{grid-template-columns:1fr;}
+  .cap__tile{min-height:0;}
+  .cap__stat{margin:.25rem 0 0;width:100%;}
+}
+
+/* ── REDUCED MOTION ──────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion:reduce){
+  .mq__track.is-live{animation:none;transform:none;will-change:auto;}
+  .cap__tile.on{animation:none;}
+  .cap__tile,.cap__tile::before,.cap__tile::after,.cap__f,.cap__ix{transition:none;}
+  /* the hover rule still resolves instantly, so nothing is lost — only the
+     travel is removed */
+}
+
+/* ═══ 60-scope.css ═══ */
+/* ══ 04 · SCOPE BUILDER ══ prefixes: scope__ / row__ / qty__ ════════════════ */
+
+/* One condensed ion word inside the expanded headline — the width-axis contrast
+   is the brand fingerprint, so it gets used once per headline, never twice. */
+.scope__ac{font-style:normal;color:var(--ion);font-variation-settings:"wdth" 64,"wght" 850;}
+
+.scope__grid{
+  display:grid;grid-template-columns:minmax(0,1fr) 340px;
+  gap:clamp(1.6rem,3.4vw,3.2rem);align-items:start;
+  margin-top:clamp(2rem,4.2vw,3.2rem);
+}
+
+/* ── picker ─────────────────────────────────────────────────────────────── */
+.scope__pick{min-width:0;}
+.scope__g{border:0;margin:0 0 clamp(1.7rem,3vw,2.6rem);padding:0;min-width:0;}
+.scope__g:last-of-type{margin-bottom:0;}
+.scope__lg{
+  display:block;width:100%;margin:0;padding:0 0 .75rem;
+  font-family:var(--mno);font-size:var(--label-sm);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dash-2);border-bottom:1px solid var(--dline);
+}
+
+.row{
+  position:relative;display:flex;align-items:flex-start;gap:1rem;
+  padding:1.05rem .9rem;border-bottom:1px solid var(--dline);
+  cursor:pointer;background-color:transparent;
+  transition:background-color .2s cubic-bezier(.4,0,.2,1);
+}
+/* accent bar overlaps the hairlines above and below so checked rows read as one block */
+.row::before{
+  content:"";position:absolute;left:0;top:-1px;bottom:-1px;width:2px;
+  background:var(--grad);transform:scaleY(0);transform-origin:50% 50%;
+  transition:transform .26s cubic-bezier(.16,1,.3,1);
+}
+.row:hover{background-color:var(--panel);}
+.row.is-on{
+  background-color:var(--panel);
+  background-image:linear-gradient(90deg,rgba(79,195,247,.075),rgba(79,195,247,0) 46%);
+}
+.row.is-on::before{transform:scaleY(1);}
+
+/* real input stays in the a11y tree and in tab order; only the square is drawn */
+.row input[type=checkbox]{
+  position:absolute;width:1px;height:1px;margin:0;padding:0;opacity:0;
+  clip:rect(0 0 0 0);clip-path:inset(50%);overflow:hidden;white-space:nowrap;
+}
+.row__box{
+  flex:none;width:1.2rem;height:1.2rem;margin-top:.14rem;position:relative;
+  border:1.5px solid var(--dash-2);background:var(--void);
+  transition:border-color .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,.2,1);
+}
+.row__box::after{
+  content:"";position:absolute;inset:3px;background:var(--grad);
+  transform:scale(0);transition:transform .2s cubic-bezier(.16,1,.3,1);
+}
+.row:hover .row__box{border-color:var(--dash);}
+.row input:checked~.row__box{
+  border-color:var(--ion-2);
+  box-shadow:0 0 0 1px rgba(79,195,247,.16),0 0 14px rgba(79,195,247,.18);
+}
+.row input:checked~.row__box::after{transform:scale(1);}
+/* Ordered so engines without :focus-visible keep the plain :focus ring (they drop
+   the two rules below as invalid), while modern ones show it on keyboard only. */
+.row input:focus~.row__box{outline:2px solid var(--ion);outline-offset:3px;}
+.row input:focus:not(:focus-visible)~.row__box{outline:none;}
+.row input:focus-visible~.row__box{outline:2px solid var(--ion);outline-offset:3px;}
+
+.row__b{flex:1 1 auto;min-width:0;}
+.row__n{
+  display:block;font-size:var(--body-sm);font-weight:600;line-height:1.32;
+  letter-spacing:-.005em;color:var(--silver);transition:color .2s cubic-bezier(.4,0,.2,1);
+}
+.row.is-on .row__n{color:var(--white);}
+.row__note{display:block;margin-top:.24rem;font-size:var(--fine);line-height:1.46;color:var(--dash-2);}
+
+/* ── quantity rows ──────────────────────────────────────────────────────── */
+.row--q{align-items:center;cursor:default;}
+.row--q:hover{background-color:transparent;}
+.row--q.is-on:hover{background-color:var(--panel);}
+
+.qty{
+  flex:none;display:flex;align-items:center;
+  border:1px solid var(--dash-2);background:var(--void);
+  transition:border-color .2s cubic-bezier(.4,0,.2,1);
+}
+.qty.is-on{border-color:var(--ion-2);}
+.qty__b{
+  width:2.15rem;height:2.15rem;border:0;background:transparent;color:var(--dash);
+  font-family:var(--mno);font-size:1rem;line-height:1;cursor:pointer;
+  transition:background-color .18s cubic-bezier(.4,0,.2,1),color .18s cubic-bezier(.4,0,.2,1);
+}
+/* Touch pointers get a 44px target; fine pointers keep the tighter stepper. */
+@media (pointer:coarse){
+  .qty__b{width:2.75rem;height:2.75rem;}
+}
+.qty__b:hover{background-color:var(--ion-3);color:var(--white);}
+.qty__b:active{background-color:var(--ion-2);color:var(--void);}
+.qty__b:focus-visible{outline:2px solid var(--ion);outline-offset:-2px;}
+.qty__v{
+  width:2.9rem;height:2.15rem;border:0;border-inline:1px solid var(--edge);
+  background:transparent;text-align:center;color:var(--white);
+  font-family:var(--mno);font-size:var(--small);font-variant-numeric:tabular-nums;
+  -moz-appearance:textfield;appearance:textfield;
+}
+.qty__v::-webkit-outer-spin-button,
+.qty__v::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+.qty__v:focus-visible{outline:2px solid var(--ion);outline-offset:-2px;}
+
+/* ── summary panel ──────────────────────────────────────────────────────── */
+.scope__aside{
+  position:relative;min-width:0;
+  background:var(--panel);border:1px solid rgba(79,195,247,.22);
+  padding:var(--pad-panel);
+}
+.scope__aside::before{
+  content:"";position:absolute;left:-1px;right:-1px;top:-1px;height:2px;
+  background:var(--grad);
+}
+/* a single ion wipe across the top edge acknowledges each change to the scope */
+.scope__aside::after{
+  content:"";position:absolute;left:-1px;right:-1px;top:-1px;height:2px;
+  background:var(--glow);opacity:0;transform:scaleX(0);transform-origin:0 50%;
+  pointer-events:none;
+}
+.scope__aside.is-pulse::after{animation:scope-pulse .72s cubic-bezier(.16,1,.3,1);}
+@keyframes scope-pulse{from{opacity:.85;transform:scaleX(0);}to{opacity:0;transform:scaleX(1);}}
+
+/* stick only when there is genuinely room for it */
+@media (min-width:901px) and (min-height:620px){
+  .scope__aside{position:sticky;top:5.5rem;}
+}
+
+.scope__l{
+  margin:0 0 .85rem;font-family:var(--mno);font-size:var(--label-sm);
+  letter-spacing:.18em;text-transform:uppercase;color:var(--dash-2);
+}
+.scope__count{
+  margin:0 0 1.05rem;color:var(--white);font-family:var(--dsp);
+  font-variation-settings:"wdth" 108,"wght" 850;
+  font-size:clamp(1.22rem,2.3vw,1.6rem);line-height:1.04;
+  letter-spacing:-.03em;text-transform:uppercase;font-variant-numeric:tabular-nums;
+}
+.scope__list{list-style:none;margin:0 0 1.2rem;padding:0;display:grid;gap:.44rem;}
+.scope__list li{
+  position:relative;padding-left:1.2rem;
+  font-size:var(--small);line-height:1.46;color:var(--dash);
+}
+.scope__list li::before{
+  content:"";position:absolute;left:0;top:.62em;width:.62rem;height:1.5px;background:var(--ion);
+}
+.scope__list li.is-none{padding-left:0;color:var(--dash-2);}
+.scope__list li.is-none::before{display:none;}
+/* only lines that just appeared animate — re-animating the whole list on every
+   keystroke turns the panel into a strobe */
+.scope__list li.is-new{animation:scope-in .42s cubic-bezier(.16,1,.3,1) backwards;}
+@keyframes scope-in{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+.scope__fine{margin:0 0 1.15rem;font-size:var(--fine);line-height:1.5;color:var(--dash-2);}
+/* belt-and-braces: the core .btn--full owns this, but the CTA must never sit
+   half-width if the modifier ever changes */
+.scope__cta{width:100%;justify-content:center;text-align:center;}
+
+/* ── responsive ─────────────────────────────────────────────────────────── */
+@media (max-width:900px){
+  .scope__grid{grid-template-columns:1fr;}
+}
+@media (max-width:560px){
+  .row{padding:.95rem .55rem;gap:.85rem;}
+  .row--q{flex-wrap:wrap;row-gap:.85rem;}
+  .row--q .row__b{flex:1 1 100%;}
+  .scope__list li{font-size:var(--small);}
+}
+
+/* ── calm mode ──────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion:reduce){
+  .row,.row::before,.row__box,.row__box::after,.row__n,.qty,.qty__b{transition:none;}
+  .row.is-on::before{transform:scaleY(1);}
+  .row input:checked~.row__box::after{transform:scale(1);}
+  .scope__aside.is-pulse::after{animation:none;}
+  .scope__list li.is-new{animation:none;}
+}
+
+/* ═══ 70-contact.css ═══ */
+/* ══════════════════════════════════════════════════════════════════════════
+   70 · DUTY SPLIT · STRAIGHT TALK · CONTACT CLOSE
+   Prefixes owned here: duty__ · note__ · cta__ · form__ · card__
+   Globals (.wrap .sec .btn .eyebrow .h2 .lede .rv .center) belong to the core
+   file and are never redefined below.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── responsibilities split ─────────────────────────────────────────────── */
+.duty__grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(.9rem,1.8vw,1.25rem);
+  margin:clamp(1.9rem,3.6vw,2.9rem) 0 clamp(1.7rem,3.2vw,2.6rem);
+}
+
+/* Both panels carry a 3px top edge so the ion one doesn't sit 2px lower. */
+.duty__panel{
+  position:relative;isolation:isolate;overflow:hidden;
+  background:var(--panel);
+  border:1px solid var(--dline);border-top:3px solid var(--dline);
+  padding:var(--pad-panel);
+  transition:background-color .24s cubic-bezier(.4,0,.2,1),
+             border-color .24s cubic-bezier(.4,0,.2,1);
+}
+.duty__panel:hover{background:var(--raise);border-color:var(--edge);border-top-color:var(--edge);}
+.duty__panel--ez,
+.duty__panel--ez:hover{border-top-color:var(--ion);}
+
+/* Pointer-tracked ion wash. Coordinates come from JS as --duty-x/--duty-y. */
+.duty__panel::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;
+  background:radial-gradient(240px 240px at var(--duty-x,50%) var(--duty-y,50%),
+    rgba(79,195,247,.11),rgba(79,195,247,0) 70%);
+  transition:opacity .3s cubic-bezier(.4,0,.2,1);
+}
+.duty__panel--lit::before{opacity:1;}
+.duty__num,.duty__h,.duty__list{position:relative;z-index:1;}
+
+.duty__num{
+  position:absolute;top:clamp(1.15rem,2.3vw,1.85rem);right:clamp(1.2rem,2.5vw,2rem);
+  font-family:var(--mno);font-size:var(--label-sm);letter-spacing:.18em;color:var(--dash-2);
+  font-variant-numeric:tabular-nums;
+}
+.duty__panel--ez .duty__num{color:var(--ion);}
+
+.duty__h{
+  font-family:var(--dsp);font-variation-settings:"wdth" 108,"wght" 800;
+  font-size:clamp(1.05rem,2.2vw,1.28rem);text-transform:uppercase;letter-spacing:-.022em;
+  line-height:1.05;color:var(--white);
+  margin:0 0 1.05rem;padding:0 3rem .8rem 0;border-bottom:1px solid var(--dline);
+}
+
+.duty__list{list-style:none;margin:0;padding:0;}
+.duty__item{
+  position:relative;padding-left:1.6rem;margin:0 0 .72rem;
+  font-size:var(--body-sm);line-height:1.55;color:var(--silver);
+}
+.duty__item:last-child{margin-bottom:0;}
+.duty__item::before{
+  content:"";position:absolute;left:0;top:.72em;width:.85rem;height:1px;background:var(--dash-2);
+}
+.duty__panel--ez .duty__item::before{
+  background:var(--ion);box-shadow:0 0 8px rgba(79,195,247,.55);
+}
+
+/* Items only start hidden once JS has confirmed it will animate them. */
+.duty__panel--anim .duty__item{opacity:0;transform:translateY(9px);}
+.duty__panel--in .duty__item{
+  opacity:1;transform:none;
+  transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1);
+}
+
+@media(max-width:820px){
+  .duty__grid{grid-template-columns:1fr;}
+}
+
+/* ── straight talk callout ──────────────────────────────────────────────── */
+.note__box{
+  max-width:70ch;margin:0;
+  padding:.95rem 1.1rem .95rem 1.45rem;
+  border-left:var(--accent-edge) solid var(--ion);
+  background:linear-gradient(90deg,rgba(79,195,247,.06),rgba(79,195,247,0) 64%);
+  font-size:1rem;line-height:1.62;color:var(--dash);
+}
+.note__lead{color:var(--white);font-weight:600;}
+
+/* ── contact close ──────────────────────────────────────────────────────── */
+.cta__grid{
+  display:grid;grid-template-columns:minmax(0,1fr) 340px;
+  gap:clamp(1rem,2vw,1.5rem);align-items:start;
+  margin-top:clamp(1.9rem,3.6vw,2.9rem);
+}
+/* The width axis doing the work: one condensed ion word to close the page. */
+.cta__accent{font-variation-settings:"wdth" 64,"wght" 850;color:var(--ion);}
+
+@media(max-width:900px){
+  .cta__grid{grid-template-columns:1fr;}
+}
+
+/* ── form ───────────────────────────────────────────────────────────────── */
+.form__box{
+  background:var(--panel);border:1px solid var(--dline);
+  padding:var(--pad-panel);
+}
+.form__grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem 1.3rem;}
+
+.form__fld{position:relative;display:flex;flex-direction:column;min-width:0;}
+.form__fld--wide{grid-column:1 / -1;}
+/* Underline that draws itself on focus — transform only, no layout work. */
+.form__fld::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--ion);
+  transform:scaleX(0);transform-origin:left center;pointer-events:none;
+  transition:transform .26s cubic-bezier(.4,0,.2,1);
+}
+.form__fld:focus-within::after{transform:scaleX(1);}
+.form__fld--area::after{display:none;}
+
+.form__lbl{
+  font-family:var(--mno);font-size:var(--label-sm);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dash);margin-bottom:.42rem;
+  transition:color .2s cubic-bezier(.4,0,.2,1);
+}
+.form__fld--filled .form__lbl{color:var(--silver);}
+.form__fld:focus-within .form__lbl{color:var(--ion);}
+.form__opt{color:var(--dash-2);letter-spacing:.1em;}
+
+.form__in{
+  background:transparent;border:0;border-bottom:1px solid var(--dash-2);border-radius:0;
+  color:var(--silver);font-family:var(--bdy);font-size:1rem;line-height:1.5;
+  padding:.6rem 0;width:100%;
+  transition:border-color .2s cubic-bezier(.4,0,.2,1),box-shadow .24s cubic-bezier(.4,0,.2,1);
+}
+.form__in::placeholder{color:var(--dash-2);opacity:1;}
+.form__in:focus{border-color:var(--ion);box-shadow:0 5px 18px -12px rgba(79,195,247,.95);}
+.form__ta{border:1px solid var(--edge);padding:.75rem .85rem;min-height:7.5rem;resize:vertical;}
+.form__ta:focus{box-shadow:0 0 0 1px rgba(79,195,247,.2),0 14px 34px -22px rgba(79,195,247,.9);}
+/* Chrome's autofill wants to paint the field white. It may not. */
+.form__in:-webkit-autofill{
+  -webkit-text-fill-color:var(--silver);
+  -webkit-box-shadow:0 0 0 60px var(--panel) inset;
+  transition:background-color 99999s ease-in-out 0s;
+}
+
+.form__send{grid-column:1 / -1;margin-top:.3rem;}
+.form__echo{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.55rem;
+  margin:0 0 1rem;padding:.7rem .85rem;border:1px dashed var(--edge);
+  font-family:var(--mno);font-size:var(--label);line-height:1.5;color:var(--dash);
+  transition:border-color .22s cubic-bezier(.4,0,.2,1);
+}
+.form__echoK{
+  flex:none;font-size:var(--label-sm);letter-spacing:.2em;text-transform:uppercase;color:var(--dash-2);
+}
+.form__echoV{color:var(--dash);}
+.form__echo--on{border-color:rgba(79,195,247,.45);}
+.form__echo--on .form__echoV{color:var(--silver);}
+
+.form__fine{margin:.9rem 0 0;font-size:var(--fine);line-height:1.55;color:var(--dash-2);text-align:center;}
+.form__link{
+  color:var(--ion);text-decoration:none;border-bottom:1px solid rgba(79,195,247,.35);
+  transition:border-color .2s cubic-bezier(.4,0,.2,1);
+}
+.form__link:hover{border-bottom-color:var(--ion);}
+.form__status{
+  margin:.8rem 0 0;font-family:var(--mno);font-size:var(--label);letter-spacing:.06em;
+  line-height:1.5;color:var(--ion);text-align:center;
+}
+.form__status:empty{display:none;}
+
+@media(max-width:560px){
+  .form__grid{grid-template-columns:1fr;}
+}
+
+/* ── direct card ────────────────────────────────────────────────────────── */
+.card__box{
+  background:var(--panel);border:1px solid var(--dline);border-top:var(--accent-edge) solid var(--ion);
+  padding:var(--pad-panel);
+}
+.card__eyebrow{
+  display:flex;align-items:center;gap:.6rem;margin:0 0 1.1rem;
+  font-family:var(--mno);font-size:var(--label-sm);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--dash-2);
+}
+.card__dot{
+  position:relative;flex:none;width:.4rem;height:.4rem;border-radius:999px;background:var(--ion);
+}
+.card__dot::after{
+  content:"";position:absolute;inset:-.25rem;border:1px solid var(--ion);border-radius:999px;
+  transform:scale(.55);opacity:.65;
+  animation:card__pulse 3.2s cubic-bezier(.16,1,.3,1) infinite;
+}
+@keyframes card__pulse{
+  0%{transform:scale(.55);opacity:.6;}
+  70%{transform:scale(1.55);opacity:0;}
+  100%{transform:scale(1.55);opacity:0;}
+}
+.card__name{
+  font-family:var(--dsp);font-variation-settings:"wdth" 110,"wght" 850;
+  font-size:clamp(1.3rem,2.5vw,1.52rem);text-transform:uppercase;letter-spacing:-.03em;
+  line-height:.95;color:var(--white);margin:0;
+}
+.card__role{margin:.42rem 0 .55rem;font-size:var(--small);color:var(--dash);}
+/* Two people share the card, so each gets its own block and the shared
+   contact lines sit under both rather than being repeated per person. */
+.card__person + .card__person{margin-top:1.15rem;}
+.card__shared{margin-top:.55rem;}
+.card__dl{margin:0;padding:0;}
+.card__row{display:grid;gap:.28rem;padding:.8rem 0;border-top:1px solid var(--dline);}
+.card__dt{
+  margin:0;font-family:var(--mno);font-size:var(--label-sm);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dash-2);
+}
+.card__dd{
+  margin:0;font-size:var(--body-sm);line-height:1.45;color:var(--silver);
+  overflow-wrap:break-word;word-break:break-word;
+}
+.card__a{
+  color:var(--silver);text-decoration:none;border-bottom:1px solid rgba(79,195,247,.28);
+  transition:color .2s cubic-bezier(.4,0,.2,1),border-color .2s cubic-bezier(.4,0,.2,1);
+}
+.card__a:hover{color:var(--ion);border-bottom-color:var(--ion);}
+.card__note{
+  margin:1.15rem 0 0;padding-top:1.05rem;border-top:1px solid var(--dline);
+  font-size:var(--fine);line-height:1.5;color:var(--dash);
+}
+
+/* ── reduced motion: everything lands finished ─────────────────────────── */
+@media (prefers-reduced-motion:reduce){
+  .duty__panel::before{display:none;}
+  .duty__panel--anim .duty__item,
+  .duty__panel--in .duty__item{opacity:1;transform:none;transition:none;}
+  .form__fld::after{transition:none;}
+  .card__dot::after{animation:none;opacity:0;}
+}
+</style>
+<noscript><style>
+/* The reveal engine ships elements at opacity:0 and the JS adds .on. With no
+   JS that is every element below the hero, so hand them back unconditionally.
+   Same reason the preloader is dismissed here rather than left to its script. */
+.rv{opacity:1 !important;transform:none !important;}
+</style></noscript>
+</head>
+<body>
+
+<a class="skip" href="#hero">Skip to content</a>
+
+<!-- ══ NAV ══════════════════════════════════════════════════════════════════
+     Sticky bar. The hairline only appears once scrolled (.is-stuck) so the
+     hero meets the viewport edge with nothing drawn across it.
+     "#top" is a valid fragment even with no matching id — browsers scroll to
+     the document top — so the wordmark link works before main mounts. -->
+<header class="nav__bar" id="nav">
+  <a class="nav__mark" href="#top" aria-label="EZHD — back to top">
+    <img class="nav__badge" src="brand/ezhd-badge-silver.svg" alt="" aria-hidden="true" width="25" height="25">
+    <span class="nav__name">EZHD</span>
+  </a>
+
+  <nav class="nav__links" aria-label="Primary">
+    <a href="#services">Services</a>
+    <a href="#process">Process</a>
+    <a href="#scope">Scope</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <a class="nav__cta" href="#contact">Start a project</a>
+
+  <span class="nav__prog" id="navProg" aria-hidden="true"></span>
+</header>
+
+<main id="top">
+
+<!-- ══ INTRO ═════════════════════════════════════════════════════════════════
+     Title card. The mark sits inside a receding ring field that echoes the
+     badge's own concentric rings, so the background belongs to the logo
+     rather than being wallpaper behind it. -->
+<section class="intro" id="intro">
+  <canvas class="intro__c" id="introC" aria-hidden="true"></canvas>
+
+  <div class="intro__center">
+    <img class="intro__badge" src="brand/ezhd-badge-silver.svg" alt=""
+         aria-hidden="true" width="150" height="150">
+    <p class="intro__word">EZHD</p>
+    <p class="intro__line">Websites &middot; Hosting &middot; Local SEO &middot; Content
+      <span class="intro__sep">&mdash;</span> Utah</p>
+  </div>
+
+  <a class="intro__hint" href="#hero">
+    <span class="intro__hintLabel">Scroll</span>
+    <span class="intro__hintLine" aria-hidden="true"><i></i></span>
+  </a>
+</section>
+
+<!-- ══ HERO ══════════════════════════════════════════════════════════════════ -->
+<section class="sec hero" id="hero">
+
+  <div class="wrap">
+
+    <div class="hero__grid">
+
+      <div class="hero__copy">
+
+        <p class="hero__tag">
+          <span class="hero__pulse" aria-hidden="true"></span>Available for new projects &middot; Utah
+        </p>
+
+        <h1 class="hero__h1">
+          <span class="hero__line"><span>Your marketing</span></span>
+          <span class="hero__line"><span>isn&rsquo;t <em>five</em></span></span>
+          <span class="hero__line"><span>vendors.</span></span>
+        </h1>
+
+        <p class="hero__lede">
+          Most local businesses end up with a web designer, a separate host, an SEO service,
+          and a social agency &mdash; four invoices, four inboxes, and nobody who owns the
+          result. EZHD is one accountable partner for all of it.
+        </p>
+
+        <div class="hero__acts">
+          <a class="btn btn--ion" href="#contact">Start a project</a>
+          <a class="btn btn--wire" href="#process">See how it works</a>
+        </div>
+
+      </div>
+
+
+    </div>
+
+    <div class="hero__stats">
+
+      <div class="hero__stat">
+        <p class="hero__statN">3&#8211;<span class="ct" data-to="4" data-suffix=" WKS">0</span></p>
+        <p class="hero__statL">Typical build</p>
+      </div>
+
+      <div class="hero__stat">
+        <p class="hero__statN"><span class="ct" data-to="2">0</span></p>
+        <p class="hero__statL">Revision rounds</p>
+      </div>
+
+      <div class="hero__stat">
+        <p class="hero__statN"><span class="ct" data-to="14" data-suffix=" DAYS">0</span></p>
+        <p class="hero__statL">Post-launch support</p>
+      </div>
+
+      <div class="hero__stat">
+        <p class="hero__statN"><span class="ct" data-to="100" data-suffix="%">0</span></p>
+        <p class="hero__statL">You own everything</p>
+      </div>
+
+    </div>
+
+    <!-- The line alone reads as "there is more below". The word "SCROLL"
+         underneath it is telling people what a scrollbar already tells them. -->
+    <div class="hero__hint" aria-hidden="true">
+      <span class="hero__hintLine"><i></i></span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ SYSTEM ════════════════════════════════════════════════════════════════
+     An exploded axonometric of the marketing system, assembled by scroll.
+     True axonometric — parallel projection, no perspective divide — because
+     that is what makes it read as a drawing rather than a render. -->
+<section class="sec sys" id="system">
+  <div class="sys__track">
+    <div class="sys__stick">
+      <div class="wrap sys__inner">
+
+        <header class="sys__head">
+          <p class="eyebrow rv">01 &mdash; The system</p>
+          <h2 class="h2 rv">Five vendors&rsquo; worth of parts.
+            <span class="sys__hot">One assembly.</span></h2>
+          <p class="lede rv">Everything a local business normally buys from four
+            different companies, drawn as one system. Scroll to put it together.</p>
+        </header>
+
+        <figure class="sys__figure">
+          <canvas class="sys__c" id="sysC" role="img"
+            aria-label="An exploded technical drawing of a local marketing system: a domain and hosting base plate, the website above it, a local search listing layer, a content layer, and monthly reporting on top — all drawn on one sheet, drawn by and checked by EZHD."></canvas>
+        </figure>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICES ═══════════════════════════════════════════════════════════
+     Scope, verbatim from the services agreement. No prices anywhere.
+     Cards carry data-tilt; 30-services.js drives the 3D tilt + cursor highlight. -->
+<section class="sec" id="services">
+  <div class="wrap">
+
+    <header class="svc__head">
+      <p class="eyebrow rv">02 — WHAT WE DO</p>
+      <h2 class="h2 rv svc__h">THREE SERVICES.<br><span class="svc__hot">ONE</span> ACCOUNTABLE PARTNER.</h2>
+      <p class="lede rv svc__lede">Every line item below is the actual scope from our services agreement — not a summary of it. If it isn't listed, it's quoted separately before any work starts.</p>
+    </header>
+
+    <div class="svc__grid">
+
+      <article class="svc__card rv" data-tilt aria-labelledby="svc-n-1">
+        <p class="svc__ix" aria-hidden="true">01</p>
+        <h3 class="svc__name" id="svc-n-1">Website design &amp; development</h3>
+        <p class="svc__blurb">A custom, mobile-responsive marketing site built around your brand and your market.</p>
+        <ul class="svc__list">
+          <li>Custom design tailored to your brand</li>
+          <li>Up to 5 page templates</li>
+          <li>Contact and inquiry form</li>
+          <li>Photo gallery or project showcase</li>
+          <li>On-page SEO: titles, meta, headings, alt text, sitemap</li>
+          <li>Google Analytics 4 and Search Console</li>
+          <li>Deployment, domain connection, SSL</li>
+          <li>Two rounds of revisions</li>
+          <li>14-day post-launch support</li>
+        </ul>
+      </article>
+
+      <article class="svc__card rv" data-tilt aria-labelledby="svc-n-2">
+        <p class="svc__ix" aria-hidden="true">02</p>
+        <h3 class="svc__name" id="svc-n-2">Website care plan</h3>
+        <p class="svc__blurb">Keeps the site online, fast, secure, and current after launch.</p>
+        <ul class="svc__list">
+          <li>Fast, secure hosting</li>
+          <li>Domain and DNS management</li>
+          <li>SSL certificate management</li>
+          <li>Uptime and security monitoring</li>
+          <li>Regular backups</li>
+          <li>Content edits up to 2 hours per month</li>
+          <li>Monthly performance check and email support</li>
+        </ul>
+        <p class="svc__note"><span class="svc__note-k">Not included</span> New page builds, redesigns, and new feature work — quoted separately before any work starts.</p>
+      </article>
+
+      <article class="svc__card svc__card--wide rv" data-tilt aria-labelledby="svc-n-3">
+        <p class="svc__ix" aria-hidden="true">03</p>
+        <h3 class="svc__name" id="svc-n-3">Content &amp; social media management</h3>
+        <p class="svc__blurb">Original content — shot, edited, and published — with the scope capped so the quality stays high.</p>
+        <ul class="svc__list svc__list--two">
+          <li>Up to 8 content pieces per month, repurposed across platforms</li>
+          <li>One on-site capture session per month (up to 4 hours)</li>
+          <li>Professional editing into posts, reels, and shorts</li>
+          <li>Captions, hashtags, scheduling, publishing</li>
+          <li>Monthly content calendar</li>
+          <li>Community management on business days</li>
+          <li>Google Business Profile posts and upkeep</li>
+          <li>Ongoing local SEO</li>
+          <li>Monthly reporting</li>
+        </ul>
+        <div class="svc__plat">
+          <p class="svc__plat-k" id="svc-plat-k">Platforms</p>
+          <ul class="svc__tags" aria-labelledby="svc-plat-k">
+            <li>Instagram</li>
+            <li>Facebook</li>
+            <li>TikTok</li>
+            <li>YouTube Shorts</li>
+            <li>LinkedIn</li>
+            <li>Google Business Profile</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ 02 · PROCESS / TIMELINE ═══════════════════════════════════════
+     Dark inset panel: edit-bay timeline banner (flowC) sitting above a
+     four-step timeline whose ion progress rail is scrubbed by scroll.
+     Prefix: proc__ / flow__ ─────────────────────────────────────── -->
+<section class="sec sec--pit" id="process">
+  <div class="wrap">
+
+    <p class="eyebrow rv">03 — HOW IT GOES</p>
+    <h2 class="h2 rv">KICKOFF TO LIVE IN <span class="proc__hl">THREE TO FOUR</span> WEEKS.</h2>
+    <p class="lede rv">Assuming assets and feedback come back inside three business days. The schedule moves when they don't — that's the one thing that shifts a launch date.</p>
+
+    <div class="proc__inset rv">
+
+      <!-- decorative banner: projected wireframe terrain flowing toward the camera -->
+      <div class="flow__stage" aria-hidden="true">
+        <canvas class="flow__c" id="flowC" aria-hidden="true"></canvas>
+        <span class="flow__veil"></span>
+      </div>
+
+      <div class="proc__body">
+        <div class="proc__rail">
+          <span class="proc__bar" id="tlBar" aria-hidden="true"></span>
+
+          <ol class="proc__tl" id="tl">
+            <li class="proc__step">
+              <span class="proc__node" aria-hidden="true"></span>
+              <p class="proc__wk"><span class="proc__mk" aria-hidden="true"></span>WEEK 0</p>
+              <h3 class="proc__t">KICKOFF</h3>
+              <p class="proc__d">Discovery call, brand assets, goals, and content gathering.</p>
+            </li>
+
+            <li class="proc__step">
+              <span class="proc__node" aria-hidden="true"></span>
+              <p class="proc__wk"><span class="proc__mk" aria-hidden="true"></span>WEEKS 1–2</p>
+              <h3 class="proc__t">BUILD</h3>
+              <p class="proc__d">Design and development of the site.</p>
+            </li>
+
+            <li class="proc__step">
+              <span class="proc__node" aria-hidden="true"></span>
+              <p class="proc__wk"><span class="proc__mk" aria-hidden="true"></span>WEEK 3</p>
+              <h3 class="proc__t">REVIEW</h3>
+              <p class="proc__d">You review. Up to two rounds of revisions applied.</p>
+            </li>
+
+            <li class="proc__step">
+              <span class="proc__node" aria-hidden="true"></span>
+              <p class="proc__wk"><span class="proc__mk" aria-hidden="true"></span>WEEK 4</p>
+              <h3 class="proc__t">LAUNCH</h3>
+              <p class="proc__d">Final checks, domain connection, go live. Monthly services begin.</p>
+            </li>
+          </ol>
+        </div>
+
+        <p class="proc__note"><span class="proc__mk proc__mk--n" aria-hidden="true"></span>Monthly services begin at launch.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ 03 · CAPABILITY + MARQUEE ═════════════════════════════════════════ -->
+<section class="sec" id="work" aria-labelledby="capTitle">
+
+  <!-- Full-bleed kinetic strip. Decorative on purpose: every term below is
+       also a grid tile, so screen readers would hear it twice. -->
+  <div class="mq" aria-hidden="true">
+    <div class="mq__vp">
+      <div class="mq__track" id="mqTrack">
+        <span class="mq__i">WEB DESIGN</span>
+        <span class="mq__i">HOSTING</span>
+        <span class="mq__i mq__i--lit">LOCAL SEO</span>
+        <span class="mq__i">SOCIAL CONTENT</span>
+        <span class="mq__i">PHOTO + VIDEO</span>
+        <span class="mq__i mq__i--lit">GOOGLE BUSINESS PROFILE</span>
+        <span class="mq__i">ANALYTICS</span>
+        <span class="mq__i">EMAIL MARKETING</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <p class="eyebrow rv">04 — CAPABILITIES</p>
+    <h2 class="h2 rv" id="capTitle">Everything the site needs.
+      Under <span class="cap__acc">one</span> roof.</h2>
+
+    <div class="cap__bar rv">
+      <div class="cap__filters" id="filters" role="group" aria-label="Filter capabilities">
+        <button type="button" class="cap__f is-sel" data-f="all"   aria-pressed="true">All</button>
+        <button type="button" class="cap__f"        data-f="build" aria-pressed="false">Build</button>
+        <button type="button" class="cap__f"        data-f="grow"  aria-pressed="false">Grow</button>
+        <button type="button" class="cap__f"        data-f="run"   aria-pressed="false">Run</button>
+      </div>
+      <p class="cap__stat" id="capCount" role="status" aria-live="polite">Showing 9 / 9</p>
+    </div>
+
+    <div class="cap__grid rv" id="grid">
+
+      <article class="cap__tile" data-cat="build">
+        <span class="cap__ix" aria-hidden="true">01</span>
+        <h3 class="cap__t">Custom design + build</h3>
+        <p class="cap__d">A custom marketing site built around your brand and your market — not a bought template.</p>
+      </article>
+
+      <article class="cap__tile" data-cat="build">
+        <span class="cap__ix" aria-hidden="true">02</span>
+        <h3 class="cap__t">Responsive to every screen</h3>
+        <p class="cap__d">Layouts drawn and checked on phone, tablet, and desktop before anything goes live.</p>
+      </article>
+
+      <article class="cap__tile" data-cat="build">
+        <span class="cap__ix" aria-hidden="true">03</span>
+        <h3 class="cap__t">Copy + information architecture</h3>
+        <p class="cap__d">Pages ordered and written so a visitor finds what they came for without hunting.</p>
+      </article>
+
+      <article class="cap__tile" data-cat="build grow">
+        <span class="cap__ix" aria-hidden="true">04</span>
+        <h3 class="cap__t">On-page SEO foundation</h3>
+        <p class="cap__d">Titles, meta, headings, alt text, and a sitemap set correctly at launch.</p>
+      </article>
+
+      <article class="cap__tile" data-cat="grow">
+        <span class="cap__ix" aria-hidden="true">05</span>
+        <h3 class="cap__t">Google Business Profile</h3>
+        <p class="cap__d">Profile posts and upkeep, maintained alongside ongoing local SEO.</p>
+      </article>
+
+      <article class="cap__tile" data-cat="grow">
+        <span class="cap__ix" aria-hidden="true">06</span>
+        <h3 class="cap__t">Social content + reels</h3>
+        <p class="cap__d">Shot on site, edited into posts and shorts, captioned, scheduled, published.</p>
+      </article>
+
+      <article class="cap__tile" data-cat="grow">
+        <span class="cap__ix" aria-hidden="true">07</span>
+        <h3 class="cap__t">Paid ads, managed</h3>
+        <p class="cap__d">Google and Meta campaigns built, monitored, and adjusted as an add-on.</p>
+      </article>
+
+      <article class="cap__tile" data-cat="run">
+        <span class="cap__ix" aria-hidden="true">08</span>
+        <h3 class="cap__t">Hosting, SSL + backups</h3>
+        <p class="cap__d">Fast, secure hosting with DNS, certificates, monitoring, and regular backups.</p>
+      </article>
+
+      <article class="cap__tile" data-cat="run grow">
+        <span class="cap__ix" aria-hidden="true">09</span>
+        <h3 class="cap__t">Analytics + monthly reporting</h3>
+        <p class="cap__d">Analytics 4 and Search Console wired up, with one plain-language report a month.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ 04 · SCOPE BUILDER ═══════════════════════════════════════════════════
+     No prices anywhere on this site. The builder collects intent; the number
+     happens on the call. Legends and the summary label are sentence-case in the
+     markup and uppercased in CSS so screen readers don't spell them out.
+     ═══════════════════════════════════════════════════════════════════════ -->
+<section class="sec sec--pit" id="scope">
+  <div class="wrap">
+
+    <p class="eyebrow rv">05 — BUILD YOUR SCOPE</p>
+    <h2 class="h2 rv">PICK WHAT YOU NEED. WE'LL <span class="scope__ac">PRICE</span> IT ON A CALL.</h2>
+    <p class="lede rv">Check the pieces that fit your business. It takes about thirty seconds, and it means our first call starts with substance instead of discovery.</p>
+
+    <div class="scope__grid">
+
+      <!-- ── PICKER ──────────────────────────────────────────────────────── -->
+      <form class="scope__pick rv" id="estimator" novalidate>
+
+        <fieldset class="scope__g">
+          <legend class="scope__lg">Core services</legend>
+
+          <label class="row is-on">
+            <input type="checkbox" data-kind="core" checked>
+            <span class="row__box" aria-hidden="true"></span>
+            <span class="row__b">
+              <span class="row__n">Website design &amp; development</span>
+              <span class="row__note">Custom marketing site, up to 5 pages, SEO foundation, launch</span>
+            </span>
+          </label>
+
+          <label class="row is-on">
+            <input type="checkbox" data-kind="core" checked>
+            <span class="row__box" aria-hidden="true"></span>
+            <span class="row__b">
+              <span class="row__n">Website care plan</span>
+              <span class="row__note">Hosting, domain, SSL, monitoring, backups, monthly edits</span>
+            </span>
+          </label>
+
+          <label class="row is-on">
+            <input type="checkbox" data-kind="core" checked>
+            <span class="row__box" aria-hidden="true"></span>
+            <span class="row__b">
+              <span class="row__n">Content &amp; social media management</span>
+              <span class="row__note">8 pieces a month, on-site shoot, local SEO, reporting</span>
+            </span>
+          </label>
+
+          <label class="row">
+            <input type="checkbox" data-kind="core">
+            <span class="row__box" aria-hidden="true"></span>
+            <span class="row__b">
+              <span class="row__n">Google Workspace setup</span>
+              <span class="row__note">Email at your domain, Drive, calendar</span>
+            </span>
+          </label>
+        </fieldset>
+
+        <fieldset class="scope__g">
+          <legend class="scope__lg">Add-ons</legend>
+
+          <label class="row">
+            <input type="checkbox" data-kind="addon">
+            <span class="row__box" aria-hidden="true"></span>
+            <span class="row__b">
+              <span class="row__n">Paid ad management</span>
+              <span class="row__note">Google and Meta. Ad spend billed to you by the platform.</span>
+            </span>
+          </label>
+
+          <label class="row">
+            <input type="checkbox" data-kind="addon">
+            <span class="row__box" aria-hidden="true"></span>
+            <span class="row__b">
+              <span class="row__n">Email marketing / newsletters</span>
+              <span class="row__note">Written, designed, scheduled, and reported on</span>
+            </span>
+          </label>
+
+          <!-- Quantity rows are divs, not labels: a wrapping <label> would swallow
+               clicks meant for the stepper buttons. -->
+          <div class="row row--q">
+            <span class="row__b">
+              <span class="row__n">Extra social posts</span>
+              <span class="row__note">Beyond the 8 included each month</span>
+            </span>
+            <span class="qty">
+              <button type="button" class="qty__b" data-step="-1" aria-label="One fewer extra social post">&#8722;</button>
+              <input class="qty__v" type="number" value="0" min="0" max="40" step="1"
+                     inputmode="numeric" autocomplete="off"
+                     aria-label="Extra social posts per month">
+              <button type="button" class="qty__b" data-step="1" aria-label="One more extra social post">+</button>
+            </span>
+          </div>
+
+          <div class="row row--q">
+            <span class="row__b">
+              <span class="row__n">Extra on-site shoot</span>
+              <span class="row__note">Additional half-day of photo and video capture</span>
+            </span>
+            <span class="qty">
+              <button type="button" class="qty__b" data-step="-1" aria-label="One fewer extra on-site shoot">&#8722;</button>
+              <input class="qty__v" type="number" value="0" min="0" max="12" step="1"
+                     inputmode="numeric" autocomplete="off"
+                     aria-label="Extra on-site shoots per month">
+              <button type="button" class="qty__b" data-step="1" aria-label="One more extra on-site shoot">+</button>
+            </span>
+          </div>
+        </fieldset>
+      </form>
+
+      <!-- ── SUMMARY ─────────────────────────────────────────────────────── -->
+      <aside class="scope__aside rv" aria-labelledby="scopeLabel">
+        <p class="scope__l" id="scopeLabel">Your scope</p>
+
+        <div class="scope__live" aria-live="polite">
+          <p class="scope__count" id="scopeCount">3 services selected</p>
+          <ul class="scope__list" id="scopeList"></ul>
+        </div>
+
+        <p class="scope__fine">We'll price this on a 20-minute call.</p>
+        <a class="btn btn--ion btn--full scope__cta" href="#contact" id="sendScope">Send this scope</a>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ 05 · WHO DOES WHAT ══════════════════════════════════════════════════════
+     Two panels, one hairline apart. The EZHD column carries the ion edge so the
+     eye lands on the longer list — the one the client doesn't have to do.
+     ═════════════════════════════════════════════════════════════════════════ -->
+<section class="sec" id="duty">
+  <div class="wrap">
+    <p class="eyebrow rv">06 — WHO DOES WHAT</p>
+    <h2 class="h2 rv">TWO SHORT LISTS, SO NOTHING STALLS.</h2>
+
+    <div class="duty__grid">
+      <article class="duty__panel rv">
+        <span class="duty__num" aria-hidden="true">01</span>
+        <h3 class="duty__h">YOU PROVIDE</h3>
+        <ul class="duty__list">
+          <li class="duty__item">Logo and brand assets</li>
+          <li class="duty__item">Feedback and approvals within 3 business days</li>
+          <li class="duty__item">Access to your domain, hosting, social, and Google accounts</li>
+          <li class="duty__item">Details about your business and services</li>
+          <li class="duty__item">Site access for on-site shoots</li>
+        </ul>
+      </article>
+
+      <article class="duty__panel duty__panel--ez rv">
+        <span class="duty__num" aria-hidden="true">02</span>
+        <h3 class="duty__h">EZHD HANDLES</h3>
+        <ul class="duty__list">
+          <li class="duty__item">Design, development, and launch</li>
+          <li class="duty__item">Hosting, DNS, SSL, backups, monitoring</li>
+          <li class="duty__item">Shooting, editing, writing, scheduling, publishing</li>
+          <li class="duty__item">Local SEO and Google Business Profile</li>
+          <li class="duty__item">Analytics setup and one monthly report</li>
+        </ul>
+      </article>
+    </div>
+
+    <p class="note__box rv"><b class="note__lead">Straight talk on results.</b> We'll put professional best effort into every piece of this. We won't promise specific rankings, traffic numbers, follower counts, or leads — those depend on search and social algorithms, your market, your competition, and how fast you get us what we need. Anyone guaranteeing you a number is guessing.</p>
+  </div>
+</section>
+
+<!-- ══ 06 · START A PROJECT ════════════════════════════════════════════════════
+     The form composes a mailto: nothing is posted to a server, so there is no
+     endpoint to break and no data sitting anywhere it shouldn't.
+     ═════════════════════════════════════════════════════════════════════════ -->
+<section class="sec sec--pit" id="contact">
+  <div class="wrap">
+    <p class="eyebrow rv">07 — START A PROJECT</p>
+    <h2 class="h2 rv">TELL US ABOUT THE <span class="cta__accent">BUSINESS</span>.</h2>
+    <p class="lede rv">A 20-minute call is usually enough to know whether this is a fit. If it isn't, we'll say so.</p>
+
+    <div class="cta__grid">
+      <form class="form__box rv" id="contactForm">
+        <div class="form__grid">
+          <div class="form__fld">
+            <label class="form__lbl" for="f-name">Your name</label>
+            <input class="form__in" id="f-name" name="name" type="text" autocomplete="name" required>
+          </div>
+
+          <div class="form__fld">
+            <label class="form__lbl" for="f-biz">Business name</label>
+            <input class="form__in" id="f-biz" name="business" type="text" autocomplete="organization" required>
+          </div>
+
+          <div class="form__fld">
+            <label class="form__lbl" for="f-email">Email</label>
+            <input class="form__in" id="f-email" name="email" type="email" autocomplete="email" required>
+          </div>
+
+          <div class="form__fld">
+            <label class="form__lbl" for="f-phone">Phone <span class="form__opt">optional</span></label>
+            <input class="form__in" id="f-phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+
+          <div class="form__fld form__fld--wide form__fld--area">
+            <label class="form__lbl" for="f-msg">What are you trying to fix?</label>
+            <textarea class="form__in form__ta" id="f-msg" name="message" rows="4" placeholder="No website, outdated site, no one posting, phone isn't ringing…"></textarea>
+          </div>
+
+          <div class="form__send">
+            <p class="form__echo" id="scopeEcho">
+              <span class="form__echoK">Scope</span>
+              <span class="form__echoV">Nothing selected yet — we can sort it on the call.</span>
+            </p>
+            <button class="btn btn--ion btn--full" type="submit">Send it</button>
+            <p class="form__fine">Opens your email app with everything filled in. Prefer to skip the form? <a class="form__link" href="mailto:ezhdco@gmail.com">Email us directly</a>.</p>
+            <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+      </form>
+
+      <aside class="card__box rv" aria-labelledby="cardName">
+        <p class="card__eyebrow"><span class="card__dot" aria-hidden="true"></span>Direct</p>
+        <div class="card__person">
+          <p class="card__name" id="cardName">Zac Evans</p>
+          <p class="card__role">Founder &middot; EZHD</p>
+          <dl class="card__dl">
+            <div class="card__row">
+              <dt class="card__dt">Phone</dt>
+              <dd class="card__dd"><a class="card__a" href="tel:+14352246987">(435) 224-6987</a></dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="card__person">
+          <p class="card__name">Dylan Evans</p>
+          <p class="card__role">Social &amp; Content Lead &middot; EZHD</p>
+          <dl class="card__dl">
+            <div class="card__row">
+              <dt class="card__dt">Phone</dt>
+              <dd class="card__dd"><a class="card__a" href="tel:+14359945235">(435) 994-5235</a></dd>
+            </div>
+          </dl>
+        </div>
+
+        <dl class="card__dl card__shared">
+          <div class="card__row">
+            <dt class="card__dt">Email</dt>
+            <dd class="card__dd"><a class="card__a" href="mailto:ezhdco@gmail.com">ezhdco@gmail.com</a></dd>
+          </div>
+          <div class="card__row">
+            <dt class="card__dt">Serving</dt>
+            <dd class="card__dd">Utah and surrounding area</dd>
+          </div>
+        </dl>
+        <p class="card__note">Typical reply within one business day.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══ FOOTER ═══════════════════════════════════════════════════════════════
+     Last thing on the page, so it carries the wordmark at full size and
+     repeats the nav for anyone who read to the bottom. -->
+<footer class="foot__root" role="contentinfo">
+  <div class="wrap">
+
+    <div class="foot__grid">
+      <div class="foot__brand rv">
+        <img class="foot__badge" src="brand/ezhd-badge-silver.svg" alt="" aria-hidden="true" width="72" height="72">
+        <p class="foot__mark">EZHD</p>
+        <p class="foot__tag">Websites &middot; Hosting &middot; Digital marketing &middot; Utah</p>
+      </div>
+
+      <nav class="foot__nav rv" aria-label="Footer">
+        <p class="foot__navh">Sections</p>
+        <ul class="foot__list">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#scope">Scope</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="foot__base">
+      <p class="foot__legal">&copy; <span id="yr">2026</span> EZHD. All rights reserved.</p>
+      <p class="foot__note">Pricing is quoted per project. Every scope is confirmed in writing before any work begins.</p>
+    </div>
+
+  </div>
+</footer>
+
+<!-- Back to top. Fixed, fades in past 90vh of scroll. -->
+<button class="top__btn" id="toTop" type="button" aria-label="Back to top">
+  <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+    <path d="M8 13.5V2.9M3.2 7.6 8 2.6l4.8 5" fill="none" stroke="currentColor"
+          stroke-width="1.4" stroke-linecap="square"/>
+  </svg>
+</button>
+
+<div class="spot" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<script>
+/* ═══ 00-core.js ═══ */
+/* ══════════════════════════════════════════════════════════════════════════
+   EZHD — 00 CORE
+   Defines window.EZ (shared helpers + canvas lifecycle), runs the scroll
+   reveal engine, the cursor spotlight, and stamps the footer year.
+   Every section file depends on this and must load after it.
+   ES5 only: var / function. No arrows, no let/const, no template literals.
+   ══════════════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  var win = window;
+  var doc = document;
+
+  /* ── platform shims ─────────────────────────────────────────────────── */
+
+  var rAF = win.requestAnimationFrame ||
+            win.webkitRequestAnimationFrame ||
+            function (cb) { return win.setTimeout(function () { cb(stamp()); }, 16); };
+  var cAF = win.cancelAnimationFrame ||
+            win.webkitCancelAnimationFrame ||
+            win.clearTimeout;
+
+  function raf(cb) { return rAF.call(win, cb); }
+  function unraf(id) { if (id) { cAF.call(win, id); } }
+
+  function stamp() {
+    return (win.performance && win.performance.now) ? win.performance.now() : +new Date();
+  }
+
+  /* matchMedia is guarded because a throwing/absent implementation must not
+     take the whole page down — every caller has a sane fallback. */
+  function mq(query) {
+    try {
+      return !!(win.matchMedia && win.matchMedia(query).matches);
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function addClass(el, name) {
+    if (!el) { return; }
+    if (el.classList) { el.classList.add(name); return; }
+    if ((' ' + el.className + ' ').indexOf(' ' + name + ' ') < 0) {
+      el.className = el.className ? (el.className + ' ' + name) : name;
+    }
+  }
+
+  /* ── EZ: the shared surface every section is allowed to use ─────────── */
+
+  var EZ = {};
+
+  EZ.$ = function (sel, root) {
+    if (!sel) { return null; }
+    return (root || doc).querySelector(sel);
+  };
+
+  EZ.$$ = function (sel, root) {
+    if (!sel) { return []; }
+    var nodes = (root || doc).querySelectorAll(sel);
+    return Array.prototype.slice.call(nodes);
+  };
+
+  EZ.clamp = function (v, a, b) {
+    return v < a ? a : (v > b ? b : v);
+  };
+
+  EZ.lerp = function (a, b, t) {
+    return a + (b - a) * t;
+  };
+
+  EZ.CALM  = mq('(prefers-reduced-motion: reduce)');
+  EZ.HOVER = win.matchMedia ? mq('(hover: hover) and (pointer: fine)')
+                            : !('ontouchstart' in win);
+  EZ.SMALL = win.matchMedia ? mq('(max-width: 700px)')
+                            : ((win.innerWidth || 1024) <= 700);
+
+  /* ── EZ.lifecycle ───────────────────────────────────────────────────────
+     One raf loop per canvas, with the rules from the motion doctrine baked
+     in so no section has to remember them:
+       · DPR capped at 2, and pulled lower again on very wide canvases so a
+         5K monitor does not quietly cost 4x the fill rate
+       · paused when scrolled out of view (140px of lead-in) and when the
+         tab is hidden
+       · resize re-measures and repaints even while paused
+       · under prefers-reduced-motion it draws exactly one frame, then stops
+     onSize(w, h, dpr) — CSS pixels plus the ratio to scale the backing store
+     onFrame(seconds)  — elapsed animation time; pauses do NOT advance it,
+                         so resuming never teleports the animation
+     Returns { start, stop, resize, destroy } for sections that need control.
+     ─────────────────────────────────────────────────────────────────────── */
+  EZ.lifecycle = function (el, onSize, onFrame) {
+    if (!el) { return null; }
+
+    var live = false;
+    var dead = false;
+    var id = 0;
+    var elapsed = 0;
+    var last = 0;
+    var pending = 0;
+    var io = null;
+
+    function measure() {
+      if (dead) { return; }
+      var dpr = Math.min(win.devicePixelRatio || 1, 2);
+      var r = el.getBoundingClientRect();
+      var w = Math.max(1, Math.round(r.width));
+      var h = Math.max(1, Math.round(r.height));
+      if (w * dpr > 2600) { dpr = Math.max(1, 2600 / w); }
+      if (typeof onSize === 'function') { onSize(w, h, dpr); }
+    }
+
+    function draw() {
+      if (dead || typeof onFrame !== 'function') { return; }
+      onFrame(elapsed);
+    }
+
+    function tick(now) {
+      if (dead) { return; }
+      if (!last) { last = now; }
+      var dt = (now - last) / 1000;
+      /* a stalled tab or a long paint can hand back a huge delta; clamping it
+         keeps wave/rotation phases continuous instead of jumping */
+      if (dt > 0.1) { dt = 0.1; }
+      if (dt < 0) { dt = 0; }
+      last = now;
+      elapsed += dt;
+      draw();
+      if (live) { id = raf(tick); }
+    }
+
+    function start() {
+      if (live || dead || EZ.CALM) { return; }
+      live = true;
+      last = 0;
+      id = raf(tick);
+    }
+
+    function stop() {
+      if (!live) { return; }
+      live = false;
+      last = 0;
+      unraf(id);
+      id = 0;
+    }
+
+    function onVisible() {
+      var r = el.getBoundingClientRect();
+      var vh = win.innerHeight || doc.documentElement.clientHeight || 0;
+      return r.bottom > -140 && r.top < vh + 140 && r.width > 0;
+    }
+
+    function resize() {
+      if (pending) { return; }
+      pending = raf(function () {
+        pending = 0;
+        measure();
+        if (!live) { draw(); }   /* keep a paused canvas correct at its new size */
+      });
+    }
+
+    measure();
+
+    win.addEventListener('resize', resize, false);
+    win.addEventListener('orientationchange', resize, false);
+
+    /* webfonts can land after first measure and reflow the container */
+    try {
+      if (doc.fonts && doc.fonts.ready && doc.fonts.ready.then) {
+        doc.fonts.ready.then(function () { resize(); });
+      }
+    } catch (e) {}
+
+    if (EZ.CALM) {
+      /* static, complete, legible — one frame and done */
+      draw();
+      return {
+        start: function () {},
+        stop: function () {},
+        resize: resize,
+        destroy: function () {
+          dead = true;
+          win.removeEventListener('resize', resize, false);
+          win.removeEventListener('orientationchange', resize, false);
+        }
+      };
+    }
+
+    function onVis() {
+      if (doc.hidden) { stop(); }
+      else if (onVisible()) { start(); }
+    }
+    doc.addEventListener('visibilitychange', onVis, false);
+
+    if (win.IntersectionObserver) {
+      io = new win.IntersectionObserver(function (entries) {
+        var i;
+        for (i = 0; i < entries.length; i++) {
+          if (entries[i].isIntersecting) {
+            if (!doc.hidden) { start(); }
+          } else {
+            stop();
+          }
+        }
+      }, { rootMargin: '140px' });
+      io.observe(el);
+    } else {
+      start();
+    }
+
+    return {
+      start: start,
+      stop: stop,
+      resize: resize,
+      destroy: function () {
+        dead = true;
+        stop();
+        if (io) { io.disconnect(); io = null; }
+        win.removeEventListener('resize', resize, false);
+        win.removeEventListener('orientationchange', resize, false);
+        doc.removeEventListener('visibilitychange', onVis, false);
+      }
+    };
+  };
+
+  win.EZ = EZ;
+
+  /* ── reveal engine ──────────────────────────────────────────────────── */
+
+  function reveals() {
+    var items = EZ.$$('.rv');
+    var i;
+    if (!items.length) { return; }
+
+    /* no observer (or no appetite for motion): show everything, immediately */
+    if (EZ.CALM || !win.IntersectionObserver) {
+      for (i = 0; i < items.length; i++) { addClass(items[i], 'on'); }
+      return;
+    }
+
+    var io = new win.IntersectionObserver(function (entries) {
+      var j, e;
+      for (j = 0; j < entries.length; j++) {
+        e = entries[j];
+        if (!e.isIntersecting) { continue; }
+        addClass(e.target, 'on');
+        io.unobserve(e.target);   /* entrances fire once; never re-animate */
+      }
+    }, { rootMargin: '0px 0px -7% 0px', threshold: 0.04 });
+
+    for (i = 0; i < items.length; i++) {
+      /* cascade in threes so rows arrive as a wave rather than a pop */
+      items[i].style.transitionDelay = ((i % 3) * 80) + 'ms';
+      io.observe(items[i]);
+    }
+  }
+
+  /* ── cursor spotlight ───────────────────────────────────────────────── */
+
+  function spotlight() {
+    var spot = EZ.$('.spot');
+    if (!spot) { return; }
+
+    /* touch and reduced-motion users get nothing to pay for */
+    if (EZ.CALM || !EZ.HOVER) {
+      if (spot.parentNode) { spot.parentNode.removeChild(spot); }
+      return;
+    }
+
+    var vw = win.innerWidth || 1024;
+    var vh = win.innerHeight || 768;
+    var tx = vw / 2, ty = vh / 2;
+    var cx = tx, cy = ty;
+    var id = 0;
+
+    function write() {
+      spot.style.setProperty('--sx', cx.toFixed(1) + 'px');
+      spot.style.setProperty('--sy', cy.toFixed(1) + 'px');
+    }
+
+    function loop() {
+      cx = EZ.lerp(cx, tx, 0.12);
+      cy = EZ.lerp(cy, ty, 0.12);
+      write();
+      /* park the loop once it has caught up — no idle raf burning battery */
+      if (Math.abs(tx - cx) > 0.4 || Math.abs(ty - cy) > 0.4) {
+        id = raf(loop);
+      } else {
+        cx = tx; cy = ty;
+        write();
+        id = 0;
+      }
+    }
+
+    function move(e) {
+      if (e.pointerType && e.pointerType !== 'mouse') { return; }
+      tx = e.clientX;
+      ty = e.clientY;
+      if (!id) { id = raf(loop); }
+    }
+
+    write();
+
+    if (win.PointerEvent) {
+      doc.addEventListener('pointermove', move, { passive: true });
+    } else {
+      doc.addEventListener('mousemove', move, false);
+    }
+
+    doc.addEventListener('mouseleave', function () { spot.style.opacity = '0'; }, false);
+    doc.addEventListener('mouseenter', function () { spot.style.opacity = ''; }, false);
+  }
+
+  /* ── footer year ────────────────────────────────────────────────────── */
+
+  function year() {
+    var el = EZ.$('#yr');
+    if (el) { el.textContent = String(new Date().getFullYear()); }
+  }
+
+  /* ── boot ───────────────────────────────────────────────────────────── */
+
+  function init() {
+    year();
+    reveals();
+    spotlight();
+  }
+
+  if (doc.readyState === 'loading') {
+    doc.addEventListener('DOMContentLoaded', init, false);
+  } else {
+    init();
+  }
+
+})();
+
+/* ═══ 10-chrome.js ═══ */
+/* ══ PAGE CHROME ═══════════════════════════════════════════════════════════
+   Preloader teardown, nav stuck state, scroll progress, back-to-top.
+   One passive scroll listener, rAF-coalesced, reads before it writes. */
+(function () {
+  'use strict';
+  if (!window.EZ) return;
+
+  var $ = EZ.$;
+  var clamp = EZ.clamp;
+
+  var raf = window.requestAnimationFrame
+    ? function (fn) { return window.requestAnimationFrame(fn); }
+    : function (fn) { return window.setTimeout(fn, 16); };
+
+  /* classList.toggle's force argument is unreliable on old engines; add/remove
+     is not. State is tracked in JS so we only touch the DOM on a real change. */
+  function setClass(el, name, want) {
+    if (!el) return;
+    if (el.classList) { if (want) el.classList.add(name); else el.classList.remove(name); return; }
+    var re = new RegExp('(^|\\s+)' + name + '(?=\\s|$)', 'g');
+    el.className = want ? el.className + ' ' + name : el.className.replace(re, '');
+  }
+
+  /* ── Year ────────────────────────────────────────────────────────────── */
+  /* The markup ships a literal year, so a JS failure here is invisible. */
+  var yr = $('#yr');
+  if (yr) yr.textContent = String(new Date().getFullYear());
+
+  /* ── Scroll-driven chrome ────────────────────────────────────────────── */
+  var nav = $('#nav');
+  var prog = $('#navProg');
+  var toTop = $('#toTop');
+  if (!nav && !prog && !toTop) return;
+
+  var span = 0;        /* scrollable distance, measured off the hot path */
+  var queued = false;
+  var stuck = false;
+  var lifted = false;
+
+  function measure() {
+    var doc = document.documentElement;
+    span = Math.max(0, (doc ? doc.scrollHeight : 0) - (window.innerHeight || 0));
+  }
+
+  function paint() {
+    queued = false;
+    var y = window.pageYOffset || (document.documentElement || {}).scrollTop || 0;
+
+    /* Hairline only once the page has actually moved. */
+    var s = y > 18;
+    if (nav && s !== stuck) { stuck = s; setClass(nav, 'is-stuck', s); }
+
+    if (prog) {
+      prog.style.width = (span > 0 ? clamp(y / span, 0, 1) * 100 : 0).toFixed(2) + '%';
+    }
+
+    var l = y > (window.innerHeight || 0) * 0.9;
+    if (toTop && l !== lifted) { lifted = l; setClass(toTop, 'on', l); }
+  }
+
+  function tick() {
+    if (queued) return;
+    queued = true;
+    raf(paint);
+  }
+
+  if (toTop) {
+    toTop.addEventListener('click', function () {
+      try {
+        window.scrollTo({ top: 0, left: 0, behavior: EZ.CALM ? 'auto' : 'smooth' });
+      } catch (e) {
+        window.scrollTo(0, 0);          /* older engines: no options object */
+      }
+      /* Send the keyboard back to the top of the tab order, not just the page. */
+      var mark = $('.nav__mark');
+      if (mark && mark.focus) {
+        try { mark.focus({ preventScroll: true }); } catch (e2) { }
+      }
+    });
+  }
+
+  window.addEventListener('scroll', tick, { passive: true });
+  window.addEventListener('resize', function () { measure(); tick(); }, { passive: true });
+
+  /* Height changes after fonts land, reveals fire, and the preloader leaves. */
+  window.addEventListener('load', function () { measure(); tick(); });
+  window.setTimeout(function () { measure(); tick(); }, 1400);
+  if (window.ResizeObserver && document.body) {
+    new window.ResizeObserver(function () { measure(); tick(); }).observe(document.body);
+  }
+
+  measure();
+  paint();
+})();
+
+/* ═══ 20-hero.js ═══ */
+/* ══ HERO ══ ion orb, stat counters, scroll hint ═══════════════════════════ */
+(function () {
+  'use strict';
+  if (!window.EZ) return;
+
+  var EZ = window.EZ;
+  var hero = EZ.$('#hero');
+  if (!hero) return;
+
+  var TAU = Math.PI * 2;
+
+  /* ── 1. headline mask release ────────────────────────────────────────────
+     The rise animation needs overflow:hidden; the ion glow on FIVE needs it
+     gone. Lift it once the last line has landed (2.11s delay + .95s run). */
+  var h1 = EZ.$('.hero__h1', hero);
+  if (h1) {
+    if (EZ.CALM) {
+      h1.className += ' hero__h1--open';
+    } else {
+      setTimeout(function () { h1.className += ' hero__h1--open'; }, 3200);
+    }
+  }
+
+  /* ── 2. stat counters ────────────────────────────────────────────────────
+     Ease-out cubic over ~1.3s, fired once when the row is in view. */
+  var counters = EZ.$$('.ct', hero);
+
+  function write(el, v) {
+    var suffix = el.getAttribute('data-suffix');
+    el.textContent = String(v) + (suffix ? suffix : '');
+  }
+
+  function count(el) {
+    if (el.getAttribute('data-ct-done')) return;
+    el.setAttribute('data-ct-done', '1');
+
+    var to = parseFloat(el.getAttribute('data-to'));
+    if (isNaN(to)) return;
+
+    if (EZ.CALM) { write(el, to); return; }
+
+    var start = 0;
+    function step(now) {
+      if (!start) start = now;
+      var p = EZ.clamp((now - start) / 1300, 0, 1);
+      var e = 1 - Math.pow(1 - p, 3);
+      write(el, Math.round(to * e));
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  if (counters.length) {
+    if (EZ.CALM || !window.IntersectionObserver) {
+      for (var c = 0; c < counters.length; c++) count(counters[c]);
+    } else {
+      var cio = new IntersectionObserver(function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+          if (entries[i].isIntersecting) {
+            count(entries[i].target);
+            cio.unobserve(entries[i].target);
+          }
+        }
+      }, { rootMargin: '0px 0px -12% 0px' });
+      for (var ci = 0; ci < counters.length; ci++) cio.observe(counters[ci]);
+    }
+  }
+
+  /* ── 3. scroll hint ──────────────────────────────────────────────────────
+     Decorative, so it is JS-gated: if the script dies it simply never shows. */
+  var hint = EZ.$('.hero__hint', hero);
+  if (hint) {
+    setTimeout(function () {
+      hint.className += ' hero__hint--in';
+    }, EZ.CALM ? 0 : 3050);
+
+    var passive = false;
+    try {
+      var probe = Object.defineProperty({}, 'passive', {
+        get: function () { passive = { passive: true }; return true; }
+      });
+      window.addEventListener('ez_probe', null, probe);
+      window.removeEventListener('ez_probe', null, probe);
+    } catch (err) { passive = false; }
+
+    var dismissed = false;
+    function onScroll() {
+      if (dismissed) return;
+      var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+      if (y < 48) return;
+      dismissed = true;
+      hint.className += ' hero__hint--out';
+      window.removeEventListener('scroll', onScroll, passive);
+    }
+    window.addEventListener('scroll', onScroll, passive);
+    onScroll(); // a reload can restore scroll position below the fold
+  }
+
+})();
+
+/* ═══ 30-services.js ═══ */
+/* ══ SERVICES — 3D card tilt + cursor-tracked ion highlight ═════════════
+   Pointer input sets a target; a rAF loop eases toward it. Easing in JS
+   rather than a CSS transition keeps the card from lagging behind fast
+   cursor moves while still landing softly when the pointer stops.
+   The loop only exists while a card is engaged, and unwinds itself. */
+(function () {
+  'use strict';
+
+  if (!window.EZ) return;
+  var EZ = window.EZ;
+
+  var sec = EZ.$('#services');
+  if (!sec) return;
+
+  var cards = EZ.$$('[data-tilt]', sec);
+  if (!cards.length) return;
+
+  /* Touch and calm users get the static card. CSS already covers hover. */
+  if (!EZ.HOVER || EZ.CALM) return;
+
+  var MAX_ROT = 10;   /* deg on each axis */
+  var LIFT_Z = 24;    /* px toward the viewer */
+  var LIFT_Y = -6;    /* px, matches the CSS hover lift */
+  var EASE = 0.18;    /* per-frame approach */
+
+  var live = [];      /* states currently animating */
+  var raf = 0;
+
+  function make(el) {
+    return {
+      el: el,
+      rx: 0, ry: 0, lit: 0,          /* current */
+      trx: 0, try_: 0, tlit: 0,      /* target */
+      mx: 50, my: 50,
+      tmx: 50, tmy: 50,
+      active: false
+    };
+  }
+
+  function engage(s) {
+    if (s.active) return;
+    s.active = true;
+    // The reveal engine leaves a .75s transform transition (plus stagger delay)
+    // on .rv.on. The tilt writes a new matrix every frame, so that transition
+    // would make the card trail the cursor by most of a second. JS owns the
+    // matrix from here; the colour/shadow transitions stay.
+    s.el.style.transitionProperty = 'border-color, box-shadow, background-color';
+    s.el.style.transitionDelay = '0s';
+    live.push(s);
+    if (!raf) raf = requestAnimationFrame(frame);
+  }
+
+  function write(s) {
+    var el = s.el;
+    el.style.transform =
+      'translateY(' + (LIFT_Y * s.lit).toFixed(2) + 'px)' +
+      ' rotateY(' + s.ry.toFixed(3) + 'deg)' +
+      ' rotateX(' + s.rx.toFixed(3) + 'deg)' +
+      ' translateZ(' + (LIFT_Z * s.lit).toFixed(2) + 'px)' +
+      ' scale(' + (1 + 0.01 * s.lit).toFixed(5) + ')';
+    el.style.setProperty('--mx', s.mx.toFixed(2) + '%');
+    el.style.setProperty('--my', s.my.toFixed(2) + '%');
+  }
+
+  function clear(s) {
+    s.el.style.transform = '';
+    s.el.style.removeProperty('--mx');
+    s.el.style.removeProperty('--my');
+    // Card is back at rest — hand the stylesheet its transitions back.
+    s.el.style.removeProperty('transition-property');
+    s.el.style.removeProperty('transition-delay');
+  }
+
+  function frame() {
+    var i, s;
+    for (i = live.length - 1; i >= 0; i--) {
+      s = live[i];
+
+      s.rx = EZ.lerp(s.rx, s.trx, EASE);
+      s.ry = EZ.lerp(s.ry, s.try_, EASE);
+      s.lit = EZ.lerp(s.lit, s.tlit, EASE);
+      s.mx = EZ.lerp(s.mx, s.tmx, EASE);
+      s.my = EZ.lerp(s.my, s.tmy, EASE);
+
+      /* Retiring: once the card has essentially returned to rest, drop the
+         inline styles so CSS owns the element again. */
+      if (s.tlit === 0 && s.lit < 0.004 &&
+          Math.abs(s.rx) < 0.03 && Math.abs(s.ry) < 0.03) {
+        clear(s);
+        s.active = false;
+        live.splice(i, 1);
+        continue;
+      }
+      write(s);
+    }
+    raf = live.length ? requestAnimationFrame(frame) : 0;
+  }
+
+  function release(s) {
+    s.trx = 0; s.try_ = 0; s.tlit = 0;
+    s.tmx = 50; s.tmy = 50;
+    engage(s);
+  }
+
+  function bind(el) {
+    var s = make(el);
+
+    el.addEventListener('pointermove', function (e) {
+      /* Hybrid machines report hover:hover but still emit touch pointers. */
+      if (e.pointerType === 'touch') return;
+
+      var r = el.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+
+      var px = EZ.clamp((e.clientX - r.left) / r.width, 0, 1);
+      var py = EZ.clamp((e.clientY - r.top) / r.height, 0, 1);
+
+      s.try_ = (px - 0.5) * 2 * MAX_ROT;    /* cursor right -> right edge back */
+      s.trx = -(py - 0.5) * 2 * MAX_ROT;    /* cursor down  -> bottom edge back */
+      s.tlit = 1;
+      s.tmx = px * 100;
+      s.tmy = py * 100;
+
+      /* Jump the highlight into place on the first frame of a new hover so
+         it does not sweep across from the middle of the card. */
+      if (!s.active) { s.mx = s.tmx; s.my = s.tmy; }
+      engage(s);
+    });
+
+    el.addEventListener('pointerleave', function () { release(s); });
+    el.addEventListener('pointercancel', function () { release(s); });
+
+    return s;
+  }
+
+  var states = [];
+  var i;
+  for (i = 0; i < cards.length; i++) {
+    if (cards[i]) states.push(bind(cards[i]));
+  }
+
+  /* A card must never be left tilted because the window lost the pointer. */
+  window.addEventListener('blur', function () {
+    var j;
+    for (j = 0; j < states.length; j++) release(states[j]);
+  });
+
+}());
+
+/* ═══ 40-process.js ═══ */
+/* ══ 02 · PROCESS / TIMELINE ═══════════════════════════════════════
+   1. flowC  — edit-bay timeline: captured frames, b-roll, audio, playhead.
+   2. #tl    — four-step rail whose ion bar is scrubbed by scroll.
+   ─────────────────────────────────────────────────────────────── */
+(function () {
+  'use strict';
+  if (!window.EZ) return;
+
+  var EZ = window.EZ;
+  var clamp = EZ.clamp;
+  var raf = window.requestAnimationFrame ||
+            function (f) { return window.setTimeout(f, 16); };
+
+  /* ═══ 1. EDIT BAY ═════════════════════════════════════════════
+     A cutting-room timeline: captured frames running along the V1 track,
+     b-roll cutaways on V2, the production audio on A1, and a playhead the
+     footage travels past. It shows the actual craft — shooting and cutting —
+     instead of decorating with abstract geometry, and it is itself a
+     timeline, which is what this whole section is about.
+     ─────────────────────────────────────────────────────────────── */
+  function initFlow() {
+    var el = EZ.$('#flowC');
+    if (!el || !el.getContext) return;
+    var fc = el.getContext('2d');
+    if (!fc) return;
+
+    var FW = 1, FH = 1;
+
+    /* Deterministic per-slot variation. Seeded off the slot index rather
+       than Math.random so a resize (or the reduced-motion static frame)
+       redraws exactly the same reel instead of reshuffling it. */
+    function hash(n) {
+      var x = Math.sin(n * 127.1 + 311.7) * 43758.5453;
+      return x - Math.floor(x);
+    }
+
+    var SPEED = 30;     /* px per second the reel travels */
+    var PLAY  = 0.36;   /* playhead sits here, as a fraction of the width */
+    var GAP   = 5;
+
+    function pad2(n) { n = Math.floor(n); return (n < 10 ? '0' : '') + n; }
+
+    /* One captured frame: a graded sky, a structure silhouette, and a glint.
+       Architectural because that is what gets shot on a builder's job site. */
+    function shot(x, y, w, hgt, idx, lit) {
+      var h1 = hash(idx), h2 = hash(idx + 91), h3 = hash(idx + 17);
+
+      fc.save();
+      fc.beginPath();
+      fc.rect(x, y, w, hgt);
+      fc.clip();
+
+      /* graded sky — colder or warmer by slot, never off-palette */
+      var g = fc.createLinearGradient(0, y, 0, y + hgt);
+      var tint = 26 + Math.round(h1 * 26);
+      g.addColorStop(0, 'rgb(' + Math.round(tint * 0.5) + ',' + Math.round(tint * 0.78) + ',' + tint + ')');
+      g.addColorStop(1, '#05070B');
+      fc.fillStyle = g;
+      fc.fillRect(x, y, w, hgt);
+
+      /* low sun / work light, pushed brighter as the frame nears the head */
+      var sx = x + w * (0.24 + h2 * 0.52);
+      var sy = y + hgt * (0.30 + h3 * 0.22);
+      var rg = fc.createRadialGradient(sx, sy, 0, sx, sy, w * 0.62);
+      rg.addColorStop(0, 'rgba(155,224,255,' + (0.16 + lit * 0.30).toFixed(3) + ')');
+      rg.addColorStop(1, 'rgba(79,195,247,0)');
+      fc.fillStyle = rg;
+      fc.fillRect(x, y, w, hgt);
+
+      /* structure silhouette — three masses, a roof pitch on the tallest */
+      fc.fillStyle = '#04060A';
+      var base = y + hgt;
+      var i, bw = w / 3.15, bx, bh;
+      for (i = 0; i < 3; i++) {
+        bx = x + w * 0.06 + i * bw * 1.02;
+        bh = hgt * (0.26 + hash(idx * 3 + i) * 0.34);
+        fc.fillRect(bx, base - bh, bw * 0.92, bh);
+        if (i === 1) {
+          fc.beginPath();
+          fc.moveTo(bx - bw * 0.05, base - bh);
+          fc.lineTo(bx + bw * 0.46, base - bh - hgt * 0.17);
+          fc.lineTo(bx + bw * 0.97, base - bh);
+          fc.closePath();
+          fc.fill();
+        }
+      }
+      /* ground line */
+      fc.fillStyle = 'rgba(79,195,247,' + (0.10 + lit * 0.22).toFixed(3) + ')';
+      fc.fillRect(x, base - 1, w, 1);
+
+      fc.restore();
+
+      /* frame edge — lifts to ion as it passes the head */
+      fc.strokeStyle = lit > 0.02
+        ? 'rgba(79,195,247,' + (0.22 + lit * 0.62).toFixed(3) + ')'
+        : 'rgba(26,34,49,1)';
+      fc.lineWidth = 1;
+      fc.strokeRect(x + 0.5, y + 0.5, w - 1, hgt - 1);
+    }
+
+    EZ.lifecycle(el, function (w, hgt, dpr) {
+      FW = w; FH = hgt;
+      el.width = Math.round(w * dpr);
+      el.height = Math.round(hgt * dpr);
+      fc.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }, function (time) {
+      var T = EZ.CALM ? 6.5 : time;      /* CALM: one composed static frame */
+      fc.clearRect(0, 0, FW, FH);
+
+      /* ── track geometry ── */
+      var rulerY = Math.round(FH * 0.10);
+      var v1y    = Math.round(FH * 0.17);
+      var v1h    = Math.round(FH * 0.40);
+      var v2y    = Math.round(FH * 0.62);
+      var v2h    = Math.round(FH * 0.11);
+      var a1y    = Math.round(FH * 0.78);
+      var a1h    = Math.round(FH * 0.20);
+
+      var fw    = Math.max(56, Math.round(v1h * 16 / 9));
+      var pitch = fw + GAP;
+      var headX = Math.round(FW * PLAY);
+      var travel = T * SPEED;
+      var off = travel % pitch;
+      var base = Math.floor(travel / pitch);
+      var n, x, idx, lit, d;
+      var count = Math.ceil(FW / pitch) + 2;
+
+      /* ── ruler: a tick per frame slot, taller on the second ── */
+      fc.fillStyle = 'rgba(26,34,49,1)';
+      var tickPitch = pitch / 4;
+      for (x = -((travel % tickPitch)); x < FW; x += tickPitch) {
+        fc.fillRect(Math.round(x), rulerY - 4, 1, 4);
+      }
+      fc.fillStyle = 'rgba(38,48,63,1)';
+      for (n = 0; n < count; n++) {
+        fc.fillRect(Math.round(n * pitch - off), rulerY - 8, 1, 8);
+      }
+
+      /* ── V1: the captured frames ── */
+      for (n = 0; n < count; n++) {
+        x = n * pitch - off;
+        idx = base + n;
+        /* how close this frame's centre is to the playhead */
+        d = Math.abs((x + fw / 2) - headX) / (fw * 1.15);
+        lit = d > 1 ? 0 : (1 - d) * (1 - d);
+        shot(x, v1y, fw, v1h, idx, lit);
+      }
+
+      /* ── V2: b-roll cutaways, longer blocks on their own cadence ── */
+      var bp = pitch * 2.35;
+      var boff = (travel * 0.82) % bp;
+      for (n = 0; n < Math.ceil(FW / bp) + 2; n++) {
+        x = n * bp - boff;
+        idx = Math.floor((travel * 0.82) / bp) + n;
+        if (hash(idx + 53) < 0.28) continue;          /* gaps in the cutaways */
+        var bwd = bp * (0.42 + hash(idx + 7) * 0.34);
+        d = Math.abs((x + bwd / 2) - headX) / (bwd * 1.1);
+        lit = d > 1 ? 0 : (1 - d) * (1 - d);
+        fc.fillStyle = 'rgba(30,155,215,' + (0.16 + lit * 0.34).toFixed(3) + ')';
+        fc.fillRect(x, v2y, bwd, v2h);
+        fc.fillStyle = 'rgba(155,224,255,' + (0.30 + lit * 0.50).toFixed(3) + ')';
+        fc.fillRect(x, v2y, 2, v2h);
+      }
+
+      /* ── A1: production audio ── */
+      var barPitch = 3;
+      var mid = a1y + a1h / 2;
+      var aoff = travel % barPitch;
+      for (x = -aoff; x < FW; x += barPitch) {
+        idx = Math.round((travel + x) / barPitch);
+        /* two hashes under a slow envelope reads as speech, not noise */
+        var amp = (hash(idx) * 0.55 + hash(idx * 0.37) * 0.45);
+        amp *= 0.35 + 0.65 * Math.abs(Math.sin(idx * 0.021));
+        var bh2 = amp * (a1h * 0.46);
+        d = Math.abs(x - headX) / (FW * 0.20);
+        lit = d > 1 ? 0 : (1 - d) * (1 - d);
+        fc.fillStyle = 'rgba(79,195,247,' + (0.16 + lit * 0.44).toFixed(3) + ')';
+        fc.fillRect(Math.round(x), mid - bh2, 1.6, bh2 * 2);
+      }
+      /* audio centre line */
+      fc.fillStyle = 'rgba(26,34,49,1)';
+      fc.fillRect(0, Math.round(mid), FW, 1);
+
+      /* ── playhead ── */
+      fc.fillStyle = 'rgba(79,195,247,.16)';
+      fc.fillRect(headX - 6, rulerY - 8, 12, FH - rulerY + 8);
+      fc.fillStyle = '#9BE0FF';
+      fc.fillRect(headX - 1, rulerY - 8, 2, FH - rulerY + 8);
+      fc.beginPath();
+      fc.moveTo(headX - 6, rulerY - 8);
+      fc.lineTo(headX + 6, rulerY - 8);
+      fc.lineTo(headX, rulerY);
+      fc.closePath();
+      fc.fill();
+
+      /* ── timecode ── */
+      var secs = travel / SPEED;
+      fc.font = '10px "IBM Plex Mono", ui-monospace, monospace';
+      fc.fillStyle = 'rgba(124,136,154,.9)';
+      fc.fillText(pad2(secs / 60) + ':' + pad2(secs % 60) + ':' + pad2((secs * 24) % 24),
+                  headX + 10, rulerY - 1);
+
+      /* Track labels deliberately omitted: the stage masks its left edge to
+         13%, so anything gutter-parked there renders as invisible pixels. */
+    });
+  }
+
+  /* ═══ 2. TIMELINE SCRUB ═══════════════════════════════════════ */
+  function initTimeline() {
+    var tl = EZ.$('#tl');
+    var bar = EZ.$('#tlBar');
+    if (!tl || !bar) return;
+
+    var steps = EZ.$$('.proc__step', tl);
+    if (!steps.length) return;
+
+    var thr = [], queued = false;
+
+    /* Node thresholds come from real geometry, so a changed gutter or a
+       stacked layout can never desync the dots from the bar. */
+    function measure() {
+      var vert = steps.length > 1 && steps[1].offsetLeft <= steps[0].offsetLeft;
+      var span = vert ? tl.offsetHeight : tl.offsetWidth;
+      var i;
+      for (i = 0; i < steps.length; i++) {
+        thr[i] = span > 0
+          ? (vert ? steps[i].offsetTop : steps[i].offsetLeft) / span
+          : i / steps.length;
+      }
+    }
+
+    function paint(p) {
+      /* CSS owns the orientation: the same value drives width on wide
+         screens and height once the rail turns vertical. */
+      bar.style.setProperty('--proc-p', p.toFixed(4));
+      var i, s;
+      for (i = 0; i < steps.length; i++) {
+        s = steps[i];
+        if (!s.classList) continue;
+        /* add/remove rather than toggle(name, force): the two-argument form
+           is missing on older engines and silently inverts instead */
+        if (p >= thr[i] + 0.004) s.classList.add('is-on');
+        else s.classList.remove('is-on');
+      }
+    }
+
+    function update() {
+      queued = false;
+      var r = tl.getBoundingClientRect();
+      var vh = window.innerHeight || document.documentElement.clientHeight || 1;
+      /* starts filling when the rail is 82% down the viewport, completes as
+         it clears the top — the bar tracks the reader, not the page */
+      paint(clamp((vh * 0.82 - r.top) / (r.height + vh * 0.26), 0, 1));
+    }
+
+    function onScroll() {
+      if (!queued) { queued = true; raf(update); }
+    }
+
+    measure();
+
+    /* Reduced motion: no scroll-linked movement at all, just the finished rail. */
+    if (EZ.CALM) { paint(1); return; }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', function () { measure(); onScroll(); });
+    window.addEventListener('load', function () { measure(); onScroll(); });
+    onScroll();
+  }
+
+  initFlow();
+  initTimeline();
+})();
+
+/* ═══ 50-capability.js ═══ */
+/* ══ 03 · CAPABILITY + MARQUEE ═════════════════════════════════════════
+   Marquee seam + speed, filter grid, pointer wash. ES5 only.            */
+(function () {
+  'use strict';
+  if (!window.EZ) return;
+
+  var $ = EZ.$, $$ = EZ.$$;
+
+  /* ═══ 1. MARQUEE ══════════════════════════════════════════════════════
+     The keyframe travels translateX(-50%), which is only seamless when the
+     track holds two identical halves — so duplicate exactly once, then let
+     CSS animate. The animation class is added here rather than in the
+     stylesheet so a JS failure leaves a static, correct strip instead of a
+     strip that slides halfway into empty space. */
+  var track = $('#mqTrack');
+
+  if (track && track.getAttribute('data-mq') !== 'on') {
+    track.setAttribute('data-mq', 'on');
+    track.innerHTML = track.innerHTML + track.innerHTML;
+    track.classList.add('is-live');
+
+    /* Constant pixels-per-second regardless of how wide the copy renders. */
+    var speed = EZ.SMALL ? 44 : 66;
+    var lastW = 0;
+
+    /* Function expressions, not declarations: declarations inside a block are
+       not legal ES5 strict mode. Same reason further down. */
+    var retime = function () {
+      var half = track.scrollWidth / 2;
+      if (!half || Math.abs(half - lastW) < 4) return;
+      lastW = half;
+      track.style.animationDuration = Math.round(half / speed) + 's';
+    };
+    retime();
+
+    /* Archivo lands late on a cold cache and the track gets much wider. */
+    if (document.fonts && document.fonts.ready && document.fonts.ready.then) {
+      document.fonts.ready.then(retime);
+    }
+
+    var rt = 0;
+    window.addEventListener('resize', function () {
+      clearTimeout(rt);
+      rt = setTimeout(retime, 180);
+    });
+
+    /* Park the animation when it can't be seen. Cheap, but a 5000px-wide
+       composited layer is not free on a laptop battery. */
+    var seen = true, awake = !document.hidden;
+
+    var sync = function () {
+      if (seen && awake) track.classList.remove('is-hold');
+      else track.classList.add('is-hold');
+    };
+
+    if (window.IntersectionObserver) {
+      new IntersectionObserver(function (entries) {
+        for (var i = 0; i < entries.length; i++) seen = entries[i].isIntersecting;
+        sync();
+      }, { rootMargin: '140px 0px' }).observe(track);
+    }
+    document.addEventListener('visibilitychange', function () {
+      awake = !document.hidden;
+      sync();
+    });
+  }
+
+  /* ═══ 2. FILTER GRID ═════════════════════════════════════════════════ */
+  var bar = $('#filters'), grid = $('#grid');
+
+  if (bar && grid) {
+    var tiles = $$('.cap__tile', grid);
+    var btns  = $$('button[data-f]', bar);
+    var out   = $('#capCount');
+    var total = tiles.length;
+
+    var applyFilter = function (f, animate) {
+      var shown = 0, i, t, cat, ok;
+
+      for (i = 0; i < tiles.length; i++) {
+        t = tiles[i];
+        cat = ' ' + (t.getAttribute('data-cat') || '') + ' ';
+        ok = (f === 'all') || cat.indexOf(' ' + f + ' ') > -1;
+        t.hidden = !ok;
+
+        if (ok) {
+          shown++;
+          if (animate && !EZ.CALM) {
+            /* Remove, force reflow, re-add: without the reflow the class
+               churn is coalesced and the animation never restarts. */
+            t.classList.remove('on');
+            t.style.animationDelay = ((shown - 1) * 26) + 'ms';
+            void t.offsetWidth;
+            t.classList.add('on');
+          }
+        }
+      }
+
+      if (out) out.textContent = 'Showing ' + shown + ' / ' + total;
+    };
+
+    var select = function (btn) {
+      for (var j = 0; j < btns.length; j++) {
+        var on = btns[j] === btn;
+        if (on) btns[j].classList.add('is-sel');
+        else btns[j].classList.remove('is-sel');
+        btns[j].setAttribute('aria-pressed', on ? 'true' : 'false');
+      }
+      applyFilter(btn.getAttribute('data-f') || 'all', true);
+    };
+
+    for (var b = 0; b < btns.length; b++) {
+      (function (btn) {
+        btn.addEventListener('click', function () { select(btn); });
+      }(btns[b]));
+    }
+
+    applyFilter('all', false);   /* sets the live count without animating on load */
+  }
+
+  /* ═══ 3. POINTER WASH ════════════════════════════════════════════════
+     Fine pointers only; the CSS default (--cap-mx 50%) already gives a
+     centred wash on touch and under reduced motion. */
+  if (grid && EZ.HOVER && !EZ.CALM) {
+    var all = $$('.cap__tile', grid);
+
+    for (var k = 0; k < all.length; k++) {
+      (function (tile) {
+        tile.addEventListener('pointermove', function (e) {
+          var r = tile.getBoundingClientRect();
+          if (!r.width || !r.height) return;
+          tile.style.setProperty('--cap-mx',
+            (EZ.clamp((e.clientX - r.left) / r.width, 0, 1) * 100).toFixed(1) + '%');
+          tile.style.setProperty('--cap-my',
+            (EZ.clamp((e.clientY - r.top) / r.height, 0, 1) * 100).toFixed(1) + '%');
+        });
+        tile.addEventListener('pointerleave', function () {
+          tile.style.setProperty('--cap-mx', '50%');
+          tile.style.setProperty('--cap-my', '0%');
+        });
+      }(all[k]));
+    }
+  }
+}());
+
+/* ═══ 60-scope.js ═══ */
+/* ══ 04 · SCOPE BUILDER ═══════════════════════════════════════════════════
+   Reads the picker, writes the summary, and publishes the selection as
+   window.__scope so the contact section can append it to its mailto body.
+   No money anywhere: this file only ever counts and names things.
+   ═══════════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+  if (!window.EZ) return;
+
+  var $ = EZ.$, $$ = EZ.$$;
+
+  var form = $('#estimator');
+  if (!form) return;
+
+  var countEl = $('#scopeCount');
+  var listEl  = $('#scopeList');
+  var aside   = $('.scope__aside');
+  var checks  = $$('input[type=checkbox][data-kind]', form);
+  var qtys    = $$('.qty__v', form);
+
+  var prev  = [];
+  var first = true;
+  var pulseTimer = 0;
+
+  /* closest() with an explicit walk — cheaper to guarantee than to feature-test */
+  function up(el, cls) {
+    var n = el;
+    while (n && n.nodeType === 1) {
+      if (n.className && (' ' + n.className + ' ').indexOf(' ' + cls + ' ') > -1) return n;
+      n = n.parentNode;
+    }
+    return null;
+  }
+
+  function setCls(el, cls, on) {
+    if (!el) return;
+    if (on) { if ((' ' + el.className + ' ').indexOf(' ' + cls + ' ') < 0) el.className += ' ' + cls; }
+    else {
+      el.className = (' ' + el.className + ' ')
+        .split(' ' + cls + ' ').join(' ')
+        .replace(/^\s+|\s+$/g, '');
+    }
+  }
+
+  function num(v, fallback) {
+    var n = parseInt(v, 10);
+    return isNaN(n) ? fallback : n;
+  }
+
+  function nameOf(row) {
+    var n = row ? $('.row__n', row) : null;
+    return n ? n.textContent.replace(/^\s+|\s+$/g, '') : '';
+  }
+
+  function bounds(input) {
+    return { lo: num(input.getAttribute('min'), 0), hi: num(input.getAttribute('max'), 99) };
+  }
+
+  /* Current selection, in document order, as plain display strings. */
+  function read() {
+    var items = [], i, row, label;
+
+    for (i = 0; i < checks.length; i++) {
+      row = up(checks[i], 'row');
+      setCls(row, 'is-on', checks[i].checked);
+      if (checks[i].checked) {
+        label = nameOf(row);
+        if (label) items.push(label);
+      }
+    }
+
+    for (i = 0; i < qtys.length; i++) {
+      var q = qtys[i];
+      var b = bounds(q);
+      var n = EZ.clamp(num(q.value, 0), b.lo, b.hi);
+      row = up(q, 'row');
+      setCls(row, 'is-on', n > 0);
+      setCls(up(q, 'qty'), 'is-on', n > 0);
+      if (n > 0) {
+        label = nameOf(row);
+        /* escaped so the string survives any concatenation step that guesses at encoding */
+        if (label) items.push(label + ' \u00d7 ' + n);
+      }
+    }
+
+    return items;
+  }
+
+  function pulse() {
+    if (!aside || EZ.CALM) return;
+    setCls(aside, 'is-pulse', false);
+    /* forced reflow is the only reliable way to restart a CSS animation */
+    void aside.offsetWidth;
+    setCls(aside, 'is-pulse', true);
+    if (pulseTimer) clearTimeout(pulseTimer);
+    pulseTimer = setTimeout(function () { setCls(aside, 'is-pulse', false); }, 800);
+  }
+
+  function render() {
+    var items = read();
+    var changed = items.join('') !== prev.join('');
+    var i, li;
+
+    if (countEl) {
+      countEl.textContent = items.length
+        ? items.length + (items.length === 1 ? ' service selected' : ' services selected')
+        : 'Nothing selected yet';
+    }
+
+    if (listEl) {
+      while (listEl.firstChild) listEl.removeChild(listEl.firstChild);
+
+      if (!items.length) {
+        li = document.createElement('li');
+        li.className = 'is-none';
+        li.textContent = 'Check the pieces above that fit your business.';
+        listEl.appendChild(li);
+      } else {
+        for (i = 0; i < items.length; i++) {
+          li = document.createElement('li');
+          /* textContent only — these strings come off the page, never innerHTML */
+          li.textContent = items[i];
+          if (!first && !EZ.CALM && prev.indexOf(items[i]) < 0) li.className = 'is-new';
+          listEl.appendChild(li);
+        }
+      }
+    }
+
+    if (changed && !first) pulse();
+
+    window.__scope = items;
+    prev = items;
+    first = false;
+  }
+
+  /* Enter inside the number fields would otherwise submit and reload the page. */
+  form.addEventListener('submit', function (e) { e.preventDefault(); });
+  form.addEventListener('change', render);
+  form.addEventListener('input', render);
+
+  $$('.qty__b', form).forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var input = $('.qty__v', btn.parentNode);
+      if (!input) return;
+      var b = bounds(input);
+      input.value = EZ.clamp(num(input.value, b.lo) + num(btn.getAttribute('data-step'), 0), b.lo, b.hi);
+      render();
+    });
+  });
+
+  qtys.forEach(function (q) {
+    /* typed or pasted junk is tolerated while typing, normalised on the way out */
+    q.addEventListener('blur', function () {
+      var b = bounds(q);
+      q.value = EZ.clamp(num(q.value, b.lo), b.lo, b.hi);
+      render();
+    });
+    /* a scroll over a focused number field must not silently edit the scope */
+    q.addEventListener('wheel', function () {
+      if (document.activeElement === q) q.blur();
+    });
+  });
+
+  render();
+
+  /* The CTA is a plain anchor to #contact; once the scroll lands, put the caret
+     in the first field so the visitor never has to hunt for it. */
+  var send = $('#sendScope');
+  if (send) {
+    send.addEventListener('click', function () {
+      setTimeout(function () {
+        var f = $('#f-name');
+        if (!f || !f.focus) return;
+        try { f.focus({ preventScroll: true }); } catch (err) { f.focus(); }
+      }, EZ.CALM ? 120 : 560);
+    });
+  }
+})();
+
+/* ═══ 70-contact.js ═══ */
+/* ══════════════════════════════════════════════════════════════════════════
+   70 · DUTY SPLIT + CONTACT CLOSE
+
+   Three jobs, all optional — if any node is missing the rest still runs:
+     1. duty panels: pointer-tracked ion wash + a list cascade after reveal
+     2. #scopeEcho mirrors window.__scope, which the scope builder owns
+     3. submit composes a mailto: no endpoint, no data at rest, nothing to break
+   ══════════════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+  if (!window.EZ) return;
+
+  var $ = EZ.$, $$ = EZ.$$;
+
+  var EMAIL = 'ezhdco@gmail.com';
+  var ITEM_LEAD = 210;  /* ms — items start after the panel's own fade is underway */
+  var ITEM_STEP = 55;   /* ms between list items */
+
+  var raf = function (fn) {
+    /* Called unbound, so route through window or the browser throws. */
+    return window.requestAnimationFrame ? window.requestAnimationFrame(fn) : setTimeout(fn, 16);
+  };
+  var trim = function (s) { return String(s).replace(/^\s+|\s+$/g, ''); };
+
+  /* ═══ 1 · DUTY PANELS ═══ */
+  var panels = $$('.duty__panel');
+  var i, p;
+
+  if (panels.length && !EZ.CALM && 'IntersectionObserver' in window) {
+    /* Hide the items only now that we know we can bring them back. */
+    for (i = 0; i < panels.length; i++) panels[i].classList.add('duty__panel--anim');
+
+    var pio = new IntersectionObserver(function (entries) {
+      var n, e, items, k;
+      for (n = 0; n < entries.length; n++) {
+        e = entries[n];
+        if (!e.isIntersecting) continue;
+        items = $$('.duty__item', e.target);
+        for (k = 0; k < items.length; k++) {
+          items[k].style.transitionDelay = (ITEM_LEAD + k * ITEM_STEP) + 'ms';
+        }
+        e.target.classList.add('duty__panel--in');
+        pio.unobserve(e.target);
+      }
+    }, { threshold: 0.18, rootMargin: '0px 0px -6% 0px' });
+
+    for (i = 0; i < panels.length; i++) pio.observe(panels[i]);
+  }
+
+  if (panels.length && EZ.HOVER && !EZ.CALM) {
+    var pend = null, ticking = false;
+
+    var paint = function () {
+      ticking = false;
+      if (!pend) return;
+      pend.el.style.setProperty('--duty-x', pend.x + 'px');
+      pend.el.style.setProperty('--duty-y', pend.y + 'px');
+    };
+    var onMove = function (ev) {
+      var el = ev.currentTarget, r = el.getBoundingClientRect();
+      pend = { el: el, x: Math.round(ev.clientX - r.left), y: Math.round(ev.clientY - r.top) };
+      if (!ticking) { ticking = true; raf(paint); }
+    };
+    var onEnter = function (ev) { ev.currentTarget.classList.add('duty__panel--lit'); };
+    var onLeave = function (ev) { ev.currentTarget.classList.remove('duty__panel--lit'); pend = null; };
+
+    /* mouse* rather than pointer* — same result, wider reach. */
+    for (p = 0; p < panels.length; p++) {
+      panels[p].addEventListener('mouseenter', onEnter);
+      panels[p].addEventListener('mousemove', onMove);
+      panels[p].addEventListener('mouseleave', onLeave);
+    }
+  }
+
+  /* ═══ 2 · SCOPE ECHO ═══ */
+  var echo = $('#scopeEcho');
+  var echoVal = echo ? $('.form__echoV', echo) : null;
+
+  /* window.__scope is authored by another section; treat it as untrusted. */
+  var scopeList = function () {
+    var s = window.__scope, out = [], n, t;
+    if (!s || Object.prototype.toString.call(s) !== '[object Array]') return out;
+    for (n = 0; n < s.length; n++) {
+      t = trim(String(s[n]).replace(/\s+/g, ' '));
+      if (t) out.push(t);
+    }
+    return out;
+  };
+
+  var syncEcho = function () {
+    if (!echo) return;
+    var items = scopeList(), target = echoVal || echo, txt, extra;
+    if (!items.length) {
+      target.textContent = 'Nothing selected yet — we can sort it on the call.';
+      echo.classList.remove('form__echo--on');
+      return;
+    }
+    txt = items.length + ' selected · ' + items.slice(0, 2).join(' · ');
+    extra = items.length - 2;
+    if (extra > 0) txt += ' · +' + extra + ' more';
+    target.textContent = txt;
+    echo.classList.add('form__echo--on');
+  };
+
+  if (echo) {
+    syncEcho();
+
+    var est = $('#estimator');
+    if (est) {
+      est.addEventListener('change', syncEcho);
+      est.addEventListener('input', syncEcho);
+      /* Quantity steppers can rewrite __scope without firing a form event. */
+      est.addEventListener('click', function () { setTimeout(syncEcho, 0); });
+    }
+
+    /* The scope section may initialise after this file parses. */
+    setTimeout(syncEcho, 0);
+    window.addEventListener('load', syncEcho);
+
+    /* Last line of defence: re-read whenever the close comes into view. */
+    var closeSec = $('#contact');
+    if (closeSec && 'IntersectionObserver' in window) {
+      var cio = new IntersectionObserver(function (entries) {
+        var n;
+        for (n = 0; n < entries.length; n++) if (entries[n].isIntersecting) syncEcho();
+      }, { threshold: 0.12 });
+      cio.observe(closeSec);
+    }
+  }
+
+  /* ═══ 3 · CONTACT FORM → MAILTO ═══ */
+  var form = $('#contactForm');
+  if (!form) return;
+
+  var status = $('#formStatus');
+
+  var val = function (sel) {
+    var el = $(sel);
+    if (!el || typeof el.value !== 'string') return '';
+    return trim(el.value);
+  };
+
+  /* Filled fields keep their label bright, so a long form reads as progress. */
+  var fields = $$('.form__in', form);
+  var mark = function (el) {
+    var box = el.parentNode;
+    if (!box || !box.classList) return;
+    if (trim(el.value || '')) box.classList.add('form__fld--filled');
+    else box.classList.remove('form__fld--filled');
+  };
+  for (i = 0; i < fields.length; i++) {
+    (function (el) {
+      el.addEventListener('input', function () { mark(el); });
+      el.addEventListener('change', function () { mark(el); });
+      mark(el); /* browsers restore values on back-nav */
+    })(fields[i]);
+  }
+
+  /* Reaching the form is the moment the echo has to be right. */
+  form.addEventListener('focusin', syncEcho);
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault(); /* native validation has already passed by now */
+
+    var name = val('#f-name'), biz = val('#f-biz'), email = val('#f-email'),
+        phone = val('#f-phone'), msg = val('#f-msg'),
+        items = scopeList(), L = [], n;
+
+    L.push('Name:     ' + (name || '—'));
+    L.push('Business: ' + (biz || '—'));
+    L.push('Email:    ' + (email || '—'));
+    L.push('Phone:    ' + (phone || '—'));
+    L.push('');
+    L.push('What they are trying to fix:');
+    L.push(msg || '—');
+    L.push('');
+
+    if (items.length) {
+      L.push('--- Scope selected on the site ---');
+      for (n = 0; n < items.length; n++) L.push('  • ' + items[n]);
+      L.push('');
+    }
+
+    L.push('Requested: a 20-minute call.');
+
+    window.location.href = 'mailto:' + EMAIL +
+      '?subject=' + encodeURIComponent('Scope + call request — ' + (biz || name || 'new project')) +
+      '&body=' + encodeURIComponent(L.join('\r\n'));
+
+    if (status) {
+      status.textContent = 'Opening your email app. If nothing happens, send it to ' + EMAIL + '.';
+    }
+  });
+})();
+/* ═══ 80-system.js ═══ */
+/* ══ 01 · THE SYSTEM — exploded axonometric, assembled by scroll ═══════════
+   True axonometric: a parallel projection with no perspective divide, which
+   is what separates a technical drawing from a render. x runs down-right,
+   y runs down-left, z is straight up:
+
+       X = (x - y) * cos30          Y = (x + y) * sin30 - z
+
+   Five layers stack on that. Scroll position drives one 0..1 scalar; each
+   layer eases from far apart to a settled gap on its own delay, so the sheet
+   builds from the base up. Labels arrive only once their layer has landed. */
+(function () {
+  'use strict';
+
+  if (!window.EZ) return;
+  var EZ = window.EZ;
+
+  var sec = EZ.$('#system');
+  var cvs = EZ.$('#sysC');
+  if (!sec || !cvs || !cvs.getContext) return;
+
+  var g = cvs.getContext('2d');
+  if (!g) return;
+
+  var C30 = Math.cos(Math.PI / 6), S30 = 0.5;
+  var W = 1, H = 1, S = 30, OX = 0, OY = 0;
+
+  /* ── palette ── */
+  var TOP_F  = 'rgba(19,28,42,.97)';
+  var SIDE_R = 'rgba(12,19,30,.97)';
+  var SIDE_F = 'rgba(8,13,21,.97)';
+  var EDGE   = 'rgba(79,195,247,';
+  var LINE   = 'rgba(124,136,154,';
+  var HOT    = 'rgba(155,224,255,';
+
+  function P(x, y, z) {
+    return { X: OX + (x - y) * C30 * S, Y: OY + ((x + y) * S30 - z) * S };
+  }
+  function facePath(pts) {
+    var i, p;
+    g.beginPath();
+    for (i = 0; i < pts.length; i++) {
+      p = P(pts[i][0], pts[i][1], pts[i][2]);
+      if (i) g.lineTo(p.X, p.Y); else g.moveTo(p.X, p.Y);
+    }
+    g.closePath();
+  }
+  function face(pts, fill, ea, lw) {
+    facePath(pts);
+    if (fill) { g.fillStyle = fill; g.fill(); }
+    if (ea) { g.strokeStyle = EDGE + ea + ')'; g.lineWidth = lw || 1; g.stroke(); }
+  }
+
+  /* a slab: the three faces an axonometric ever shows */
+  function slab(x0, y0, x1, y1, z, t, ea) {
+    var b = z, u = z + t;
+    face([[x1, y0, b], [x1, y1, b], [x1, y1, u], [x1, y0, u]], SIDE_R, ea * .5);
+    face([[x0, y1, b], [x1, y1, b], [x1, y1, u], [x0, y1, u]], SIDE_F, ea * .5);
+    face([[x0, y0, u], [x1, y0, u], [x1, y1, u], [x0, y1, u]], TOP_F, ea, 1.2);
+  }
+  /* something etched on a slab's top surface */
+  function etch(x0, y0, x1, y1, z, fill, ea) {
+    face([[x0, y0, z], [x1, y0, z], [x1, y1, z], [x0, y1, z]], fill, ea);
+  }
+  function line3(a, b, col, lw) {
+    var p = P(a[0], a[1], a[2]), q = P(b[0], b[1], b[2]);
+    g.strokeStyle = col; g.lineWidth = lw || 1;
+    g.beginPath(); g.moveTo(p.X, p.Y); g.lineTo(q.X, q.Y); g.stroke();
+  }
+
+  /* ── the five layers, bottom to top ── */
+  var GAP = 1.35;
+  var LAYERS = [
+    { name: 'DOMAIN + HOSTING', note: 'DNS · SSL · backups' },
+    { name: 'THE SITE',         note: 'Up to 5 page templates' },
+    { name: 'LOCAL SEARCH',     note: 'Business Profile · listings' },
+    { name: 'CONTENT',          note: '8 pieces a month' },
+    { name: 'REPORTING',        note: 'One monthly report' }
+  ];
+
+  function drawLayer(i, z, a) {
+    var ea = 0.30 + a * 0.55;      /* edges brighten as the layer lands */
+
+    if (i === 0) {                 /* base plate with service nubs */
+      slab(0, 0, 8, 6, z, .34, ea);
+      var u = z + .34, k;
+      for (k = 0; k < 3; k++) slab(.7 + k * 2.4, .8, 2.5 + k * 2.4, 2.2, u, .26, ea * .8);
+      etch(.7, 3.1, 7.3, 3.35, u + .001, EDGE + (a * .5) + ')', 0);
+      etch(.7, 3.9, 5.4, 4.15, u + .001, LINE + (a * .3) + ')', 0);
+
+    } else if (i === 1) {          /* the website: hero band, copy, card row */
+      slab(.5, .4, 7.5, 5.6, z, .22, ea);
+      var s = z + .221;
+      etch(1.0, .9, 7.0, 2.3, s, EDGE + (a * .30) + ')', a * .5);
+      etch(1.0, 2.7, 4.6, 2.95, s, HOT + (a * .55) + ')', 0);
+      etch(1.0, 3.25, 6.2, 3.45, s, LINE + (a * .28) + ')', 0);
+      etch(1.0, 3.75, 5.5, 3.95, s, LINE + (a * .28) + ')', 0);
+      for (var c = 0; c < 3; c++)
+        etch(1.0 + c * 2.1, 4.4, 2.8 + c * 2.1, 5.2, s, LINE + (a * .18) + ')', a * .35);
+
+    } else if (i === 2) {          /* local search: listing rows + a map pin */
+      slab(1.1, .9, 6.9, 5.1, z, .20, ea);
+      var m = z + .201;
+      for (var r = 0; r < 3; r++)
+        etch(1.6, 1.4 + r * .75, 5.2, 1.62 + r * .75, m, LINE + (a * .26) + ')', 0);
+      slab(5.5, 3.4, 6.4, 4.3, m, .55, ea);                 /* pin body */
+      etch(5.5, 3.4, 6.4, 4.3, m + .551, HOT + (a * .70) + ')', a * .6);
+
+    } else if (i === 3) {          /* content: a fan of vertical cards */
+      for (var v = 0; v < 4; v++) {
+        var x = 1.0 + v * 1.65;
+        slab(x, 1.0 + v * .28, x + 1.25, 4.4 + v * .28, z, .16, ea);
+        var f = z + .161;
+        etch(x + .18, 1.25 + v * .28, x + 1.07, 3.1 + v * .28, f,
+             EDGE + (a * (v === 1 ? .34 : .20)) + ')', 0);
+        etch(x + .18, 3.45 + v * .28, x + .82, 3.62 + v * .28, f, LINE + (a * .30) + ')', 0);
+      }
+
+    } else {                       /* reporting: a bar chart, extruded */
+      slab(1.9, 1.4, 6.1, 4.6, z, .20, ea);
+      var t = z + .201, hgt = [.45, .8, 1.15, 1.6];
+      for (var q = 0; q < 4; q++) {
+        slab(2.4 + q * .95, 2.0, 3.05 + q * .95, 2.65, t, hgt[q] * a, ea * .9);
+        etch(2.4 + q * .95, 2.0, 3.05 + q * .95, 2.65, t + hgt[q] * a + .001,
+             HOT + (a * .55) + ')', 0);
+      }
+      etch(2.3, 3.6, 5.7, 3.8, t, LINE + (a * .26) + ')', 0);
+    }
+  }
+
+  /* ── the sheet: frame, corner ticks, title block ── */
+  function sheet(a) {
+    var pad = Math.max(10, Math.min(W, H) * 0.028);
+    g.strokeStyle = 'rgba(38,48,63,' + (.55 + a * .35) + ')';
+    g.lineWidth = 1;
+    g.strokeRect(pad + .5, pad + .5, W - pad * 2 - 1, H - pad * 2 - 1);
+    g.strokeRect(pad + 6.5, pad + 6.5, W - pad * 2 - 13, H - pad * 2 - 13);
+
+    var tk = 10, i;
+    g.strokeStyle = EDGE + (.30 + a * .35) + ')';
+    for (i = 0; i < 4; i++) {
+      var cx2 = i % 2 ? W - pad : pad, cy2 = i < 2 ? pad : H - pad;
+      var sx = i % 2 ? -1 : 1, sy = i < 2 ? 1 : -1;
+      g.beginPath();
+      g.moveTo(cx2 + sx * tk, cy2); g.lineTo(cx2, cy2); g.lineTo(cx2, cy2 + sy * tk);
+      g.stroke();
+    }
+
+    /* title block, lower right — the two signature fields are the point */
+    var bw = Math.min(232, W * 0.62), bh = 78, bx = W - pad - 7 - bw, by = H - pad - 7 - bh;
+    var labCol = Math.min(82, bw * 0.38);   /* value column must fit the block */
+    g.fillStyle = 'rgba(6,9,14,.92)';
+    g.fillRect(bx, by, bw, bh);
+    g.strokeStyle = 'rgba(38,48,63,.95)';
+    g.strokeRect(bx + .5, by + .5, bw - 1, bh - 1);
+
+    var rows = [
+      ['PROJECT', 'LOCAL MARKETING SYSTEM'],
+      ['SHEET', '01 OF 01      REV A'],
+      ['DRAWN BY', 'EZHD'],
+      ['CHECKED BY', 'EZHD']
+    ];
+    g.font = '8px "IBM Plex Mono", ui-monospace, monospace';
+    g.textBaseline = 'middle';
+    for (i = 0; i < rows.length; i++) {
+      var ry = by + 13 + i * 17.5;
+      if (i) { g.strokeStyle = 'rgba(26,34,49,.95)'; g.beginPath();
+               g.moveTo(bx, ry - 8.75); g.lineTo(bx + bw, ry - 8.75); g.stroke(); }
+      g.textAlign = 'left';
+      g.fillStyle = LINE + '.75)';
+      g.fillText(rows[i][0], bx + 8, ry);
+      g.fillStyle = (i > 1 ? HOT + (.55 + a * .45) + ')' : 'rgba(221,227,234,.88)');
+      g.fillText(rows[i][1], bx + labCol, ry);
+    }
+  }
+
+  /* ── scroll ── */
+  var prog = 0, target = 0, raf = 0;
+
+  function measure() {
+    var track = sec.querySelector('.sys__track');
+    if (!track) return 0;
+    var r = track.getBoundingClientRect();
+    var span = r.height - window.innerHeight;
+    if (span <= 0) return 1;
+    return EZ.clamp(-r.top / span, 0, 1);
+  }
+
+  function frame() {
+    prog += (target - prog) * 0.12;
+    draw(prog);
+    if (Math.abs(target - prog) > 0.0008) raf = requestAnimationFrame(frame);
+    else { raf = 0; draw(target); }
+  }
+  function onScroll() {
+    target = EZ.CALM ? 1 : measure();
+    if (!raf) raf = requestAnimationFrame(frame);
+  }
+
+  function size() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var r = cvs.getBoundingClientRect();
+    W = Math.max(1, Math.round(r.width));
+    H = Math.max(1, Math.round(r.height));
+    cvs.width = Math.round(W * dpr);
+    cvs.height = Math.round(H * dpr);
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    /* Fit the ASSEMBLED extents, not the exploded ones — the settled sheet is
+       what people read, and letting the top layers start a little outside the
+       frame just means they fly in. Units, assembled:
+         X = (x-y)cos30 over x 0..8, y 0..6  ->  -5.20 .. 6.93   (span 12.13)
+         Y = (x+y)sin30 - z, z up to 4*GAP   ->  -5.74 .. 7.00   (span 12.74)
+       The object is parked left of centre so the leader labels have a column
+       of their own instead of being clipped at the edge. */
+    S = Math.min((W * 0.58) / 12.13, (H * 0.86) / 12.74);
+    OX = W * 0.305 - 0.865 * S;   /* 0.865 = centre of the X unit range */
+    OY = H * 0.50 - 0.630 * S;    /* 0.630 = centre of the Y unit range */
+    draw(prog);
+  }
+
+  function draw(p) {
+    g.clearRect(0, 0, W, H);
+    sheet(EZ.clamp(p * 2.2, 0, 1));
+
+    var i, la = [], lz = [];
+    for (i = 0; i < 5; i++) {
+      /* each layer lands on its own delay, base first */
+      var k = EZ.clamp((p - i * 0.085) / 0.48, 0, 1);
+      var e = k * k * (3 - 2 * k);
+      la[i] = e;
+      lz[i] = i * GAP * (2.05 - 1.05 * e);
+    }
+    for (i = 0; i < 5; i++) drawLayer(i, lz[i], la[i]);
+
+    /* leader lines + labels, once a layer has settled */
+    g.font = '9px "IBM Plex Mono", ui-monospace, monospace';
+    g.textBaseline = 'middle';
+    g.textAlign = 'left';
+    for (i = 0; i < 5; i++) {
+      var a = EZ.clamp((la[i] - .55) / .45, 0, 1);
+      if (a <= 0.01) continue;
+      var anchor = P(8, 0, lz[i] + .34);          /* right corner of the layer */
+      var lx = Math.min(W - 12, anchor.X + 18);
+      g.strokeStyle = EDGE + (a * .5) + ')';
+      g.lineWidth = 1;
+      g.beginPath();
+      g.moveTo(anchor.X, anchor.Y);
+      g.lineTo(anchor.X + 16, anchor.Y - 9);
+      g.lineTo(lx, anchor.Y - 9);
+      g.stroke();
+      g.fillStyle = EDGE + (a * .9) + ')';
+      g.beginPath(); g.arc(anchor.X, anchor.Y, 2, 0, Math.PI * 2); g.fill();
+      var tight = W < 430;   /* the note would overrun a narrow sheet */
+      g.fillStyle = 'rgba(221,227,234,' + (a * .92) + ')';
+      g.fillText(LAYERS[i].name, lx + 4, anchor.Y - (tight ? 8 : 14));
+      if (!tight) {
+        g.fillStyle = LINE + (a * .8) + ')';
+        g.fillText(LAYERS[i].note, lx + 4, anchor.Y - 2);
+      }
+    }
+  }
+
+  size();
+  window.addEventListener('resize', size);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+
+/* ═══ 05-intro.js ═══ */
+/* ══ INTRO — receding ring field ═══════════════════════════════════════════
+   Concentric rings travelling toward the viewer on a perspective divide.
+   They echo the badge's own rings, which is what stops this reading as a
+   generic tunnel: the background is the logo's geometry, scaled up. */
+(function () {
+  'use strict';
+  if (!window.EZ) return;
+  var EZ = window.EZ;
+
+  var sec = EZ.$('#intro');
+  var cvs = EZ.$('#introC');
+  if (!sec || !cvs || !cvs.getContext) return;
+  var g = cvs.getContext('2d');
+  if (!g) return;
+
+  var W = 1, H = 1;
+  var RINGS = EZ.SMALL ? 14 : 20;
+  var SPACING = 1.0, FOV = 3.0, DEPTH = RINGS * SPACING;
+
+  var aimX = 0, aimY = 0, panX = 0, panY = 0;
+  if (EZ.HOVER && !EZ.CALM) {
+    window.addEventListener('pointermove', function (e) {
+      aimX = EZ.clamp((e.clientX / (window.innerWidth || 1)) * 2 - 1, -1, 1);
+      aimY = EZ.clamp((e.clientY / (window.innerHeight || 1)) * 2 - 1, -1, 1);
+    }, { passive: true });
+  }
+
+  EZ.lifecycle(cvs, function (w, hh, dpr) {
+    W = w; H = hh;
+    cvs.width = Math.round(w * dpr);
+    cvs.height = Math.round(hh * dpr);
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }, function (time) {
+    var t = EZ.CALM ? 2.4 : time;
+    g.clearRect(0, 0, W, H);
+
+    panX = EZ.lerp(panX, aimX, 0.045);
+    panY = EZ.lerp(panY, aimY, 0.045);
+
+    var m = Math.min(W, H);
+    var cx = W / 2 + panX * m * 0.045;
+    var cy = H / 2 + panY * m * 0.045;
+    var base = m * 0.92;
+    var travel = EZ.CALM ? 0 : (t * 0.30) % SPACING;
+    var spin = t * 0.05;
+    var i, k;
+
+    for (i = 0; i < RINGS; i++) {
+      var z = DEPTH - (i * SPACING + travel);
+      if (z <= 0.02) continue;
+      var s = FOV / (FOV + z);
+      var r = base * s;
+      if (r < 2) continue;
+
+      /* near the camera it fades out, far away it dissolves into the black */
+      var near = EZ.clamp((DEPTH - z) / DEPTH, 0, 1);
+      var a = Math.pow(near, 1.35) * (1 - Math.pow(near, 6)) * 1.5;
+      if (a <= 0.004) continue;
+
+      g.strokeStyle = 'rgba(79,195,247,' + (a * 0.42).toFixed(3) + ')';
+      g.lineWidth = 1;
+      g.beginPath();
+      g.ellipse(cx, cy, r, r * 0.94, 0, 0, Math.PI * 2);
+      g.stroke();
+
+      /* tick marks, the way the badge's outer ring is notched */
+      var ticks = 24;
+      g.strokeStyle = 'rgba(155,224,255,' + (a * 0.30).toFixed(3) + ')';
+      for (k = 0; k < ticks; k++) {
+        var ang = (k / ticks) * Math.PI * 2 + spin + i * 0.05;
+        var c1 = Math.cos(ang), s1 = Math.sin(ang) * 0.94;
+        var tl = (k % 6 === 0) ? 9 : 4;
+        g.beginPath();
+        g.moveTo(cx + c1 * r, cy + s1 * r);
+        g.lineTo(cx + c1 * (r + tl), cy + s1 * (r + tl));
+        g.stroke();
+      }
+    }
+
+    /* the mark sits in a pool of light, not on a flat field */
+    var gl = g.createRadialGradient(cx, cy, 0, cx, cy, m * 0.46);
+    gl.addColorStop(0, 'rgba(30,155,215,.20)');
+    gl.addColorStop(0.55, 'rgba(30,155,215,.06)');
+    gl.addColorStop(1, 'rgba(4,6,10,0)');
+    g.fillStyle = gl;
+    g.fillRect(0, 0, W, H);
+  });
+
+  /* ── nav arrives once the title card is behind you ── */
+  var nav = EZ.$('#nav');
+  if (!nav) return;
+  if (EZ.CALM || !('IntersectionObserver' in window)) {
+    nav.classList.add('is-lit');
+    return;
+  }
+  new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      /* lit once the intro is mostly gone, dark again when you return to it */
+      nav.classList.toggle('is-lit', e.intersectionRatio < 0.42);
+    });
+  }, { threshold: [0, 0.42, 1] }).observe(sec);
+})();
+
+</script>
+</body>
+</html>
