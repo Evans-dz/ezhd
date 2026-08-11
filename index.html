@@ -3943,12 +3943,10 @@ html{scroll-padding-top:4.6rem;}
 
   var EMAIL = 'ezhdco@gmail.com';
 
-  /* Form delivery. Paste the Web3Forms access key below and the form starts
-     posting to the inbox; leave the placeholder and it keeps using the mailto
-     handoff, so the site is never broken in between.
-     Get a key at https://web3forms.com — it is emailed to you, free, and has
-     no submission cap. */
-  var ACCESS_KEY = '<PASTE-WEB3FORMS-ACCESS-KEY>';
+  /* Form delivery. Web3Forms access key — public by design: it ships in the
+     HTML and only permits submitting to this form, never reading what was
+     submitted. Swap it at web3forms.com if it ever needs rotating. */
+  var ACCESS_KEY = 'a785fe44-2b8c-4e40-8dfd-db35478bb123';
   var ENDPOINT = 'https://api.web3forms.com/submit';
   var ITEM_LEAD = 210;  /* ms — items start after the panel's own fade is underway */
   var ITEM_STEP = 55;   /* ms between list items */
