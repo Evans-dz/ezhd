@@ -656,6 +656,114 @@ html{scroll-padding-top:4.6rem;}
   .top__btn.on{transform:none;}
 }
 
+/* ═══ 15-broadcast.css ═══ */
+/* ══ BROADCAST CHROME ══ prefixes: sheet / hud__ / tb__ / xh__ ══════════════
+   The drawn-then-broadcast layer: drafting-sheet grid under the page, REC +
+   timecode HUD, drafting title block, crosshair/viewfinder cursor. All of it
+   is ornament — aria-hidden, pointer-events:none — and the page composes
+   fully without it. It powers on when <body> gains .is-live, which the intro
+   sets at its signal-lock moment (immediately under reduced motion). */
+
+/* Drafting sheet. First child of <body> so every positioned section paints
+   over it; the pit sections read as solid panels laid on the sheet. */
+.sheet{position:fixed;inset:0;pointer-events:none;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(221,227,234,.032) 0 1px,transparent 1px 96px),
+    repeating-linear-gradient(90deg,rgba(221,227,234,.032) 0 1px,transparent 1px 96px),
+    repeating-linear-gradient(0deg,rgba(221,227,234,.013) 0 1px,transparent 1px 24px),
+    repeating-linear-gradient(90deg,rgba(221,227,234,.013) 0 1px,transparent 1px 24px);}
+
+/* ── REC + timecode, just under the nav line ── */
+.hud__rec,.hud__tc{position:fixed;top:4.4rem;z-index:96;pointer-events:none;
+  font-family:var(--mno);font-size:var(--label-sm);letter-spacing:.18em;
+  text-transform:uppercase;color:var(--dash-2);
+  opacity:0;transform:translateY(-6px);
+  transition:opacity .6s var(--ez-ui) .2s,transform .6s var(--ez-out) .2s;}
+.hud__rec{left:var(--pad);display:inline-flex;align-items:center;gap:.45rem;}
+.hud__tc{right:var(--pad);font-variant-numeric:tabular-nums;}
+.hud__tc b{font-weight:500;color:var(--dash);}
+.hud__dot{width:.4rem;height:.4rem;border-radius:50%;background:var(--ion);
+  box-shadow:0 0 8px rgba(79,195,247,.7);
+  animation:hud__breathe 2.2s ease-in-out infinite;}
+@keyframes hud__breathe{50%{opacity:.3;}}
+body.is-live .hud__rec,body.is-live .hud__tc{opacity:1;transform:none;}
+/* REC is an intro-moment flourish: it yields once the nav takes the top edge,
+   so it never sits on a section eyebrow. The timecode keeps running top-right. */
+#nav.is-lit ~ .hud__rec{opacity:0;}
+
+/* ── title block, lower left (lower right belongs to the back-to-top) ── */
+.tb__block{position:fixed;left:var(--pad);bottom:1.15rem;z-index:96;width:242px;
+  pointer-events:none;background:rgba(6,9,14,.9);border:1px solid var(--dline);
+  font-family:var(--mno);font-size:var(--label-sm);letter-spacing:.08em;
+  opacity:0;transform:translateY(8px);
+  transition:opacity .6s var(--ez-ui) .35s,transform .6s var(--ez-out) .35s;}
+body.is-live .tb__block{opacity:1;transform:none;}
+.tb__row{display:flex;border-top:1px solid var(--dline);}
+.tb__row:first-child{border-top:0;}
+.tb__row span{flex:0 0 92px;padding:.34rem .55rem;color:var(--dash-2);
+  border-right:1px solid var(--dline);text-transform:uppercase;}
+.tb__row b{flex:1;min-width:0;padding:.34rem .55rem;font-weight:500;color:var(--silver);
+  text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  transition:color .3s var(--ez-ui);}
+.tb__row b.is-flip{color:var(--ion);}
+.tb__row b i{font-style:normal;color:var(--ion);}
+
+/* ── crosshair cursor; viewfinder brackets inside the work section ── */
+.xh__x,.xh__y{position:fixed;left:0;top:0;z-index:95;pointer-events:none;
+  background:rgba(79,195,247,.12);opacity:0;transition:opacity .4s var(--ez-ui);}
+.xh__x{right:0;height:1px;}
+.xh__y{bottom:0;width:1px;}
+.xh__tag{position:fixed;left:0;top:0;z-index:95;pointer-events:none;
+  font-family:var(--mno);font-size:var(--label-sm);letter-spacing:.12em;
+  color:var(--dash-2);font-variant-numeric:tabular-nums;white-space:nowrap;
+  opacity:0;transition:opacity .4s var(--ez-ui);}
+.xh__vf{position:fixed;left:0;top:0;z-index:95;pointer-events:none;
+  width:84px;height:64px;opacity:0;transition:opacity .3s var(--ez-ui);}
+.xh__vf i{position:absolute;width:13px;height:13px;border:1px solid rgba(79,195,247,.75);}
+.xh__vf i:nth-child(1){left:0;top:0;border-right:0;border-bottom:0;}
+.xh__vf i:nth-child(2){right:0;top:0;border-left:0;border-bottom:0;}
+.xh__vf i:nth-child(3){left:0;bottom:0;border-right:0;border-top:0;}
+.xh__vf i:nth-child(4){right:0;bottom:0;border-left:0;border-top:0;}
+body.is-live.has-xh .xh__x,body.is-live.has-xh .xh__y,body.is-live.has-xh .xh__tag{opacity:1;}
+body.is-live.has-xh.in-vf .xh__vf{opacity:1;}
+body.is-live.has-xh.in-vf .xh__x,body.is-live.has-xh.in-vf .xh__y{opacity:0;}
+
+/* ── channel chips on the service cards ── */
+.svc__ch{display:inline-flex;align-items:center;gap:.42rem;margin:0 0 .6rem;
+  font-family:var(--mno);font-size:var(--label-sm);letter-spacing:.2em;
+  text-transform:uppercase;color:var(--dash-2);transition:color .25s var(--ez-ui);}
+.svc__ch i{width:.34rem;height:.34rem;border-radius:50%;background:var(--edge);
+  transition:background .25s var(--ez-ui),box-shadow .25s var(--ez-ui);}
+.svc__card:hover .svc__ch{color:var(--dash);}
+.svc__card:hover .svc__ch i{background:var(--ion);box-shadow:0 0 8px rgba(79,195,247,.7);}
+
+/* ── audio strip under the program monitor ── */
+.wk__wave{display:block;width:100%;height:30px;background:var(--panel);
+  border-top:1px solid var(--dline);}
+
+/* ── APPROVED stamp when the form goes through ── */
+.form__status.is-approved{display:inline-block;margin-top:.65rem;
+  padding:.5rem .95rem;border:2px solid var(--ion);color:var(--ion);
+  font-family:var(--mno);font-size:var(--label);letter-spacing:.22em;
+  text-transform:uppercase;transform:rotate(-2.5deg);}
+
+/* ── sign-off ── */
+.foot__end{margin:0 0 1.4rem;font-family:var(--mno);font-size:var(--label-sm);
+  letter-spacing:.3em;text-transform:uppercase;color:var(--dash-2);text-align:center;}
+.foot__end b{font-weight:500;color:var(--ion);}
+
+/* the LIVE word in the hero availability pill */
+.hero__tag b{font-weight:500;color:var(--ion);}
+
+@media (max-width:900px){.tb__block{display:none;}}
+@media (max-width:620px){.hud__tc{display:none;}}
+@media (pointer:coarse){.xh__x,.xh__y,.xh__tag,.xh__vf{display:none;}}
+@media (prefers-reduced-motion:reduce){
+  .hud__dot{animation:none;}
+  .hud__rec,.hud__tc,.tb__block{transition:none;}
+  .xh__x,.xh__y,.xh__tag,.xh__vf{display:none;}
+}
+
 /* ═══ 20-hero.css ═══ */
 /* ══ HERO ══ prefixes: hero__ / orb__ ═══════════════════════════════════════
    Entrance timings are tuned to land just after the preloader clears (~1.7s),
@@ -802,10 +910,17 @@ html{scroll-padding-top:4.6rem;}
 .intro__c{position:absolute;inset:0;width:100%;height:100%;display:block;}
 .intro__center{position:relative;z-index:1;text-align:center;padding-inline:var(--pad);}
 
+/* Entrances are timed against the canvas: the plotter draws the ring field
+   for ~1.3s, the signal locks, and the identity lands ON the lock — the badge
+   and wordmark arriving early would spoil the reveal. Known tradeoff: these
+   delays run on the wall clock while the canvas runs on lifecycle time, so a
+   background-tab load fronts with the identity already composed and the pen
+   drawing beneath it. Accepted — gating these on a JS-added class would break
+   the rule that the page composes fully without JS. */
 .intro__badge{
   width:clamp(78px,11vw,150px);height:auto;margin:0 auto clamp(1.1rem,2.4vw,1.9rem);
   opacity:0;transform:scale(.86);
-  animation:intro__badge 1.05s cubic-bezier(.16,1,.3,1) .12s forwards;
+  animation:intro__badge .9s cubic-bezier(.16,1,.3,1) 1.02s forwards;
 }
 @keyframes intro__badge{to{opacity:1;transform:none;}}
 
@@ -815,16 +930,21 @@ html{scroll-padding-top:4.6rem;}
   font-size:clamp(3.2rem,15vw,11rem);line-height:.84;
   letter-spacing:-.045em;text-transform:uppercase;color:var(--white);
   opacity:0;transform:translateY(16px);
-  animation:intro__rise .95s cubic-bezier(.16,1,.3,1) .30s forwards;
+  animation:intro__rise .8s cubic-bezier(.16,1,.3,1) 1.18s forwards;
 }
 .intro__line{
   margin:clamp(1rem,2.2vw,1.6rem) 0 0;font-family:var(--mno);
   font-size:var(--label);letter-spacing:.16em;text-transform:uppercase;
   color:var(--dash);
   opacity:0;transform:translateY(12px);
-  animation:intro__rise .95s cubic-bezier(.16,1,.3,1) .52s forwards;
+  animation:intro__rise .8s cubic-bezier(.16,1,.3,1) 1.44s forwards;
 }
 .intro__sep{color:var(--ion);}
+.intro__sig{
+  margin:.95rem 0 0;font-family:var(--mno);font-size:var(--label-sm);
+  letter-spacing:.3em;text-transform:uppercase;color:var(--ion);
+  opacity:0;animation:intro__rise .8s cubic-bezier(.16,1,.3,1) 1.66s forwards;
+}
 @keyframes intro__rise{to{opacity:1;transform:none;}}
 
 .intro__hint{
@@ -832,7 +952,7 @@ html{scroll-padding-top:4.6rem;}
   transform:translateX(-50%);z-index:1;
   display:flex;flex-direction:column;align-items:center;gap:.7rem;
   text-decoration:none;
-  opacity:0;animation:intro__rise .9s ease .95s forwards;
+  opacity:0;animation:intro__rise .9s ease 2.05s forwards;
 }
 .intro__hintLabel{
   font-family:var(--mno);font-size:var(--label-sm);letter-spacing:.3em;
@@ -854,7 +974,7 @@ html{scroll-padding-top:4.6rem;}
 .nav__bar.is-lit{opacity:1;pointer-events:auto;transform:none;}
 
 @media (prefers-reduced-motion:reduce){
-  .intro__badge,.intro__word,.intro__line,.intro__hint{
+  .intro__badge,.intro__word,.intro__line,.intro__sig,.intro__hint{
     opacity:1;transform:none;animation:none;}
   .intro__hintLine i{animation:none;top:0;}
   .nav__bar{opacity:1;pointer-events:auto;transform:none;transition:none;}
@@ -2076,6 +2196,9 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 </head>
 <body>
 
+<!-- Drafting sheet: first in the body so everything positioned paints over it. -->
+<div class="sheet" aria-hidden="true"></div>
+
 <a class="skip" href="#hero">Skip to content</a>
 
 <!-- ══ NAV ══════════════════════════════════════════════════════════════════
@@ -2117,6 +2240,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
     <p class="intro__word">EZHD</p>
     <p class="intro__line">Websites &middot; SEO &middot; Content &middot; Brand &middot; Ads
       <span class="intro__sep">&mdash;</span> Utah</p>
+    <p class="intro__sig">Signal acquired &middot; Utah</p>
   </div>
 
   <a class="intro__hint" href="#hero">
@@ -2135,7 +2259,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
       <div class="hero__copy">
 
         <p class="hero__tag">
-          <span class="hero__pulse" aria-hidden="true"></span>Available for new projects &middot; Utah
+          <span class="hero__pulse" aria-hidden="true"></span><b>Live</b>&nbsp;&middot;&nbsp;Available for new projects &middot; Utah
         </p>
 
         <h1 class="hero__h1">
@@ -2237,6 +2361,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 
       <article class="svc__card rv" data-tilt aria-labelledby="svc-n-1">
         <p class="svc__ix" aria-hidden="true">01</p>
+        <p class="svc__ch" aria-hidden="true"><i></i>CH 01</p>
         <h3 class="svc__name" id="svc-n-1">Website design &amp; development</h3>
         <p class="svc__blurb">A custom, mobile-responsive marketing site built around your brand and your market.</p>
         <ul class="svc__list">
@@ -2254,6 +2379,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 
       <article class="svc__card rv" data-tilt aria-labelledby="svc-n-2">
         <p class="svc__ix" aria-hidden="true">02</p>
+        <p class="svc__ch" aria-hidden="true"><i></i>CH 02</p>
         <h3 class="svc__name" id="svc-n-2">Website care plan</h3>
         <p class="svc__blurb">Keeps the site online, fast, secure, and current after launch.</p>
         <ul class="svc__list">
@@ -2270,6 +2396,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 
       <article class="svc__card rv" data-tilt aria-labelledby="svc-n-3">
         <p class="svc__ix" aria-hidden="true">03</p>
+        <p class="svc__ch" aria-hidden="true"><i></i>CH 03</p>
         <h3 class="svc__name" id="svc-n-3">Local SEO &amp; Google Business Profile</h3>
         <p class="svc__blurb">Getting found by people nearby who are already looking for what you do.</p>
         <ul class="svc__list">
@@ -2284,6 +2411,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 
       <article class="svc__card rv" data-tilt aria-labelledby="svc-n-4">
         <p class="svc__ix" aria-hidden="true">04</p>
+        <p class="svc__ch" aria-hidden="true"><i></i>CH 04</p>
         <h3 class="svc__name" id="svc-n-4">Brand &amp; design</h3>
         <p class="svc__blurb">The identity everything else is built on — designed once, used everywhere.</p>
         <ul class="svc__list">
@@ -2298,6 +2426,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 
       <article class="svc__card rv" data-tilt aria-labelledby="svc-n-5">
         <p class="svc__ix" aria-hidden="true">05</p>
+        <p class="svc__ch" aria-hidden="true"><i></i>CH 05</p>
         <h3 class="svc__name" id="svc-n-5">Content &amp; social media management</h3>
         <p class="svc__blurb">Original content — shot, edited, and published — with the scope capped so the quality stays high.</p>
         <ul class="svc__list">
@@ -2324,6 +2453,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 
       <article class="svc__card rv" data-tilt aria-labelledby="svc-n-6">
         <p class="svc__ix" aria-hidden="true">06</p>
+        <p class="svc__ch" aria-hidden="true"><i></i>CH 06</p>
         <h3 class="svc__name" id="svc-n-6">Paid advertising</h3>
         <p class="svc__blurb">Campaigns built, monitored, and adjusted — never set and forgotten.</p>
         <ul class="svc__list">
@@ -2419,9 +2549,10 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
         <span class="wk__chrome" aria-hidden="true">
           <span class="wk__dots"><i></i><i></i><i></i></span>
           <span class="wk__url">alloy.homes</span>
-          <span class="wk__live"><span class="wk__pulse"></span>Live</span>
+          <span class="wk__live"><span class="wk__pulse"></span>On air</span>
         </span>
         <img class="wk__shot" src="work/alloy-homes.jpg" alt="The Alloy Homes website: an aerial photograph of a custom home with the headline 'Built around you. Built to endure.'" width="2000" height="1250" loading="lazy" decoding="async">
+        <canvas class="wk__wave" id="wkWave" aria-hidden="true"></canvas>
         <span class="wk__meta">
           <span class="wk__client">Alloy Homes</span>
           <span class="wk__what">Custom home builder &middot; Southern Utah &mdash; site design and build, live on our hosting and care plan.</span>
@@ -2881,6 +3012,8 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
       </nav>
     </div>
 
+    <p class="foot__end" aria-hidden="true">&mdash; End of transmission &middot; <b>EZHD</b> &middot; drawn and broadcast in Utah &mdash;</p>
+
     <div class="foot__base">
       <p class="foot__legal">&copy; <span id="yr">2026</span> EZHD. All rights reserved.</p>
       <p class="foot__note">Pricing is quoted per project. Every scope is confirmed in writing before any work begins.</p>
@@ -2899,6 +3032,25 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 
 <div class="spot" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
+
+<!-- ══ BROADCAST CHROME ═════════════════════════════════════════════════════
+     Ornament only: REC + timecode HUD, drafting title block, crosshair /
+     viewfinder cursor. All aria-hidden; 90-broadcast.js drives them and the
+     page composes fully if that script never runs. -->
+<div class="hud__rec" aria-hidden="true"><span class="hud__dot"></span>Rec</div>
+<div class="hud__tc" aria-hidden="true">TC <b id="tcVal">00:00:00:00</b></div>
+
+<div class="tb__block" aria-hidden="true">
+  <div class="tb__row"><span>Project</span><b>Marketing system</b></div>
+  <div class="tb__row"><span>Sheet</span><b id="tbSheet">00 of 08</b></div>
+  <div class="tb__row"><span>Drawn by</span><b><i>EZHD</i></b></div>
+  <div class="tb__row"><span>Checked by</span><b><i>EZHD</i> · Utah</b></div>
+</div>
+
+<div class="xh__x" id="xhX" aria-hidden="true"></div>
+<div class="xh__y" id="xhY" aria-hidden="true"></div>
+<div class="xh__tag" id="xhTag" aria-hidden="true"></div>
+<div class="xh__vf" id="xhVf" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 
 <script>
 /* ═══ 00-core.js ═══ */
@@ -4422,8 +4574,8 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
           form.reset();
           for (var q = 0; q < fields.length; q++) mark(fields[q]);
           if (status) {
-            status.className = 'form__status form__status--ok';
-            status.textContent = 'Sent. We reply within one business day — check your email for our note.';
+            status.className = 'form__status form__status--ok is-approved';
+            status.textContent = 'Approved — we reply within one business day.';
           }
         } else {
           handoff('That did not go through.');
@@ -4723,6 +4875,19 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
         g.fillText(LAYERS[i].note, lx + 4, anchor.Y - 2);
       }
     }
+
+    /* fully assembled, the drawing goes on air — a tally in the sheet corner */
+    if (p > 0.985) {
+      var tpad = Math.max(10, Math.min(W, H) * 0.028);
+      g.font = '9px "IBM Plex Mono", ui-monospace, monospace';
+      g.textAlign = 'right';
+      g.fillStyle = HOT + '.92)';
+      g.fillText('ON AIR', W - tpad - 14, tpad + 20);
+      g.beginPath();
+      g.arc(W - tpad - 58, tpad + 17, 2.5, 0, Math.PI * 2);
+      g.fill();
+      g.textAlign = 'left';
+    }
   }
 
   size();
@@ -4731,11 +4896,143 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
   onScroll();
 })();
 
+/* ═══ 90-broadcast.js ═══ */
+/* ══ BROADCAST CHROME ══════════════════════════════════════════════════════
+   Drives the ornament layer: running timecode, the title block's sheet
+   number, the crosshair/viewfinder cursor, and the program monitor's audio
+   strip. Everything here is decoration — every element is aria-hidden and
+   the page reads identically if this IIFE bails on the first line. */
+(function () {
+  'use strict';
+  if (!window.EZ) return;
+  var EZ = window.EZ;
+  var $ = EZ.$;
+  var body = document.body;
+  if (!body || !body.classList) return;
+
+  function two(n) { return n < 10 ? '0' + n : '' + n; }
+
+  /* ── timecode: wall clock + frames at 24fps ── */
+  var tc = $('#tcVal');
+  function stampTc() {
+    var d = new Date();
+    if (tc) tc.textContent = two(d.getHours()) + ':' + two(d.getMinutes()) + ':' +
+      two(d.getSeconds()) + ':' + two(Math.floor(d.getMilliseconds() / 41.7) % 24);
+  }
+  if (tc) {
+    stampTc();
+    if (!EZ.CALM) {
+      var tcTimer = 0;
+      var runTc = function () { if (!tcTimer) tcTimer = window.setInterval(stampTc, 42); };
+      var stopTc = function () { if (tcTimer) { window.clearInterval(tcTimer); tcTimer = 0; } };
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) stopTc(); else runTc();
+      });
+      if (!document.hidden) runTc();
+    }
+  }
+
+  /* ── the title block's sheet number follows the numbered sections ── */
+  var sheetEl = $('#tbSheet');
+  var secs = EZ.$$('main > section[id]');
+  if (sheetEl && secs.length && 'IntersectionObserver' in window) {
+    var flipT = 0;
+    var sheetIO = new IntersectionObserver(function (es) {
+      /* a section is "current" while it crosses the middle band of the viewport */
+      var i, hit = null;
+      for (i = 0; i < es.length; i++) if (es[i].isIntersecting) hit = es[i].target;
+      if (!hit) return;
+      var ix = 0, k;
+      for (k = 0; k < secs.length; k++) if (secs[k] === hit) ix = k;
+      var n = ix - 1;                       /* intro and hero share sheet 00 */
+      if (n < 0) n = 0;
+      if (n > 8) n = 8;
+      var txt = two(n) + ' of 08';
+      if (sheetEl.textContent === txt) return;
+      sheetEl.textContent = txt;
+      sheetEl.classList.add('is-flip');
+      window.clearTimeout(flipT);
+      flipT = window.setTimeout(function () { sheetEl.classList.remove('is-flip'); }, 420);
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+    var si;
+    for (si = 0; si < secs.length; si++) sheetIO.observe(secs[si]);
+  }
+
+  /* ── crosshair cursor; viewfinder inside the work section ── */
+  if (EZ.HOVER && !EZ.CALM && window.matchMedia &&
+      window.matchMedia('(pointer:fine)').matches) {
+    var xhX = $('#xhX'), xhY = $('#xhY'), xhT = $('#xhTag'), xhV = $('#xhVf');
+    if (xhX && xhY && xhT && xhV) {
+      body.classList.add('has-xh');
+      var px = -200, py = -200, qx = -200, qy = -200, raf = 0;
+      /* step() runs once below, before any pointermove, so the hairlines and
+         brackets are parked offscreen rather than pinned to the viewport's
+         top-left edge when .is-live fades them in. */
+      var step = function () {
+        qx += (px - qx) * 0.32;
+        qy += (py - qy) * 0.32;
+        xhX.style.transform = 'translateY(' + qy.toFixed(1) + 'px)';
+        xhY.style.transform = 'translateX(' + qx.toFixed(1) + 'px)';
+        xhT.style.transform = 'translate(' + (qx + 15).toFixed(1) + 'px,' + (qy + 17).toFixed(1) + 'px)';
+        xhV.style.transform = 'translate(' + (qx - 42).toFixed(1) + 'px,' + (qy - 32).toFixed(1) + 'px)';
+        if (Math.abs(px - qx) + Math.abs(py - qy) > 0.4) raf = window.requestAnimationFrame(step);
+        else raf = 0;
+      };
+      step();
+      window.addEventListener('pointermove', function (e) {
+        px = e.clientX; py = e.clientY;
+        xhT.textContent = 'X ' + Math.round(px) + ' · Y ' + Math.round(py);
+        if (!raf) raf = window.requestAnimationFrame(step);
+      }, { passive: true });
+
+      var proof = $('#proof');
+      if (proof && 'IntersectionObserver' in window) {
+        new IntersectionObserver(function (es) {
+          var on = false, i;
+          for (i = 0; i < es.length; i++) on = es[i].isIntersecting;
+          if (on) body.classList.add('in-vf'); else body.classList.remove('in-vf');
+        }, { rootMargin: '-30% 0px -30% 0px', threshold: 0 }).observe(proof);
+      }
+    }
+  }
+
+  /* ── audio strip under the program monitor ── */
+  var wave = $('#wkWave');
+  if (wave && wave.getContext) {
+    var wg = wave.getContext('2d');
+    if (wg) {
+      var WW = 1, WH = 1;
+      EZ.lifecycle(wave, function (w, h, dpr) {
+        WW = w; WH = h;
+        wave.width = Math.round(w * dpr);
+        wave.height = Math.round(h * dpr);
+        wg.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }, function (time) {
+        var t = EZ.CALM ? 1.7 : time;
+        wg.clearRect(0, 0, WW, WH);
+        var mid = WH / 2, n = Math.floor(WW / 4), i;
+        for (i = 0; i < n; i++) {
+          var a = Math.sin(i * 0.37 + t * 2.1) * Math.sin(i * 0.11 - t * 1.3) * Math.sin(i * 0.053 + 1.7);
+          var hgt = Math.max(1.5, Math.abs(a) * WH * 0.72);
+          wg.fillStyle = 'rgba(79,195,247,' + (0.22 + Math.abs(a) * 0.4).toFixed(3) + ')';
+          wg.fillRect(i * 4 + 1, mid - hgt / 2, 2, hgt);
+        }
+        var ph = (EZ.CALM ? 0.38 : (t * 0.055) % 1) * WW;
+        wg.fillStyle = 'rgba(155,224,255,.9)';
+        wg.fillRect(ph, 0, 1.5, WH);
+      });
+    }
+  }
+})();
+
 /* ═══ 05-intro.js ═══ */
-/* ══ INTRO — receding ring field ═══════════════════════════════════════════
-   Concentric rings travelling toward the viewer on a perspective divide.
-   They echo the badge's own rings, which is what stops this reading as a
-   generic tunnel: the background is the logo's geometry, scaled up. */
+/* ══ INTRO — drawn, then broadcast ═════════════════════════════════════════
+   Three phases on one canvas. DRAW (~1.3s): a plotter pen sweeps the ring
+   field in, centre-out, the way a machine drafts the badge's own geometry.
+   LOCK (~0.2s): one glitch tick — jitter, a ghost pass, a sync line — and
+   <body> gains .is-live, powering on the broadcast HUD. LIVE: the field
+   recedes exactly as it always has. Reduced motion skips straight to LIVE's
+   static frame and .is-live is set immediately. */
 (function () {
   'use strict';
   if (!window.EZ) return;
@@ -4750,6 +5047,15 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
   var W = 1, H = 1;
   var RINGS = EZ.SMALL ? 14 : 20;
   var SPACING = 1.0, FOV = 3.0, DEPTH = RINGS * SPACING;
+  var LOCK = 1.28, LOCK_END = 1.46;   /* draw ends · glitch settles */
+
+  var live = false;
+  function goLive() {
+    if (live) return;
+    live = true;
+    if (document.body && document.body.classList) document.body.classList.add('is-live');
+  }
+  if (EZ.CALM) goLive();
 
   var aimX = 0, aimY = 0, panX = 0, panY = 0;
   if (EZ.HOVER && !EZ.CALM) {
@@ -4772,49 +5078,105 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
     panY = EZ.lerp(panY, aimY, 0.045);
 
     var m = Math.min(W, H);
-    var cx = W / 2 + panX * m * 0.045;
-    var cy = H / 2 + panY * m * 0.045;
     var base = m * 0.92;
-    var travel = EZ.CALM ? 0 : (t * 0.30) % SPACING;
+    var drawing = !EZ.CALM && t < LOCK;
+    var locking = !EZ.CALM && t >= LOCK && t < LOCK_END;
+    if (!EZ.CALM && t >= LOCK) goLive();
+
+    /* one hard jitter during the lock tick, decaying over its 0.18s */
+    var gx = 0, gy = 0, k2 = 0;
+    if (locking) {
+      k2 = 1 - (t - LOCK) / (LOCK_END - LOCK);
+      gx = (Math.random() * 2 - 1) * 9 * k2;
+      gy = (Math.random() * 2 - 1) * 4 * k2;
+    }
+
+    var cx = W / 2 + panX * m * 0.045 + gx;
+    var cy = H / 2 + panY * m * 0.045 + gy;
+    var travel = (EZ.CALM || drawing || locking) ? 0 : ((t - LOCK_END) * 0.30) % SPACING;
     var spin = t * 0.05;
-    var i, k;
+    var STAG = 1.05 / RINGS;            /* per-ring sweep start stagger  */
+    var penR = 0, penAng = 0, penOn = false;
 
-    for (i = 0; i < RINGS; i++) {
-      var z = DEPTH - (i * SPACING + travel);
-      if (z <= 0.02) continue;
-      var s = FOV / (FOV + z);
-      var r = base * s;
-      if (r < 2) continue;
+    /* One pass over the field. hot=true redraws ring strokes only, in the
+       glow colour, for the lock tick's ghost image. */
+    function rings(cxx, cyy, alphaMul, hot) {
+      var i, k;
+      for (i = 0; i < RINGS; i++) {
+        var z = DEPTH - (i * SPACING + travel);
+        if (z <= 0.02) continue;
+        var s = FOV / (FOV + z);
+        var r = base * s;
+        if (r < 2) continue;
 
-      /* near the camera it fades out, far away it dissolves into the black */
-      var near = EZ.clamp((DEPTH - z) / DEPTH, 0, 1);
-      var a = Math.pow(near, 1.35) * (1 - Math.pow(near, 6)) * 1.5;
-      if (a <= 0.004) continue;
+        /* near the camera it fades out, far away it dissolves into black */
+        var near = EZ.clamp((DEPTH - z) / DEPTH, 0, 1);
+        var a = Math.pow(near, 1.35) * (1 - Math.pow(near, 6)) * 1.5 * alphaMul;
+        if (a <= 0.004) continue;
 
-      g.strokeStyle = 'rgba(79,195,247,' + (a * 0.42).toFixed(3) + ')';
-      g.lineWidth = 1;
-      g.beginPath();
-      g.ellipse(cx, cy, r, r * 0.94, 0, 0, Math.PI * 2);
-      g.stroke();
+        /* sweep fraction: 1 once drawn (or when not drawing at all) */
+        var di = 1;
+        if (drawing) {
+          di = EZ.clamp((t - i * STAG) / 0.18, 0, 1);
+          if (di <= 0) continue;
+        }
+        var a0 = -Math.PI / 2 + spin + i * 0.05;
 
-      /* tick marks, the way the badge's outer ring is notched */
-      var ticks = 24;
-      g.strokeStyle = 'rgba(155,224,255,' + (a * 0.30).toFixed(3) + ')';
-      for (k = 0; k < ticks; k++) {
-        var ang = (k / ticks) * Math.PI * 2 + spin + i * 0.05;
-        var c1 = Math.cos(ang), s1 = Math.sin(ang) * 0.94;
-        var tl = (k % 6 === 0) ? 9 : 4;
+        g.strokeStyle = hot
+          ? 'rgba(155,224,255,' + (a * 0.30).toFixed(3) + ')'
+          : 'rgba(79,195,247,' + (a * 0.42 * (drawing ? 1 + (1 - di) * 0.6 : 1)).toFixed(3) + ')';
+        g.lineWidth = 1;
         g.beginPath();
-        g.moveTo(cx + c1 * r, cy + s1 * r);
-        g.lineTo(cx + c1 * (r + tl), cy + s1 * (r + tl));
+        g.ellipse(cxx, cyy, r, r * 0.94, 0, a0, a0 + di * Math.PI * 2);
         g.stroke();
+
+        if (!hot && drawing && di < 1) { penR = r; penAng = a0 + di * Math.PI * 2; penOn = true; }
+        if (hot) continue;
+
+        /* tick marks, the way the badge's outer ring is notched — only on
+           arc the pen has already passed */
+        var ticks = 24;
+        g.strokeStyle = 'rgba(155,224,255,' + (a * 0.30).toFixed(3) + ')';
+        for (k = 0; k < ticks; k++) {
+          if (drawing && ((k / ticks) * Math.PI * 2 + Math.PI / 2) % (Math.PI * 2) > di * Math.PI * 2) continue;
+          var ang = (k / ticks) * Math.PI * 2 + spin + i * 0.05;
+          var c1 = Math.cos(ang), s1 = Math.sin(ang) * 0.94;
+          var tl = (k % 6 === 0) ? 9 : 4;
+          g.beginPath();
+          g.moveTo(cxx + c1 * r, cyy + s1 * r);
+          g.lineTo(cxx + c1 * (r + tl), cyy + s1 * (r + tl));
+          g.stroke();
+        }
       }
     }
 
-    /* the mark sits in a pool of light, not on a flat field */
+    rings(cx, cy, 1, false);
+    if (locking) rings(cx - gx * 1.8, cy, k2 * 0.6, true);   /* ghost pass */
+
+    /* the plotter's pen head leads the outermost ring being swept */
+    if (penOn) {
+      var pxx = cx + Math.cos(penAng) * penR;
+      var pyy = cy + Math.sin(penAng) * 0.94 * penR;
+      g.fillStyle = 'rgba(155,224,255,.95)';
+      g.beginPath(); g.arc(pxx, pyy, 3, 0, Math.PI * 2); g.fill();
+      g.strokeStyle = 'rgba(79,195,247,.55)';
+      g.lineWidth = 1;
+      g.beginPath(); g.arc(pxx, pyy, 8, 0, Math.PI * 2); g.stroke();
+    }
+
+    /* sync line sweeping down during the lock tick */
+    if (locking) {
+      var sy = H * (1 - k2);
+      g.fillStyle = 'rgba(155,224,255,' + (k2 * 0.5).toFixed(3) + ')';
+      g.fillRect(0, sy, W, 1.5);
+    }
+
+    /* the mark sits in a pool of light; it warms up as the pen works and
+       flashes once on lock */
+    var pool = drawing ? EZ.clamp(t / LOCK, 0, 1) * 0.75 + 0.25 : (locking ? 1 + k2 * 1.2 : 1);
     var gl = g.createRadialGradient(cx, cy, 0, cx, cy, m * 0.46);
-    gl.addColorStop(0, 'rgba(30,155,215,.20)');
-    gl.addColorStop(0.55, 'rgba(30,155,215,.06)');
+    gl.addColorStop(0, 'rgba(30,155,215,' + (0.20 * pool).toFixed(3) + ')');
+    gl.addColorStop(0.55, 'rgba(30,155,215,' + (0.06 * pool).toFixed(3) + ')');
     gl.addColorStop(1, 'rgba(4,6,10,0)');
     g.fillStyle = gl;
     g.fillRect(0, 0, W, H);
@@ -4831,6 +5193,11 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
     es.forEach(function (e) {
       /* lit once the intro is mostly gone, dark again when you return to it */
       nav.classList.toggle('is-lit', e.intersectionRatio < 0.42);
+      /* If the title card is behind you, the signal is live by definition —
+         this arm covers deep links, mid-page reloads under scroll
+         restoration, and anyone who scrolls off before the pen finishes.
+         Without it the whole broadcast layer would stay dark for the visit. */
+      if (e.intersectionRatio < 0.42) goLive();
     });
   }, { threshold: [0, 0.42, 1] }).observe(sec);
 })();

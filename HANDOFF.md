@@ -14,7 +14,7 @@ Pitch: one accountable partner instead of seven vendors. Keep the site, the GBP 
 list, and the JSON-LD block in `<head>` in sync — they are three copies of the same
 catalogue.
 
-**It is one file.** `index.html` — ~184 KB, ~4,550 lines, containing all HTML, CSS and JS.
+**It is one file.** `index.html` — ~210 KB, ~5,200 lines, containing all HTML, CSS and JS.
 No build step, no framework, no dependencies. The only external request is Google Fonts.
 Do not introduce a bundler, npm, or a framework without asking — the single-file property
 is deliberate and the deploy depends on it.
@@ -83,14 +83,46 @@ headless Chrome at DSF 2, JPEG q82 via sips. The trick for self-shots:
 `--force-prefers-reduced-motion` lands the fully-composed static page — without it
 every reveal is caught at opacity 0 and the frame is black.
 
+### The broadcast chrome (added 2026-08-17)
+
+The site's visual concept is **drawn, then broadcast** — the drafting identity
+(sheet grid, title block, crosshair cursor) fused with a live-signal identity
+(REC, running timecode, channel chips, ON AIR, waveform). Two pseudo-files own it:
+`15-broadcast.css` and `90-broadcast.js`. Everything in the layer is ornament:
+every element is `aria-hidden`, `pointer-events:none`, and the page composes
+fully if the script never runs.
+
+- The intro (`#introC`) has three phases: DRAW (~1.3s, a plotter pen sweeps the
+  ring field in, centre-out), LOCK (~0.2s glitch tick — jitter, ghost pass, sync
+  line), LIVE (the familiar receding field). At lock, `<body>` gains `.is-live`,
+  which powers on the HUD. Reduced motion goes straight to LIVE + `.is-live`.
+- HUD: `● REC` (top-left, intro only — it yields via `#nav.is-lit ~ .hud__rec`
+  so it never sits on a section eyebrow) and `TC` timecode top-right (wall clock
+  + frames at 24fps, setInterval 42ms, paused on `visibilitychange`, static
+  under reduced motion).
+- Title block bottom-left (`.tb__block`): PROJECT / SHEET n OF 08 / DRAWN BY /
+  CHECKED BY. The sheet number follows the section crossing the viewport's
+  middle band (IO with `-45%` rootMargin). Hidden under 900px. It deliberately
+  overlays content — it is a broadcast "bug".
+- Cursor: crosshair hairlines + X·Y readout (fine pointers only); inside
+  `#proof` it swaps to viewfinder brackets (`body.in-vf`). Killed for coarse
+  pointers and reduced motion.
+- `#services` cards carry `CH 01–06` chips whose tally dot lights on hover;
+  `#sysC` draws an ON AIR tally in the sheet corner once assembly completes;
+  the proof feature card runs an audio-waveform canvas (`#wkWave`); the form's
+  success state stamps APPROVED; the footer signs off with "End of transmission".
+- The drafting-sheet grid is `.sheet`, the FIRST child of `<body>` — it must
+  stay first: positioned sections paint over it in DOM order.
+
 ### The canvases
 
-Three hand-rolled renderers, all canvas 2D, no libraries:
+Four hand-rolled renderers, all canvas 2D, no libraries (the fourth, `#wkWave`,
+is the proof section's audio strip — see the broadcast chrome above):
 
 - `#introC` — concentric rings receding on a perspective divide, echoing the badge's rings
 - `#sysC` — **true axonometric** (parallel projection, no perspective divide — that is what
   makes it read as a drawing rather than a render). `X=(x-y)cos30, Y=(x+y)sin30-z`.
-  Five layers assemble on scroll, each on its own delay
+  Seven layers assemble on scroll, each on its own delay
 - `#flowC` — edit-bay timeline: film frames, b-roll, audio waveform, playhead
 
 All share `EZ.lifecycle()` from the core script: caps DPR at 2, pauses off-screen via
