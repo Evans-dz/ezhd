@@ -107,6 +107,18 @@ back to `/#drafts`. **Never ship anything from the original's `assets/img/real/`
 folder — those are the actual club's photos.** The originals live untouched in
 `~/Downloads/Alloy-Homes-main/entrada-pitch/`.
 
+Draft 02 is **Bridger Hollow** (added 2026-08-18), a fictional farmstead creamery
+in Cache Valley — a deliberate counterweight to Solmesa: light/warm instead of dark
+and cinematic, and every visual is hand-drawn inline SVG rather than photography,
+so there is nothing to license and the whole demo is ~400 KB with zero image
+requests. Same stack (vendored GSAP/Lenis) and same draft chrome (`noindex`, DRAFT
+ribbon, claim links). The business, people, address, phone and awards are invented,
+which the demo says outright in its footer; the real Cache Valley landmarks it names
+(Wellsville, Logan, Sardine Canyon, Cutler Marsh, the two mountain ranges) are just
+scenery. Master template lives at `~/Downloads/Alloy-Homes-main/bridger-hollow/`
+(that copy keeps its README + a `node server.js` dev server, both dropped here).
+When editing, change the master and re-copy, or the two silently diverge.
+
 **The service pages** (`services/<slug>/`, added 2026-08-18): six dedicated,
 geo-targeted pages — web-design, website-hosting, local-seo, brand-design,
 social-media-management, paid-advertising — because a one-pager cannot rank for
