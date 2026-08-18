@@ -61,6 +61,7 @@
   "logo": "https://ez-hd.co/brand/ezhd-badge-silver.svg",
   "email": "ezhdco@gmail.com",
   "telephone": "+1-435-224-6987",
+  "sameAs": ["https://www.instagram.com/ezhd_co/"],
   "founder": { "@type": "Person", "name": "Zac Evans" },
   "employee": { "@type": "Person", "name": "Dylan Evans", "jobTitle": "Social & Content Lead" },
   "address": { "@type": "PostalAddress", "addressRegion": "UT", "addressCountry": "US" },
@@ -584,7 +585,7 @@ html{scroll-padding-top:4.6rem;}
   padding-block:clamp(3rem,6vw,5rem);
 }
 .foot__grid{
-  display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:2.5rem;align-items:end;
+  display:grid;grid-template-columns:minmax(0,1fr) auto auto auto;gap:2.5rem;align-items:end;
 }
 /* Badge above the wordmark rather than beside it — the footer wordmark runs to
    7rem, and a badge scaled to match would overpower the whole footer. */
@@ -3378,6 +3379,10 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
             <dd class="card__dd"><a class="card__a" href="mailto:ezhdco@gmail.com">ezhdco@gmail.com</a></dd>
           </div>
           <div class="card__row">
+            <dt class="card__dt">Instagram</dt>
+            <dd class="card__dd"><a class="card__a" href="https://www.instagram.com/ezhd_co/" target="_blank" rel="noopener">@ezhd_co</a></dd>
+          </div>
+          <div class="card__row">
             <dt class="card__dt">Serving</dt>
             <dd class="card__dd">Utah and surrounding area</dd>
           </div>
@@ -3412,6 +3417,13 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
           <li><a href="services/brand-design/">Brand &amp; design</a></li>
           <li><a href="services/social-media-management/">Social media</a></li>
           <li><a href="services/paid-advertising/">Paid advertising</a></li>
+        </ul>
+      </nav>
+
+      <nav class="foot__nav rv" aria-label="Social profiles">
+        <p class="foot__navh">Follow</p>
+        <ul class="foot__list">
+          <li><a href="https://www.instagram.com/ezhd_co/" target="_blank" rel="noopener">Instagram</a></li>
         </ul>
       </nav>
 

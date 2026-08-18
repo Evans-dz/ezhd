@@ -47,8 +47,12 @@ both **empty**. It is served as static files.
 
 `.vercelignore` keeps the brand kit in the repo but off the public site
 (`ezhd-brand-kit.zip`, `brand/png/`, `brand/preview.html`, `brand/README.txt`).
-Deployed payload is ~1.7 MB of a 9.5 MB repo. Verify exclusions still 404 after any
-change to that file.
+Deployed payload is ~10 MB of a ~34 MB repo (the drafts and work screenshots are
+most of it). Verify exclusions still 404 after any change to that file.
+
+Social: Instagram is https://www.instagram.com/ezhd_co/ — linked in the footer
+Follow column, the contact card, and every JSON-LD block's `sameAs`. Facebook
+is planned; add it to all three spots when the client sends the URL.
 
 ## Local preview
 
