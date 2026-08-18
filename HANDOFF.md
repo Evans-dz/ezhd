@@ -6,8 +6,13 @@ Everything a fresh session needs to work on this site. Read this first.
 
 ## What it is
 
-Marketing site for **EZHD**, a two-person digital studio in Utah (websites, hosting,
-local SEO, photo/video content). Pitch: one accountable partner instead of four vendors.
+Marketing site for **EZHD**, a two-person digital studio in Utah. Six services,
+mirroring the Google Business Profile (primary category "Marketing agency"): website
+design & build, website care plan (hosting), local SEO & GBP management, brand & design
+(logo/identity/print), content & social (photo/video/editing/post), and paid ads.
+Pitch: one accountable partner instead of seven vendors. Keep the site, the GBP services
+list, and the JSON-LD block in `<head>` in sync — they are three copies of the same
+catalogue.
 
 **It is one file.** `index.html` — ~184 KB, ~4,550 lines, containing all HTML, CSS and JS.
 No build step, no framework, no dependencies. The only external request is Google Fonts.
@@ -63,14 +68,20 @@ Nine sections, in order:
 | id | what |
 |---|---|
 | `intro` | Title card: badge + EZHD wordmark over a receding ring field (`#introC`, canvas 2D). Nav is hidden here and fades in once you scroll past |
-| `hero` | "Your marketing isn't five vendors." Full-measure type, lede, CTAs, four stats |
-| `system` | **01 — The system.** Exploded axonometric of the marketing system (`#sysC`), assembled by scroll. Sticky stage inside a 270vh track |
-| `services` | 02 — Three offerings, 3D card tilt |
+| `hero` | "Your marketing isn't seven vendors." Full-measure type, lede, CTAs, four stats |
+| `system` | **01 — The system.** Exploded axonometric of the marketing system (`#sysC`), assembled by scroll. Sticky stage inside a 270vh track. **Seven layers**, bottom-up: brand, domain+hosting, site, local search, content, paid ads, reporting |
+| `services` | 02 — Six offerings in a 2×3 grid, 3D card tilt |
 | `process` | 03 — Edit-bay timeline banner (`#flowC`) + scroll-scrubbed rail |
-| `work` | 04 — Capability marquee + filterable grid |
-| `scope` | 05 — Scope builder. **No prices anywhere** — deliberate |
-| `duty` | 06 — Who does what + "straight talk on results" |
-| `contact` | 07 — Form + direct card (Zac Evans, Dylan Evans) |
+| `proof` | 04 — Recent work: browser-chrome cards over real screenshots (`work/*.jpg`), third slot is an open CTA. Nav links here as "Work" |
+| `work` | 05 — Capability marquee + filterable grid (12 tiles) |
+| `scope` | 06 — Scope builder. **No prices anywhere** — deliberate |
+| `duty` | 07 — Who does what + "straight talk on results" |
+| `contact` | 08 — Form + direct card (Zac Evans, Dylan Evans) |
+
+**Work screenshots** (`work/alloy-homes.jpg`, `work/ezhd-site.jpg`): captured with
+headless Chrome at DSF 2, JPEG q82 via sips. The trick for self-shots:
+`--force-prefers-reduced-motion` lands the fully-composed static page — without it
+every reveal is caught at opacity 0 and the frame is black.
 
 ### The canvases
 
@@ -140,15 +151,21 @@ to the wrong place, add a `replyto` field to the POST body.
 4. **Feedback window** — the site says 2 business days (process lede + duty list). The user
    said 3 was fine and wanted it reverted; never confirmed. One-line change.
 5. **Reply-to on the form** (see above).
-6. **No proof of work.** The site sells capability but shows no case studies. First client
-   is Alloy Homes (a home builder). This is the biggest remaining weakness.
+6. ~~No proof of work.~~ **Done** — `#proof` section with Alloy Homes (live at
+   https://alloy.homes) and the site itself. Add real client shoots as they happen.
+7. **Confirm the new scope language.** Services 03 (Local SEO & GBP), 04 (Brand &
+   design), and 06 (Paid advertising) were written from the GBP services list, not from
+   a signed services agreement. The section lede says these line items are agreement
+   language — Zac/Dylan must confirm or adjust every line item before this deploys.
+8. **og.png predates the six-service positioning** — regenerate it if its text still
+   says websites/hosting only.
 
-## Suggested service additions (discussed, not built)
+## Service additions (built 2026-08-15)
 
-Strongest: a **Brand & print** pillar (logo, identity, yard signs, vehicle graphics —
-currently "quoted separately", so the most common first purchase is not on the menu).
-Then review generation, drone/aerial, job-site progress documentation, website
-rescue/audit, lead-capture setup.
+The **Brand & print** pillar, local search, and paid ads are now first-class services
+(six cards, seven system layers, 12 capability tiles, expanded scope builder). Still
+unbuilt from the old list: review generation, drone/aerial, job-site progress
+documentation, website rescue/audit, lead-capture setup.
 
 ---
 

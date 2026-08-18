@@ -16,8 +16,9 @@
             to a single static frame under prefers-reduced-motion.
 
 
-  CONTACT   The form has no backend — it composes a mailto: handoff.
-            Update EMAIL in the contact script if the address changes.
+  CONTACT   The form POSTs to Web3Forms (submit-only public key) and falls
+            back to a mailto: handoff if the request fails. Update EMAIL in
+            the contact script if the address changes.
   ═══════════════════════════════════════════════════════════════════════
 -->
 <!DOCTYPE html>
@@ -25,8 +26,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>EZHD — Websites, Hosting &amp; Digital Marketing | Utah</title>
-<meta name="description" content="One accountable partner for your website, hosting, SEO, and social media. Utah-based. Build your scope and we price it on a twenty-minute call.">
+<title>EZHD — Utah Marketing Agency | Websites, SEO, Content, Brand &amp; Ads</title>
+<meta name="description" content="One accountable partner for your website, local SEO, content, brand, and paid ads. Utah-based marketing agency. Build your scope and we price it on a twenty-minute call.">
 <link rel="canonical" href="https://ez-hd.co/">
 <meta name="theme-color" content="#04060A">
 <meta name="robots" content="index, follow">
@@ -34,18 +35,51 @@
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="EZHD">
-<meta property="og:title" content="EZHD — Websites, Hosting &amp; Digital Marketing">
-<meta property="og:description" content="Your website, hosting, SEO, and social handled by one accountable partner. Pick your scope, we price it on a call.">
+<meta property="og:title" content="EZHD — Utah Marketing Agency">
+<meta property="og:description" content="Your website, SEO, content, brand, and ads handled by one accountable partner. Pick your scope, we price it on a call.">
 <meta property="og:url" content="https://ez-hd.co/">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://ez-hd.co/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="EZHD — websites, hosting, local SEO and content, Utah.">
+<meta property="og:image:alt" content="EZHD — websites, SEO, content, brand and ads, Utah.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://ez-hd.co/og.png">
-<meta name="twitter:title" content="EZHD — Websites, Hosting &amp; Digital Marketing">
-<meta name="twitter:description" content="One accountable partner for your website, hosting, SEO, and social media. Utah-based.">
+<meta name="twitter:title" content="EZHD — Utah Marketing Agency">
+<meta name="twitter:description" content="One accountable partner for your website, local SEO, content, brand, and paid ads. Utah-based.">
+
+<!-- Local-SEO structured data. Mirrors the Google Business Profile: primary
+     category "Marketing agency", six service families. Keep the two in sync —
+     if a service is added to GBP, add it here too. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "EZHD",
+  "url": "https://ez-hd.co/",
+  "image": "https://ez-hd.co/og.png",
+  "logo": "https://ez-hd.co/brand/ezhd-badge-silver.svg",
+  "email": "ezhdco@gmail.com",
+  "telephone": "+1-435-224-6987",
+  "founder": { "@type": "Person", "name": "Zac Evans" },
+  "employee": { "@type": "Person", "name": "Dylan Evans", "jobTitle": "Social & Content Lead" },
+  "address": { "@type": "PostalAddress", "addressRegion": "UT", "addressCountry": "US" },
+  "areaServed": { "@type": "State", "name": "Utah" },
+  "description": "Utah marketing agency. Websites, hosting, local SEO, Google Business Profile management, photo and video content, social media, brand and logo design, graphic design, and paid advertising — one accountable partner.",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Services",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Website design & development" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Website hosting & care" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Local SEO & Google Business Profile management" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brand, logo & graphic design" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Content & social media management" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Paid advertising" } }
+    ]
+  }
+}
+</script>
 
 <!-- SVG first for browsers that take it; the PNGs cover everything else and
      the 16px cut is where the traced monogram stops being readable. -->
@@ -64,20 +98,6 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=block">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=block" rel="stylesheet">
 
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ProfessionalService","name":"EZHD",
-"url":"https://ez-hd.co/",
-"description":"Web design, hosting, SEO, and social media management for local businesses.",
-"email":"ezhdco@gmail.com","telephone":"+1-435-224-6987",
-"founder":{"@type":"Person","name":"Zac Evans"},
-"employee":{"@type":"Person","name":"Dylan Evans","jobTitle":"Social & Content Lead"},
-"areaServed":{"@type":"State","name":"Utah"},
-"address":{"@type":"PostalAddress","addressRegion":"UT","addressCountry":"US"},
-"makesOffer":[
-{"@type":"Offer","name":"Website Design & Development"},
-{"@type":"Offer","name":"Website Care Plan"},
-{"@type":"Offer","name":"Content & Social Media Management"}]}
-</script>
 <style>
 /* ═══ 00-core.css ═══ */
 /* ══════════════════════════════════════════════════════════════════════════
@@ -543,7 +563,9 @@ html{scroll-padding-top:4.6rem;}
 @media(max-width:900px){
   .nav__bar{gap:1.1rem;}
   .nav__links{gap:1.2rem;}
-  .nav__links a:nth-child(2),.nav__links a:nth-child(4){display:none;}
+  /* Five links up top: Services, Process, Work, Scope, Contact. On tablet keep
+     Services + Work + Scope; Contact is redundant beside the CTA. */
+  .nav__links a:nth-child(2),.nav__links a:nth-child(5){display:none;}
 }
 @media(max-width:620px){
   .nav__links{display:none;}                     /* the CTA always survives */
@@ -886,7 +908,7 @@ html{scroll-padding-top:4.6rem;}
    treatment of .hot survives. */
 .svc__hot{color:var(--ion);font-variation-settings:"wdth" 64,"wght" 850;}
 
-/* ── Grid: 1 + 2 side by side, 3 spanning full width ─────────────────── */
+/* ── Grid: six cards, two columns, three rows ────────────────────────── */
 .svc__grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -894,11 +916,9 @@ html{scroll-padding-top:4.6rem;}
   perspective:1200px;
   perspective-origin:50% 42%;
 }
-.svc__card--wide{grid-column:1 / -1;}
 
 @media (max-width:820px){
   .svc__grid{grid-template-columns:1fr;perspective:none;}
-  .svc__card--wide{grid-column:auto;}
 }
 
 /* ── Card ────────────────────────────────────────────────────────────── */
@@ -998,19 +1018,6 @@ html{scroll-padding-top:4.6rem;}
   width:.55rem;height:1px;
   background:var(--ion);
   opacity:.85;
-}
-
-.svc__list--two{
-  columns:2;
-  column-gap:clamp(1.5rem,3.4vw,3rem);
-}
-.svc__list--two li{
-  -webkit-column-break-inside:avoid;
-  break-inside:avoid;
-  margin-bottom:.9rem;
-}
-@media (max-width:820px){
-  .svc__list--two{columns:1;}
 }
 
 /* Pushed to the floor of the card so all cards bottom-align. */
@@ -1525,6 +1532,120 @@ html{scroll-padding-top:4.6rem;}
      travel is removed */
 }
 
+/* ═══ 55-proof.css ═══ */
+/* ══ 04 · RECENT WORK ══ prefix: wk__ ═══════════════════════════════════════
+   Browser-chrome cards over real screenshots. The feature spans both columns;
+   the third slot is deliberately an open CTA, because a two-item portfolio
+   pretending to be a wall of work would read as exactly that. */
+
+.wk__hot{color:var(--ion);font-variation-settings:"wdth" 64,"wght" 850;}
+
+.wk__grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(1rem,2vw,1.35rem);
+  margin-top:clamp(1.6rem,3.2vw,2.5rem);
+  perspective:1200px;
+  perspective-origin:50% 42%;
+}
+.wk__card--feat{grid-column:1 / -1;}
+
+.wk__card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  background:var(--panel);
+  border:1px solid var(--dline);
+  color:inherit;
+  text-decoration:none;
+  overflow:hidden;   /* clips the image zoom; also flattens 3D, so no preserve-3d */
+  transition:border-color .26s var(--ez-ui),box-shadow .32s var(--ez-ui);
+}
+a.wk__card:hover,a.wk__card:focus-visible{
+  border-color:rgba(79,195,247,.45);
+  box-shadow:0 18px 44px rgba(0,0,0,.45);
+}
+
+/* fake browser chrome — mono, quiet, with a live dot on the right */
+.wk__chrome{
+  display:flex;align-items:center;gap:.7rem;
+  padding:.6rem .95rem;
+  border-bottom:1px solid var(--dline);
+  font-family:var(--mno);font-size:var(--label-sm);letter-spacing:.06em;
+  color:var(--dash-2);
+}
+.wk__dots{display:inline-flex;gap:.32rem;flex:none;}
+.wk__dots i{width:7px;height:7px;border-radius:50%;background:var(--edge);}
+.wk__url{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.wk__live{display:inline-flex;align-items:center;gap:.42rem;flex:none;
+  color:var(--ion);letter-spacing:.14em;text-transform:uppercase;}
+.wk__pulse{width:6px;height:6px;border-radius:50%;background:var(--ion);
+  box-shadow:0 0 8px rgba(79,195,247,.7);}
+
+.wk__shot{
+  display:block;width:100%;height:auto;
+  aspect-ratio:16/10;object-fit:cover;object-position:top center;
+  transition:transform .6s var(--ez-out);
+}
+a.wk__card:hover .wk__shot{transform:scale(1.015);}
+
+.wk__meta{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.4rem 1rem;
+  padding:1rem var(--pad-panel) 1.1rem;
+  border-top:1px solid var(--dline);
+}
+.wk__client{
+  font-family:var(--dsp);
+  font-variation-settings:"wdth" 105,"wght" 800;
+  font-size:1.05rem;line-height:1.1;letter-spacing:-.01em;
+  text-transform:uppercase;color:var(--white);
+}
+.wk__what{flex:1 1 26ch;min-width:0;font-size:var(--body-sm);line-height:1.5;color:var(--dash-2);}
+.wk__tags{display:inline-flex;flex:none;gap:.4rem;margin-left:auto;}
+.wk__tags span{
+  font-family:var(--mno);font-size:var(--label-sm);letter-spacing:.1em;
+  text-transform:uppercase;color:var(--dash-2);
+  border:1px solid var(--dline);border-radius:999px;
+  padding:.28rem .6rem;white-space:nowrap;
+}
+
+/* the open slot */
+.wk__card--next{
+  align-items:flex-start;justify-content:center;gap:.55rem;
+  padding:var(--pad-panel);
+  border-style:dashed;border-color:var(--edge);
+  background:transparent;
+}
+a.wk__card--next:hover,a.wk__card--next:focus-visible{
+  border-style:dashed;border-color:rgba(79,195,247,.45);
+  background:var(--panel);box-shadow:none;
+}
+.wk__nextIx{
+  font-family:var(--mno);font-weight:500;
+  font-size:clamp(2.35rem,3.6vw,3rem);line-height:1;letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums;color:var(--edge);
+}
+.wk__nextT{
+  font-family:var(--dsp);
+  font-variation-settings:"wdth" 105,"wght" 800;
+  font-size:1.45rem;line-height:1.05;letter-spacing:-.01em;
+  text-transform:uppercase;color:var(--white);
+}
+.wk__nextD{font-size:var(--body-sm);line-height:1.55;color:var(--dash-2);max-width:40ch;}
+.wk__nextB{margin-top:.5rem;}
+
+@media (max-width:820px){
+  .wk__grid{grid-template-columns:1fr;perspective:none;}
+  .wk__card--feat{grid-column:auto;}
+  .wk__tags{margin-left:0;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .wk__card,.wk__shot{transition:none;}
+  a.wk__card:hover .wk__shot{transform:none;}
+  .wk__pulse{box-shadow:none;}
+}
+
 /* ═══ 60-scope.css ═══ */
 /* ══ 04 · SCOPE BUILDER ══ prefixes: scope__ / row__ / qty__ ════════════════ */
 
@@ -1971,6 +2092,7 @@ html{scroll-padding-top:4.6rem;}
   <nav class="nav__links" aria-label="Primary">
     <a href="#services">Services</a>
     <a href="#process">Process</a>
+    <a href="#proof">Work</a>
     <a href="#scope">Scope</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -1993,7 +2115,7 @@ html{scroll-padding-top:4.6rem;}
     <img class="intro__badge" src="brand/ezhd-badge-silver.svg" alt=""
          aria-hidden="true" width="150" height="150">
     <p class="intro__word">EZHD</p>
-    <p class="intro__line">Websites &middot; Hosting &middot; Local SEO &middot; Content
+    <p class="intro__line">Websites &middot; SEO &middot; Content &middot; Brand &middot; Ads
       <span class="intro__sep">&mdash;</span> Utah</p>
   </div>
 
@@ -2018,14 +2140,15 @@ html{scroll-padding-top:4.6rem;}
 
         <h1 class="hero__h1">
           <span class="hero__line"><span>Your marketing</span></span>
-          <span class="hero__line"><span>isn&rsquo;t <em>five</em></span></span>
+          <span class="hero__line"><span>isn&rsquo;t <em>seven</em></span></span>
           <span class="hero__line"><span>vendors.</span></span>
         </h1>
 
         <p class="hero__lede">
           Most local businesses end up with a web designer, a separate host, an SEO service,
-          and a social agency &mdash; four invoices, four inboxes, and nobody who owns the
-          result. EZHD is one accountable partner for all of it.
+          a social agency, a photographer, a graphic designer, and an ad manager &mdash;
+          seven invoices, seven inboxes, and nobody who owns the result. EZHD is one
+          accountable partner for all of it.
         </p>
 
         <div class="hero__acts">
@@ -2046,8 +2169,8 @@ html{scroll-padding-top:4.6rem;}
       </div>
 
       <div class="hero__stat">
-        <p class="hero__statN"><span class="ct" data-to="2">0</span></p>
-        <p class="hero__statL">Revision rounds</p>
+        <p class="hero__statN"><span class="ct" data-to="6">0</span></p>
+        <p class="hero__statL">Services, one invoice</p>
       </div>
 
       <div class="hero__stat">
@@ -2082,15 +2205,15 @@ html{scroll-padding-top:4.6rem;}
 
         <header class="sys__head">
           <p class="eyebrow rv">01 &mdash; The system</p>
-          <h2 class="h2 rv">Five vendors&rsquo; worth of parts.
+          <h2 class="h2 rv">Seven vendors&rsquo; worth of parts.
             <span class="sys__hot">One assembly.</span></h2>
-          <p class="lede rv">Everything a local business normally buys from four
+          <p class="lede rv">Everything a local business normally buys from seven
             different companies, drawn as one system. Scroll to put it together.</p>
         </header>
 
         <figure class="sys__figure">
           <canvas class="sys__c" id="sysC" role="img"
-            aria-label="An exploded technical drawing of a local marketing system: a domain and hosting base plate, the website above it, a local search listing layer, a content layer, and monthly reporting on top — all drawn on one sheet, drawn by and checked by EZHD."></canvas>
+            aria-label="An exploded technical drawing of a local marketing system: a brand base plate, domain and hosting above it, then the website, a local search listing layer, a content layer, paid ads, and monthly reporting on top — all drawn on one sheet, drawn by and checked by EZHD."></canvas>
         </figure>
 
       </div>
@@ -2106,8 +2229,8 @@ html{scroll-padding-top:4.6rem;}
 
     <header class="svc__head">
       <p class="eyebrow rv">02 — WHAT WE DO</p>
-      <h2 class="h2 rv svc__h">THREE SERVICES.<br><span class="svc__hot">ONE</span> ACCOUNTABLE PARTNER.</h2>
-      <p class="lede rv svc__lede">Every line item below is the actual scope from our services agreement — not a summary of it. If it isn't listed, it's quoted separately before any work starts.</p>
+      <h2 class="h2 rv svc__h">SIX SERVICES.<br><span class="svc__hot">ONE</span> ACCOUNTABLE PARTNER.</h2>
+      <p class="lede rv svc__lede">Every line item below is real scope — the same language that goes into our services agreement. If it isn't listed, it's quoted separately before any work starts.</p>
     </header>
 
     <div class="svc__grid">
@@ -2145,19 +2268,45 @@ html{scroll-padding-top:4.6rem;}
         <p class="svc__note"><span class="svc__note-k">Not included</span> New page builds, redesigns, and new feature work — quoted separately before any work starts.</p>
       </article>
 
-      <article class="svc__card svc__card--wide rv" data-tilt aria-labelledby="svc-n-3">
+      <article class="svc__card rv" data-tilt aria-labelledby="svc-n-3">
         <p class="svc__ix" aria-hidden="true">03</p>
-        <h3 class="svc__name" id="svc-n-3">Content &amp; social media management</h3>
+        <h3 class="svc__name" id="svc-n-3">Local SEO &amp; Google Business Profile</h3>
+        <p class="svc__blurb">Getting found by people nearby who are already looking for what you do.</p>
+        <ul class="svc__list">
+          <li>Google Business Profile setup and management</li>
+          <li>Profile posts, photos, and Q&amp;A upkeep</li>
+          <li>Review monitoring and responses</li>
+          <li>Local SEO: citations and listing consistency</li>
+          <li>On-page local SEO improvements</li>
+          <li>Search Console and local ranking tracking</li>
+        </ul>
+      </article>
+
+      <article class="svc__card rv" data-tilt aria-labelledby="svc-n-4">
+        <p class="svc__ix" aria-hidden="true">04</p>
+        <h3 class="svc__name" id="svc-n-4">Brand &amp; design</h3>
+        <p class="svc__blurb">The identity everything else is built on — designed once, used everywhere.</p>
+        <ul class="svc__list">
+          <li>Logo design and refinement</li>
+          <li>Brand identity: colour, type, and usage rules</li>
+          <li>Business cards, yard signs, and vehicle graphics</li>
+          <li>Flyers, brochures, and print collateral</li>
+          <li>Social profile and post templates</li>
+          <li>Delivered as a complete brand kit, print-ready and web-ready</li>
+        </ul>
+      </article>
+
+      <article class="svc__card rv" data-tilt aria-labelledby="svc-n-5">
+        <p class="svc__ix" aria-hidden="true">05</p>
+        <h3 class="svc__name" id="svc-n-5">Content &amp; social media management</h3>
         <p class="svc__blurb">Original content — shot, edited, and published — with the scope capped so the quality stays high.</p>
-        <ul class="svc__list svc__list--two">
+        <ul class="svc__list">
           <li>Up to 8 content pieces per month, repurposed across platforms</li>
           <li>One on-site capture session per month (up to 4 hours)</li>
           <li>Professional editing into posts, reels, and shorts</li>
           <li>Captions, hashtags, scheduling, publishing</li>
           <li>Monthly content calendar</li>
           <li>Community management on business days</li>
-          <li>Google Business Profile posts and upkeep</li>
-          <li>Ongoing local SEO</li>
           <li>Monthly reporting</li>
         </ul>
         <div class="svc__plat">
@@ -2173,11 +2322,26 @@ html{scroll-padding-top:4.6rem;}
         </div>
       </article>
 
+      <article class="svc__card rv" data-tilt aria-labelledby="svc-n-6">
+        <p class="svc__ix" aria-hidden="true">06</p>
+        <h3 class="svc__name" id="svc-n-6">Paid advertising</h3>
+        <p class="svc__blurb">Campaigns built, monitored, and adjusted — never set and forgotten.</p>
+        <ul class="svc__list">
+          <li>Google ads: search and local</li>
+          <li>Meta ads: Facebook and Instagram</li>
+          <li>Audience, geography, and budget setup</li>
+          <li>Ad creative built from your content library</li>
+          <li>Landing-page checks so ads land somewhere that converts</li>
+          <li>Monthly performance reporting</li>
+        </ul>
+        <p class="svc__note"><span class="svc__note-k">Straight up</span> Ad spend is billed to you by the platform — we never mark it up or hold your accounts.</p>
+      </article>
+
     </div>
   </div>
 </section>
 
-<!-- ══ 02 · PROCESS / TIMELINE ═══════════════════════════════════════
+<!-- ══ 03 · PROCESS / TIMELINE ═══════════════════════════════════════
      Dark inset panel: edit-bay timeline banner (flowC) sitting above a
      four-step timeline whose ion progress rail is scrubbed by scroll.
      Prefix: proc__ / flow__ ─────────────────────────────────────── -->
@@ -2238,7 +2402,59 @@ html{scroll-padding-top:4.6rem;}
   </div>
 </section>
 
-<!-- ══ 03 · CAPABILITY + MARQUEE ═════════════════════════════════════════ -->
+<!-- ══ 04 · RECENT WORK ══════════════════════════════════════════════════
+     Proof before promises. Real screenshots of live builds, framed in a
+     browser-chrome card. Images live in work/ and ship with the deploy;
+     the third slot is deliberately left open as a CTA. -->
+<section class="sec" id="proof" aria-labelledby="wkTitle">
+  <div class="wrap">
+
+    <p class="eyebrow rv">04 — RECENT WORK</p>
+    <h2 class="h2 rv" id="wkTitle">PROOF, NOT <span class="wk__hot">PROMISES</span>.</h2>
+    <p class="lede rv">We'd rather show you than tell you. This is live work — click through and poke around.</p>
+
+    <div class="wk__grid">
+
+      <a class="wk__card wk__card--feat rv" data-tilt href="https://alloy.homes" target="_blank" rel="noopener">
+        <span class="wk__chrome" aria-hidden="true">
+          <span class="wk__dots"><i></i><i></i><i></i></span>
+          <span class="wk__url">alloy.homes</span>
+          <span class="wk__live"><span class="wk__pulse"></span>Live</span>
+        </span>
+        <img class="wk__shot" src="work/alloy-homes.jpg" alt="The Alloy Homes website: an aerial photograph of a custom home with the headline 'Built around you. Built to endure.'" width="2000" height="1250" loading="lazy" decoding="async">
+        <span class="wk__meta">
+          <span class="wk__client">Alloy Homes</span>
+          <span class="wk__what">Custom home builder &middot; Southern Utah &mdash; site design and build, live on our hosting and care plan.</span>
+          <span class="wk__tags" aria-hidden="true"><span>Design + build</span><span>Hosting + care</span></span>
+        </span>
+      </a>
+
+      <div class="wk__card rv">
+        <span class="wk__chrome" aria-hidden="true">
+          <span class="wk__dots"><i></i><i></i><i></i></span>
+          <span class="wk__url">ez-hd.co</span>
+          <span class="wk__live"><span class="wk__pulse"></span>You're here</span>
+        </span>
+        <img class="wk__shot" src="work/ezhd-site.jpg" alt="This site's own title card: the EZHD badge and wordmark over a field of concentric rings." width="1600" height="1000" loading="lazy" decoding="async">
+        <span class="wk__meta">
+          <span class="wk__client">EZHD</span>
+          <span class="wk__what">This site — designed, written, and built in-house. The same standard your project gets.</span>
+          <span class="wk__tags" aria-hidden="true"><span>Design + build</span><span>Brand</span></span>
+        </span>
+      </div>
+
+      <a class="wk__card wk__card--next rv" href="#contact">
+        <span class="wk__nextIx" aria-hidden="true">03</span>
+        <span class="wk__nextT">Your project</span>
+        <span class="wk__nextD">This slot is open. Tell us what you're trying to fix, and we'll tell you — honestly — whether we're the right ones to fix it.</span>
+        <span class="btn btn--wire wk__nextB">Start a project</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ 05 · CAPABILITY + MARQUEE ═════════════════════════════════════════ -->
 <section class="sec" id="work" aria-labelledby="capTitle">
 
   <!-- Full-bleed kinetic strip. Decorative on purpose: every term below is
@@ -2249,9 +2465,13 @@ html{scroll-padding-top:4.6rem;}
         <span class="mq__i">WEB DESIGN</span>
         <span class="mq__i">HOSTING</span>
         <span class="mq__i mq__i--lit">LOCAL SEO</span>
-        <span class="mq__i">SOCIAL CONTENT</span>
         <span class="mq__i">PHOTO + VIDEO</span>
-        <span class="mq__i mq__i--lit">GOOGLE BUSINESS PROFILE</span>
+        <span class="mq__i">EDITING + POST</span>
+        <span class="mq__i mq__i--lit">BRAND + LOGO</span>
+        <span class="mq__i">SOCIAL CONTENT</span>
+        <span class="mq__i">GRAPHIC DESIGN</span>
+        <span class="mq__i mq__i--lit">PAID ADS</span>
+        <span class="mq__i">GOOGLE BUSINESS PROFILE</span>
         <span class="mq__i">ANALYTICS</span>
         <span class="mq__i">EMAIL MARKETING</span>
       </div>
@@ -2260,8 +2480,8 @@ html{scroll-padding-top:4.6rem;}
 
   <div class="wrap">
 
-    <p class="eyebrow rv">04 — CAPABILITIES</p>
-    <h2 class="h2 rv" id="capTitle">Everything the site needs.
+    <p class="eyebrow rv">05 — CAPABILITIES</p>
+    <h2 class="h2 rv" id="capTitle">Everything the business needs.
       Under <span class="cap__acc">one</span> roof.</h2>
 
     <div class="cap__bar rv">
@@ -2271,7 +2491,7 @@ html{scroll-padding-top:4.6rem;}
         <button type="button" class="cap__f"        data-f="grow"  aria-pressed="false">Grow</button>
         <button type="button" class="cap__f"        data-f="run"   aria-pressed="false">Run</button>
       </div>
-      <p class="cap__stat" id="capCount" role="status" aria-live="polite">Showing 9 / 9</p>
+      <p class="cap__stat" id="capCount" role="status" aria-live="polite">Showing 12 / 12</p>
     </div>
 
     <div class="cap__grid rv" id="grid">
@@ -2330,11 +2550,29 @@ html{scroll-padding-top:4.6rem;}
         <p class="cap__d">Analytics 4 and Search Console wired up, with one plain-language report a month.</p>
       </article>
 
+      <article class="cap__tile" data-cat="build">
+        <span class="cap__ix" aria-hidden="true">10</span>
+        <h3 class="cap__t">Logo + brand identity</h3>
+        <p class="cap__d">A mark and identity system designed to work on a truck door as well as a screen.</p>
+      </article>
+
+      <article class="cap__tile" data-cat="build">
+        <span class="cap__ix" aria-hidden="true">11</span>
+        <h3 class="cap__t">Graphic design + print</h3>
+        <p class="cap__d">Business cards, yard signs, vehicle graphics, and flyers — designed print-ready.</p>
+      </article>
+
+      <article class="cap__tile" data-cat="grow">
+        <span class="cap__ix" aria-hidden="true">12</span>
+        <h3 class="cap__t">Editing + post-production</h3>
+        <p class="cap__d">Footage — ours or yours — cut, colour-graded, and captioned into finished pieces.</p>
+      </article>
+
     </div>
   </div>
 </section>
 
-<!-- ══ 04 · SCOPE BUILDER ═══════════════════════════════════════════════════
+<!-- ══ 06 · SCOPE BUILDER ═══════════════════════════════════════════════════
      No prices anywhere on this site. The builder collects intent; the number
      happens on the call. Legends and the summary label are sentence-case in the
      markup and uppercased in CSS so screen readers don't spell them out.
@@ -2342,7 +2580,7 @@ html{scroll-padding-top:4.6rem;}
 <section class="sec sec--pit" id="scope">
   <div class="wrap">
 
-    <p class="eyebrow rv">05 — BUILD YOUR SCOPE</p>
+    <p class="eyebrow rv">06 — BUILD YOUR SCOPE</p>
     <h2 class="h2 rv">PICK WHAT YOU NEED. WE'LL <span class="scope__ac">PRICE</span> IT ON A CALL.</h2>
     <p class="lede rv">Check the pieces that fit your business. It takes about thirty seconds, and it means our first call starts with substance instead of discovery.</p>
 
@@ -2376,8 +2614,26 @@ html{scroll-padding-top:4.6rem;}
             <input type="checkbox" data-kind="core" checked>
             <span class="row__box" aria-hidden="true"></span>
             <span class="row__b">
+              <span class="row__n">Local SEO &amp; Google Business Profile</span>
+              <span class="row__note">Profile management, posts, listings, review responses</span>
+            </span>
+          </label>
+
+          <label class="row is-on">
+            <input type="checkbox" data-kind="core" checked>
+            <span class="row__box" aria-hidden="true"></span>
+            <span class="row__b">
               <span class="row__n">Content &amp; social media management</span>
-              <span class="row__note">8 pieces a month, on-site shoot, local SEO, reporting</span>
+              <span class="row__note">8 pieces a month, on-site shoot, editing, publishing</span>
+            </span>
+          </label>
+
+          <label class="row">
+            <input type="checkbox" data-kind="core">
+            <span class="row__box" aria-hidden="true"></span>
+            <span class="row__b">
+              <span class="row__n">Brand &amp; design</span>
+              <span class="row__note">Logo, identity, print and social templates</span>
             </span>
           </label>
 
@@ -2449,7 +2705,7 @@ html{scroll-padding-top:4.6rem;}
         <p class="scope__l" id="scopeLabel">Your scope</p>
 
         <div class="scope__live" aria-live="polite">
-          <p class="scope__count" id="scopeCount">3 services selected</p>
+          <p class="scope__count" id="scopeCount">4 services selected</p>
           <ul class="scope__list" id="scopeList"></ul>
         </div>
 
@@ -2461,13 +2717,13 @@ html{scroll-padding-top:4.6rem;}
   </div>
 </section>
 
-<!-- ══ 05 · WHO DOES WHAT ══════════════════════════════════════════════════════
+<!-- ══ 07 · WHO DOES WHAT ══════════════════════════════════════════════════════
      Two panels, one hairline apart. The EZHD column carries the ion edge so the
      eye lands on the longer list — the one the client doesn't have to do.
      ═════════════════════════════════════════════════════════════════════════ -->
 <section class="sec" id="duty">
   <div class="wrap">
-    <p class="eyebrow rv">06 — WHO DOES WHAT</p>
+    <p class="eyebrow rv">07 — WHO DOES WHAT</p>
     <h2 class="h2 rv">TWO SHORT LISTS, SO NOTHING STALLS.</h2>
 
     <div class="duty__grid">
@@ -2475,7 +2731,7 @@ html{scroll-padding-top:4.6rem;}
         <span class="duty__num" aria-hidden="true">01</span>
         <h3 class="duty__h">YOU PROVIDE</h3>
         <ul class="duty__list">
-          <li class="duty__item">Logo and brand assets</li>
+          <li class="duty__item">Logo and brand assets &mdash; or we design them</li>
           <li class="duty__item">Feedback and approvals within 2 business days</li>
           <li class="duty__item">Access to your domain, hosting, social, and Google accounts</li>
           <li class="duty__item">Details about your business and services</li>
@@ -2491,6 +2747,8 @@ html{scroll-padding-top:4.6rem;}
           <li class="duty__item">Hosting, DNS, SSL, backups, monitoring</li>
           <li class="duty__item">Shooting, editing, writing, scheduling, publishing</li>
           <li class="duty__item">Local SEO and Google Business Profile</li>
+          <li class="duty__item">Logo, brand, and print design, when scoped</li>
+          <li class="duty__item">Ad campaigns: built, monitored, adjusted</li>
           <li class="duty__item">Analytics setup and one monthly report</li>
         </ul>
       </article>
@@ -2500,13 +2758,13 @@ html{scroll-padding-top:4.6rem;}
   </div>
 </section>
 
-<!-- ══ 06 · START A PROJECT ════════════════════════════════════════════════════
-     The form composes a mailto: nothing is posted to a server, so there is no
-     endpoint to break and no data sitting anywhere it shouldn't.
+<!-- ══ 08 · START A PROJECT ════════════════════════════════════════════════════
+     The form POSTs to Web3Forms (the key is public and submit-only) and falls
+     back to a mailto: handoff if the request fails or fetch is missing.
      ═════════════════════════════════════════════════════════════════════════ -->
 <section class="sec sec--pit" id="contact">
   <div class="wrap">
-    <p class="eyebrow rv">07 — START A PROJECT</p>
+    <p class="eyebrow rv">08 — START A PROJECT</p>
     <h2 class="h2 rv">TELL US ABOUT THE <span class="cta__accent">BUSINESS</span>.</h2>
     <p class="lede rv">A 20-minute call is usually enough to know whether this is a fit. If it isn't, we'll say so.</p>
 
@@ -2550,7 +2808,7 @@ html{scroll-padding-top:4.6rem;}
               <span class="form__echoV">Nothing selected yet — we can sort it on the call.</span>
             </p>
             <button class="btn btn--ion btn--full" type="submit">Send it</button>
-            <p class="form__fine">Opens your email app with everything filled in. Prefer to skip the form? <a class="form__link" href="mailto:ezhdco@gmail.com">Email us directly</a>.</p>
+            <p class="form__fine">Goes straight to our inbox. Prefer to skip the form? <a class="form__link" href="mailto:ezhdco@gmail.com">Email us directly</a>.</p>
             <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
           </div>
         </div>
@@ -2608,7 +2866,7 @@ html{scroll-padding-top:4.6rem;}
       <div class="foot__brand rv">
         <img class="foot__badge" src="brand/ezhd-badge-silver.svg" alt="" aria-hidden="true" width="72" height="72">
         <p class="foot__mark">EZHD</p>
-        <p class="foot__tag">Websites &middot; Hosting &middot; Digital marketing &middot; Utah</p>
+        <p class="foot__tag">Websites &middot; SEO &middot; Content &middot; Brand &middot; Ads &middot; Utah</p>
       </div>
 
       <nav class="foot__nav rv" aria-label="Footer">
@@ -2616,6 +2874,7 @@ html{scroll-padding-top:4.6rem;}
         <ul class="foot__list">
           <li><a href="#services">Services</a></li>
           <li><a href="#process">Process</a></li>
+          <li><a href="#proof">Work</a></li>
           <li><a href="#scope">Scope</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -3187,10 +3446,9 @@ html{scroll-padding-top:4.6rem;}
   if (!window.EZ) return;
   var EZ = window.EZ;
 
-  var sec = EZ.$('#services');
-  if (!sec) return;
-
-  var cards = EZ.$$('[data-tilt]', sec);
+  /* Anything on the page can opt in with data-tilt — service cards and the
+     recent-work cards both do. */
+  var cards = EZ.$$('[data-tilt]');
   if (!cards.length) return;
 
   /* Touch and calm users get the static card. CSS already covers hover. */
@@ -4247,27 +4505,41 @@ html{scroll-padding-top:4.6rem;}
     g.beginPath(); g.moveTo(p.X, p.Y); g.lineTo(q.X, q.Y); g.stroke();
   }
 
-  /* ── the five layers, bottom to top ── */
-  var GAP = 1.35;
+  /* ── the seven layers, bottom to top ── */
+  var GAP = 1.15;
   var LAYERS = [
+    { name: 'BRAND',            note: 'Logo · identity · print' },
     { name: 'DOMAIN + HOSTING', note: 'DNS · SSL · backups' },
-    { name: 'THE SITE',         note: 'Up to 5 page templates' },
+    { name: 'THE SITE',         note: 'Custom design + build' },
     { name: 'LOCAL SEARCH',     note: 'Business Profile · listings' },
-    { name: 'CONTENT',          note: '8 pieces a month' },
+    { name: 'CONTENT',          note: 'Photo · video · social' },
+    { name: 'PAID ADS',         note: 'Google · Meta' },
     { name: 'REPORTING',        note: 'One monthly report' }
   ];
 
   function drawLayer(i, z, a) {
     var ea = 0.30 + a * 0.55;      /* edges brighten as the layer lands */
 
-    if (i === 0) {                 /* base plate with service nubs */
+    if (i === 0) {                 /* brand base plate: swatch nubs + wordmark bars */
       slab(0, 0, 8, 6, z, .34, ea);
       var u = z + .34, k;
       for (k = 0; k < 3; k++) slab(.7 + k * 2.4, .8, 2.5 + k * 2.4, 2.2, u, .26, ea * .8);
       etch(.7, 3.1, 7.3, 3.35, u + .001, EDGE + (a * .5) + ')', 0);
       etch(.7, 3.9, 5.4, 4.15, u + .001, LINE + (a * .3) + ')', 0);
 
-    } else if (i === 1) {          /* the website: hero band, copy, card row */
+    } else if (i === 1) {          /* hosting: a rack of four units + status strips */
+      slab(.35, .3, 7.65, 5.7, z, .24, ea);
+      var hz = z + .241, sv;
+      for (sv = 0; sv < 4; sv++) {
+        slab(.9 + sv * 1.55, .75, 2.05 + sv * 1.55, 1.7, hz, .3, ea * .85);
+        etch(.98 + sv * 1.55, .9, 1.28 + sv * 1.55, 1.08, hz + .301,
+             HOT + (a * (sv === 1 ? .6 : .3)) + ')', 0);
+      }
+      etch(.9, 2.75, 6.9, 3.0, hz + .001, EDGE + (a * .45) + ')', 0);
+      etch(.9, 3.55, 5.2, 3.78, hz + .001, LINE + (a * .3) + ')', 0);
+      etch(.9, 4.3, 6.2, 4.52, hz + .001, LINE + (a * .3) + ')', 0);
+
+    } else if (i === 2) {          /* the website: hero band, copy, card row */
       slab(.5, .4, 7.5, 5.6, z, .22, ea);
       var s = z + .221;
       etch(1.0, .9, 7.0, 2.3, s, EDGE + (a * .30) + ')', a * .5);
@@ -4277,7 +4549,7 @@ html{scroll-padding-top:4.6rem;}
       for (var c = 0; c < 3; c++)
         etch(1.0 + c * 2.1, 4.4, 2.8 + c * 2.1, 5.2, s, LINE + (a * .18) + ')', a * .35);
 
-    } else if (i === 2) {          /* local search: listing rows + a map pin */
+    } else if (i === 3) {          /* local search: listing rows + a map pin */
       slab(1.1, .9, 6.9, 5.1, z, .20, ea);
       var m = z + .201;
       for (var r = 0; r < 3; r++)
@@ -4285,7 +4557,7 @@ html{scroll-padding-top:4.6rem;}
       slab(5.5, 3.4, 6.4, 4.3, m, .55, ea);                 /* pin body */
       etch(5.5, 3.4, 6.4, 4.3, m + .551, HOT + (a * .70) + ')', a * .6);
 
-    } else if (i === 3) {          /* content: a fan of vertical cards */
+    } else if (i === 4) {          /* content: a fan of vertical cards */
       for (var v = 0; v < 4; v++) {
         var x = 1.0 + v * 1.65;
         slab(x, 1.0 + v * .28, x + 1.25, 4.4 + v * .28, z, .16, ea);
@@ -4294,6 +4566,19 @@ html{scroll-padding-top:4.6rem;}
              EDGE + (a * (v === 1 ? .34 : .20)) + ')', 0);
         etch(x + .18, 3.45 + v * .28, x + .82, 3.62 + v * .28, f, LINE + (a * .30) + ')', 0);
       }
+
+    } else if (i === 5) {          /* paid ads: three ad units, one winning */
+      slab(1.5, 1.2, 6.5, 4.8, z, .18, ea);
+      var dz = z + .181, w2, ax;
+      for (w2 = 0; w2 < 3; w2++) {
+        ax = 1.95 + w2 * 1.45;
+        etch(ax, 1.6, ax + 1.15, 3.3, dz,
+             w2 === 1 ? EDGE + (a * .38) + ')' : LINE + (a * .20) + ')', a * .4);
+        etch(ax + .15, 3.55, ax + 1.0, 3.75, dz,
+             w2 === 1 ? HOT + (a * .6) + ')' : LINE + (a * .3) + ')', 0);
+      }
+      slab(5.65, 4.0, 6.25, 4.55, dz, .4, ea);              /* budget block */
+      etch(5.65, 4.0, 6.25, 4.55, dz + .401, HOT + (a * .65) + ')', a * .6);
 
     } else {                       /* reporting: a bar chart, extruded */
       slab(1.9, 1.4, 6.1, 4.6, z, .20, ea);
@@ -4386,14 +4671,15 @@ html{scroll-padding-top:4.6rem;}
     g.setTransform(dpr, 0, 0, dpr, 0, 0);
     /* Fit the ASSEMBLED extents, not the exploded ones — the settled sheet is
        what people read, and letting the top layers start a little outside the
-       frame just means they fly in. Units, assembled:
-         X = (x-y)cos30 over x 0..8, y 0..6  ->  -5.20 .. 6.93   (span 12.13)
-         Y = (x+y)sin30 - z, z up to 4*GAP   ->  -5.74 .. 7.00   (span 12.74)
+       frame just means they fly in. Units, assembled, seven layers:
+         X = (x-y)cos30 over x 0..8, y 0..6   ->  -5.20 .. 6.93   (span 12.13)
+         Y = (x+y)sin30 - z; the minimum is the reporting slab's top corner
+         (1.9, 1.4, z=7.1)                    ->  -5.45 .. 7.00   (span 12.45)
        The object is parked left of centre so the leader labels have a column
        of their own instead of being clipped at the edge. */
-    S = Math.min((W * 0.58) / 12.13, (H * 0.86) / 12.74);
+    S = Math.min((W * 0.58) / 12.13, (H * 0.86) / 12.45);
     OX = W * 0.305 - 0.865 * S;   /* 0.865 = centre of the X unit range */
-    OY = H * 0.50 - 0.630 * S;    /* 0.630 = centre of the Y unit range */
+    OY = H * 0.50 - 0.775 * S;    /* 0.775 = centre of the Y unit range */
     draw(prog);
   }
 
@@ -4402,20 +4688,20 @@ html{scroll-padding-top:4.6rem;}
     sheet(EZ.clamp(p * 2.2, 0, 1));
 
     var i, la = [], lz = [];
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < LAYERS.length; i++) {
       /* each layer lands on its own delay, base first */
-      var k = EZ.clamp((p - i * 0.085) / 0.48, 0, 1);
+      var k = EZ.clamp((p - i * 0.075) / 0.46, 0, 1);
       var e = k * k * (3 - 2 * k);
       la[i] = e;
       lz[i] = i * GAP * (2.05 - 1.05 * e);
     }
-    for (i = 0; i < 5; i++) drawLayer(i, lz[i], la[i]);
+    for (i = 0; i < LAYERS.length; i++) drawLayer(i, lz[i], la[i]);
 
     /* leader lines + labels, once a layer has settled */
     g.font = '9px "IBM Plex Mono", ui-monospace, monospace';
     g.textBaseline = 'middle';
     g.textAlign = 'left';
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < LAYERS.length; i++) {
       var a = EZ.clamp((la[i] - .55) / .45, 0, 1);
       if (a <= 0.01) continue;
       var anchor = P(8, 0, lz[i] + .34);          /* right corner of the layer */
