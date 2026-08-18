@@ -63,7 +63,7 @@ Do not use port 5060 — that is SIP and browsers block it as an unsafe port.
 
 ## Page structure
 
-Nine sections, in order:
+Ten sections, in order:
 
 | id | what |
 |---|---|
@@ -72,12 +72,24 @@ Nine sections, in order:
 | `system` | **01 — The system.** Exploded axonometric of the marketing system (`#sysC`), assembled by scroll. Sticky stage inside a 270vh track. **Seven layers**, bottom-up: brand, domain+hosting, site, local search, content, paid ads, reporting |
 | `services` | 02 — Six offerings in a 2×3 grid, 3D card tilt |
 | `process` | 03 — Edit-bay timeline banner (`#flowC`) + scroll-scrubbed rail |
-| `proof` | 04 — Active projects: browser-chrome cards over real screenshots (`work/*.jpg`) — Alloy Homes + ConnectShield, third slot is an open CTA. Nav links here as "Work" |
-| `drafts` | 05 — The Drafts: debranded concept builds served as live demos under `drafts/` (see below). Claim buttons carry `data-claim`; 90-broadcast.js prefills the contact form's message |
-| `work` | 06 — Capability marquee + filterable grid (12 tiles) |
-| `scope` | 07 — Scope builder. **No prices anywhere** — deliberate |
-| `duty` | 08 — Who does what + "straight talk on results" |
-| `contact` | 09 — Form + direct card (Zac Evans, Dylan Evans) |
+| `airtime` | 04 — **AIRTIME.** The content/social half of the pitch. Two movements: "what we shoot" (six 9:16 storyboard frames, inline SVG line art, each annotated with a real camera move) and "where it goes" (a six-channel platform rack). Nav links here as "Content" |
+| `proof` | 05 — Active projects: browser-chrome cards over real screenshots (`work/*.jpg`) — Alloy Homes + ConnectShield, third slot is an open CTA. Nav links here as "Work" |
+| `drafts` | 06 — The Drafts: debranded concept builds served as live demos under `drafts/` (see below). Claim buttons carry `data-claim`; 90-broadcast.js prefills the contact form's message |
+| `work` | 07 — Capability marquee + filterable grid (12 tiles) |
+| `scope` | 08 — Scope builder. **No prices anywhere** — deliberate |
+| `duty` | 09 — Who does what + "straight talk on results" |
+| `contact` | 10 — Form + direct card (Zac Evans, Dylan Evans) |
+
+**Two client rules that outrank design taste**, both set 2026-08-17:
+1. **Never state a content quantity.** No "8 pieces a month", no included-post
+   counts, no "up to N reels" — cadence is custom per client and quoted on the
+   call. The scope builder expresses this as light/standard/heavy tiers
+   (`#tierBox`, radios named `cadence`); `read()` in the estimator appends the
+   choice to the content row's summary line. If a piece-count reappears
+   anywhere on the page, it is a bug.
+2. **Never show client social content.** The `#airtime` storyboard frames are
+   permanent illustration, not placeholders waiting for real reels — the client
+   explicitly does not want other businesses' reels on this site.
 
 **The drafts** (`drafts/<name>/`): full multi-file demo sites for fictional
 businesses that a visitor can claim. The single-file rule protects `index.html`
@@ -113,7 +125,7 @@ fully if the script never runs.
   so it never sits on a section eyebrow) and `TC` timecode top-right (wall clock
   + frames at 24fps, setInterval 42ms, paused on `visibilitychange`, static
   under reduced motion).
-- Title block bottom-left (`.tb__block`): PROJECT / SHEET n OF 08 / DRAWN BY /
+- Title block bottom-left (`.tb__block`): PROJECT / SHEET n OF 10 / DRAWN BY /
   CHECKED BY. The sheet number follows the section crossing the viewport's
   middle band (IO with `-45%` rootMargin). Hidden under 900px. It deliberately
   overlays content — it is a broadcast "bug".

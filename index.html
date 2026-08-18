@@ -563,9 +563,12 @@ html{scroll-padding-top:4.6rem;}
 @media(max-width:900px){
   .nav__bar{gap:1.1rem;}
   .nav__links{gap:1.2rem;}
-  /* Five links up top: Services, Process, Work, Scope, Contact. On tablet keep
-     Services + Work + Scope; Contact is redundant beside the CTA. */
-  .nav__links a:nth-child(2),.nav__links a:nth-child(5){display:none;}
+  /* Six links up top: Services, Process, Content, Work, Scope, Contact. On
+     tablet keep Services + Content + Work; Contact is redundant beside the
+     CTA, and Process/Scope survive in the footer. */
+  .nav__links a:nth-child(2),
+  .nav__links a:nth-child(5),
+  .nav__links a:nth-child(6){display:none;}
 }
 @media(max-width:620px){
   .nav__links{display:none;}                     /* the CTA always survives */
@@ -1455,6 +1458,139 @@ body.is-live.has-xh.in-vf .xh__x,body.is-live.has-xh.in-vf .xh__y{opacity:0;}
   .proc__t{transition:none;}
 }
 
+/* ═══ 45-airtime.css ═══ */
+/* ══ 04 · AIRTIME ══ prefixes: sl__ / rack__ ════════════════════════════════
+   The content half of the pitch, told without borrowing anyone's footage.
+   The shot list is a storyboard sheet: 9:16 frames — the shape that reads as
+   social — drawn in the same line language as the axonometric, each annotated
+   with a real camera move. The rack below it is where the work goes out.
+   Deliberately no counts anywhere: cadence is set per client. */
+
+.sl__hot{color:var(--ion);font-variation-settings:"wdth" 64,"wght" 850;}
+
+/* ── storyboard strip ─────────────────────────────────────────────────── */
+.sl__strip{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:clamp(.7rem,1.4vw,1rem);
+  margin-top:.9rem;                 /* the movement label above supplies the air */
+}
+
+.sl__frame{
+  position:relative;margin:0;
+  display:flex;flex-direction:column;
+  background:var(--panel);
+  border:1px solid var(--dline);
+  transition:border-color .26s var(--ez-ui),background-color .26s var(--ez-ui);
+}
+.sl__frame:hover{border-color:rgba(79,195,247,.4);background:var(--raise);}
+
+/* slate: shot number left, camera move right — the filmmaking vocabulary is
+   the argument, so it gets the mono treatment and stays legible at 6-up */
+/* nowrap is load-bearing: a two-line slate on the longer camera moves would
+   push that frame's art window down and break the strip's alignment. */
+.sl__slate{
+  display:flex;align-items:center;justify-content:space-between;gap:.4rem;
+  padding:.5rem .6rem;border-bottom:1px solid var(--dline);
+  font-family:var(--mno);font-size:var(--label-sm);letter-spacing:.1em;
+  text-transform:uppercase;white-space:nowrap;overflow:hidden;
+}
+.sl__slate b{font-weight:500;color:var(--dash-2);}
+.sl__slate i{font-style:normal;color:var(--ion);opacity:.8;}
+
+/* the 9:16 window itself */
+.sl__art{
+  position:relative;aspect-ratio:9/16;overflow:hidden;
+  background:linear-gradient(180deg,rgba(15,20,29,.55),rgba(4,6,10,.9));
+}
+.sl__art svg{display:block;width:100%;height:100%;}
+.sl__art svg .ln{fill:none;stroke:var(--dash-2);stroke-width:1.4;
+  stroke-linecap:round;stroke-linejoin:round;opacity:.85;}
+.sl__art svg .ion{fill:none;stroke:var(--ion);stroke-width:1.4;
+  stroke-linecap:round;stroke-linejoin:round;}
+.sl__art svg .fill{fill:var(--ion);stroke:none;}
+.sl__art svg .dash{stroke-dasharray:3 4;}
+.sl__art svg .faint{opacity:.35;}
+
+/* safe-area corner ticks — the storyboard tell */
+.sl__art::before,.sl__art::after{
+  content:"";position:absolute;width:10px;height:10px;pointer-events:none;
+  border:1px solid rgba(124,136,154,.4);
+}
+.sl__art::before{left:7px;top:7px;border-right:0;border-bottom:0;}
+.sl__art::after{right:7px;bottom:7px;border-left:0;border-top:0;}
+
+.sl__cap{padding:.7rem .7rem .85rem;border-top:1px solid var(--dline);}
+.sl__t{
+  margin:0 0 .3rem;font-family:var(--dsp);
+  font-variation-settings:"wdth" 104,"wght" 780;
+  font-size:1rem;line-height:1.05;letter-spacing:-.02em;
+  text-transform:uppercase;color:var(--white);
+}
+.sl__d{margin:0;font-size:var(--fine);line-height:1.45;color:var(--dash-2);}
+
+/* ── channel rack ─────────────────────────────────────────────────────── */
+.rack{margin-top:clamp(2.2rem,4vw,3.2rem);}
+.rack__k{
+  margin:0 0 .9rem;font-family:var(--mno);font-size:var(--label);
+  letter-spacing:.22em;text-transform:uppercase;color:var(--dash-2);
+}
+/* the first movement label follows the lede, so it brings its own top air */
+.rack__k--top{margin-top:clamp(1.9rem,3.6vw,2.8rem);}
+.rack__list{list-style:none;margin:0;padding:0;border-top:1px solid var(--dline);}
+.rack__ch{
+  display:flex;align-items:center;gap:clamp(.8rem,2vw,1.6rem);
+  padding:.85rem clamp(.5rem,1.4vw,1rem);
+  border-bottom:1px solid var(--dline);
+  transition:background-color .24s var(--ez-ui);
+}
+.rack__ch:hover{background:var(--panel);}
+.rack__n{
+  flex:none;font-family:var(--mno);font-size:var(--label-sm);letter-spacing:.16em;
+  color:var(--dash-2);font-variant-numeric:tabular-nums;
+  transition:color .24s var(--ez-ui);
+}
+.rack__ch:hover .rack__n{color:var(--ion);}
+.rack__p{
+  flex:0 0 auto;min-width:11.5rem;
+  font-family:var(--dsp);font-variation-settings:"wdth" 104,"wght" 760;
+  font-size:1.02rem;letter-spacing:-.015em;text-transform:uppercase;color:var(--white);
+}
+.rack__w{flex:1;min-width:0;font-size:var(--body-sm);line-height:1.5;color:var(--dash);}
+/* signal bars: four rungs that light left-to-right on hover */
+.rack__sig{flex:none;display:inline-flex;align-items:flex-end;gap:2px;height:14px;}
+.rack__sig i{width:3px;background:var(--edge);transition:background-color .24s var(--ez-ui);}
+.rack__sig i:nth-child(1){height:4px;}
+.rack__sig i:nth-child(2){height:7px;}
+.rack__sig i:nth-child(3){height:10.5px;}
+.rack__sig i:nth-child(4){height:14px;}
+.rack__ch:hover .rack__sig i{background:var(--ion);}
+.rack__ch:hover .rack__sig i:nth-child(2){transition-delay:.05s;}
+.rack__ch:hover .rack__sig i:nth-child(3){transition-delay:.1s;}
+.rack__ch:hover .rack__sig i:nth-child(4){transition-delay:.15s;}
+
+.rack__note{
+  margin:1.1rem 0 0;font-size:var(--fine);line-height:1.55;color:var(--dash-2);
+  border-left:var(--accent-edge) solid var(--ion-3);padding-left:.9rem;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────────────── */
+/* 6-up only while a column still clears the widest slate ("Rack focus"). */
+@media (max-width:1180px){
+  .sl__strip{grid-template-columns:repeat(3,minmax(0,1fr));}
+}
+@media (max-width:720px){
+  .sl__strip{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .rack__ch{flex-wrap:wrap;gap:.35rem .8rem;}
+  .rack__p{min-width:0;flex:1;}
+  .rack__w{flex:0 0 100%;order:3;}
+  .rack__sig{order:2;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .sl__frame,.rack__ch,.rack__n,.rack__sig i{transition:none;}
+}
+
 /* ═══ 50-capability.css ═══ */
 /* ══ 03 · CAPABILITY + MARQUEE ═════════════════════════════════════════
    Prefixes: mq__ (kinetic strip) · cap__ (capability grid)
@@ -1954,6 +2090,50 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
   .scope__list li.is-new{animation:none;}
 }
 
+/* ── Cadence tiers ────────────────────────────────────────────────────────
+   Belongs to the content row above it, so it carries the same ion edge the
+   selected rows use. Radios are visually hidden but keep real keyboard and
+   screen-reader behaviour; the pill is the label's span. */
+.tier{
+  margin:-.15rem 0 .15rem;
+  padding:.85rem 0 .95rem 1.05rem;
+  border-left:var(--accent-edge) solid var(--ion-3);
+  transition:opacity .26s var(--ez-ui);
+}
+.tier.is-off{opacity:.34;}
+.tier__k{
+  margin:0 0 .55rem;font-family:var(--mno);font-size:var(--label-sm);
+  letter-spacing:.2em;text-transform:uppercase;color:var(--dash-2);
+}
+.tier__opts{display:flex;flex-wrap:wrap;gap:.5rem;}
+.tier__o{position:relative;cursor:pointer;}
+.tier__o input{position:absolute;width:1px;height:1px;opacity:0;margin:0;}
+.tier__o span{
+  display:inline-block;padding:.42rem .95rem;
+  border:1px solid var(--dline);
+  font-family:var(--mno);font-size:var(--label-sm);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--dash);
+  transition:border-color .22s var(--ez-ui),color .22s var(--ez-ui),
+             background-color .22s var(--ez-ui);
+}
+.tier__o:hover span{border-color:var(--edge);color:var(--silver);}
+/* Checked state is CSS-owned, exactly like the .row checkboxes above: with JS
+   off the radios still work, so the lit pill has to follow the real DOM state
+   rather than the JS-written .is-on class. */
+.tier__o input:checked + span,
+.tier__o.is-on span{border-color:var(--ion);color:var(--ion);background:rgba(79,195,247,.07);}
+/* Ordered so engines without :focus-visible keep the plain :focus ring — the
+   input itself is 1px and transparent, so this sibling is the only indicator. */
+.tier__o input:focus + span{outline:2px solid var(--ion);outline-offset:2px;}
+.tier__o input:focus:not(:focus-visible) + span{outline:none;}
+.tier__o input:focus-visible + span{outline:2px solid var(--ion);outline-offset:2px;}
+.tier__note{margin:.7rem 0 0;font-size:var(--fine);line-height:1.5;
+  color:var(--dash-2);max-width:48ch;}
+
+@media (prefers-reduced-motion:reduce){
+  .tier,.tier__o span{transition:none;}
+}
+
 /* ═══ 70-contact.css ═══ */
 /* ══════════════════════════════════════════════════════════════════════════
    70 · DUTY SPLIT · STRAIGHT TALK · CONTACT CLOSE
@@ -2220,6 +2400,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
   <nav class="nav__links" aria-label="Primary">
     <a href="#services">Services</a>
     <a href="#process">Process</a>
+    <a href="#airtime">Content</a>
     <a href="#proof">Work</a>
     <a href="#scope">Scope</a>
     <a href="#contact">Contact</a>
@@ -2433,10 +2614,10 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
         <p class="svc__ix" aria-hidden="true">05</p>
         <p class="svc__ch" aria-hidden="true"><i></i>CH 05</p>
         <h3 class="svc__name" id="svc-n-5">Content &amp; social media management</h3>
-        <p class="svc__blurb">Original content — shot, edited, and published — with the scope capped so the quality stays high.</p>
+        <p class="svc__blurb">Original content — shot, edited, and published — at a cadence built around your business rather than a package.</p>
         <ul class="svc__list">
-          <li>Up to 8 content pieces per month, repurposed across platforms</li>
-          <li>One on-site capture session per month (up to 4 hours)</li>
+          <li>Content shot, edited, and published on a cadence we set with you</li>
+          <li>On-site capture sessions scheduled to your plan</li>
           <li>Professional editing into posts, reels, and shorts</li>
           <li>Captions, hashtags, scheduling, publishing</li>
           <li>Monthly content calendar</li>
@@ -2454,6 +2635,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
             <li>Google Business Profile</li>
           </ul>
         </div>
+        <p class="svc__note"><span class="svc__note-k">Your call</span> Light, standard, or heavy — you pick the cadence and the channels, and we quote that. We don't sell content by the piece.</p>
       </article>
 
       <article class="svc__card rv" data-tilt aria-labelledby="svc-n-6">
@@ -2537,14 +2719,181 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
   </div>
 </section>
 
-<!-- ══ 04 · ACTIVE PROJECTS ══════════════════════════════════════════════
+<!-- ══ 04 · AIRTIME ═════════════════════════════════════════════════════
+     The content half of the pitch. Two movements: what we shoot (a storyboard
+     sheet of 9:16 frames drawn in the site's own line language — deliberately
+     illustration, never client footage) and where it goes (the channel rack).
+     No piece counts anywhere: cadence is set per client, never sold by the
+     piece. If a quantity ever creeps back into this section, it is a bug. -->
+<section class="sec sec--pit" id="airtime" aria-labelledby="atTitle">
+  <div class="wrap">
+
+    <p class="eyebrow rv">04 — AIRTIME</p>
+    <h2 class="h2 rv" id="atTitle">SHOT HERE. <span class="sl__hot">SEEN EVERYWHERE.</span></h2>
+    <p class="lede rv">Your website is where people land. Content is how they find it. We shoot it, cut it, caption it, and put it out — so the business keeps showing up in the feeds your customers are already scrolling.</p>
+
+    <p class="rack__k rack__k--top rv">What we shoot</p>
+
+    <div class="sl__strip">
+
+      <figure class="sl__frame rv">
+        <span class="sl__slate" aria-hidden="true"><b>Shot 01</b><i>Dolly in</i></span>
+        <div class="sl__art">
+          <svg viewBox="0 0 90 160" aria-hidden="true" focusable="false">
+            <path class="ln" d="M12 148 L34 92 M78 148 L56 92"/>
+            <path class="ln faint" d="M12 46 L34 92 M78 46 L56 92"/>
+            <path class="ln" d="M34 92 H56"/>
+            <rect class="ln" x="38" y="62" width="14" height="30"/>
+            <path class="ion" d="M45 138 V108"/>
+            <path class="ion" d="M40 116 L45 106 L50 116"/>
+          </svg>
+        </div>
+        <figcaption class="sl__cap">
+          <h3 class="sl__t">Walkthrough</h3>
+          <p class="sl__d">How a space actually feels to move through.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="sl__frame rv">
+        <span class="sl__slate" aria-hidden="true"><b>Shot 02</b><i>Cut</i></span>
+        <div class="sl__art">
+          <svg viewBox="0 0 90 160" aria-hidden="true" focusable="false">
+            <path class="ln dash" d="M45 26 V134"/>
+            <path class="ln faint" d="M16 66 H38 M16 78 H33 M16 90 H36"/>
+            <path class="ln faint" d="M19 104 L34 116 M19 116 L34 104"/>
+            <path class="ion" d="M52 66 H76 M52 78 H76 M52 90 H68"/>
+            <path class="ion" d="M54 110 L60 117 L74 102"/>
+          </svg>
+        </div>
+        <figcaption class="sl__cap">
+          <h3 class="sl__t">Before / after</h3>
+          <p class="sl__d">The whole change, in one cut.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="sl__frame rv">
+        <span class="sl__slate" aria-hidden="true"><b>Shot 03</b><i>Locked off</i></span>
+        <div class="sl__art">
+          <svg viewBox="0 0 90 160" aria-hidden="true" focusable="false">
+            <circle class="ln" cx="45" cy="62" r="13"/>
+            <path class="ln" d="M22 106 a23 23 0 0 1 46 0"/>
+            <rect class="ln" x="14" y="118" width="62" height="14"/>
+            <rect class="fill" x="14" y="118" width="3" height="14"/>
+            <path class="ln faint" d="M23 124 H50 M23 128.5 H40"/>
+          </svg>
+        </div>
+        <figcaption class="sl__cap">
+          <h3 class="sl__t">Testimonial</h3>
+          <p class="sl__d">A customer saying it better than you can.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="sl__frame rv">
+        <span class="sl__slate" aria-hidden="true"><b>Shot 04</b><i>Orbit</i></span>
+        <div class="sl__art">
+          <svg viewBox="0 0 90 160" aria-hidden="true" focusable="false">
+            <ellipse class="ion dash" cx="45" cy="82" rx="30" ry="14"/>
+            <rect class="ln" x="33" y="68" width="24" height="20"/>
+            <path class="ln faint" d="M33 68 L45 57 L57 68"/>
+            <circle class="fill" cx="75" cy="82" r="2.8"/>
+            <path class="ln faint" d="M20 120 H70 M64 116 L70 120 L64 124"/>
+          </svg>
+        </div>
+        <figcaption class="sl__cap">
+          <h3 class="sl__t">Aerial</h3>
+          <p class="sl__d">The whole property in a single move.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="sl__frame rv">
+        <span class="sl__slate" aria-hidden="true"><b>Shot 05</b><i>Rack focus</i></span>
+        <div class="sl__art">
+          <svg viewBox="0 0 90 160" aria-hidden="true" focusable="false">
+            <rect class="ln" x="36" y="58" width="18" height="40" rx="4"/>
+            <path class="ln faint" d="M36 72 H54"/>
+            <path class="ion" d="M24 50 V44 H30 M60 44 H66 V50 M66 106 V112 H60 M30 112 H24 V106"/>
+            <path class="ln faint dash" d="M18 126 H72"/>
+          </svg>
+        </div>
+        <figcaption class="sl__cap">
+          <h3 class="sl__t">Detail</h3>
+          <p class="sl__d">The craftsmanship people walk right past.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="sl__frame rv">
+        <span class="sl__slate" aria-hidden="true"><b>Shot 06</b><i>Time-lapse</i></span>
+        <div class="sl__art">
+          <svg viewBox="0 0 90 160" aria-hidden="true" focusable="false">
+            <path class="ln" d="M12 128 H78"/>
+            <rect class="ln faint" x="16" y="110" width="15" height="18"/>
+            <rect class="ln" x="37" y="94" width="15" height="34"/>
+            <rect class="ion" x="58" y="72" width="15" height="56"/>
+            <path class="ln faint" d="M16 142 H70 M64 138 L70 142 L64 146"/>
+          </svg>
+        </div>
+        <figcaption class="sl__cap">
+          <h3 class="sl__t">Progress</h3>
+          <p class="sl__d">Weeks of work in fifteen seconds.</p>
+        </figcaption>
+      </figure>
+
+    </div>
+
+    <div class="rack">
+      <p class="rack__k rv">Where it goes</p>
+      <ul class="rack__list rv">
+        <li class="rack__ch">
+          <span class="rack__n">CH 01</span>
+          <span class="rack__p">Instagram</span>
+          <span class="rack__w">Reels, stories, and a grid that looks deliberate instead of accidental.</span>
+          <span class="rack__sig" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        </li>
+        <li class="rack__ch">
+          <span class="rack__n">CH 02</span>
+          <span class="rack__p">TikTok</span>
+          <span class="rack__w">Short-form cut for the way that feed actually moves.</span>
+          <span class="rack__sig" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        </li>
+        <li class="rack__ch">
+          <span class="rack__n">CH 03</span>
+          <span class="rack__p">YouTube Shorts</span>
+          <span class="rack__w">Vertical video that keeps working long after the day you post it.</span>
+          <span class="rack__sig" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        </li>
+        <li class="rack__ch">
+          <span class="rack__n">CH 04</span>
+          <span class="rack__p">Facebook</span>
+          <span class="rack__w">Where a lot of your local customers still spend their evenings.</span>
+          <span class="rack__sig" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        </li>
+        <li class="rack__ch">
+          <span class="rack__n">CH 05</span>
+          <span class="rack__p">LinkedIn</span>
+          <span class="rack__w">The room where B2B referrals and hiring conversations happen.</span>
+          <span class="rack__sig" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        </li>
+        <li class="rack__ch">
+          <span class="rack__n">CH 06</span>
+          <span class="rack__p">Google Business Profile</span>
+          <span class="rack__w">Posts and photos on the listing people check before they call you.</span>
+          <span class="rack__sig" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        </li>
+      </ul>
+      <p class="rack__note rv">Not every business needs every channel. We pick the ones where your customers actually are and keep those genuinely alive — cadence set with you, never sold by the piece.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ 05 · ACTIVE PROJECTS ══════════════════════════════════════════════
      Proof before promises. Real screenshots of live client builds, framed in
      browser-chrome cards. Images live in work/ and ship with the deploy;
      the third slot is deliberately left open as a CTA. -->
 <section class="sec" id="proof" aria-labelledby="wkTitle">
   <div class="wrap">
 
-    <p class="eyebrow rv">04 — ACTIVE PROJECTS</p>
+    <p class="eyebrow rv">05 — ACTIVE PROJECTS</p>
     <h2 class="h2 rv" id="wkTitle">PROOF, NOT <span class="wk__hot">PROMISES</span>.</h2>
     <p class="lede rv">We'd rather show you than tell you. These are live builds for real businesses — click through and poke around.</p>
 
@@ -2598,7 +2947,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 <section class="sec sec--pit" id="drafts" aria-labelledby="dfTitle">
   <div class="wrap">
 
-    <p class="eyebrow rv">05 — THE DRAFTS</p>
+    <p class="eyebrow rv">06 — THE DRAFTS</p>
     <h2 class="h2 rv" id="dfTitle">DRAWN FOR NOBODY. <span class="wk__hot">YET.</span></h2>
     <p class="lede rv">Full concept builds for businesses that don't exist. Walk through the live demo — and if one feels like yours, claim it: we rebrand the whole design around your business and build it out for real.</p>
 
@@ -2660,7 +3009,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 
   <div class="wrap">
 
-    <p class="eyebrow rv">06 — CAPABILITIES</p>
+    <p class="eyebrow rv">07 — CAPABILITIES</p>
     <h2 class="h2 rv" id="capTitle">Everything the business needs.
       Under <span class="cap__acc">one</span> roof.</h2>
 
@@ -2760,7 +3109,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 <section class="sec sec--pit" id="scope">
   <div class="wrap">
 
-    <p class="eyebrow rv">07 — BUILD YOUR SCOPE</p>
+    <p class="eyebrow rv">08 — BUILD YOUR SCOPE</p>
     <h2 class="h2 rv">PICK WHAT YOU NEED. WE'LL <span class="scope__ac">PRICE</span> IT ON A CALL.</h2>
     <p class="lede rv">Check the pieces that fit your business. It takes about thirty seconds, and it means our first call starts with substance instead of discovery.</p>
 
@@ -2800,13 +3149,27 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
           </label>
 
           <label class="row is-on">
-            <input type="checkbox" data-kind="core" checked>
+            <input type="checkbox" data-kind="core" data-tiered checked>
             <span class="row__box" aria-hidden="true"></span>
             <span class="row__b">
               <span class="row__n">Content &amp; social media management</span>
-              <span class="row__note">8 pieces a month, on-site shoot, editing, publishing</span>
+              <span class="row__note">On-site shoots, editing, scheduling, publishing</span>
             </span>
           </label>
+
+          <!-- Cadence, not counts. The radios are a sibling of the content row
+               rather than nested inside its <label>, which would swallow their
+               clicks; 65-estimator.js appends the choice to that row's summary
+               line and dims this group when content is unchecked. -->
+          <div class="tier" id="tierBox" role="group" aria-labelledby="tierLbl">
+            <p class="tier__k" id="tierLbl">Cadence</p>
+            <div class="tier__opts">
+              <label class="tier__o"><input type="radio" name="cadence" value="Light"><span>Light</span></label>
+              <label class="tier__o"><input type="radio" name="cadence" value="Standard" checked><span>Standard</span></label>
+              <label class="tier__o"><input type="radio" name="cadence" value="Heavy"><span>Heavy</span></label>
+            </div>
+            <p class="tier__note">A steady presence, a consistent month, or always-on. We set the exact rhythm and channels together on the call — nothing is sold by the piece.</p>
+          </div>
 
           <label class="row">
             <input type="checkbox" data-kind="core">
@@ -2849,21 +3212,9 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
           </label>
 
           <!-- Quantity rows are divs, not labels: a wrapping <label> would swallow
-               clicks meant for the stepper buttons. -->
-          <div class="row row--q">
-            <span class="row__b">
-              <span class="row__n">Extra social posts</span>
-              <span class="row__note">Beyond the 8 included each month</span>
-            </span>
-            <span class="qty">
-              <button type="button" class="qty__b" data-step="-1" aria-label="One fewer extra social post">&#8722;</button>
-              <input class="qty__v" type="number" value="0" min="0" max="40" step="1"
-                     inputmode="numeric" autocomplete="off"
-                     aria-label="Extra social posts per month">
-              <button type="button" class="qty__b" data-step="1" aria-label="One more extra social post">+</button>
-            </span>
-          </div>
-
+               clicks meant for the stepper buttons. There is deliberately no
+               "extra posts" row — that only makes sense against a fixed
+               included count, and cadence replaced counts. -->
           <div class="row row--q">
             <span class="row__b">
               <span class="row__n">Extra on-site shoot</span>
@@ -2903,7 +3254,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
      ═════════════════════════════════════════════════════════════════════════ -->
 <section class="sec" id="duty">
   <div class="wrap">
-    <p class="eyebrow rv">08 — WHO DOES WHAT</p>
+    <p class="eyebrow rv">09 — WHO DOES WHAT</p>
     <h2 class="h2 rv">TWO SHORT LISTS, SO NOTHING STALLS.</h2>
 
     <div class="duty__grid">
@@ -2944,7 +3295,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
      ═════════════════════════════════════════════════════════════════════════ -->
 <section class="sec sec--pit" id="contact">
   <div class="wrap">
-    <p class="eyebrow rv">09 — START A PROJECT</p>
+    <p class="eyebrow rv">10 — START A PROJECT</p>
     <h2 class="h2 rv">TELL US ABOUT THE <span class="cta__accent">BUSINESS</span>.</h2>
     <p class="lede rv">A 20-minute call is usually enough to know whether this is a fit. If it isn't, we'll say so.</p>
 
@@ -3054,6 +3405,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
         <ul class="foot__list">
           <li><a href="#services">Services</a></li>
           <li><a href="#process">Process</a></li>
+          <li><a href="#airtime">Content</a></li>
           <li><a href="#proof">Work</a></li>
           <li><a href="#scope">Scope</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -3091,7 +3443,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 
 <div class="tb__block" aria-hidden="true">
   <div class="tb__row"><span>Project</span><b>Marketing system</b></div>
-  <div class="tb__row"><span>Sheet</span><b id="tbSheet">00 of 09</b></div>
+  <div class="tb__row"><span>Sheet</span><b id="tbSheet">00 of 10</b></div>
   <div class="tb__row"><span>Drawn by</span><b><i>EZHD</i></b></div>
   <div class="tb__row"><span>Checked by</span><b><i>EZHD</i> · Utah</b></div>
 </div>
@@ -4225,6 +4577,11 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
   var aside   = $('.scope__aside');
   var checks  = $$('input[type=checkbox][data-kind]', form);
   var qtys    = $$('.qty__v', form);
+  /* Cadence radios live inside the form, so the delegated change/input
+     listeners below already re-render on selection — they need reading, not
+     wiring. A row opts in by carrying data-tiered. */
+  var tiers   = $$('input[type=radio][name=cadence]', form);
+  var tierBox = $('#tierBox');
 
   var prev  = [];
   var first = true;
@@ -4264,18 +4621,41 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
     return { lo: num(input.getAttribute('min'), 0), hi: num(input.getAttribute('max'), 99) };
   }
 
+  /* The selected cadence, or '' if the group is missing. Also keeps the
+     pills' is-on state in sync, since the radios themselves are hidden. */
+  function tierPick() {
+    var i, pick = '', lab;
+    for (i = 0; i < tiers.length; i++) {
+      lab = up(tiers[i], 'tier__o');
+      setCls(lab, 'is-on', tiers[i].checked);
+      if (tiers[i].checked) pick = tiers[i].value;
+    }
+    return pick;
+  }
+
   /* Current selection, in document order, as plain display strings. */
   function read() {
     var items = [], i, row, label;
+    var cadence = tierPick();
+    var tiered = false;
 
     for (i = 0; i < checks.length; i++) {
       row = up(checks[i], 'row');
       setCls(row, 'is-on', checks[i].checked);
       if (checks[i].checked) {
         label = nameOf(row);
+        /* The content row carries its cadence into the summary, so the lead
+           arrives knowing the rhythm as well as the service. */
+        if (label && checks[i].getAttribute('data-tiered') !== null) {
+          tiered = true;
+          if (cadence) label += ' — ' + cadence.toLowerCase() + ' cadence';
+        }
         if (label) items.push(label);
       }
     }
+
+    /* Cadence is meaningless with no content service selected. */
+    setCls(tierBox, 'is-off', !tiered);
 
     for (i = 0; i < qtys.length; i++) {
       var q = qtys[i];
@@ -4995,8 +5375,8 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
       for (k = 0; k < secs.length; k++) if (secs[k] === hit) ix = k;
       var n = ix - 1;                       /* intro and hero share sheet 00 */
       if (n < 0) n = 0;
-      if (n > 9) n = 9;
-      var txt = two(n) + ' of 09';
+      if (n > 10) n = 10;
+      var txt = two(n) + ' of 10';
       if (sheetEl.textContent === txt) return;
       sheetEl.textContent = txt;
       sheetEl.classList.add('is-flip');
