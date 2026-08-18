@@ -103,6 +103,21 @@ back to `/#drafts`. **Never ship anything from the original's `assets/img/real/`
 folder — those are the actual club's photos.** The originals live untouched in
 `~/Downloads/Alloy-Homes-main/entrada-pitch/`.
 
+**The service pages** (`services/<slug>/`, added 2026-08-18): six dedicated,
+geo-targeted pages — web-design, website-hosting, local-seo, brand-design,
+social-media-management, paid-advertising — because a one-pager cannot rank for
+per-service local searches (Whitespark: #1 local organic factor is a dedicated
+service page; #2 is geographic relevance). Each is a self-contained static HTML
+file cloned from the web-design exemplar: same <style> skeleton, unique ~600-word
+copy, Service JSON-LD, canonical, three cross-links, FAQ, CTA to /#contact.
+Geography: primary Cache Valley (Logan/Smithfield — matches the GBP service
+area), secondary statewide with the Southern Utah client as proof. The client
+rules above apply in full (no quantities, no guaranteed results, no prices, no
+YouTube). Index cards link out via `.svc__more`; the footer carries a "Service
+sheets" column; all six are in sitemap.xml. When adding a service, clone the
+exemplar and update: sitemap, footer, the card link, and the main JSON-LD
+offer's url.
+
 **Work screenshots** (`work/alloy-homes.jpg`, `work/ezhd-site.jpg`): captured with
 headless Chrome at DSF 2, JPEG q82 via sips. The trick for self-shots:
 `--force-prefers-reduced-motion` lands the fully-composed static page — without it

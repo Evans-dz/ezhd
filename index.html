@@ -70,12 +70,12 @@
     "@type": "OfferCatalog",
     "name": "Services",
     "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Website design & development" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Website hosting & care" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Local SEO & Google Business Profile management" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brand, logo & graphic design" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Content & social media management" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Paid advertising" } }
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Website design & development", "url": "https://ez-hd.co/services/web-design/" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Website hosting & care", "url": "https://ez-hd.co/services/website-hosting/" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Local SEO & Google Business Profile management", "url": "https://ez-hd.co/services/local-seo/" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brand, logo & graphic design", "url": "https://ez-hd.co/services/brand-design/" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Content & social media management", "url": "https://ez-hd.co/services/social-media-management/" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Paid advertising", "url": "https://ez-hd.co/services/paid-advertising/" } }
     ]
   }
 }
@@ -584,7 +584,7 @@ html{scroll-padding-top:4.6rem;}
   padding-block:clamp(3rem,6vw,5rem);
 }
 .foot__grid{
-  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2.5rem;align-items:end;
+  display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:2.5rem;align-items:end;
 }
 /* Badge above the wordmark rather than beside it — the footer wordmark runs to
    7rem, and a badge scaled to match would overpower the whole footer. */
@@ -1143,15 +1143,26 @@ body.is-live.has-xh.in-vf .xh__x,body.is-live.has-xh.in-vf .xh__y{opacity:0;}
   opacity:.85;
 }
 
-/* Pushed to the floor of the card so all cards bottom-align. */
 .svc__note{
-  margin:auto 0 0;
+  margin:1.15rem 0 0;
   padding-top:1.1rem;
   border-top:1px solid var(--dline);
   font-size:var(--fine);
   line-height:1.55;
   color:var(--dash-2);
 }
+/* Pushed to the floor of the card so all cards bottom-align — every card
+   ends on its sheet link, which is also the local-SEO doorway to /services/. */
+.svc__more{
+  margin-top:auto;padding-top:1.2rem;align-self:flex-start;
+  font-family:var(--mno);font-size:var(--label);letter-spacing:.16em;
+  text-transform:uppercase;color:var(--dash);text-decoration:none;
+  transition:color .2s var(--ez-ui);
+}
+.svc__more i{font-style:normal;color:var(--ion);}
+.svc__more:hover{color:var(--white);}
+@media (prefers-reduced-motion:reduce){.svc__more{transition:none;}}
+
 .svc__note-k{
   display:block;
   margin-bottom:.3rem;
@@ -2563,6 +2574,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
           <li>Two rounds of revisions</li>
           <li>14-day post-launch support</li>
         </ul>
+        <a class="svc__more" href="services/web-design/">Full sheet <i>&#8594;</i></a>
       </article>
 
       <article class="svc__card rv" data-tilt aria-labelledby="svc-n-2">
@@ -2580,6 +2592,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
           <li>Monthly performance check and email support</li>
         </ul>
         <p class="svc__note"><span class="svc__note-k">Not included</span> New page builds, redesigns, and new feature work — quoted separately before any work starts.</p>
+        <a class="svc__more" href="services/website-hosting/">Full sheet <i>&#8594;</i></a>
       </article>
 
       <article class="svc__card rv" data-tilt aria-labelledby="svc-n-3">
@@ -2595,6 +2608,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
           <li>On-page local SEO improvements</li>
           <li>Search Console and local ranking tracking</li>
         </ul>
+        <a class="svc__more" href="services/local-seo/">Full sheet <i>&#8594;</i></a>
       </article>
 
       <article class="svc__card rv" data-tilt aria-labelledby="svc-n-4">
@@ -2610,6 +2624,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
           <li>Social profile and post templates</li>
           <li>Delivered as a complete brand kit, print-ready and web-ready</li>
         </ul>
+        <a class="svc__more" href="services/brand-design/">Full sheet <i>&#8594;</i></a>
       </article>
 
       <article class="svc__card rv" data-tilt aria-labelledby="svc-n-5">
@@ -2637,6 +2652,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
           </ul>
         </div>
         <p class="svc__note"><span class="svc__note-k">Your call</span> Light, standard, or heavy — you pick the cadence and the channels, and we quote that. We don't sell content by the piece.</p>
+        <a class="svc__more" href="services/social-media-management/">Full sheet <i>&#8594;</i></a>
       </article>
 
       <article class="svc__card rv" data-tilt aria-labelledby="svc-n-6">
@@ -2653,6 +2669,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
           <li>Monthly performance reporting</li>
         </ul>
         <p class="svc__note"><span class="svc__note-k">Straight up</span> Ad spend is billed to you by the platform — we never mark it up or hold your accounts.</p>
+        <a class="svc__more" href="services/paid-advertising/">Full sheet <i>&#8594;</i></a>
       </article>
 
     </div>
@@ -3385,6 +3402,18 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
         <p class="foot__mark">EZHD</p>
         <p class="foot__tag">Websites &middot; SEO &middot; Content &middot; Brand &middot; Ads &middot; Utah</p>
       </div>
+
+      <nav class="foot__nav rv" aria-label="Service pages">
+        <p class="foot__navh">Service sheets</p>
+        <ul class="foot__list">
+          <li><a href="services/web-design/">Web design</a></li>
+          <li><a href="services/website-hosting/">Hosting &amp; care</a></li>
+          <li><a href="services/local-seo/">Local SEO &amp; GBP</a></li>
+          <li><a href="services/brand-design/">Brand &amp; design</a></li>
+          <li><a href="services/social-media-management/">Social media</a></li>
+          <li><a href="services/paid-advertising/">Paid advertising</a></li>
+        </ul>
+      </nav>
 
       <nav class="foot__nav rv" aria-label="Footer">
         <p class="foot__navh">Sections</p>
