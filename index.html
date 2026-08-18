@@ -1504,9 +1504,9 @@ body.is-live.has-xh.in-vf .xh__x,body.is-live.has-xh.in-vf .xh__y{opacity:0;}
   background:linear-gradient(180deg,rgba(15,20,29,.55),rgba(4,6,10,.9));
 }
 .sl__art svg{display:block;width:100%;height:100%;}
-.sl__art svg .ln{fill:none;stroke:var(--dash-2);stroke-width:1.4;
+.sl__art svg .ln{fill:none;stroke:var(--dash-2);stroke-width:1.9;
   stroke-linecap:round;stroke-linejoin:round;opacity:.85;}
-.sl__art svg .ion{fill:none;stroke:var(--ion);stroke-width:1.4;
+.sl__art svg .ion{fill:none;stroke:var(--ion);stroke-width:1.9;
   stroke-linecap:round;stroke-linejoin:round;}
 .sl__art svg .fill{fill:var(--ion);stroke:none;}
 .sl__art svg .dash{stroke-dasharray:3 4;}
@@ -1552,7 +1552,9 @@ body.is-live.has-xh.in-vf .xh__x,body.is-live.has-xh.in-vf .xh__y{opacity:0;}
 }
 .rack__ch:hover .rack__n{color:var(--ion);}
 .rack__p{
-  flex:0 0 auto;min-width:11.5rem;
+  /* fixed basis, not auto: the longest name (Google Business Profile) would
+     otherwise push its own description out of line with the other channels */
+  flex:0 0 16rem;
   font-family:var(--dsp);font-variation-settings:"wdth" 104,"wght" 760;
   font-size:1.02rem;letter-spacing:-.015em;text-transform:uppercase;color:var(--white);
 }
@@ -2618,7 +2620,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
         <ul class="svc__list">
           <li>Content shot, edited, and published on a cadence we set with you</li>
           <li>On-site capture sessions scheduled to your plan</li>
-          <li>Professional editing into posts, reels, and shorts</li>
+          <li>Professional editing into reels, stories, and feed posts</li>
           <li>Captions, hashtags, scheduling, publishing</li>
           <li>Monthly content calendar</li>
           <li>Community management on business days</li>
@@ -2630,7 +2632,6 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
             <li>Instagram</li>
             <li>Facebook</li>
             <li>TikTok</li>
-            <li>YouTube Shorts</li>
             <li>LinkedIn</li>
             <li>Google Business Profile</li>
           </ul>
@@ -2740,12 +2741,9 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
         <span class="sl__slate" aria-hidden="true"><b>Shot 01</b><i>Dolly in</i></span>
         <div class="sl__art">
           <svg viewBox="0 0 90 160" aria-hidden="true" focusable="false">
-            <path class="ln" d="M12 148 L34 92 M78 148 L56 92"/>
-            <path class="ln faint" d="M12 46 L34 92 M78 46 L56 92"/>
-            <path class="ln" d="M34 92 H56"/>
-            <rect class="ln" x="38" y="62" width="14" height="30"/>
-            <path class="ion" d="M45 138 V108"/>
-            <path class="ion" d="M40 116 L45 106 L50 116"/>
+            <path class="ln" d="M28 106 V72 a17 17 0 0 1 34 0 V106"/>
+            <path class="ln" d="M24 106 H66"/>
+            <path class="ion" d="M45 140 V116 M37 124 L45 114 L53 124"/>
           </svg>
         </div>
         <figcaption class="sl__cap">
@@ -2758,11 +2756,9 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
         <span class="sl__slate" aria-hidden="true"><b>Shot 02</b><i>Cut</i></span>
         <div class="sl__art">
           <svg viewBox="0 0 90 160" aria-hidden="true" focusable="false">
-            <path class="ln dash" d="M45 26 V134"/>
-            <path class="ln faint" d="M16 66 H38 M16 78 H33 M16 90 H36"/>
-            <path class="ln faint" d="M19 104 L34 116 M19 116 L34 104"/>
-            <path class="ion" d="M52 66 H76 M52 78 H76 M52 90 H68"/>
-            <path class="ion" d="M54 110 L60 117 L74 102"/>
+            <path class="fill faint" d="M45 58 a28 28 0 0 0 0 56 Z"/>
+            <circle class="ln" cx="45" cy="86" r="28"/>
+            <path class="ion" d="M45 58 V114"/>
           </svg>
         </div>
         <figcaption class="sl__cap">
@@ -2775,11 +2771,9 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
         <span class="sl__slate" aria-hidden="true"><b>Shot 03</b><i>Locked off</i></span>
         <div class="sl__art">
           <svg viewBox="0 0 90 160" aria-hidden="true" focusable="false">
-            <circle class="ln" cx="45" cy="62" r="13"/>
-            <path class="ln" d="M22 106 a23 23 0 0 1 46 0"/>
-            <rect class="ln" x="14" y="118" width="62" height="14"/>
-            <rect class="fill" x="14" y="118" width="3" height="14"/>
-            <path class="ln faint" d="M23 124 H50 M23 128.5 H40"/>
+            <path class="ln" d="M20 60 H70 a7 7 0 0 1 7 7 V99 a7 7 0 0 1 -7 7 H49 L37 120 V106 H20 a7 7 0 0 1 -7 -7 V67 a7 7 0 0 1 7 -7 Z"/>
+            <path class="ion" d="M27 76 H63"/>
+            <path class="ln" d="M27 86 H63 M27 96 H50"/>
           </svg>
         </div>
         <figcaption class="sl__cap">
@@ -2792,11 +2786,12 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
         <span class="sl__slate" aria-hidden="true"><b>Shot 04</b><i>Orbit</i></span>
         <div class="sl__art">
           <svg viewBox="0 0 90 160" aria-hidden="true" focusable="false">
-            <ellipse class="ion dash" cx="45" cy="82" rx="30" ry="14"/>
-            <rect class="ln" x="33" y="68" width="24" height="20"/>
-            <path class="ln faint" d="M33 68 L45 57 L57 68"/>
-            <circle class="fill" cx="75" cy="82" r="2.8"/>
-            <path class="ln faint" d="M20 120 H70 M64 116 L70 120 L64 124"/>
+            <rect class="ln" x="36" y="77" width="18" height="18" rx="4"/>
+            <path class="ln" d="M36 77 L26 67 M54 77 L64 67 M36 95 L26 105 M54 95 L64 105"/>
+            <circle class="ion" cx="23" cy="64" r="8"/>
+            <circle class="ion" cx="67" cy="64" r="8"/>
+            <circle class="ion" cx="23" cy="108" r="8"/>
+            <circle class="ion" cx="67" cy="108" r="8"/>
           </svg>
         </div>
         <figcaption class="sl__cap">
@@ -2809,10 +2804,9 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
         <span class="sl__slate" aria-hidden="true"><b>Shot 05</b><i>Rack focus</i></span>
         <div class="sl__art">
           <svg viewBox="0 0 90 160" aria-hidden="true" focusable="false">
-            <rect class="ln" x="36" y="58" width="18" height="40" rx="4"/>
-            <path class="ln faint" d="M36 72 H54"/>
-            <path class="ion" d="M24 50 V44 H30 M60 44 H66 V50 M66 106 V112 H60 M30 112 H24 V106"/>
-            <path class="ln faint dash" d="M18 126 H72"/>
+            <circle class="ln" cx="41" cy="80" r="22"/>
+            <path class="ion" d="M57 96 L72 111"/>
+            <path class="ion" d="M33 72 a11 11 0 0 1 8 -8"/>
           </svg>
         </div>
         <figcaption class="sl__cap">
@@ -2825,11 +2819,9 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
         <span class="sl__slate" aria-hidden="true"><b>Shot 06</b><i>Time-lapse</i></span>
         <div class="sl__art">
           <svg viewBox="0 0 90 160" aria-hidden="true" focusable="false">
-            <path class="ln" d="M12 128 H78"/>
-            <rect class="ln faint" x="16" y="110" width="15" height="18"/>
-            <rect class="ln" x="37" y="94" width="15" height="34"/>
-            <rect class="ion" x="58" y="72" width="15" height="56"/>
-            <path class="ln faint" d="M16 142 H70 M64 138 L70 142 L64 146"/>
+            <circle class="ln" cx="45" cy="86" r="26"/>
+            <path class="ion" d="M45 68 V86 L58 94"/>
+            <path class="ln" d="M45 52 V60 M45 112 V120 M11 86 H19 M71 86 H79"/>
           </svg>
         </div>
         <figcaption class="sl__cap">
@@ -2857,24 +2849,18 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
         </li>
         <li class="rack__ch">
           <span class="rack__n">CH 03</span>
-          <span class="rack__p">YouTube Shorts</span>
-          <span class="rack__w">Vertical video that keeps working long after the day you post it.</span>
-          <span class="rack__sig" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-        </li>
-        <li class="rack__ch">
-          <span class="rack__n">CH 04</span>
           <span class="rack__p">Facebook</span>
           <span class="rack__w">Where a lot of your local customers still spend their evenings.</span>
           <span class="rack__sig" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
         </li>
         <li class="rack__ch">
-          <span class="rack__n">CH 05</span>
+          <span class="rack__n">CH 04</span>
           <span class="rack__p">LinkedIn</span>
           <span class="rack__w">The room where B2B referrals and hiring conversations happen.</span>
           <span class="rack__sig" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
         </li>
         <li class="rack__ch">
-          <span class="rack__n">CH 06</span>
+          <span class="rack__n">CH 05</span>
           <span class="rack__p">Google Business Profile</span>
           <span class="rack__w">Posts and photos on the listing people check before they call you.</span>
           <span class="rack__sig" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
@@ -3058,7 +3044,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
       <article class="cap__tile" data-cat="grow">
         <span class="cap__ix" aria-hidden="true">06</span>
         <h3 class="cap__t">Social content + reels</h3>
-        <p class="cap__d">Shot on site, edited into posts and shorts, captioned, scheduled, published.</p>
+        <p class="cap__d">Shot on site, edited into reels and posts, captioned, scheduled, published.</p>
       </article>
 
       <article class="cap__tile" data-cat="grow">
