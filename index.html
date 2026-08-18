@@ -1681,10 +1681,15 @@ body.is-live.has-xh.in-vf .xh__x,body.is-live.has-xh.in-vf .xh__y{opacity:0;}
   overflow:hidden;   /* clips the image zoom; also flattens 3D, so no preserve-3d */
   transition:border-color .26s var(--ez-ui),box-shadow .32s var(--ez-ui);
 }
-a.wk__card:hover,a.wk__card:focus-visible{
+a.wk__card:hover,a.wk__card:focus-visible,div.wk__card:hover{
   border-color:rgba(79,195,247,.45);
   box-shadow:0 18px 44px rgba(0,0,0,.45);
 }
+
+/* draft cards: the chrome+shot are one link, the meta row holds its own CTAs */
+.wk__demo{display:block;color:inherit;text-decoration:none;}
+.wk__acts{display:inline-flex;flex:none;gap:.6rem;margin-left:auto;flex-wrap:wrap;}
+.wk__acts .btn{padding:.62rem 1.05rem;}
 
 /* fake browser chrome — mono, quiet, with a live dot on the right */
 .wk__chrome{
@@ -1707,7 +1712,7 @@ a.wk__card:hover,a.wk__card:focus-visible{
   aspect-ratio:16/10;object-fit:cover;object-position:top center;
   transition:transform .6s var(--ez-out);
 }
-a.wk__card:hover .wk__shot{transform:scale(1.015);}
+a.wk__card:hover .wk__shot,.wk__demo:hover .wk__shot{transform:scale(1.015);}
 
 .wk__meta{
   display:flex;flex-wrap:wrap;align-items:baseline;gap:.4rem 1rem;
@@ -1762,7 +1767,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 
 @media (prefers-reduced-motion:reduce){
   .wk__card,.wk__shot{transition:none;}
-  a.wk__card:hover .wk__shot{transform:none;}
+  a.wk__card:hover .wk__shot,.wk__demo:hover .wk__shot{transform:none;}
   .wk__pulse{box-shadow:none;}
 }
 
@@ -2532,16 +2537,16 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
   </div>
 </section>
 
-<!-- ══ 04 · RECENT WORK ══════════════════════════════════════════════════
-     Proof before promises. Real screenshots of live builds, framed in a
-     browser-chrome card. Images live in work/ and ship with the deploy;
+<!-- ══ 04 · ACTIVE PROJECTS ══════════════════════════════════════════════
+     Proof before promises. Real screenshots of live client builds, framed in
+     browser-chrome cards. Images live in work/ and ship with the deploy;
      the third slot is deliberately left open as a CTA. -->
 <section class="sec" id="proof" aria-labelledby="wkTitle">
   <div class="wrap">
 
-    <p class="eyebrow rv">04 — RECENT WORK</p>
+    <p class="eyebrow rv">04 — ACTIVE PROJECTS</p>
     <h2 class="h2 rv" id="wkTitle">PROOF, NOT <span class="wk__hot">PROMISES</span>.</h2>
-    <p class="lede rv">We'd rather show you than tell you. This is live work — click through and poke around.</p>
+    <p class="lede rv">We'd rather show you than tell you. These are live builds for real businesses — click through and poke around.</p>
 
     <div class="wk__grid">
 
@@ -2560,19 +2565,19 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
         </span>
       </a>
 
-      <div class="wk__card rv">
+      <a class="wk__card rv" data-tilt href="https://connect-shield.com" target="_blank" rel="noopener">
         <span class="wk__chrome" aria-hidden="true">
           <span class="wk__dots"><i></i><i></i><i></i></span>
-          <span class="wk__url">ez-hd.co</span>
-          <span class="wk__live"><span class="wk__pulse"></span>You're here</span>
+          <span class="wk__url">connect-shield.com</span>
+          <span class="wk__live"><span class="wk__pulse"></span>On air</span>
         </span>
-        <img class="wk__shot" src="work/ezhd-site.jpg" alt="This site's own title card: the EZHD badge and wordmark over a field of concentric rings." width="1600" height="1000" loading="lazy" decoding="async">
+        <img class="wk__shot" src="work/connect-shield.jpg" alt="The ConnectShield website: a navy and gold landing page reading 'CMS is scoring your hospice — do you know your number?'" width="2000" height="1250" loading="lazy" decoding="async">
         <span class="wk__meta">
-          <span class="wk__client">EZHD</span>
-          <span class="wk__what">This site — designed, written, and built in-house. The same standard your project gets.</span>
-          <span class="wk__tags" aria-hidden="true"><span>Design + build</span><span>Brand</span></span>
+          <span class="wk__client">ConnectShield</span>
+          <span class="wk__what">Compliance intelligence for hospice agencies &mdash; product site, design and build, live on our hosting.</span>
+          <span class="wk__tags" aria-hidden="true"><span>Design + build</span><span>Product site</span></span>
         </span>
-      </div>
+      </a>
 
       <a class="wk__card wk__card--next rv" href="#contact">
         <span class="wk__nextIx" aria-hidden="true">03</span>
@@ -2585,7 +2590,51 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
   </div>
 </section>
 
-<!-- ══ 05 · CAPABILITY + MARQUEE ═════════════════════════════════════════ -->
+<!-- ══ 05 · THE DRAFTS ═══════════════════════════════════════════════════
+     Concept builds for businesses that don't exist yet. Each draft is a real
+     live demo under drafts/ (separate static pages — the single-file rule
+     protects index.html, not the demos). Claim buttons carry data-claim;
+     90-broadcast.js prefills the contact form's message with the draft name. -->
+<section class="sec sec--pit" id="drafts" aria-labelledby="dfTitle">
+  <div class="wrap">
+
+    <p class="eyebrow rv">05 — THE DRAFTS</p>
+    <h2 class="h2 rv" id="dfTitle">DRAWN FOR NOBODY. <span class="wk__hot">YET.</span></h2>
+    <p class="lede rv">Full concept builds for businesses that don't exist. Walk through the live demo — and if one feels like yours, claim it: we rebrand the whole design around your business and build it out for real.</p>
+
+    <div class="wk__grid">
+
+      <div class="wk__card wk__card--feat rv" data-tilt>
+        <a class="wk__demo" href="drafts/solmesa/" target="_blank" rel="noopener" aria-label="Open the Solmesa live demo in a new tab">
+          <span class="wk__chrome" aria-hidden="true">
+            <span class="wk__dots"><i></i><i></i><i></i></span>
+            <span class="wk__url">ez-hd.co/drafts/solmesa</span>
+            <span class="wk__live"><span class="wk__pulse"></span>Draft 01 &middot; Unclaimed</span>
+          </span>
+          <img class="wk__shot" src="work/draft-solmesa.jpg" alt="The Solmesa concept site: a serif headline reading 'Where the lava meets the light' over a red rock golf course at dusk." width="2000" height="1250" loading="lazy" decoding="async">
+        </a>
+        <span class="wk__meta">
+          <span class="wk__client">Solmesa</span>
+          <span class="wk__what">A private golf club that doesn't exist &mdash; cinematic loader, scroll-driven signature holes, an illustrated routing map, membership tiers. Every word and image is placeholder, waiting for a real name.</span>
+          <span class="wk__acts">
+            <a class="btn btn--wire" href="drafts/solmesa/" target="_blank" rel="noopener">View live demo</a>
+            <a class="btn btn--ion" href="#contact" data-claim="Draft 01 — Solmesa (private club concept)">Claim this draft</a>
+          </span>
+        </span>
+      </div>
+
+      <a class="wk__card wk__card--feat wk__card--next rv" href="#contact" data-claim="a new draft drawn for my industry">
+        <span class="wk__nextIx" aria-hidden="true">02</span>
+        <span class="wk__nextT">On the board</span>
+        <span class="wk__nextD">The next draft is being drawn now. Tell us your industry — restaurant, gym, builder, med-spa, you name it — and we'll draw yours first.</span>
+        <span class="btn btn--wire wk__nextB">Request a draft</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ 06 · CAPABILITY + MARQUEE ═════════════════════════════════════════ -->
 <section class="sec" id="work" aria-labelledby="capTitle">
 
   <!-- Full-bleed kinetic strip. Decorative on purpose: every term below is
@@ -2611,7 +2660,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 
   <div class="wrap">
 
-    <p class="eyebrow rv">05 — CAPABILITIES</p>
+    <p class="eyebrow rv">06 — CAPABILITIES</p>
     <h2 class="h2 rv" id="capTitle">Everything the business needs.
       Under <span class="cap__acc">one</span> roof.</h2>
 
@@ -2711,7 +2760,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 <section class="sec sec--pit" id="scope">
   <div class="wrap">
 
-    <p class="eyebrow rv">06 — BUILD YOUR SCOPE</p>
+    <p class="eyebrow rv">07 — BUILD YOUR SCOPE</p>
     <h2 class="h2 rv">PICK WHAT YOU NEED. WE'LL <span class="scope__ac">PRICE</span> IT ON A CALL.</h2>
     <p class="lede rv">Check the pieces that fit your business. It takes about thirty seconds, and it means our first call starts with substance instead of discovery.</p>
 
@@ -2854,7 +2903,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
      ═════════════════════════════════════════════════════════════════════════ -->
 <section class="sec" id="duty">
   <div class="wrap">
-    <p class="eyebrow rv">07 — WHO DOES WHAT</p>
+    <p class="eyebrow rv">08 — WHO DOES WHAT</p>
     <h2 class="h2 rv">TWO SHORT LISTS, SO NOTHING STALLS.</h2>
 
     <div class="duty__grid">
@@ -2895,7 +2944,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
      ═════════════════════════════════════════════════════════════════════════ -->
 <section class="sec sec--pit" id="contact">
   <div class="wrap">
-    <p class="eyebrow rv">08 — START A PROJECT</p>
+    <p class="eyebrow rv">09 — START A PROJECT</p>
     <h2 class="h2 rv">TELL US ABOUT THE <span class="cta__accent">BUSINESS</span>.</h2>
     <p class="lede rv">A 20-minute call is usually enough to know whether this is a fit. If it isn't, we'll say so.</p>
 
@@ -3042,7 +3091,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 
 <div class="tb__block" aria-hidden="true">
   <div class="tb__row"><span>Project</span><b>Marketing system</b></div>
-  <div class="tb__row"><span>Sheet</span><b id="tbSheet">00 of 08</b></div>
+  <div class="tb__row"><span>Sheet</span><b id="tbSheet">00 of 09</b></div>
   <div class="tb__row"><span>Drawn by</span><b><i>EZHD</i></b></div>
   <div class="tb__row"><span>Checked by</span><b><i>EZHD</i> · Utah</b></div>
 </div>
@@ -4946,8 +4995,8 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
       for (k = 0; k < secs.length; k++) if (secs[k] === hit) ix = k;
       var n = ix - 1;                       /* intro and hero share sheet 00 */
       if (n < 0) n = 0;
-      if (n > 8) n = 8;
-      var txt = two(n) + ' of 08';
+      if (n > 9) n = 9;
+      var txt = two(n) + ' of 09';
       if (sheetEl.textContent === txt) return;
       sheetEl.textContent = txt;
       sheetEl.classList.add('is-flip');
@@ -4993,6 +5042,20 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
           if (on) body.classList.add('in-vf'); else body.classList.remove('in-vf');
         }, { rootMargin: '-30% 0px -30% 0px', threshold: 0 }).observe(proof);
       }
+    }
+  }
+
+  /* ── draft claims: a claim link prefills the contact form's message ── */
+  var claims = EZ.$$('[data-claim]');
+  if (claims.length) {
+    var claimHandler = function () {
+      var msg = $('#f-msg');
+      var v = this.getAttribute('data-claim');
+      if (msg && v) msg.value = 'I want to claim ' + v + '. Build it for my business.';
+    };
+    var ci;
+    for (ci = 0; ci < claims.length; ci++) {
+      claims[ci].addEventListener('click', claimHandler);
     }
   }
 

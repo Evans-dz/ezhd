@@ -72,11 +72,24 @@ Nine sections, in order:
 | `system` | **01 — The system.** Exploded axonometric of the marketing system (`#sysC`), assembled by scroll. Sticky stage inside a 270vh track. **Seven layers**, bottom-up: brand, domain+hosting, site, local search, content, paid ads, reporting |
 | `services` | 02 — Six offerings in a 2×3 grid, 3D card tilt |
 | `process` | 03 — Edit-bay timeline banner (`#flowC`) + scroll-scrubbed rail |
-| `proof` | 04 — Recent work: browser-chrome cards over real screenshots (`work/*.jpg`), third slot is an open CTA. Nav links here as "Work" |
-| `work` | 05 — Capability marquee + filterable grid (12 tiles) |
-| `scope` | 06 — Scope builder. **No prices anywhere** — deliberate |
-| `duty` | 07 — Who does what + "straight talk on results" |
-| `contact` | 08 — Form + direct card (Zac Evans, Dylan Evans) |
+| `proof` | 04 — Active projects: browser-chrome cards over real screenshots (`work/*.jpg`) — Alloy Homes + ConnectShield, third slot is an open CTA. Nav links here as "Work" |
+| `drafts` | 05 — The Drafts: debranded concept builds served as live demos under `drafts/` (see below). Claim buttons carry `data-claim`; 90-broadcast.js prefills the contact form's message |
+| `work` | 06 — Capability marquee + filterable grid (12 tiles) |
+| `scope` | 07 — Scope builder. **No prices anywhere** — deliberate |
+| `duty` | 08 — Who does what + "straight talk on results" |
+| `contact` | 09 — Form + direct card (Zac Evans, Dylan Evans) |
+
+**The drafts** (`drafts/<name>/`): full multi-file demo sites for fictional
+businesses that a visitor can claim. The single-file rule protects `index.html`
+only — drafts are ordinary static pages (Vercel serves their `index.html` at the
+directory URL) and may use their own stacks (Solmesa runs GSAP/Lenis, vendored).
+Draft 01 is **Solmesa**, the debranded Entrada pitch: every real-property photo
+was replaced with the pitch's own AI-generated art (`assets/PROMPTS.md` in the
+original documents the generation), the name/address/architect/rankings/logo
+mark were all swapped, pages carry `noindex` and a fixed DRAFT ribbon linking
+back to `/#drafts`. **Never ship anything from the original's `assets/img/real/`
+folder — those are the actual club's photos.** The originals live untouched in
+`~/Downloads/Alloy-Homes-main/entrada-pitch/`.
 
 **Work screenshots** (`work/alloy-homes.jpg`, `work/ezhd-site.jpg`): captured with
 headless Chrome at DSF 2, JPEG q82 via sips. The trick for self-shots:

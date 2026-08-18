@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>document.documentElement.classList.add('js');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solmesa Club — an EZHD concept draft</title>
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Solmesa — a fictional private golf club, drawn as a concept draft by EZHD. Every word and image is placeholder. Claim this design for your business at ez-hd.co.">
+  <meta property="og:title" content="Solmesa Club — an EZHD concept draft">
+  <meta property="og:description" content="A fictional private club drawn as a demonstration. Claim this design at ez-hd.co.">
+  <meta property="og:image" content="assets/img/hero-2000.jpg">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preload" as="image" href="assets/img/hero-2000.jpg" imagesrcset="assets/img/hero-800.jpg 800w, assets/img/hero-1400.jpg 1400w, assets/img/hero-2000.jpg 2000w" imagesizes="100vw" fetchpriority="high">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant-garamond-latin-500-normal.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-latin-400-normal.woff2" crossorigin>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- ======= PRELOADER ======= -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <svg class="loader-mark" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <g class="mark-rays" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="50" y1="6"  x2="50" y2="14"/>
+          <line x1="50" y1="86" x2="50" y2="94"/>
+          <line x1="6"  y1="50" x2="14" y2="50"/>
+          <line x1="86" y1="50" x2="94" y2="50"/>
+          <line x1="19" y1="19" x2="24.5" y2="24.5"/>
+          <line x1="75.5" y1="75.5" x2="81" y2="81"/>
+          <line x1="19" y1="81" x2="24.5" y2="75.5"/>
+          <line x1="75.5" y1="24.5" x2="81" y2="19"/>
+        </g>
+        <path class="mark-spiral" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+          d="M26 70 H74 M36 70 L50 52 L64 70 M50 24 a13 13 0 1 1 -0.01 0"/>
+      </svg>
+      <div class="loader-word" aria-hidden="true">
+        <span>S</span><span>O</span><span>L</span><span>M</span><span>E</span><span>S</span><span>A</span>
+      </div>
+      <p class="loader-sub">A Private Club Concept</p>
+    </div>
+    <div class="loader-count"><span id="loadCount">0</span></div>
+    <div class="loader-panel loader-panel--a"></div>
+    <div class="loader-panel loader-panel--b"></div>
+  </div>
+
+  <!-- ======= CURSOR / PROGRESS ======= -->
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"><span class="cursor-label"></span></div>
+  <div class="progress" aria-hidden="true"></div>
+
+  <!-- ======= NAV ======= -->
+  <header class="nav" id="nav">
+    <a class="nav-brand" href="#top" data-scroll aria-label="Solmesa — home">
+      <svg class="brand-mark" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <path stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"
+          d="M22 72 H78 M34 72 L50 50 L66 72 M50 18 a15 15 0 1 1 -0.01 0"/>
+      </svg>
+      <span class="brand-text">
+        <span class="brand-name">Solmesa</span>
+        <span class="brand-tag">A Club Concept</span>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#club" data-scroll>The Club</a>
+      <a href="#course" data-scroll>The Course</a>
+      <a href="#life" data-scroll>Club Life</a>
+      <a href="#membership" data-scroll>Membership</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="nav-login" href="#" aria-label="Member login">Member Login</a>
+      <a class="btn btn--solid btn--small" href="#inquire" data-scroll data-magnetic><span>Inquire</span></a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ======= FULLSCREEN MENU ======= -->
+  <div class="menu" id="menu" aria-hidden="true">
+    <div class="menu-bg"></div>
+    <div class="menu-media" aria-hidden="true">
+      <img src="assets/img/terrace-1376.jpg" srcset="assets/img/terrace-800.jpg 800w, assets/img/terrace-1376.jpg 1376w" sizes="38vw" width="1376" height="768" alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="menu-inner">
+      <nav class="menu-links" aria-label="Menu">
+        <a href="#club" data-scroll><em>01</em><span>The Club</span></a>
+        <a href="#course" data-scroll><em>02</em><span>The Course</span></a>
+        <a href="#life" data-scroll><em>03</em><span>Club Life</span></a>
+        <a href="#membership" data-scroll><em>04</em><span>Membership</span></a>
+        <a href="#setting" data-scroll><em>05</em><span>The Setting</span></a>
+        <a href="#inquire" data-scroll><em>06</em><span>Inquire</span></a>
+      </nav>
+      <div class="menu-foot">
+        <p>Solmesa is a fictional club —<br>an EZHD concept draft.</p>
+        <p><a href="/#contact">Claim this draft</a><br><a href="https://ez-hd.co">ez-hd.co</a></p>
+        <div class="menu-social">
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="Facebook">Facebook</a>
+          <a href="#" aria-label="YouTube">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <!-- ======= HERO ======= -->
+    <section class="hero" id="top">
+      <div class="hero-media" id="heroMedia">
+        <img src="assets/img/hero-2000.jpg" srcset="assets/img/hero-800.jpg 800w, assets/img/hero-1400.jpg 1400w, assets/img/hero-2000.jpg 2000w" sizes="100vw" width="2000" height="848" alt="Emerald fairway winding through black lava fields toward red Navajo sandstone cliffs at golden hour" fetchpriority="high" decoding="async">
+        <img data-src="assets/img/dusk-green-1400.jpg" data-srcset="assets/img/dusk-green-800.jpg 800w, assets/img/dusk-green-1400.jpg 1400w" data-sizes="100vw" width="1376" height="768" alt="" decoding="async" aria-hidden="true">
+        <img data-src="assets/img/lava-green-2000.jpg" data-srcset="assets/img/lava-green-800.jpg 800w, assets/img/lava-green-1400.jpg 1400w, assets/img/lava-green-2000.jpg 2000w" data-sizes="100vw" width="2752" height="1536" alt="" decoding="async" aria-hidden="true">
+      </div>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <p class="eyebrow hero-eyebrow">Solmesa Club&nbsp;&nbsp;·&nbsp;&nbsp;Red Rock Country, Utah</p>
+        <h1 class="hero-title">
+          <span class="ht-line" data-chars>Where the lava</span>
+          <span class="ht-line ht-line--em" data-chars>meets the light</span>
+        </h1>
+        <p class="hero-sub">Private golf carved through ancient lava and red Navajo sandstone —
+        a championship routing drawn through the heart of red rock country.</p>
+        <div class="hero-cta">
+          <a class="btn btn--solid" href="#club" data-scroll data-magnetic><span>Discover Solmesa</span></a>
+          <a class="btn" href="#membership" data-scroll data-magnetic><span>Membership</span></a>
+        </div>
+      </div>
+      <div class="hero-foot">
+        <div class="hf-badge">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+          <span>Concept draft — claim this design for your club</span>
+        </div>
+        <button class="hf-scroll" id="scrollCue" aria-label="Scroll to explore">
+          <span>Scroll</span><i></i>
+        </button>
+        <div class="hf-weather" title="Concept conditions">
+          <i class="dot"></i>
+          <span>74° · Clear skies · <b id="localTime">4:42 PM</b> in red rock country</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= MARQUEE ======= -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track" id="marqueeTrack">
+        <div class="marquee-set">
+          <span>300 Days of Sunshine</span><i>✦</i>
+          <span>A Concept Draft by EZHD</span><i>✦</i>
+          <span>Claim This Design</span><i>✦</i>
+          <span>7,000+ Championship Yards</span><i>✦</i>
+          <span>Lava · Sandstone · Light</span><i>✦</i>
+          <span>Four-Season Private Club</span><i>✦</i>
+        </div>
+        <div class="marquee-set">
+          <span>300 Days of Sunshine</span><i>✦</i>
+          <span>A Concept Draft by EZHD</span><i>✦</i>
+          <span>Claim This Design</span><i>✦</i>
+          <span>7,000+ Championship Yards</span><i>✦</i>
+          <span>Lava · Sandstone · Light</span><i>✦</i>
+          <span>Four-Season Private Club</span><i>✦</i>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= MANIFESTO ======= -->
+    <section class="section manifesto" id="club">
+      <div class="wrap">
+        <p class="eyebrow" data-reveal>The Club</p>
+        <h2 class="manifesto-text" id="manifestoText">Some places you visit. Solmesa, you belong to. Carved through black basalt and framed by red sandstone cliffs, this is a private world where championship golf, four-season sunshine, and genuine camaraderie live side by side.</h2>
+        <div class="stats" id="stats">
+          <div class="stat" data-reveal>
+            <span class="stat-num"><b data-count="18">0</b></span>
+            <span class="stat-label">Holes drawn through lava fields and arroyo</span>
+          </div>
+          <div class="stat" data-reveal>
+            <span class="stat-num"><b data-count="7000">0</b><i>+</i></span>
+            <span class="stat-label">Yards of championship golf through lava and arroyo</span>
+          </div>
+          <div class="stat" data-reveal>
+            <span class="stat-num"><b data-count="300">0</b></span>
+            <span class="stat-label">Days of sunshine — a true play-every-day climate</span>
+          </div>
+          <div class="stat" data-reveal>
+            <span class="stat-num"><b data-count="4">0</b></span>
+            <span class="stat-label">Signature holes on the closing stretch</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= COURSE INTRO ======= -->
+    <section class="section course" id="course">
+      <div class="wrap course-head">
+        <div class="course-head-copy">
+          <p class="eyebrow" data-reveal>The Course</p>
+          <h2 class="h2" data-words>Sculpted by fire.<br>Finished by a master.</h2>
+          <p class="lede" data-reveal>A thousand years ago, lava poured across this desert and froze mid-motion.
+          Eighteen emerald ribbons thread through it now, tee to green.
+          The result is one of golf's most distinctive playing experiences: rugged, cinematic, and unforgettable.</p>
+        </div>
+        <figure class="course-quote" data-reveal>
+          <blockquote>&ldquo;Golf at its very best is played through a beautiful landscape.&rdquo;</blockquote>
+          <figcaption>— From the design brief</figcaption>
+        </figure>
+      </div>
+      <div class="course-banner">
+        <div class="pimg" data-parallax="14">
+          <img src="assets/img/banner-2000.jpg" srcset="assets/img/banner-800.jpg 800w, assets/img/banner-1400.jpg 1400w, assets/img/banner-2000.jpg 2000w" sizes="100vw" width="2000" height="735" alt="Panoramic view of an emerald fairway winding through black lava fields" loading="lazy" decoding="async">
+        </div>
+      </div>
+
+      <!-- Signature holes scrollytelling -->
+      <div class="holes" id="holes">
+        <div class="holes-sticky">
+          <div class="holes-frame">
+            <div class="hole-img is-active" data-hole-img="0"><img src="assets/img/cliff-fairway-1376.jpg" srcset="assets/img/cliff-fairway-800.jpg 800w, assets/img/cliff-fairway-1376.jpg 1376w" sizes="(max-width: 900px) 100vw, 46vw" width="1376" height="768" alt="Fairway threading through black lava fields" loading="lazy" decoding="async"></div>
+            <div class="hole-img" data-hole-img="1"><img src="assets/img/lava-green-2000.jpg" srcset="assets/img/lava-green-800.jpg 800w, assets/img/lava-green-1400.jpg 1400w, assets/img/lava-green-2000.jpg 2000w" sizes="(max-width: 900px) 100vw, 46vw" width="2000" height="1116" alt="Green surrounded by black lava rock" loading="lazy" decoding="async"></div>
+            <div class="hole-img" data-hole-img="2"><img src="assets/img/banner-2000.jpg" srcset="assets/img/banner-800.jpg 800w, assets/img/banner-1400.jpg 1400w, assets/img/banner-2000.jpg 2000w" sizes="(max-width: 900px) 100vw, 46vw" width="2000" height="735" alt="Fairways running beneath the red mesa wall" loading="lazy" decoding="async"></div>
+            <div class="hole-img" data-hole-img="3"><img src="assets/img/dusk-green-1400.jpg" srcset="assets/img/dusk-green-800.jpg 800w, assets/img/dusk-green-1400.jpg 1400w" sizes="(max-width: 900px) 100vw, 46vw" width="1376" height="768" alt="Closing green at dusk with the clubhouse glowing behind" loading="lazy" decoding="async"></div>
+            <span class="holes-frame-num" id="holesFrameNum">15</span>
+          </div>
+        </div>
+        <div class="holes-list">
+          <p class="holes-intro eyebrow" data-reveal>The signature stretch</p>
+          <article class="hole" data-hole="0">
+            <header><span class="hole-no">15</span><h3>The Lava&nbsp;Fields</h3></header>
+            <ul class="hole-meta"><li>Par 4</li><li>428 yds</li><li>Hcp 5</li></ul>
+            <p>A ribbon of emerald threaded between thousand-year-old basalt flows.
+            The fairway narrows exactly where courage pays — pick your line off the tee and commit.</p>
+          </article>
+          <article class="hole" data-hole="1">
+            <header><span class="hole-no">16</span><h3>The Cauldron</h3></header>
+            <ul class="hole-meta"><li>Par 3</li><li>187 yds</li><li>Hcp 15</li></ul>
+            <p>A single green ringed by black rock, nothing between you and it but carry.
+            One swing, no compromise — the most photographed hole in Southern Utah.</p>
+          </article>
+          <article class="hole" data-hole="2">
+            <header><span class="hole-no">17</span><h3>Black&nbsp;Canyon</h3></header>
+            <ul class="hole-meta"><li>Par 4</li><li>461 yds</li><li>Hcp 1</li></ul>
+            <p>The canyon swallows the timid line. Flirt with the cliffs on the right
+            and the reward is a short iron home. The hardest yes you'll say all day.</p>
+          </article>
+          <article class="hole" data-hole="3">
+            <header><span class="hole-no">18</span><h3>The&nbsp;Homecoming</h3></header>
+            <ul class="hole-meta"><li>Par 5</li><li>549 yds</li><li>Hcp 7</li></ul>
+            <p>A closing crescendo beneath the sandstone. Risk the second shot over the arroyo
+            and walk up to the clubhouse with the whole terrace watching.</p>
+          </article>
+          <p class="holes-note">Hole data shown for concept presentation.</p>
+        </div>
+      </div>
+
+      <!-- Course routing map -->
+      <div class="routing" id="routing">
+        <div class="wrap routing-head">
+          <p class="eyebrow" data-reveal>The Routing</p>
+          <h3 class="h2" data-words>Eighteen, drawn<br>through the lava.</h3>
+        </div>
+        <figure class="routing-map wrap" data-reveal>
+          <div class="routing-svg" id="routingSvg">
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="Illustrative course routing map">
+  <path class="map-contour" d="M-10 130 C160 96 330 150 500 128 C670 106 840 150 1010 122 C1090 110 1150 118 1210 108" stroke="rgba(217,199,167,0.10)" stroke-width="1"/>
+  <path class="map-contour" d="M-10 260 C180 236 350 292 530 268 C710 246 880 288 1060 262 C1110 255 1170 260 1210 250" stroke="rgba(217,199,167,0.10)" stroke-width="1"/>
+  <path class="map-contour" d="M-10 430 C150 408 300 452 460 436 C620 420 780 458 940 440 C1040 429 1130 442 1210 428" stroke="rgba(217,199,167,0.10)" stroke-width="1"/>
+  <path class="map-contour" d="M-10 580 C170 556 330 606 500 588 C670 570 830 612 1000 590 C1080 580 1150 592 1210 580" stroke="rgba(217,199,167,0.10)" stroke-width="1"/>
+  <path class="map-contour" d="M-10 710 C180 686 340 736 520 716 C700 698 870 740 1050 716 C1120 707 1170 716 1210 706" stroke="rgba(217,199,167,0.10)" stroke-width="1"/>
+  <path class="map-mesa" d="M18 80 L34 118 L24 150 L48 196 L34 236 L56 286 L42 334 L64 388 L50 442 L70 498 L58 552" stroke="rgba(196,120,74,0.18)" stroke-width="1.5"/>
+  <path class="map-mesa" d="M78 110 L92 148 L82 182 L102 226 L90 268 L108 314 L96 360 L114 410" stroke="rgba(196,120,74,0.18)" stroke-width="1.5"/>
+  <path class="map-lava" d="M150 560 C170 505 240 478 320 486 C400 494 460 520 520 540 C580 560 630 596 640 650 C650 704 600 748 520 758 C440 768 340 764 260 738 C190 715 138 640 150 560 Z" fill="#141110" stroke="rgba(240,233,219,0.06)" stroke-width="1"/>
+  <path class="map-lava" d="M600 560 C620 512 680 488 740 500 C800 512 836 556 828 612 C820 668 776 706 716 716 C656 726 600 700 584 650 C572 612 584 596 600 560 Z" fill="#141110" stroke="rgba(240,233,219,0.06)" stroke-width="1"/>
+  <path class="map-lava" d="M130 450 C140 412 186 392 232 402 C278 412 296 448 282 486 C268 524 216 538 172 524 C128 510 120 488 130 450 Z" fill="#141110" stroke="rgba(240,233,219,0.06)" stroke-width="1"/>
+  <path class="map-lava" d="M690 730 C696 706 726 694 756 702 C786 710 800 734 788 756 C776 778 736 782 708 770 C684 760 684 754 690 730 Z" fill="#141110" stroke="rgba(240,233,219,0.06)" stroke-width="1"/>
+  <path class="map-water" d="M918 296 C922 284 942 280 954 288 C966 296 964 310 950 314 C934 318 914 308 918 296 Z" fill="#22434c"/>
+  <path class="map-water" d="M988 362 C992 350 1010 348 1020 356 C1030 364 1026 376 1012 378 C998 380 984 372 988 362 Z" fill="#22434c"/>
+  <path class="map-fairway" d="M842 402 C806 356 762 314 714 282 C698 271 682 258 670 246 C662 238 650 244 654 254 C660 268 674 282 690 294 C734 327 776 366 812 412 C822 424 840 418 842 402 Z" fill="#2c392a"/>
+  <path class="map-fairway" d="M648 230 C600 206 550 190 500 176 C452 162 410 144 378 124 C368 118 360 126 366 136 C374 148 392 160 414 170 C458 190 506 204 554 220 C588 232 616 246 636 256 C648 262 656 240 648 230 Z" fill="#2c392a"/>
+  <path class="map-fairway" d="M340 130 C300 138 268 152 246 176 C224 200 210 240 206 284 C205 296 218 300 222 288 C228 268 236 240 252 216 C270 190 300 166 344 152 C356 148 352 128 340 130 Z" fill="#2c392a"/>
+  <path class="map-fairway" d="M232 292 C280 284 330 288 382 292 C450 297 520 296 586 314 C630 326 664 340 688 352 C700 358 694 372 682 368 C650 356 612 344 570 336 C500 322 430 320 360 316 C310 313 266 312 234 314 C222 315 220 294 232 292 Z" fill="#2c392a"/>
+  <path class="map-fairway" d="M782 462 C736 470 690 482 644 492 C586 505 526 510 468 514 C452 515 444 530 460 532 C520 538 586 530 650 518 C700 508 748 494 790 484 C804 480 796 460 782 462 Z" fill="#2c392a"/>
+  <path class="map-fairway" d="M428 522 C392 528 356 536 324 552 C290 570 262 600 244 636 C238 648 252 656 258 644 C272 614 292 588 320 570 C352 550 392 542 430 540 C444 539 442 520 428 522 Z" fill="#2c392a"/>
+  <path class="map-fairway" d="M312 586 C352 600 396 622 442 640 C490 658 546 654 600 636 C616 628 624 644 610 654 C556 674 494 676 438 658 C390 642 344 622 304 604 C290 597 298 581 312 586 Z" fill="#2c392a"/>
+  <path class="map-fairway" d="M668 604 C700 578 722 548 738 516 C754 484 782 458 820 438 C834 431 842 446 830 456 C800 478 776 502 760 532 C744 562 720 592 690 620 C678 631 660 616 668 604 Z" fill="#2c392a"/>
+  <path class="map-path" d="M868 448 C832 432 802 402 788 374 C772 342 722 292 680 268 C642 246 572 214 526 202 C482 190 438 164 404 154 C362 142 294 170 256 190 C226 206 212 242 218 274 C224 298 282 304 332 310 C384 315 438 312 492 314 C546 316 594 328 632 344 C682 364 732 402 766 434 C782 450 770 472 746 480 C702 492 658 504 616 510 C572 516 530 520 492 524 C442 529 382 546 340 562 C302 576 274 594 266 616 C262 634 288 622 324 608 C358 594 410 632 454 654 C500 678 562 648 602 632 C652 612 702 562 740 528 C772 500 822 468 852 450" stroke="rgba(217,199,167,0.28)" stroke-width="1.2" stroke-dasharray="2 7" stroke-linecap="round"/>
+  <path class="map-road" d="M1200 560 C1130 546 1040 526 972 505 C940 495 918 483 904 474" stroke="rgba(217,199,167,0.35)" stroke-width="2.5" stroke-dasharray="1 10" stroke-linecap="round"/>
+  <text class="map-label" x="1005" y="494" text-anchor="middle" font-size="11" letter-spacing="3" fill="#8f8067" transform="rotate(16 1005 494)">CLUB DRIVE</text>
+  <ellipse class="map-green" cx="776" cy="342" rx="10" ry="7" fill="#455c3b"/>
+  <ellipse class="map-green" cx="674" cy="258" rx="9" ry="7" fill="#455c3b"/>
+  <ellipse class="map-green" cx="520" cy="194" rx="11" ry="7" fill="#455c3b"/>
+  <ellipse class="map-green" cx="398" cy="148" rx="9" ry="6" fill="#455c3b"/>
+  <ellipse class="map-green" cx="250" cy="192" rx="10" ry="7" fill="#455c3b"/>
+  <ellipse class="map-green" cx="214" cy="278" rx="9" ry="7" fill="#455c3b"/>
+  <ellipse class="map-green" cx="330" cy="303" rx="10" ry="6" fill="#455c3b"/>
+  <ellipse class="map-green" cx="487" cy="308" rx="11" ry="7" fill="#455c3b"/>
+  <ellipse class="map-green" cx="628" cy="338" rx="9" ry="7" fill="#455c3b"/>
+  <ellipse class="map-green" cx="700" cy="494" rx="10" ry="7" fill="#455c3b"/>
+  <ellipse class="map-green" cx="612" cy="510" rx="9" ry="6" fill="#455c3b"/>
+  <ellipse class="map-green" cx="488" cy="522" rx="11" ry="7" fill="#455c3b"/>
+  <ellipse class="map-green" cx="334" cy="562" rx="9" ry="7" fill="#455c3b"/>
+  <ellipse class="map-green" cx="262" cy="616" rx="10" ry="7" fill="#455c3b"/>
+  <ellipse class="map-green" cx="330" cy="600" rx="11" ry="8" fill="#455c3b"/>
+  <ellipse class="map-green" cx="455" cy="655" rx="11" ry="8" fill="#455c3b"/>
+  <ellipse class="map-green" cx="605" cy="625" rx="11" ry="8" fill="#455c3b"/>
+  <ellipse class="map-green" cx="745" cy="520" rx="11" ry="8" fill="#455c3b"/>
+  <circle class="map-dot" cx="776" cy="342" r="3.5" fill="#6b7862"/><text x="781" y="336" font-size="11" fill="#8f8067">1</text>
+  <circle class="map-dot" cx="674" cy="258" r="3.5" fill="#6b7862"/><text x="679" y="252" font-size="11" fill="#8f8067">2</text>
+  <circle class="map-dot" cx="520" cy="194" r="3.5" fill="#6b7862"/><text x="525" y="188" font-size="11" fill="#8f8067">3</text>
+  <circle class="map-dot" cx="398" cy="148" r="3.5" fill="#6b7862"/><text x="403" y="142" font-size="11" fill="#8f8067">4</text>
+  <circle class="map-dot" cx="250" cy="192" r="3.5" fill="#6b7862"/><text x="255" y="186" font-size="11" fill="#8f8067">5</text>
+  <circle class="map-dot" cx="214" cy="278" r="3.5" fill="#6b7862"/><text x="219" y="272" font-size="11" fill="#8f8067">6</text>
+  <circle class="map-dot" cx="330" cy="303" r="3.5" fill="#6b7862"/><text x="335" y="297" font-size="11" fill="#8f8067">7</text>
+  <circle class="map-dot" cx="487" cy="308" r="3.5" fill="#6b7862"/><text x="492" y="302" font-size="11" fill="#8f8067">8</text>
+  <circle class="map-dot" cx="628" cy="338" r="3.5" fill="#6b7862"/><text x="633" y="332" font-size="11" fill="#8f8067">9</text>
+  <circle class="map-dot" cx="700" cy="494" r="3.5" fill="#6b7862"/><text x="705" y="488" font-size="11" fill="#8f8067">10</text>
+  <circle class="map-dot" cx="612" cy="510" r="3.5" fill="#6b7862"/><text x="617" y="504" font-size="11" fill="#8f8067">11</text>
+  <circle class="map-dot" cx="488" cy="522" r="3.5" fill="#6b7862"/><text x="493" y="516" font-size="11" fill="#8f8067">12</text>
+  <circle class="map-dot" cx="334" cy="562" r="3.5" fill="#6b7862"/><text x="339" y="556" font-size="11" fill="#8f8067">13</text>
+  <circle class="map-dot" cx="262" cy="616" r="3.5" fill="#6b7862"/><text x="267" y="610" font-size="11" fill="#8f8067">14</text>
+  <g class="map-poi">
+    <path d="M900 378 L906 385 L900 392 L894 385 Z" stroke="#c4784a" stroke-width="1.5"/>
+    <text class="map-label" x="914" y="389" font-size="11" letter-spacing="3" fill="#8f8067">POOL</text>
+  </g>
+  <g class="map-poi">
+    <path d="M975 278 L981 285 L975 292 L969 285 Z" stroke="#c4784a" stroke-width="1.5"/>
+    <text class="map-label" x="975" y="266" text-anchor="middle" font-size="11" letter-spacing="3" fill="#8f8067">CASITAS</text>
+  </g>
+  <g id="mapClubhouse">
+    <path d="M848 438 H872 M853 438 L860 428 L867 438 M860 414 a6 6 0 1 1 -0.01 0" stroke="#c4784a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="860" y="464" text-anchor="middle" font-size="11" letter-spacing="3" fill="#d9c7a7">CLUBHOUSE</text>
+  </g>
+  <g class="map-pin" id="mapPin15" data-hole="0">
+    <circle class="map-pin-ring" cx="330" cy="600" r="13" stroke="#c4784a" stroke-width="1.5" fill="rgba(196,120,74,0.10)"/>
+    <circle cx="330" cy="600" r="4" fill="#c4784a"/>
+    <text x="330" y="580" text-anchor="middle" font-size="13" fill="#e0a067">15</text>
+    <circle cx="330" cy="600" r="22" fill="transparent"/>
+  </g>
+  <g class="map-pin" id="mapPin16" data-hole="1">
+    <circle class="map-pin-ring" cx="455" cy="655" r="13" stroke="#c4784a" stroke-width="1.5" fill="rgba(196,120,74,0.10)"/>
+    <circle cx="455" cy="655" r="4" fill="#c4784a"/>
+    <text x="455" y="635" text-anchor="middle" font-size="13" fill="#e0a067">16</text>
+    <circle cx="455" cy="655" r="22" fill="transparent"/>
+  </g>
+  <g class="map-pin" id="mapPin17" data-hole="2">
+    <circle class="map-pin-ring" cx="605" cy="625" r="13" stroke="#c4784a" stroke-width="1.5" fill="rgba(196,120,74,0.10)"/>
+    <circle cx="605" cy="625" r="4" fill="#c4784a"/>
+    <text x="605" y="605" text-anchor="middle" font-size="13" fill="#e0a067">17</text>
+    <circle cx="605" cy="625" r="22" fill="transparent"/>
+  </g>
+  <g class="map-pin" id="mapPin18" data-hole="3">
+    <circle class="map-pin-ring" cx="745" cy="520" r="13" stroke="#c4784a" stroke-width="1.5" fill="rgba(196,120,74,0.10)"/>
+    <circle cx="745" cy="520" r="4" fill="#c4784a"/>
+    <text x="745" y="500" text-anchor="middle" font-size="13" fill="#e0a067">18</text>
+    <circle cx="745" cy="520" r="22" fill="transparent"/>
+  </g>
+  <g class="map-compass">
+    <path d="M1130 108 L1130 78" stroke="rgba(217,199,167,0.4)" stroke-width="1.5"/>
+    <path d="M1123 88 L1130 76 L1137 88" stroke="rgba(217,199,167,0.4)" stroke-width="1.5"/>
+    <text x="1130" y="66" text-anchor="middle" font-size="11" fill="#8f8067">N</text>
+  </g>
+</svg>
+          </div>
+          <figcaption class="routing-cap">
+            <span>Illustrative routing — concept only</span>
+            <span class="routing-legend">
+              <i class="lg lg-fairway"></i>Fairways
+              <i class="lg lg-lava"></i>Lava fields
+              <i class="lg lg-pin"></i>The signature stretch
+            </span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ======= LIFE AT ENTRADA — HORIZONTAL GALLERY ======= -->
+    <section class="gallery" id="life">
+      <div class="gallery-pin" id="galleryPin">
+        <div class="gallery-head wrap">
+          <p class="eyebrow" data-reveal>Club Life</p>
+          <h2 class="h2" data-words>Where everything<br>comes together.</h2>
+          <span class="gallery-hint" aria-hidden="true">Scroll →</span>
+        </div>
+        <div class="gallery-track" id="galleryTrack">
+          <figure class="gpanel" data-cursor="View">
+            <div class="gpanel-img"><img src="assets/img/terrace-1376.jpg" srcset="assets/img/terrace-800.jpg 800w, assets/img/terrace-1376.jpg 1376w" sizes="(max-width: 900px) 78vw, 58vw" width="1376" height="768" alt="Candlelit dining terrace under timber beams, red rock silhouettes at dusk" loading="lazy" decoding="async"></div>
+            <figcaption><em>01</em><h3>The Ember Room</h3><p>Fine dining above the fairways — panoramic red rock views from the upper clubhouse, with Cactus Rye pouring below.</p></figcaption>
+          </figure>
+          <figure class="gpanel" data-cursor="View">
+            <div class="gpanel-img"><img src="assets/img/pool-1376.jpg" srcset="assets/img/pool-800.jpg 800w, assets/img/pool-1376.jpg 1376w" sizes="(max-width: 900px) 78vw, 58vw" width="1376" height="768" alt="Resort pool framed by red rock at golden hour" loading="lazy" decoding="async"></div>
+            <figcaption><em>02</em><h3>Pool &amp; Wellness</h3><p>Resort days in desert light — pool, fitness, tennis and pickleball, all framed by the sandstone.</p></figcaption>
+          </figure>
+          <figure class="gpanel" data-cursor="View">
+            <div class="gpanel-img"><img src="assets/img/cliff-fairway-1376.jpg" srcset="assets/img/cliff-fairway-800.jpg 800w, assets/img/cliff-fairway-1376.jpg 1376w" sizes="(max-width: 900px) 78vw, 58vw" width="1376" height="768" alt="Fairway running beneath sheer red cliffs" loading="lazy" decoding="async"></div>
+            <figcaption><em>03</em><h3>Desert Golf, Daily</h3><p>Lessons, clinics, and a course that never plays the same twice — sharpen every part of your game, year-round.</p></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= MEMBERSHIP ======= -->
+    <section class="section membership" id="membership">
+      <div class="wrap">
+        <div class="membership-head">
+          <div>
+            <p class="eyebrow" data-reveal>Membership</p>
+            <h2 class="h2" data-words>Belonging,<br>by invitation.</h2>
+          </div>
+          <p class="lede" data-reveal>It's so much more than joining a club — it's becoming part of a community
+          that feels like family. Friendship, camaraderie, and a calendar that never sits still.</p>
+        </div>
+        <div class="cards">
+          <article class="card" data-tilt data-reveal>
+            <div class="card-glare" aria-hidden="true"></div>
+            <span class="card-no">I</span>
+            <h3>Equity Golf</h3>
+            <p class="card-sub">The full Solmesa life</p>
+            <ul>
+              <li>Unlimited championship golf</li>
+              <li>14-day advance tee times</li>
+              <li>The Ember Room &amp; Cactus Rye dining</li>
+              <li>Reciprocal club network</li>
+              <li>Member rates on guest casitas</li>
+            </ul>
+            <a class="btn btn--card" href="#inquire" data-scroll data-magnetic><span>Request Invitation</span></a>
+          </article>
+          <article class="card card--feature" data-tilt data-reveal>
+            <div class="card-glare" aria-hidden="true"></div>
+            <span class="card-no">II</span>
+            <h3>Club Lifestyle</h3>
+            <p class="card-sub">Everything but the handicap</p>
+            <ul>
+              <li>Pool, fitness &amp; racquet sports</li>
+              <li>Full social calendar access</li>
+              <li>Dining privileges &amp; events</li>
+              <li>Seasonal golf allowances</li>
+              <li>Family &amp; guest programs</li>
+            </ul>
+            <a class="btn btn--card" href="#inquire" data-scroll data-magnetic><span>Request Invitation</span></a>
+          </article>
+          <article class="card" data-tilt data-reveal>
+            <div class="card-glare" aria-hidden="true"></div>
+            <span class="card-no">III</span>
+            <h3>Corporate &amp; National</h3>
+            <p class="card-sub">For the far-flung and the firm</p>
+            <ul>
+              <li>Flexible company designees</li>
+              <li>Business entertaining, done right</li>
+              <li>Reciprocal club network</li>
+              <li>Distant-member privileges</li>
+              <li>Event hosting priority</li>
+            </ul>
+            <a class="btn btn--card" href="#inquire" data-scroll data-magnetic><span>Request Invitation</span></a>
+          </article>
+        </div>
+        <p class="cards-note">Categories shown for concept presentation — final offerings per club documents.</p>
+      </div>
+    </section>
+
+    <!-- ======= THE SETTING ======= -->
+    <section class="setting" id="setting">
+      <div class="setting-bg" data-parallax="18" aria-hidden="true">
+        <img src="assets/img/lava-green-2000.jpg" srcset="assets/img/lava-green-800.jpg 800w, assets/img/lava-green-1400.jpg 1400w, assets/img/lava-green-2000.jpg 2000w" sizes="100vw" width="2000" height="1116" alt="" loading="lazy" decoding="async">
+      </div>
+      <svg class="setting-topo" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-width="1">
+          <path d="M-100,720 C240,600 420,760 720,660 S1200,560 1540,640"/>
+          <path d="M-100,640 C260,520 460,680 760,580 S1220,480 1540,560"/>
+          <path d="M-100,560 C280,440 500,600 800,500 S1240,400 1540,480"/>
+          <path d="M-100,480 C300,360 540,520 840,420 S1260,320 1540,400"/>
+          <path d="M-100,400 C320,280 580,440 880,340 S1280,240 1540,320"/>
+        </g>
+      </svg>
+      <div class="wrap setting-inner">
+        <p class="eyebrow" data-reveal>The Setting</p>
+        <h2 class="h2" data-words>The red rock<br>is the amenity.</h2>
+        <p class="lede" data-reveal>Red rock state parks sit at the doorstep. Zion, Bryce, and the Grand Canyon
+        are day trips. And the sunniest corner of Utah wraps it all in a four-season climate
+        built for being outside.</p>
+        <div class="setting-chips">
+          <div class="chip" data-reveal><b>Next door</b><span>Red rock state park</span></div>
+          <div class="chip" data-reveal><b>40 min</b><span>Zion National Park</span></div>
+          <div class="chip" data-reveal><b>2 hrs</b><span>Las Vegas</span></div>
+          <div class="chip" data-reveal><b>Half-day</b><span>Salt Lake, L.A., San Diego</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= INQUIRE ======= -->
+    <section class="section inquire" id="inquire">
+      <div class="wrap inquire-grid">
+        <div class="inquire-copy">
+          <p class="eyebrow" data-reveal>Inquire</p>
+          <h2 class="h2" data-words>Your club<br>begins here.</h2>
+          <p class="lede" data-reveal>Tell us a little about yourself and our membership team will arrange
+          a private tour — the course, the clubhouse, and a table at The Ember Room at sunset.</p>
+          <div class="inquire-details" data-reveal>
+            <p><b>Draft</b>Solmesa is a fictional club —<br>concept draft 01 by EZHD.</p>
+            <p><b>Claim</b><a href="/#contact">Make it yours at ez-hd.co</a></p>
+          </div>
+        </div>
+        <form class="form" id="inquireForm" novalidate>
+          <div class="form-row">
+            <div class="field"><input type="text" id="fFirst" required autocomplete="given-name"><label for="fFirst">First name</label></div>
+            <div class="field"><input type="text" id="fLast" required autocomplete="family-name"><label for="fLast">Last name</label></div>
+          </div>
+          <div class="field"><input type="email" id="fEmail" required autocomplete="email"><label for="fEmail">Email address</label></div>
+          <div class="field field--select">
+            <select id="fInterest" required>
+              <option value="" selected disabled hidden></option>
+              <option>Membership</option>
+              <option>Golf</option>
+              <option>Community</option>
+              <option>Weddings &amp; Events</option>
+              <option>Other</option>
+            </select>
+            <label for="fInterest">I'm interested in</label>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="field"><textarea id="fMsg" rows="3"></textarea><label for="fMsg">Anything we should know?</label></div>
+          <button class="btn btn--solid btn--wide" type="submit" data-magnetic><span>Request an Introduction</span></button>
+          <p class="form-note">Demo form — no data is sent in this concept preview.</p>
+        </form>
+        <div class="form-success" id="formSuccess" hidden>
+          <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
+            <path stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+              d="M26 70 H74 M36 70 L50 52 L64 70 M50 24 a13 13 0 1 1 -0.01 0"/>
+          </svg>
+          <h3>Thank you.</h3>
+          <p>Our membership team will reach out shortly to arrange your visit.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======= FOOTER ======= -->
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <svg class="brand-mark" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+          <path stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"
+            d="M22 72 H78 M34 72 L50 50 L66 72 M50 18 a15 15 0 1 1 -0.01 0"/>
+        </svg>
+        <p class="footer-word">Solmesa <span>A Private Club Concept</span></p>
+        <p class="footer-tag">Where the lava meets the light</p>
+      </div>
+      <div class="footer-col">
+        <h4>About</h4>
+        <p>A fictional club, drawn as a<br>demonstration. No such place — yet.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Claim</h4>
+        <p><a href="/#contact">Claim this draft</a><br><a href="mailto:ezhdco@gmail.com">ezhdco@gmail.com</a></p>
+      </div>
+      <div class="footer-col">
+        <h4>Follow</h4>
+        <p><a href="#">Instagram</a><br><a href="#">Facebook</a><br><a href="#">YouTube</a></p>
+      </div>
+    </div>
+    <div class="wrap footer-bottom">
+      <p>© <span id="year">2026</span> Solmesa — an EZHD concept draft. Every word and image is placeholder.</p>
+      <p>Digital experience by <a href="https://ez-hd.co" target="_blank" rel="noreferrer">EZHD</a></p>
+    </div>
+  </footer>
+
+  <a class="mcta" href="#inquire" data-scroll>Request an Introduction</a>
+
+  <!-- EZHD draft ribbon: routes the demo back to the studio. -->
+  <a class="draft-ribbon" href="/#drafts" aria-label="This is EZHD concept draft 01 — claim it at ez-hd.co">
+    <b>DRAFT 01</b><span>SOLMESA — an EZHD concept</span><i>Claim this design →</i>
+  </a>
+  <style>
+    .draft-ribbon{position:fixed;left:14px;bottom:14px;z-index:200;display:flex;align-items:center;gap:10px;
+      padding:9px 14px;background:rgba(10,8,7,.92);border:1px solid rgba(217,199,167,.25);border-radius:2px;
+      font-family:"Inter",sans-serif;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+      color:#d9c7a7;text-decoration:none;transition:border-color .25s;}
+    .draft-ribbon b{color:#e0a067;font-weight:600;}
+    .draft-ribbon i{font-style:normal;color:#8f8067;transition:color .25s;}
+    .draft-ribbon:hover{border-color:rgba(224,160,103,.6);}
+    .draft-ribbon:hover i{color:#e0a067;}
+    @media (max-width:700px){.draft-ribbon span{display:none;}}
+    /* the ribbon replaces the hero's own concept badge — same message, same corner */
+    .hf-badge{display:none;}
+  </style>
+
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <script src="vendor/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
