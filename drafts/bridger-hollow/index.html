@@ -982,10 +982,16 @@
     .draft-ribbon:hover{border-color:rgba(236,195,92,.65);}
     .draft-ribbon:hover i{color:#ecc35c;}
     @media (max-width:700px){.draft-ribbon span{display:none;}}
-    /* clear the sticky mobile CTA bar so the two never stack on top of each other */
-    @media (max-width:899.98px){.draft-ribbon{bottom:calc(4.9rem + env(safe-area-inset-bottom));}}
-    /* the ribbon replaces the hero's own award badge — same corner */
-    .hf-badge{display:none;}
+    /* On phones the ribbon sits low in the hero (clear of the scroll cue), then lifts
+       out of the way only while the sticky CTA is actually on screen — the two are
+       never visible at once, so neither has to give up its corner permanently. */
+    @media (max-width:899.98px){
+      .draft-ribbon{bottom:14px;transition:bottom .4s cubic-bezier(.16,1,.3,1),border-color .25s;}
+      .mcta.is-on:not(.is-hide) ~ .draft-ribbon{bottom:calc(4.9rem + env(safe-area-inset-bottom));}
+    }
+    /* The ribbon replaces the hero's own award badge — same corner. visibility, not
+       display, so the badge keeps its slot and the scroll cue stays centred. */
+    .hf-badge{visibility:hidden;}
   </style>
 
   <script src="vendor/gsap.min.js"></script>
