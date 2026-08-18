@@ -110,8 +110,14 @@ per-service local searches (Whitespark: #1 local organic factor is a dedicated
 service page; #2 is geographic relevance). Each is a self-contained static HTML
 file cloned from the web-design exemplar: same <style> skeleton, unique ~600-word
 copy, Service JSON-LD, canonical, three cross-links, FAQ, CTA to /#contact.
-Geography: primary Cache Valley (Logan/Smithfield — matches the GBP service
-area), secondary statewide with the Southern Utah client as proof. The client
+Geography: the GBP service area (screenshotted 2026-08-18) runs the length of
+the state and over its borders — Cache Valley (Logan, Smithfield), Salt Lake
+City, Park City, Cedar City, and the Washington County cluster (St. George,
+Washington, Hurricane, Ivins, Santa Clara, La Verkin), plus Beaver, Kanab,
+Panguitch, Brian Head, Duck Creek Village, and out-of-state Mesquite NV,
+Las Vegas NV, Colorado City AZ. Every service page's areaServed mirrors that
+list; body copy names Cache Valley and St. George on every page and spreads
+the rest across pages so no single page reads stuffed. The client
 rules above apply in full (no quantities, no guaranteed results, no prices, no
 YouTube). Index cards link out via `.svc__more`; the footer carries a "Service
 sheets" column; all six are in sitemap.xml. When adding a service, clone the
