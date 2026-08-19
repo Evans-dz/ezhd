@@ -134,6 +134,15 @@ scenery. Master template lives at `_src/bridger-hollow/`
 (that copy keeps its README + a `node server.js` dev server, both dropped here).
 When editing, change the master and re-copy, or the two silently diverge.
 
+Draft 03 is **Iron Never Changes** (added 2026-08-19) and it breaks the pattern on
+purpose: a REAL prospect (gym-wear brand), so the card reads "Claimed", links OUT to
+the brand's own deploy at iron-never-changes.vercel.app, and has no claim button —
+"Start yours" prefills the contact form instead. Nothing is copied into `drafts/`;
+the whole site lives in its own repo at `~/Downloads/iron-never-changes` (own
+git history, own Vercel project, `node server.js` → :4175). Its brand truth is
+`brand/BRAND-GUIDE.md` + `brand/SHIRT-CONCEPTS.md` in that repo — client materials,
+do not invent outside them. The "on the board" card renumbered 03 → 04.
+
 **The service pages** (`services/<slug>/`, added 2026-08-18): six dedicated,
 geo-targeted pages — web-design, website-hosting, local-seo, brand-design,
 social-media-management, paid-advertising — because a one-pager cannot rank for
