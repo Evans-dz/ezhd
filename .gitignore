@@ -8,3 +8,6 @@
 _src/entrada-pitch/node_modules/
 _src/entrada-pitch/assets/img/
 _src/entrada-pitch/pitch-assets/
+
+# Local editor / assistant config — never committed, never served.
+.claude/
