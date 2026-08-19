@@ -1,2 +1,10 @@
 .DS_Store
 *.log
+
+# Draft master templates live in _src/. Two things there never enter this
+# PUBLIC repo: Entrada's image assets are the real club's photography
+# (assets/img/real/ is unwatermarked originals), and node_modules is 27 MB
+# of restorable deps — `cd _src/entrada-pitch && npm i` brings it back.
+_src/entrada-pitch/node_modules/
+_src/entrada-pitch/assets/img/
+_src/entrada-pitch/pitch-assets/

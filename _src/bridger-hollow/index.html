@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>document.documentElement.classList.add('js');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bridger Hollow Creamery — One Herd, One Valley</title>
+  <meta name="description" content="Farmstead cheese, cultured butter, and small-batch ice cream from a single Jersey herd in Wellsville, Cache Valley, Utah. A fictional concept site & website template.">
+  <meta property="og:title" content="Bridger Hollow Creamery">
+  <meta property="og:description" content="One herd, one valley — farmstead cheese and small-batch ice cream from Cache Valley, Utah.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces-latin-500-normal.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/karla-latin-400-normal.woff2" crossorigin>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- Shared illustration parts -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <g id="cowT">
+        <!-- stylized Jersey cow, facing left, grazing -->
+        <path fill="#5a4632" d="M52 118 h9 v26 l6 4 h-12 z M78 118 h9 v26 l6 4 h-12 z M118 118 h9 v26 l6 4 h-12 z M144 118 h9 v26 l6 4 h-12 z"/>
+        <path fill="#c68e58" d="M38 66 C48 48 84 42 116 46 C146 49 166 60 168 82 C170 100 162 114 148 120 L58 120 C44 114 34 96 34 84 C34 76 35 71 38 66 Z"/>
+        <path fill="#f3ead9" d="M96 46 C112 44 130 46 142 52 C150 66 148 84 138 92 C124 98 108 92 102 78 C98 66 96 56 96 46 Z" opacity=".9"/>
+        <path fill="#f3ead9" d="M60 106 C70 98 84 100 90 110 C92 116 90 120 86 120 L64 120 C58 116 56 110 60 106 Z" opacity=".9"/>
+        <path fill="#c68e58" d="M40 68 C30 76 22 88 18 98 C14 106 16 112 22 114 C30 116 38 110 42 100 Z"/>
+        <path fill="#b57c47" d="M14 92 C6 96 2 104 4 112 C6 122 16 128 26 126 C34 124 40 118 40 108 C40 98 34 92 26 90 C22 89 17 90 14 92 Z"/>
+        <path fill="#8a5a33" d="M6 116 C8 122 14 126 20 126 C18 130 12 131 8 128 C5 125 5 120 6 116 Z"/>
+        <ellipse cx="30" cy="86" rx="8" ry="5" fill="#c68e58" transform="rotate(-32 30 86)"/>
+        <circle cx="20" cy="104" r="2.6" fill="#2e2317"/>
+        <path fill="none" stroke="#a06a3a" stroke-width="5" stroke-linecap="round" d="M166 86 C176 96 176 112 170 126"/>
+        <path fill="#5a4632" d="M167 122 C172 128 172 136 167 141 C163 136 163 128 167 122 Z"/>
+        <path fill="#e8b0a2" d="M136 112 C142 108 150 110 152 116 C152 121 147 124 141 122 Z"/>
+      </g>
+      <g id="treeT">
+        <rect x="42" y="88" width="12" height="44" rx="5" fill="#7a5a3d"/>
+        <circle cx="48" cy="56" r="38" fill="#5d8450"/>
+        <circle cx="20" cy="74" r="24" fill="#679158"/>
+        <circle cx="78" cy="72" r="26" fill="#527a47"/>
+      </g>
+      <g id="baleT">
+        <circle cx="30" cy="30" r="28" fill="#dcb45f"/>
+        <circle cx="30" cy="30" r="17" fill="none" stroke="#c39a3f" stroke-width="3"/>
+        <circle cx="30" cy="30" r="7" fill="none" stroke="#c39a3f" stroke-width="3"/>
+        <path d="M30 2 A28 28 0 0 1 58 30" fill="none" stroke="#eccc82" stroke-width="4" stroke-linecap="round"/>
+      </g>
+      <g id="wheelT">
+        <!-- cheese wheel, side view -->
+        <path fill="#cf9a3d" d="M0 18 C0 8 22 0 50 0 C78 0 100 8 100 18 L100 34 C100 44 78 52 50 52 C22 52 0 44 0 34 Z"/>
+        <ellipse cx="50" cy="16" rx="50" ry="16" fill="#e8c268"/>
+        <ellipse cx="50" cy="16" rx="41" ry="12" fill="#efd07e"/>
+      </g>
+    </defs>
+  </svg>
+
+  <!-- ======= PRELOADER ======= -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <svg class="loader-mark" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <circle class="mark-rim" cx="50" cy="52" r="34" stroke="currentColor" stroke-width="3"/>
+        <path class="mark-wedge" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          d="M50 52 L50 18 M50 52 L76 30 M50 18 A34 34 0 0 1 76 30"/>
+        <g class="mark-eyes" fill="currentColor" stroke="none">
+          <circle cx="40" cy="46" r="3.4"/>
+          <circle cx="58" cy="62" r="4.2"/>
+          <circle cx="43" cy="66" r="2.4"/>
+        </g>
+      </svg>
+      <div class="loader-word" aria-hidden="true">
+        <span>B</span><span>R</span><span>I</span><span>D</span><span>G</span><span>E</span><span>R</span>
+        <span class="lw-gap">&nbsp;</span>
+        <span>H</span><span>O</span><span>L</span><span>L</span><span>O</span><span>W</span>
+      </div>
+      <p class="loader-sub">Creamery · Cache Valley</p>
+    </div>
+    <div class="loader-count"><span id="loadCount">0</span></div>
+    <div class="loader-panel loader-panel--a"></div>
+    <div class="loader-panel loader-panel--b"></div>
+  </div>
+
+  <!-- ======= CURSOR / PROGRESS ======= -->
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"><span class="cursor-label"></span></div>
+  <div class="progress" aria-hidden="true"></div>
+
+  <!-- ======= NAV ======= -->
+  <header class="nav" id="nav">
+    <a class="nav-brand" href="#top" data-scroll aria-label="Bridger Hollow Creamery — home">
+      <svg class="brand-mark" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <circle cx="50" cy="52" r="34" stroke="currentColor" stroke-width="4"/>
+        <path stroke="currentColor" stroke-width="3.5" stroke-linecap="round" d="M50 52 L50 18 M50 52 L76 30"/>
+        <g fill="currentColor"><circle cx="40" cy="46" r="3.4"/><circle cx="58" cy="62" r="4.2"/><circle cx="43" cy="66" r="2.4"/></g>
+      </svg>
+      <span class="brand-text">
+        <span class="brand-name">Bridger Hollow</span>
+        <span class="brand-tag">Creamery · Est. 1998</span>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#story" data-scroll>The Story</a>
+      <a href="#cheese" data-scroll>The Cheese</a>
+      <a href="#farm" data-scroll>The Farm</a>
+      <a href="#club" data-scroll>Curd Club</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="nav-login" href="#visit" data-scroll>Farm Store</a>
+      <a class="btn btn--solid btn--small" href="#order" data-scroll data-magnetic><span>Say Hello</span></a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ======= FULLSCREEN MENU ======= -->
+  <div class="menu" id="menu" aria-hidden="true">
+    <div class="menu-bg"></div>
+    <div class="menu-media" aria-hidden="true">
+      <svg viewBox="0 0 900 1100" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <rect width="900" height="1100" fill="#efe3c8"/>
+        <circle cx="450" cy="430" r="330" fill="#e8d6ae"/>
+        <ellipse cx="450" cy="640" rx="330" ry="90" fill="#b98a55"/>
+        <ellipse cx="450" cy="622" rx="330" ry="90" fill="#cf9f66"/>
+        <g transform="translate(240 430) scale(2.2)">
+          <path fill="#e8c268" d="M0 60 L96 24 L134 44 L38 84 Z"/>
+          <path fill="#cf9a3d" d="M0 60 L38 84 L38 110 L0 84 Z"/>
+          <path fill="#efd07e" d="M134 44 L134 68 L38 110 L38 84 Z"/>
+          <g fill="#dbb254"><circle cx="58" cy="58" r="6"/><circle cx="88" cy="46" r="4.5"/><circle cx="72" cy="72" r="3.5"/></g>
+        </g>
+        <g transform="translate(560 640) scale(1.5)">
+          <path fill="#f6efdd" d="M20 0 h28 v18 c10 8 14 18 14 32 v56 a10 10 0 0 1 -10 10 h-36 a10 10 0 0 1 -10 -10 v-56 c0 -14 4 -24 14 -32 Z"/>
+          <path fill="#dcecf2" d="M6 62 h56 v34 a10 10 0 0 1 -10 10 h-36 a10 10 0 0 1 -10 -10 Z"/>
+          <rect x="18" y="-8" width="32" height="12" rx="4" fill="#c96a4a"/>
+        </g>
+        <g transform="translate(150 700) rotate(-8)">
+          <rect width="220" height="64" rx="10" fill="#8a9c6b"/>
+          <rect x="10" y="10" width="200" height="44" rx="6" fill="#a5b581"/>
+        </g>
+        <path d="M120 950 C300 900 600 900 780 950" stroke="#c9b487" stroke-width="10" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="menu-inner">
+      <nav class="menu-links" aria-label="Menu">
+        <a href="#story" data-scroll><em>01</em><span>The Story</span></a>
+        <a href="#cheese" data-scroll><em>02</em><span>The Cheese</span></a>
+        <a href="#farm" data-scroll><em>03</em><span>The Farm</span></a>
+        <a href="#club" data-scroll><em>04</em><span>The Curd Club</span></a>
+        <a href="#visit" data-scroll><em>05</em><span>Visit Us</span></a>
+        <a href="#order" data-scroll><em>06</em><span>Say Hello</span></a>
+      </nav>
+      <div class="menu-foot">
+        <p>6800 South Hollow Lane<br>Wellsville, Utah 84339</p>
+        <p><a href="tel:4355550198">435-555-0198</a><br><a href="#visit" data-scroll>Farm Store Hours</a></p>
+        <div class="menu-social">
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="Facebook">Facebook</a>
+          <a href="#" aria-label="TikTok">TikTok</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <!-- ======= HERO ======= -->
+    <section class="hero" id="top">
+      <div class="hero-scene" id="heroScene" aria-hidden="true">
+        <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice">
+          <defs>
+            <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#bdd9dd"/>
+              <stop offset=".55" stop-color="#e9e6c9"/>
+              <stop offset="1" stop-color="#f6e3b0"/>
+            </linearGradient>
+            <radialGradient id="sunG">
+              <stop offset="0" stop-color="#ffe9a8" stop-opacity=".9"/>
+              <stop offset="1" stop-color="#ffe9a8" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <g class="hL" data-depth="0">
+            <rect x="-90" width="1780" height="660" fill="url(#skyG)"/>
+            <circle cx="1180" cy="220" r="150" fill="url(#sunG)"/>
+            <circle cx="1180" cy="220" r="56" fill="#f7d879"/>
+            <g id="cloudA" fill="#fbf7ec" opacity=".9">
+              <path d="M220 150 c0 -20 18 -32 38 -30 c6 -18 30 -26 46 -16 c8 -12 28 -14 38 -4 c16 -4 30 6 30 20 c0 14 -12 22 -26 22 l-104 0 c-14 0 -22 -4 -22 -12 z"/>
+              <path d="M480 236 c0 -14 12 -24 28 -22 c4 -12 22 -18 34 -10 c12 -8 28 -2 30 10 c10 2 16 10 14 18 c-2 8 -10 12 -20 12 l-72 0 c-8 0 -14 -4 -14 -8 z"/>
+            </g>
+            <g id="cloudB" fill="#fbf7ec" opacity=".8">
+              <path d="M900 120 c0 -16 14 -28 32 -26 c6 -14 26 -20 38 -10 c10 -8 26 -6 32 4 c12 0 20 8 20 18 c0 10 -10 16 -22 16 l-86 0 c-8 0 -14 -1 -14 -2 z"/>
+              <path d="M1320 190 c0 -12 10 -20 24 -19 c4 -10 18 -15 28 -8 c10 -6 22 -2 24 8 c8 2 12 8 10 14 c-2 6 -8 9 -16 9 l-58 0 c-7 0 -12 -2 -12 -4 z"/>
+            </g>
+            <g stroke="#6b7a6a" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".7">
+              <path d="M846 128 q8 -9 16 0 q8 -9 16 0"/>
+              <path d="M908 96 q7 -8 14 0 q7 -8 14 0"/>
+            </g>
+          </g>
+          <g class="hL" data-depth="1">
+            <path fill="#adc4b4" d="M-90 520 L120 470 L260 505 L420 455 L560 500 L700 470 L860 505 L1020 460 L1180 500 L1330 465 L1470 495 L1690 470 L1690 660 L-90 660 Z"/>
+          </g>
+          <g class="hL" data-depth="2">
+            <path fill="#85a482" d="M-90 560 L90 470 L170 520 L290 380 L370 440 L470 340 L600 480 L700 400 L820 500 L950 430 L1080 520 L1200 460 L1340 540 L1470 500 L1690 545 L1690 680 L-90 680 Z"/>
+            <path fill="#6e9070" d="M290 380 L370 440 L330 470 L420 520 L360 560 L470 610 L280 640 L-90 660 L-90 560 L90 470 L170 520 Z" opacity=".55"/>
+          </g>
+          <g class="hL" data-depth="3">
+            <path fill="#b9c98a" d="M-90 625 C260 585 420 625 640 605 C900 582 1150 622 1690 592 L1690 760 L-90 760 Z"/>
+            <path fill="#a3bd77" d="M-90 705 C300 668 560 712 860 690 C1140 670 1380 706 1690 682 L1690 830 L-90 830 Z"/>
+            <g fill="none" stroke="#7d9a55" stroke-width="2" opacity=".35">
+              <path d="M60 648 C300 622 520 652 780 634"/>
+              <path d="M120 676 C380 650 640 682 940 660"/>
+              <path d="M980 640 C1180 626 1400 650 1560 636"/>
+            </g>
+            <use href="#baleT" transform="translate(690 668) scale(.7)"/>
+            <use href="#baleT" transform="translate(880 640) scale(.5)"/>
+            <use href="#baleT" transform="translate(1440 656) scale(.6)"/>
+          </g>
+          <g class="hL" data-depth="4">
+            <path fill="#7fa25b" d="M-90 785 C340 742 700 788 1040 766 C1300 750 1480 774 1690 762 L1690 900 L-90 900 Z"/>
+            <use href="#treeT" transform="translate(60 560) scale(1.15)"/>
+            <use href="#treeT" transform="translate(1450 570) scale(.95)"/>
+            <!-- barn + silo -->
+            <g>
+              <rect x="500" y="596" width="46" height="152" rx="8" fill="#cbb9a2"/>
+              <path d="M500 604 a23 16 0 0 1 46 0 z" fill="#8f8271"/>
+              <rect x="286" y="648" width="196" height="104" fill="#b5533c"/>
+              <path d="M270 648 L310 596 L458 596 L498 648 Z" fill="#8e3d2c"/>
+              <path d="M310 596 L340 566 L428 566 L458 596 Z" fill="#7c3526"/>
+              <rect x="352" y="688" width="64" height="64" rx="4" fill="#6e2f22"/>
+              <path d="M352 688 L416 752 M416 688 L352 752" stroke="#e9dfc8" stroke-width="5"/>
+              <rect x="352" y="688" width="64" height="64" fill="none" stroke="#e9dfc8" stroke-width="5"/>
+              <circle cx="384" cy="622" r="14" fill="#e9dfc8"/>
+              <rect x="300" y="666" width="26" height="30" fill="#e9dfc8" opacity=".85"/>
+              <rect x="442" y="666" width="26" height="30" fill="#e9dfc8" opacity=".85"/>
+            </g>
+            <!-- milk cans -->
+            <g fill="#c9ced2">
+              <path d="M540 726 h18 v-20 c-4 -3 -6 -6 -6 -10 h-6 c0 4 -2 7 -6 10 Z"/>
+              <path d="M562 730 h15 v-16 c-3 -2 -5 -5 -5 -8 h-5 c0 3 -2 6 -5 8 Z"/>
+            </g>
+            <!-- the herd -->
+            <use href="#cowT" transform="translate(880 660) scale(.85)"/>
+            <use href="#cowT" transform="translate(1090 690) scale(.7)"/>
+            <use href="#cowT" transform="translate(1400 650) scale(.78) translate(-200 0) scale(-1 1) translate(-200 0)"/>
+            <!-- fence -->
+            <g stroke="#8a6a45" stroke-width="7" stroke-linecap="round">
+              <path d="M20 842 L20 894 M180 848 L180 900 M340 844 L340 896 M500 850 L500 900 M660 844 L660 896 M820 850 L820 900 M980 844 L980 896 M1140 850 L1140 900 M1300 844 L1300 896 M1460 848 L1460 900"/>
+              <path d="M-90 860 C300 848 600 862 900 854 C1140 848 1400 860 1690 852" stroke-width="6"/>
+              <path d="M-90 886 C300 874 600 888 900 880 C1140 874 1400 886 1690 878" stroke-width="6"/>
+            </g>
+            <g fill="#f6efdd">
+              <circle cx="120" cy="822" r="4"/><circle cx="240" cy="832" r="3"/><circle cx="740" cy="820" r="4"/>
+              <circle cx="1240" cy="828" r="3"/><circle cx="1530" cy="820" r="4"/>
+            </g>
+            <g fill="#e9b849">
+              <circle cx="90" cy="836" r="3"/><circle cx="410" cy="824" r="3"/><circle cx="1050" cy="834" r="3"/><circle cx="1330" cy="822" r="3"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="hero-inner">
+        <p class="eyebrow hero-eyebrow">Bridger Hollow Creamery&nbsp;&nbsp;·&nbsp;&nbsp;Wellsville, Utah — Cache&nbsp;Valley</p>
+        <h1 class="hero-title" aria-label="One herd, one valley.">
+          <span class="ht-line" data-chars>One herd,</span>
+          <span class="ht-line ht-line--em" data-chars>one valley.</span>
+        </h1>
+        <p class="hero-sub">Farmstead cheese, cultured butter, and small-batch ice cream — made each
+        morning from forty Jerseys grazing beneath the Wellsville Mountains.</p>
+        <div class="hero-cta">
+          <a class="btn btn--solid" href="#cheese" data-scroll data-magnetic><span>Meet the Cheese</span></a>
+          <a class="btn" href="#visit" data-scroll data-magnetic><span>Visit the Farm</span></a>
+        </div>
+      </div>
+      <div class="hero-foot">
+        <div class="hf-badge">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+          <span>Best in Show — Utah Cheese Awards, three years running</span>
+        </div>
+        <button class="hf-scroll" id="scrollCue" aria-label="Scroll to explore">
+          <span>Scroll</span><i></i>
+        </button>
+        <div class="hf-weather" title="This morning in Cache Valley">
+          <i class="dot"></i>
+          <span>58° · Valley fog lifting · <b id="localTime">6:40 AM</b> in Wellsville</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= MARQUEE ======= -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track" id="marqueeTrack">
+        <div class="marquee-set">
+          <span>Single-Herd Farmstead</span><i>✦</i>
+          <span>Grass-Fed Jersey Milk</span><i>✦</i>
+          <span>Cave-Aged Up to 400 Days</span><i>✦</i>
+          <span>Best in Show — Utah Cheese Awards</span><i>✦</i>
+          <span>Small Batches Since 1998</span><i>✦</i>
+          <span>Wellsville · Cache Valley, Utah</span><i>✦</i>
+        </div>
+        <div class="marquee-set">
+          <span>Single-Herd Farmstead</span><i>✦</i>
+          <span>Grass-Fed Jersey Milk</span><i>✦</i>
+          <span>Cave-Aged Up to 400 Days</span><i>✦</i>
+          <span>Best in Show — Utah Cheese Awards</span><i>✦</i>
+          <span>Small Batches Since 1998</span><i>✦</i>
+          <span>Wellsville · Cache Valley, Utah</span><i>✦</i>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= STORY / MANIFESTO ======= -->
+    <section class="section manifesto" id="story">
+      <div class="wrap">
+        <p class="eyebrow" data-reveal>The Story</p>
+        <h2 class="manifesto-text" id="storyText">Cache Valley was making cheese before Utah was a state. We keep that going the slow way — forty Jerseys milked at first light, curd by nine, wheels in the cave by dark. Nothing arrives in a tanker, and nothing leaves before it&rsquo;s ready. Just grass, patience, and a hillside doing quiet, delicious work.</h2>
+        <div class="stats" id="stats">
+          <div class="stat" data-reveal>
+            <span class="stat-num"><b data-count="40">0</b></span>
+            <span class="stat-label">Jerseys in the milking herd — every one of them named</span>
+          </div>
+          <div class="stat" data-reveal>
+            <span class="stat-num"><b data-count="4">0</b><i>hrs</i></span>
+            <span class="stat-label">From morning milking to curd in the make room</span>
+          </div>
+          <div class="stat" data-reveal>
+            <span class="stat-num"><b data-count="400">0</b></span>
+            <span class="stat-label">Days our clothbound cheddar sleeps in the cave</span>
+          </div>
+          <div class="stat" data-reveal>
+            <span class="stat-num"><b data-count="28" data-since="1998">0</b></span>
+            <span class="stat-label">Years of small batches from the same hollow</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= THE CHEESE ======= -->
+    <section class="section cheese" id="cheese">
+      <div class="wrap cheese-head">
+        <div class="cheese-head-copy">
+          <p class="eyebrow" data-reveal>The Cheese</p>
+          <h2 class="h2" data-words>Raised on grass.<br>Finished in the dark.</h2>
+          <p class="lede" data-reveal>Every wheel starts as morning milk and ends in a cave dug into the hillside
+          behind the make room — cool, damp, and patient. We make seven cheeses through the year.
+          These four never leave the board.</p>
+        </div>
+        <figure class="cheese-quote" data-reveal>
+          <blockquote>&ldquo;A wheel of cheese is just the valley, written down.&rdquo;</blockquote>
+          <figcaption>— June Hollis, head cheesemaker</figcaption>
+        </figure>
+      </div>
+      <div class="cheese-banner">
+        <div class="pimg" data-parallax="14">
+          <svg viewBox="0 0 1600 520" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustrated panorama of the herd grazing in Cache Valley pasture">
+            <rect width="1600" height="520" fill="#e9e6c9"/>
+            <path fill="#85a482" d="M0 180 L140 90 L260 150 L420 60 L560 140 L720 80 L900 160 L1080 90 L1260 170 L1420 110 L1600 160 L1600 320 L0 320 Z"/>
+            <path fill="#b9c98a" d="M0 250 C300 220 600 260 900 240 C1200 222 1400 250 1600 236 L1600 400 L0 400 Z"/>
+            <path fill="#8fb166" d="M0 360 C400 330 800 372 1200 350 C1400 340 1520 352 1600 346 L1600 520 L0 520 Z"/>
+            <g fill="none" stroke="#7d9a55" stroke-width="2" opacity=".3">
+              <path d="M100 300 C400 276 700 306 1000 288"/>
+              <path d="M300 336 C640 312 980 344 1300 324"/>
+            </g>
+            <use href="#treeT" transform="translate(120 160) scale(1.05)"/>
+            <use href="#treeT" transform="translate(1380 180) scale(.85)"/>
+            <use href="#baleT" transform="translate(1180 300) scale(.62)"/>
+            <use href="#cowT" transform="translate(300 300) scale(.9)"/>
+            <use href="#cowT" transform="translate(640 328) scale(.75)"/>
+            <use href="#cowT" transform="translate(900 306) scale(.82)"/>
+            <use href="#cowT" transform="translate(1240 342) scale(.68)"/>
+            <g stroke="#8a6a45" stroke-width="6" stroke-linecap="round" opacity=".9">
+              <path d="M40 470 L40 512 M240 474 L240 516 M440 470 L440 512 M640 476 L640 518 M840 470 L840 512 M1040 476 L1040 518 M1240 470 L1240 512 M1440 474 L1440 516"/>
+              <path d="M0 488 C400 478 800 494 1200 484 C1340 480 1500 488 1600 484" stroke-width="5"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Signature cheeses scrollytelling -->
+      <div class="makes" id="makes">
+        <div class="makes-sticky">
+          <div class="makes-frame">
+            <div class="make-img is-active" data-make-img="0">
+              <svg viewBox="0 0 800 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="800" height="620" fill="#f2e7cb"/>
+                <circle cx="400" cy="300" r="230" fill="#ecd9a8"/>
+                <ellipse cx="400" cy="470" rx="290" ry="64" fill="#b98a55"/>
+                <ellipse cx="400" cy="456" rx="290" ry="64" fill="#cf9f66"/>
+                <g transform="translate(210 240) scale(2)">
+                  <path fill="#cf9a3d" d="M20 60 C20 40 60 26 105 26 C150 26 190 40 190 60 L190 96 C190 116 150 130 105 130 C60 130 20 116 20 96 Z"/>
+                  <ellipse cx="105" cy="60" rx="85" ry="34" fill="#e8c268"/>
+                  <path fill="#f0d488" d="M105 60 L105 26 C130 26 160 34 175 44 Z"/>
+                  <path fill="#dbb254" d="M105 60 L175 44 C182 49 188 54 190 60 L105 60 Z" opacity=".5"/>
+                  <g fill="#d9ad44"><circle cx="70" cy="56" r="7"/><circle cx="126" cy="72" r="9"/><circle cx="90" cy="80" r="5"/><circle cx="150" cy="58" r="5"/></g>
+                </g>
+                <g transform="translate(462 420) rotate(12)">
+                  <path fill="#efd07e" d="M0 34 L98 0 L120 14 L22 48 Z"/>
+                  <path fill="#cf9a3d" d="M0 34 L22 48 L22 66 L0 50 Z"/>
+                  <path fill="#e8c268" d="M120 14 L120 32 L22 66 L22 48 Z"/>
+                  <g fill="#dbb254"><circle cx="52" cy="30" r="5"/><circle cx="84" cy="18" r="4"/></g>
+                </g>
+                <g stroke="#5d8450" stroke-width="5" fill="none" stroke-linecap="round">
+                  <path d="M170 452 q30 -34 74 -40"/><path d="M186 462 q22 -18 48 -22"/>
+                </g>
+              </svg>
+            </div>
+            <div class="make-img" data-make-img="1">
+              <svg viewBox="0 0 800 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="800" height="620" fill="#efe0c4"/>
+                <circle cx="400" cy="300" r="230" fill="#e3c88f"/>
+                <ellipse cx="400" cy="470" rx="290" ry="64" fill="#a87c4b"/>
+                <ellipse cx="400" cy="456" rx="290" ry="64" fill="#c2965e"/>
+                <g transform="translate(250 170) scale(1.9)">
+                  <path fill="#d99e2b" d="M20 70 C20 52 55 40 95 40 C135 40 170 52 170 70 L170 150 C170 168 135 180 95 180 C55 180 20 168 20 150 Z"/>
+                  <ellipse cx="95" cy="70" rx="75" ry="30" fill="#e8d9bd"/>
+                  <path fill="#dfcdaa" d="M20 70 L20 110 C20 128 55 140 95 140 C135 140 170 128 170 110 L170 70 C170 88 135 100 95 100 C55 100 20 88 20 70 Z" opacity=".8"/>
+                  <g stroke="#c9b287" stroke-width="2.5" fill="none" opacity=".8">
+                    <path d="M38 58 C50 92 50 126 42 158"/><path d="M70 50 C80 90 80 130 74 168"/>
+                    <path d="M120 50 C112 90 112 130 118 168"/><path d="M152 58 C142 92 142 126 150 158"/>
+                  </g>
+                  <path d="M20 70 C20 88 55 100 95 100 C135 100 170 88 170 70" stroke="#b3771e" stroke-width="3" fill="none"/>
+                </g>
+                <g transform="translate(480 440) rotate(-6)">
+                  <path fill="#e8c268" d="M0 26 C10 8 34 0 54 8 C74 16 80 38 66 52 C50 66 20 62 8 48 C2 40 -2 34 0 26 Z"/>
+                  <g fill="#d9ad44"><circle cx="30" cy="30" r="5"/><circle cx="50" cy="22" r="3.5"/></g>
+                </g>
+                <g stroke="#c9a227" stroke-width="4" fill="none" stroke-linecap="round">
+                  <path d="M200 470 q40 18 88 10"/><path d="M212 486 q30 12 62 8"/>
+                </g>
+              </svg>
+            </div>
+            <div class="make-img" data-make-img="2">
+              <svg viewBox="0 0 800 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="800" height="620" fill="#f3ecd9"/>
+                <circle cx="400" cy="300" r="230" fill="#e9ddc0"/>
+                <ellipse cx="400" cy="470" rx="290" ry="64" fill="#8a9c6b"/>
+                <ellipse cx="400" cy="456" rx="290" ry="64" fill="#a5b581"/>
+                <g transform="translate(228 250) scale(2)">
+                  <path fill="#efe9da" d="M14 44 C14 28 48 16 88 16 C128 16 162 28 162 44 L162 66 C162 82 128 94 88 94 C48 94 14 82 14 66 Z"/>
+                  <ellipse cx="88" cy="44" rx="74" ry="28" fill="#f6f1e4"/>
+                  <path fill="#e4dcc6" d="M88 44 L88 16 C114 16 144 24 156 34 Z" opacity=".7"/>
+                  <g fill="#ddd3ba" opacity=".8">
+                    <circle cx="48" cy="38" r="2"/><circle cx="70" cy="30" r="1.6"/><circle cx="110" cy="34" r="2"/>
+                    <circle cx="134" cy="44" r="1.6"/><circle cx="92" cy="52" r="2"/><circle cx="60" cy="56" r="1.6"/>
+                  </g>
+                </g>
+                <g transform="translate(430 420) rotate(8)">
+                  <path fill="#f6f1e4" d="M0 30 L94 0 L118 12 L24 44 Z"/>
+                  <path fill="#efe4c8" d="M0 30 L24 44 L24 62 L0 46 Z"/>
+                  <path fill="#f9edd2" d="M118 12 L118 30 L24 62 L24 44 Z"/>
+                  <path fill="#f2dfae" d="M24 50 C34 56 40 62 42 70 C34 68 26 62 24 56 Z"/>
+                </g>
+                <g stroke="#5d8450" stroke-width="4.5" fill="none" stroke-linecap="round">
+                  <path d="M560 442 q36 -26 80 -24"/><path d="M576 458 q26 -16 56 -16"/>
+                  <circle cx="652" cy="414" r="7" fill="#c96a4a" stroke="none"/>
+                </g>
+              </svg>
+            </div>
+            <div class="make-img" data-make-img="3">
+              <svg viewBox="0 0 800 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="800" height="620" fill="#e9e4d2"/>
+                <circle cx="400" cy="300" r="230" fill="#d6d3bd"/>
+                <ellipse cx="400" cy="470" rx="290" ry="64" fill="#7b8894"/>
+                <ellipse cx="400" cy="456" rx="290" ry="64" fill="#94a1ac"/>
+                <g transform="translate(260 200) scale(2.1)">
+                  <path fill="#ece5d4" d="M10 96 L74 10 L96 10 L138 96 C138 108 106 118 74 118 C42 118 10 108 10 96 Z"/>
+                  <path fill="#f4efe1" d="M74 10 L96 10 L138 96 L112 102 Z"/>
+                  <path fill="#b7a06f" d="M10 96 C10 108 42 118 74 118 C106 118 138 108 138 96 L138 104 C138 116 106 126 74 126 C42 126 10 116 10 104 Z"/>
+                  <g stroke="#5f7d8c" stroke-width="3" fill="none" stroke-linecap="round" opacity=".85">
+                    <path d="M38 88 q12 -4 20 4"/><path d="M58 54 q-4 14 8 18"/><path d="M82 34 q10 8 4 20"/>
+                    <path d="M92 74 q-12 4 -10 16"/><path d="M64 100 q10 -8 20 -2"/><path d="M104 94 q10 -6 16 2"/>
+                    <path d="M46 64 q8 6 2 14"/>
+                  </g>
+                  <g fill="#5f7d8c" opacity=".7">
+                    <circle cx="52" cy="78" r="2.2"/><circle cx="86" cy="90" r="2.4"/><circle cx="98" cy="52" r="2"/><circle cx="118" cy="84" r="2.2"/><circle cx="70" cy="42" r="2"/>
+                  </g>
+                </g>
+                <g transform="translate(470 452)">
+                  <ellipse cx="60" cy="26" rx="60" ry="20" fill="#c9b487"/>
+                  <ellipse cx="60" cy="20" rx="60" ry="20" fill="#ddc99b"/>
+                  <g fill="#8a6a45"><circle cx="34" cy="18" r="4"/><circle cx="66" cy="24" r="4"/><circle cx="90" cy="14" r="4"/></g>
+                </g>
+              </svg>
+            </div>
+            <span class="makes-frame-num" id="makesFrameNum">01</span>
+          </div>
+        </div>
+        <div class="makes-list">
+          <p class="makes-intro eyebrow" data-reveal>The standing four</p>
+          <article class="make" data-make="0">
+            <header><span class="make-no">01</span><h3>Wellsville Reserve</h3></header>
+            <ul class="make-meta"><li>Alpine-style</li><li>Raw milk</li><li>12 months</li></ul>
+            <p>Nutty and deep, with a broth-like savor that comes from summer pasture.
+            The wheel we send to competitions — and the one we run out of first.</p>
+          </article>
+          <article class="make" data-make="1">
+            <header><span class="make-no">02</span><h3>Stone Barn Cheddar</h3></header>
+            <ul class="make-meta"><li>Clothbound</li><li>Butter-rubbed</li><li>400 days</li></ul>
+            <p>Wrapped in muslin, rubbed with butter, and left alone for four hundred days.
+            Crumbly, caramel-edged, and worth every single one of them.</p>
+          </article>
+          <article class="make" data-make="2">
+            <header><span class="make-no">03</span><h3>Hollow Bloom</h3></header>
+            <ul class="make-meta"><li>Bloomy rind</li><li>Soft-ripened</li><li>3 weeks</li></ul>
+            <p>A soft white round with a cream line that moves like slow honey.
+            Eat it the week you buy it — it wasn&rsquo;t going to last longer anyway.</p>
+          </article>
+          <article class="make" data-make="3">
+            <header><span class="make-no">04</span><h3>Sardine Canyon Blue</h3></header>
+            <ul class="make-meta"><li>Natural rind</li><li>Blue</li><li>90 days</li></ul>
+            <p>Named for the pass south of the farm. Sweet Jersey milk keeps the blue polite —
+            electric veins, gentle finish, no apologies needed.</p>
+          </article>
+          <p class="makes-note">Cheeses shown for concept presentation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= THE FARM — HORIZONTAL GALLERY ======= -->
+    <section class="gallery" id="farm">
+      <div class="gallery-pin" id="galleryPin">
+        <div class="gallery-head wrap">
+          <p class="eyebrow" data-reveal>The Farm</p>
+          <h2 class="h2" data-words>Around the hollow,<br>all year long.</h2>
+          <span class="gallery-hint" aria-hidden="true">Scroll →</span>
+        </div>
+        <div class="gallery-track" id="galleryTrack">
+          <figure class="gpanel" data-cursor="The Herd">
+            <div class="gpanel-img">
+              <svg viewBox="0 0 1200 850" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of Jersey cows grazing spring pasture beneath the Wellsville Mountains">
+                <rect width="1200" height="850" fill="#dfe7d2"/>
+                <path fill="#9db4a0" d="M0 320 L160 180 L300 270 L480 140 L640 260 L820 170 L1000 280 L1200 200 L1200 480 L0 480 Z"/>
+                <path fill="#b9c98a" d="M0 440 C300 410 600 450 900 428 C1080 415 1160 430 1200 424 L1200 620 L0 620 Z"/>
+                <path fill="#8fb166" d="M0 590 C340 560 720 606 1060 580 C1120 576 1180 582 1200 578 L1200 850 L0 850 Z"/>
+                <g transform="translate(120 240)">
+                  <rect x="34" y="70" width="14" height="60" rx="6" fill="#7a5a3d"/>
+                  <circle cx="42" cy="46" r="44" fill="#e8bfc9"/>
+                  <circle cx="10" cy="66" r="26" fill="#efcdd5"/>
+                  <circle cx="76" cy="62" r="28" fill="#e0aeba"/>
+                  <g fill="#f6efdd"><circle cx="28" cy="36" r="4"/><circle cx="58" cy="52" r="4"/><circle cx="44" cy="66" r="3"/></g>
+                </g>
+                <use href="#cowT" transform="translate(400 470) scale(1.15)"/>
+                <use href="#cowT" transform="translate(760 540) scale(.95)"/>
+                <use href="#cowT" transform="translate(950 460) scale(.6)"/>
+                <g fill="#f6efdd">
+                  <circle cx="180" cy="660" r="6"/><circle cx="320" cy="700" r="5"/><circle cx="620" cy="740" r="6"/>
+                  <circle cx="900" cy="700" r="5"/><circle cx="1080" cy="760" r="6"/>
+                </g>
+                <g fill="#e9b849"><circle cx="240" cy="720" r="4"/><circle cx="520" cy="680" r="4"/><circle cx="1010" cy="720" r="4"/></g>
+              </svg>
+            </div>
+            <figcaption><em>01</em><h3>The Herd</h3><p>Forty Jerseys with names, opinions, and a standing appointment at first light. Grass all summer, valley hay all winter.</p></figcaption>
+          </figure>
+          <figure class="gpanel" data-cursor="The Make">
+            <div class="gpanel-img">
+              <svg viewBox="0 0 1200 850" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of the make room with a copper cheese vat and steam rising">
+                <rect width="1200" height="850" fill="#f0e6cf"/>
+                <rect x="0" y="620" width="1200" height="230" fill="#d9c9a6"/>
+                <rect x="90" y="120" width="300" height="240" rx="14" fill="#bcd8de"/>
+                <path fill="#85a482" d="M90 300 L170 230 L240 280 L320 210 L390 270 L390 360 L90 360 Z"/>
+                <rect x="90" y="120" width="300" height="240" rx="14" fill="none" stroke="#8f8271" stroke-width="12"/>
+                <path d="M240 120 L240 360 M90 240 L390 240" stroke="#8f8271" stroke-width="10"/>
+                <g>
+                  <path fill="#c77d4a" d="M520 420 C520 380 620 350 760 350 C900 350 1000 380 1000 420 L1000 560 C1000 610 900 640 760 640 C620 640 520 610 520 560 Z"/>
+                  <ellipse cx="760" cy="420" rx="240" ry="70" fill="#e09a67"/>
+                  <ellipse cx="760" cy="420" rx="212" ry="58" fill="#f6efdd"/>
+                  <ellipse cx="760" cy="424" rx="190" ry="48" fill="#fbf7ec"/>
+                  <path d="M560 500 C560 530 640 552 760 552" stroke="#a05c33" stroke-width="8" fill="none" opacity=".5"/>
+                </g>
+                <path fill="none" stroke="#8f8271" stroke-width="12" stroke-linecap="round" d="M950 250 L850 420"/>
+                <path fill="#c9ced2" d="M930 226 a24 24 0 1 1 44 18 a24 24 0 1 1 -44 -18"/>
+                <g stroke="#c9c2ae" stroke-width="10" fill="none" stroke-linecap="round" opacity=".8">
+                  <path d="M660 300 C650 270 664 250 654 224"/>
+                  <path d="M760 290 C750 262 766 240 756 214"/>
+                  <path d="M860 300 C852 274 866 252 858 228"/>
+                </g>
+                <g fill="#c9ced2">
+                  <path d="M170 560 h44 v-48 c-9 -7 -14 -14 -14 -23 h-16 c0 9 -5 16 -14 23 Z"/>
+                  <path d="M228 566 h38 v-40 c-8 -6 -12 -12 -12 -20 h-14 c0 8 -4 14 -12 20 Z"/>
+                  <path d="M280 560 h44 v-48 c-9 -7 -14 -14 -14 -23 h-16 c0 9 -5 16 -14 23 Z"/>
+                </g>
+                <rect x="0" y="620" width="1200" height="14" fill="#c2b28c"/>
+              </svg>
+            </div>
+            <figcaption><em>02</em><h3>The Make Room</h3><p>Milk crosses one driveway, not one state. By nine it&rsquo;s curd, by noon it&rsquo;s tomorrow&rsquo;s wheels.</p></figcaption>
+          </figure>
+          <figure class="gpanel" data-cursor="The Cave">
+            <div class="gpanel-img">
+              <svg viewBox="0 0 1200 850" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of the aging cave with shelves of cheese wheels and a lantern">
+                <rect width="1200" height="850" fill="#3a332b"/>
+                <path d="M100 850 L100 400 C100 220 320 100 600 100 C880 100 1100 220 1100 400 L1100 850" fill="#4a4136"/>
+                <path d="M170 850 L170 420 C170 270 360 170 600 170 C840 170 1030 270 1030 420 L1030 850" fill="#554a3d"/>
+                <circle cx="600" cy="430" r="290" fill="#6b5c46" opacity=".35"/>
+                <g stroke="#3a332b" stroke-width="4" opacity=".6" fill="none">
+                  <path d="M240 300 q40 -14 80 0 M700 240 q46 -14 90 0 M420 210 q36 -12 70 0"/>
+                </g>
+                <g>
+                  <rect x="240" y="380" width="720" height="16" rx="6" fill="#7a5a3d"/>
+                  <rect x="240" y="540" width="720" height="16" rx="6" fill="#7a5a3d"/>
+                  <rect x="240" y="700" width="720" height="16" rx="6" fill="#7a5a3d"/>
+                  <rect x="270" y="380" width="18" height="336" fill="#6b4e34"/>
+                  <rect x="912" y="380" width="18" height="336" fill="#6b4e34"/>
+                  <use href="#wheelT" transform="translate(320 322) scale(1.1)"/>
+                  <use href="#wheelT" transform="translate(460 328)"/>
+                  <use href="#wheelT" transform="translate(590 322) scale(1.06)"/>
+                  <use href="#wheelT" transform="translate(730 330) scale(.94)"/>
+                  <use href="#wheelT" transform="translate(330 486)"/>
+                  <use href="#wheelT" transform="translate(470 482) scale(1.08)"/>
+                  <use href="#wheelT" transform="translate(620 488) scale(.96)"/>
+                  <use href="#wheelT" transform="translate(750 484)"/>
+                  <use href="#wheelT" transform="translate(360 646) scale(1.04)"/>
+                  <use href="#wheelT" transform="translate(500 650) scale(.92)"/>
+                  <use href="#wheelT" transform="translate(640 644)"/>
+                </g>
+                <g transform="translate(1005 180)">
+                  <circle cx="0" cy="120" r="86" fill="#f7d879" opacity=".22"/>
+                  <path d="M0 40 L0 66" stroke="#2e2317" stroke-width="6"/>
+                  <path fill="#2e2317" d="M-26 66 h52 l8 18 h-68 Z"/>
+                  <rect x="-20" y="84" width="40" height="52" rx="8" fill="#f2c94c"/>
+                  <path fill="#2e2317" d="M-26 136 h52 l-8 14 h-36 Z"/>
+                </g>
+              </svg>
+            </div>
+            <figcaption><em>03</em><h3>The Cave</h3><p>Cool, damp, and dug into the hillside. Four hundred wheels sleep here — each turned by hand, every week.</p></figcaption>
+          </figure>
+          <figure class="gpanel" data-cursor="The Scoop">
+            <div class="gpanel-img">
+              <svg viewBox="0 0 1200 850" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of the barn scoop window serving ice cream cones in summer">
+                <rect width="1200" height="850" fill="#b5533c"/>
+                <path d="M0 0 h1200 v60 h-1200 z M0 120 h1200 v60 h-1200 z M0 240 h1200 v60 h-1200 z M0 360 h1200 v60 h-1200 z" fill="#a84a35" opacity=".55"/>
+                <rect x="0" y="700" width="1200" height="150" fill="#8fb166"/>
+                <rect x="250" y="180" width="700" height="420" rx="18" fill="#6e2f22"/>
+                <rect x="278" y="208" width="644" height="364" rx="10" fill="#f6efdd"/>
+                <g>
+                  <path d="M250 170 h700 l-40 -80 h-620 Z" fill="#e9dfc8"/>
+                  <path d="M250 170 h100 v-14 c0 -36 -30 -56 -50 -56 c-20 0 -50 20 -50 56 Z M450 170 h100 v-14 c0 -36 -30 -56 -50 -56 c-20 0 -50 20 -50 56 Z M650 170 h100 v-14 c0 -36 -30 -56 -50 -56 c-20 0 -50 20 -50 56 Z M850 170 h100 v-14 c0 -36 -30 -56 -50 -56 c-20 0 -50 20 -50 56 Z" fill="#c96a4a"/>
+                </g>
+                <rect x="278" y="500" width="644" height="72" fill="#d9c9a6"/>
+                <g transform="translate(430 300)">
+                  <path fill="#e0a05c" d="M0 80 L42 80 L21 170 Z"/>
+                  <path d="M4 84 L38 84 M8 100 L36 100 M12 116 L32 116 M16 132 L28 132" stroke="#b57c3a" stroke-width="4"/>
+                  <circle cx="21" cy="56" r="30" fill="#f6efdd"/>
+                  <circle cx="8" cy="40" r="16" fill="#fbf7ec"/>
+                  <circle cx="36" cy="42" r="14" fill="#f2e7d2"/>
+                </g>
+                <g transform="translate(600 290)">
+                  <path fill="#e0a05c" d="M0 90 L46 90 L23 186 Z"/>
+                  <path d="M5 95 L41 95 M9 112 L38 112 M13 129 L34 129 M17 146 L30 146" stroke="#b57c3a" stroke-width="4"/>
+                  <circle cx="23" cy="62" r="32" fill="#e8bfc9"/>
+                  <circle cx="10" cy="42" r="17" fill="#f2d3da"/>
+                  <circle cx="40" cy="46" r="15" fill="#dfa8b5"/>
+                  <circle cx="23" cy="24" r="7" fill="#b5533c"/>
+                </g>
+                <g transform="translate(766 306)">
+                  <path fill="#e0a05c" d="M0 78 L40 78 L20 162 Z"/>
+                  <path d="M4 82 L36 82 M8 98 L34 98 M12 114 L30 114" stroke="#b57c3a" stroke-width="4"/>
+                  <circle cx="20" cy="52" r="29" fill="#c9a86e"/>
+                  <circle cx="8" cy="36" r="15" fill="#d9bc84"/>
+                  <circle cx="34" cy="38" r="13" fill="#bf9a5e"/>
+                </g>
+                <g transform="translate(80 560)">
+                  <rect x="26" y="60" width="10" height="90" fill="#527a47"/>
+                  <circle cx="31" cy="40" r="34" fill="#e9b849"/>
+                  <circle cx="31" cy="40" r="15" fill="#7a5a3d"/>
+                  <g fill="#f2c94c"><circle cx="31" cy="2" r="9"/><circle cx="66" cy="26" r="9"/><circle cx="62" cy="62" r="9"/><circle cx="0" cy="26" r="9"/><circle cx="4" cy="62" r="9"/><circle cx="31" cy="78" r="9"/></g>
+                </g>
+                <g transform="translate(1060 570)">
+                  <rect x="22" y="52" width="9" height="80" fill="#527a47"/>
+                  <circle cx="26" cy="34" r="29" fill="#e9b849"/>
+                  <circle cx="26" cy="34" r="13" fill="#7a5a3d"/>
+                  <g fill="#f2c94c"><circle cx="26" cy="2" r="8"/><circle cx="56" cy="22" r="8"/><circle cx="52" cy="54" r="8"/><circle cx="-2" cy="22" r="8"/><circle cx="2" cy="54" r="8"/><circle cx="26" cy="66" r="8"/></g>
+                </g>
+              </svg>
+            </div>
+            <figcaption><em>04</em><h3>The Scoop Window</h3><p>Small-batch ice cream from the same morning milk. The summer line runs out past the fence most Saturdays.</p></figcaption>
+          </figure>
+          <figure class="gpanel" data-cursor="The Market">
+            <div class="gpanel-img">
+              <svg viewBox="0 0 1200 850" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of the farmers market stall with striped awning and crates of cheese">
+                <rect width="1200" height="850" fill="#cfe0e4"/>
+                <path fill="#9db4a0" d="M0 330 L200 240 L380 310 L580 220 L780 310 L980 240 L1200 310 L1200 460 L0 460 Z"/>
+                <rect x="0" y="430" width="1200" height="420" fill="#c9b487"/>
+                <g stroke="#8a6a45" stroke-width="3" opacity=".35">
+                  <path d="M0 520 h1200 M0 620 h1200 M0 720 h1200"/>
+                </g>
+                <rect x="230" y="240" width="740" height="360" fill="#f6efdd"/>
+                <rect x="230" y="560" width="740" height="120" fill="#b98a55"/>
+                <rect x="230" y="548" width="740" height="18" fill="#8a6a45"/>
+                <g>
+                  <path d="M190 240 h820 l-50 -110 h-720 Z" fill="#c96a4a"/>
+                  <path d="M190 240 h103 v-16 c0 -40 -32 -62 -52 -62 c-20 0 -51 22 -51 62 Z M395 240 h103 v-16 c0 -40 -32 -62 -52 -62 c-20 0 -51 22 -51 62 Z M600 240 h103 v-16 c0 -40 -32 -62 -52 -62 c-20 0 -51 22 -51 62 Z M805 240 h103 v-16 c0 -40 -32 -62 -52 -62 c-20 0 -51 22 -51 62 Z" fill="#f6efdd"/>
+                </g>
+                <rect x="250" y="600" width="40" height="250" fill="#8a6a45"/>
+                <rect x="910" y="600" width="40" height="250" fill="#8a6a45"/>
+                <g transform="translate(300 430)">
+                  <rect width="180" height="110" rx="8" fill="#a5773f"/>
+                  <rect x="10" y="10" width="160" height="90" rx="5" fill="#c2965e"/>
+                  <use href="#wheelT" transform="translate(20 -12) scale(.7)"/>
+                  <use href="#wheelT" transform="translate(90 -16) scale(.78)"/>
+                </g>
+                <g transform="translate(530 440)">
+                  <rect width="170" height="100" rx="8" fill="#a5773f"/>
+                  <rect x="10" y="10" width="150" height="80" rx="5" fill="#c2965e"/>
+                  <g transform="translate(16 -30)">
+                    <path fill="#efd07e" d="M0 34 L80 6 L98 16 L18 46 Z"/>
+                    <path fill="#cf9a3d" d="M0 34 L18 46 L18 62 L0 48 Z"/>
+                    <path fill="#e8c268" d="M98 16 L98 32 L18 62 L18 46 Z"/>
+                  </g>
+                  <g transform="translate(96 -22)">
+                    <path fill="#f6f1e4" d="M0 26 L62 4 L78 12 L16 36 Z"/>
+                    <path fill="#efe4c8" d="M0 26 L16 36 L16 50 L0 38 Z"/>
+                    <path fill="#f9edd2" d="M78 12 L78 26 L16 50 L16 36 Z"/>
+                  </g>
+                </g>
+                <g transform="translate(740 424)">
+                  <path fill="#f6efdd" d="M14 0 h32 v12 c8 6 12 14 12 24 v66 a8 8 0 0 1 -8 8 h-40 a8 8 0 0 1 -8 -8 v-66 c0 -10 4 -18 12 -24 Z"/>
+                  <path fill="#dcecf2" d="M2 48 h56 v54 a8 8 0 0 1 -8 8 h-40 a8 8 0 0 1 -8 -8 Z"/>
+                  <rect x="12" y="-8" width="36" height="10" rx="4" fill="#c96a4a"/>
+                  <path fill="#f6efdd" d="M84 6 h28 v10 c7 5 10 12 10 21 v58 a7 7 0 0 1 -7 7 h-34 a7 7 0 0 1 -7 -7 v-58 c0 -9 3 -16 10 -21 Z"/>
+                  <path fill="#dcecf2" d="M74 48 h48 v47 a7 7 0 0 1 -7 7 h-34 a7 7 0 0 1 -7 -7 Z"/>
+                </g>
+                <g fill="#e9b849">
+                  <path d="M280 130 l14 24 h-28 Z" transform="rotate(180 280 142)"/>
+                </g>
+                <g stroke="#8a6a45" stroke-width="5" fill="none">
+                  <path d="M60 340 C240 300 420 310 560 330" opacity="0"/>
+                </g>
+                <g transform="translate(80 300)">
+                  <path d="M0 0 C120 40 260 40 380 0" stroke="#7a5a3d" stroke-width="4" fill="none"/>
+                  <g fill="#c96a4a"><path d="M40 12 l12 22 h-24 Z"/><path d="M150 26 l12 22 h-24 Z"/><path d="M260 24 l12 22 h-24 Z"/></g>
+                  <g fill="#e9b849"><path d="M95 20 l12 22 h-24 Z"/><path d="M205 28 l12 22 h-24 Z"/><path d="M330 12 l12 22 h-24 Z"/></g>
+                </g>
+              </svg>
+            </div>
+            <figcaption><em>05</em><h3>Market Day</h3><p>Saturdays on the square in Logan, May through October. Come early — the Reserve goes first.</p></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= CURD CLUB ======= -->
+    <section class="section membership" id="club">
+      <div class="wrap">
+        <div class="membership-head">
+          <div>
+            <p class="eyebrow" data-reveal>The Curd Club</p>
+            <h2 class="h2" data-words>Belonging,<br>by the boxful.</h2>
+          </div>
+          <p class="lede" data-reveal>A share of the seasons, packed in a box — cheese at its peak, butter when
+          it&rsquo;s best, and first call on wheels that never make it to the shelf.</p>
+        </div>
+        <div class="cards">
+          <article class="card" data-tilt data-reveal>
+            <div class="card-glare" aria-hidden="true"></div>
+            <span class="card-no">I</span>
+            <h3>The Quarterly</h3>
+            <p class="card-sub">Four boxes a year</p>
+            <ul>
+              <li>Three cheeses at their peak</li>
+              <li>Cultured butter, in season</li>
+              <li>Aging-cave notes in every box</li>
+              <li>Member pricing at the farm store</li>
+              <li>First call on limited wheels</li>
+            </ul>
+            <a class="btn btn--card" href="#order" data-scroll data-magnetic><span>Claim a Box</span></a>
+          </article>
+          <article class="card card--feature" data-tilt data-reveal>
+            <div class="card-glare" aria-hidden="true"></div>
+            <span class="card-no">II</span>
+            <h3>The Wheelhouse</h3>
+            <p class="card-sub">A box every month</p>
+            <ul>
+              <li>Everything in the Quarterly, monthly</li>
+              <li>Scoop-window punch card</li>
+              <li>Cave tours, twice a year</li>
+              <li>Recipe &amp; pairing cards</li>
+              <li>Holiday boards, reserved early</li>
+            </ul>
+            <a class="btn btn--card" href="#order" data-scroll data-magnetic><span>Claim a Box</span></a>
+          </article>
+          <article class="card" data-tilt data-reveal>
+            <div class="card-glare" aria-hidden="true"></div>
+            <span class="card-no">III</span>
+            <h3>The Whole Cow</h3>
+            <p class="card-sub">For the truly committed</p>
+            <ul>
+              <li>Everything in the Wheelhouse</li>
+              <li>A named share of one Jersey</li>
+              <li>Her photo, for your fridge</li>
+              <li>Summer farm-dinner invitations</li>
+              <li>First taste of experiments</li>
+            </ul>
+            <a class="btn btn--card" href="#order" data-scroll data-magnetic><span>Claim a Box</span></a>
+          </article>
+        </div>
+        <p class="cards-note">Club tiers shown for concept presentation.</p>
+      </div>
+    </section>
+
+    <!-- ======= VISIT ======= -->
+    <section class="visit" id="visit">
+      <svg class="visit-rows" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M-100,720 C240,600 420,760 720,660 S1200,560 1540,640"/>
+          <path d="M-100,640 C260,520 460,680 760,580 S1220,480 1540,560"/>
+          <path d="M-100,560 C280,440 500,600 800,500 S1240,400 1540,480"/>
+          <path d="M-100,480 C300,360 540,520 840,420 S1260,320 1540,400"/>
+          <path d="M-100,400 C320,280 580,440 880,340 S1280,240 1540,320"/>
+        </g>
+      </svg>
+      <div class="wrap visit-inner">
+        <p class="eyebrow" data-reveal>Visit</p>
+        <h2 class="h2" data-words>The farm store at<br>the end of the lane.</h2>
+        <p class="lede" data-reveal>It sits between the milking barn and the cave, stocked the same morning
+        you visit — wheels, wedges, butter, curds that squeak, and whatever the scoop window froze this week.
+        The Wellsvilles handle the decorating.</p>
+        <div class="visit-chips">
+          <div class="chip" data-reveal><b>Tue–Sat</b><span>Farm store, 9 to 6</span></div>
+          <div class="chip" data-reveal><b>15 min</b><span>Logan &amp; Utah State</span></div>
+          <div class="chip" data-reveal><b>Next door</b><span>American West Heritage Center</span></div>
+          <div class="chip" data-reveal><b>90 min</b><span>Salt Lake City</span></div>
+        </div>
+
+        <figure class="valley-map" data-reveal>
+          <div class="valley-svg">
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="Illustrative map of Cache Valley showing the farm, Wellsville, Logan, and Sardine Canyon">
+  <path class="vm-ridge" d="M60 780 L120 640 L96 560 L160 470 L140 400 L210 310 L190 240 L250 150 L240 80 L280 10" stroke="rgba(90,112,88,0.5)" stroke-width="3"/>
+  <path class="vm-ridge" d="M120 780 L170 660 L152 590 L210 500 L196 430 L260 340 L246 270 L300 180 L292 110 L330 40" stroke="rgba(90,112,88,0.32)" stroke-width="2"/>
+  <path class="vm-ridge" d="M1140 780 L1090 650 L1110 570 L1050 480 L1068 410 L1010 320 L1028 250 L970 160 L982 90 L940 20" stroke="rgba(90,112,88,0.5)" stroke-width="3"/>
+  <path class="vm-ridge" d="M1080 780 L1036 660 L1052 590 L1000 500 L1014 430 L962 340 L976 270 L926 180 L936 110 L900 40" stroke="rgba(90,112,88,0.32)" stroke-width="2"/>
+  <path class="vm-pasture" d="M330 640 C360 570 440 540 520 556 C600 572 650 620 640 690 C630 754 550 782 460 772 C380 763 310 716 330 640 Z" fill="rgba(143,177,102,0.16)"/>
+  <path class="vm-pasture" d="M560 300 C590 240 670 216 740 236 C810 256 850 310 834 372 C818 434 740 462 664 448 C592 435 534 372 560 300 Z" fill="rgba(143,177,102,0.16)"/>
+  <path class="vm-pasture" d="M700 560 C720 516 780 500 832 514 C884 528 912 570 898 616 C884 662 824 682 768 670 C716 659 682 610 700 560 Z" fill="rgba(143,177,102,0.16)"/>
+  <path class="vm-marsh" d="M430 150 C470 110 550 100 610 122 C670 144 690 196 660 240 C630 284 546 296 484 272 C426 250 396 192 430 150 Z" fill="rgba(122,160,168,0.18)"/>
+  <g stroke="rgba(122,160,168,0.5)" stroke-width="2">
+    <path d="M470 160 q20 -8 40 0 M520 140 q20 -8 40 0 M560 200 q20 -8 40 0 M480 226 q20 -8 40 0"/>
+  </g>
+  <path class="vm-river" d="M600 20 C590 90 620 140 590 200 C560 260 500 300 480 370 C462 434 500 500 480 570 C462 632 420 690 430 780" stroke="rgba(122,160,168,0.55)" stroke-width="3.5"/>
+  <path class="vm-road" d="M150 760 C260 700 330 640 380 560 C440 460 530 420 640 400 C760 378 850 320 900 220 C930 160 950 100 960 30" stroke="rgba(138,106,69,0.55)" stroke-width="4" stroke-dasharray="14 10" stroke-linecap="round"/>
+  <path class="vm-road" d="M380 560 C480 570 570 600 640 660 C700 712 760 740 850 750" stroke="rgba(138,106,69,0.4)" stroke-width="3" stroke-dasharray="10 9" stroke-linecap="round"/>
+  <text class="vm-label" x="205" y="700" font-size="12" letter-spacing="3" fill="#7c8a6a" transform="rotate(-38 205 700)">SARDINE CANYON</text>
+  <text class="vm-label" x="118" y="360" font-size="12" letter-spacing="4" fill="#7c8a6a" transform="rotate(76 118 360)">WELLSVILLE MOUNTAINS</text>
+  <text class="vm-label" x="1063" y="420" font-size="12" letter-spacing="4" fill="#7c8a6a" transform="rotate(-78 1063 420)">BEAR RIVER RANGE</text>
+  <text class="vm-label" x="548" y="188" font-size="12" letter-spacing="3" fill="#6f8d94">CUTLER MARSH</text>
+  <text class="vm-label" x="474" y="480" font-size="12" letter-spacing="3" fill="#8a7c5c">LITTLE BEAR RIVER</text>
+  <g>
+    <circle cx="880" cy="250" r="9" fill="rgba(181,83,60,0.25)" stroke="#b5533c" stroke-width="2"/>
+    <circle cx="880" cy="250" r="3.5" fill="#b5533c"/>
+    <text x="900" y="243" font-size="13" letter-spacing="3" fill="#5a5240">LOGAN</text>
+    <text x="900" y="261" font-size="10" letter-spacing="2" fill="#8a8168">GARDENERS&rsquo; MARKET · USU</text>
+  </g>
+  <g>
+    <circle cx="500" cy="620" r="7" fill="rgba(90,112,88,0.25)" stroke="#5a7058" stroke-width="2"/>
+    <text x="520" y="616" font-size="13" letter-spacing="3" fill="#5a5240">WELLSVILLE</text>
+  </g>
+  <g>
+    <path d="M652 452 l7 8 -7 8 -7 -8 Z" stroke="#8a6a45" stroke-width="1.5"/>
+    <text x="668" y="466" font-size="10" letter-spacing="2" fill="#8a8168">HERITAGE CENTER</text>
+  </g>
+  <g id="mapFarm" class="vm-farm">
+    <circle class="vm-pulse" cx="600" cy="498" r="16" stroke="#c96a4a" stroke-width="1.5" fill="rgba(201,106,74,0.12)"/>
+    <g transform="translate(586 480)">
+      <rect x="4" y="14" width="20" height="14" fill="#b5533c"/>
+      <path d="M0 14 L14 2 L28 14 Z" fill="#8e3d2c"/>
+    </g>
+    <text x="600" y="544" text-anchor="middle" font-size="13" letter-spacing="3" fill="#b5533c">BRIDGER HOLLOW</text>
+    <text x="600" y="560" text-anchor="middle" font-size="10" letter-spacing="2" fill="#8a8168">FARM STORE · SCOOP WINDOW · CAVE</text>
+  </g>
+  <g class="vm-compass">
+    <path d="M1130 700 L1130 668" stroke="rgba(90,82,64,0.5)" stroke-width="1.5"/>
+    <path d="M1123 678 L1130 666 L1137 678" stroke="rgba(90,82,64,0.5)" stroke-width="1.5"/>
+    <text x="1130" y="656" text-anchor="middle" font-size="11" fill="#8a8168">N</text>
+  </g>
+</svg>
+          </div>
+          <figcaption class="valley-cap">
+            <span>Illustrative map — Cache Valley, Utah</span>
+            <span class="valley-legend">
+              <i class="lg lg-pasture"></i>Our pastures
+              <i class="lg lg-marsh"></i>Cutler Marsh
+              <i class="lg lg-farm"></i>The farm
+            </span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ======= ORDER / CONTACT ======= -->
+    <section class="section inquire" id="order">
+      <div class="wrap inquire-grid">
+        <div class="inquire-copy">
+          <p class="eyebrow" data-reveal>Say Hello</p>
+          <h2 class="h2" data-words>Get the valley,<br>delivered.</h2>
+          <p class="lede" data-reveal>Ask about the Curd Club, stock our cheese at your shop or restaurant,
+          or just tell us you&rsquo;re coming — we&rsquo;ll set aside a squeaky bag of curds.</p>
+          <div class="inquire-details" data-reveal>
+            <p><b>Visit</b>6800 South Hollow Lane<br>Wellsville, Utah 84339</p>
+            <p><b>Call</b><a href="tel:4355550198">435-555-0198</a></p>
+          </div>
+        </div>
+        <form class="form" id="orderForm" novalidate>
+          <div class="form-row">
+            <div class="field"><input type="text" id="fFirst" required autocomplete="given-name"><label for="fFirst">First name</label></div>
+            <div class="field"><input type="text" id="fLast" required autocomplete="family-name"><label for="fLast">Last name</label></div>
+          </div>
+          <div class="field"><input type="email" id="fEmail" required autocomplete="email"><label for="fEmail">Email address</label></div>
+          <div class="field field--select">
+            <select id="fInterest" required>
+              <option value="" selected disabled hidden></option>
+              <option>The Curd Club</option>
+              <option>Wholesale &amp; restaurants</option>
+              <option>Visits &amp; cave tours</option>
+              <option>Ice cream &amp; events</option>
+              <option>Other</option>
+            </select>
+            <label for="fInterest">I&rsquo;m here about</label>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="field"><textarea id="fMsg" rows="3"></textarea><label for="fMsg">Anything else? Favorite cheese counts.</label></div>
+          <button class="btn btn--solid btn--wide" type="submit" data-magnetic><span>Send It Up the Lane</span></button>
+          <p class="form-note">Demo form — no data is sent in this concept preview.</p>
+        </form>
+        <div class="form-success" id="formSuccess" hidden role="status" tabindex="-1">
+          <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
+            <circle cx="50" cy="52" r="34" stroke="currentColor" stroke-width="3"/>
+            <path stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M50 52 L50 18 M50 52 L76 30"/>
+            <g fill="currentColor"><circle cx="40" cy="46" r="3.4"/><circle cx="58" cy="62" r="4.2"/><circle cx="43" cy="66" r="2.4"/></g>
+          </svg>
+          <h3>Thank you.</h3>
+          <p>We&rsquo;ll write back within a day — sooner if it&rsquo;s about cheese.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======= FOOTER ======= -->
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <svg class="brand-mark" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+          <circle cx="50" cy="52" r="34" stroke="currentColor" stroke-width="4"/>
+          <path stroke="currentColor" stroke-width="3.5" stroke-linecap="round" d="M50 52 L50 18 M50 52 L76 30"/>
+          <g fill="currentColor"><circle cx="40" cy="46" r="3.4"/><circle cx="58" cy="62" r="4.2"/><circle cx="43" cy="66" r="2.4"/></g>
+        </svg>
+        <p class="footer-word">Bridger Hollow <span>Creamery · Cache Valley</span></p>
+        <p class="footer-tag">One herd, one valley.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Visit</h4>
+        <p>6800 South Hollow Lane<br>Wellsville, Utah 84339</p>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p><a href="tel:4355550198">435-555-0198</a><br><a href="mailto:hello@bridgerhollow.example">hello@bridgerhollow.example</a></p>
+      </div>
+      <div class="footer-col">
+        <h4>Follow</h4>
+        <p><a href="#">Instagram</a><br><a href="#">Facebook</a><br><a href="#">TikTok</a></p>
+      </div>
+    </div>
+    <div class="wrap footer-bottom">
+      <p>© <span id="year">2026</span> Bridger Hollow Creamery — a fictional business, presented as a website template.</p>
+      <p>Digital experience by <a href="https://ez-hd.co" target="_blank" rel="noreferrer">EZHD</a></p>
+    </div>
+  </footer>
+
+  <a class="mcta" href="#order" data-scroll>Claim a Curd Club Box</a>
+
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <script src="vendor/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

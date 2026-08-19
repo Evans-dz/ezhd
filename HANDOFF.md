@@ -29,6 +29,20 @@ is deliberate and the deploy depends on it.
 | Vercel | project `ezhd`, team `evans-5279's projects` (`team_bhQiH15quSpv0dotYkkRIcog`) |
 | Registrar | IONOS |
 
+### Repo layout (settled 2026-08-19)
+
+Every top-level directory is a served route — `drafts/`, `services/`, `work/`,
+`brand/` — with one exception: **`_src/` is source only, never deployed** (it is
+in `.vercelignore`). It holds the master templates the public drafts are copied
+from: `_src/entrada-pitch/` (→ `drafts/solmesa/`) and `_src/bridger-hollow/`
+(→ `drafts/bridger-hollow/`). They moved here from `~/Downloads/Alloy-Homes-main/`
+on 2026-08-19 — Alloy Homes is a separate client repo and they never belonged in it.
+
+**This repo is public.** `_src/entrada-pitch/assets/img/` and `pitch-assets/` are
+gitignored because they are the real club's photography, including unwatermarked
+originals. Code, fonts and `PROMPTS.md` are tracked; the images stay local-only.
+`node_modules` is gitignored too — `cd _src/entrada-pitch && npm i` restores it.
+
 **The domain is `ez-hd.co`, hyphenated.** It was built against `ezhd.co` for a long
 time and every URL had to be corrected. If you ever see `ezhd.co` without the hyphen in
 the source, it is a bug. (`ezhdco@gmail.com` is the contact address and is correct —
@@ -105,7 +119,8 @@ original documents the generation), the name/address/architect/rankings/logo
 mark were all swapped, pages carry `noindex` and a fixed DRAFT ribbon linking
 back to `/#drafts`. **Never ship anything from the original's `assets/img/real/`
 folder — those are the actual club's photos.** The originals live untouched in
-`~/Downloads/Alloy-Homes-main/entrada-pitch/`.
+`_src/entrada-pitch/` (its `assets/img/` and `pitch-assets/` are
+gitignored — the real photos never enter this public repo).
 
 Draft 02 is **Bridger Hollow** (added 2026-08-18), a fictional farmstead creamery
 in Cache Valley — a deliberate counterweight to Solmesa: light/warm instead of dark
@@ -115,7 +130,7 @@ requests. Same stack (vendored GSAP/Lenis) and same draft chrome (`noindex`, DRA
 ribbon, claim links). The business, people, address, phone and awards are invented,
 which the demo says outright in its footer; the real Cache Valley landmarks it names
 (Wellsville, Logan, Sardine Canyon, Cutler Marsh, the two mountain ranges) are just
-scenery. Master template lives at `~/Downloads/Alloy-Homes-main/bridger-hollow/`
+scenery. Master template lives at `_src/bridger-hollow/`
 (that copy keeps its README + a `node server.js` dev server, both dropped here).
 When editing, change the master and re-copy, or the two silently diverge.
 

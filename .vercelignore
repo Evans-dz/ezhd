@@ -6,3 +6,7 @@ brand/README.txt
 
 # Internal notes — repo only, never served.
 HANDOFF.md
+
+# Draft master templates — source only, never served. The public demos are
+# the debranded copies under drafts/.
+_src/

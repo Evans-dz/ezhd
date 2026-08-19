@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>document.documentElement.classList.add('js');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrada × EZHD — Website Concept Proposal</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    .p-wrap { width:min(1180px, 100% - 2*var(--pad)); margin-inline:auto; }
+    .p-head { display:flex; justify-content:space-between; align-items:center; gap:1.5rem; padding:1.4rem var(--pad); border-bottom:1px solid var(--hair-d); }
+    .p-brand { font-family:var(--serif); font-weight:600; letter-spacing:.3em; font-size:1.1rem; }
+    .p-brand i { font-style:normal; color:var(--copper); }
+    .p-head p { font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--t-lo); text-align:right; }
+    .p-hero { padding:clamp(4rem,8vw,7rem) 0 clamp(2.5rem,5vw,4rem); text-align:center; }
+    .p-hero h1 { font-family:var(--serif); font-weight:500; font-size:clamp(2.6rem,6vw,5.2rem); line-height:1.05; }
+    .p-hero h1 em { font-style:italic; color:var(--copper-2); }
+    .p-hero p { margin:1.6rem auto 0; max-width:44em; color:var(--t-mid); }
+    .p-sec { padding:clamp(3rem,6vw,5.5rem) 0; }
+    .p-label { font-size:.68rem; letter-spacing:.34em; text-transform:uppercase; color:var(--copper); font-weight:600; margin-bottom:1.6rem; display:block; text-align:center; }
+
+    /* compare slider */
+    .cmp { position:relative; border-radius:6px; overflow:clip; border:1px solid var(--hair-d); cursor:ew-resize; touch-action:none; user-select:none; }
+    .cmp img { width:100%; display:block; pointer-events:none; }
+    .cmp-after { position:absolute; inset:0; clip-path:inset(0 0 0 50%); }
+    .cmp-handle { position:absolute; top:0; bottom:0; left:50%; width:2px; background:var(--copper-2); transform:translateX(-1px); }
+    .cmp-handle::after { content:'⟨ ⟩'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:52px; height:52px; border-radius:50%; background:var(--copper); color:var(--ink); display:grid; place-items:center; font-size:.8rem; font-weight:700; letter-spacing:.05em; box-shadow:0 8px 24px rgba(0,0,0,.45); }
+    .cmp-tag { position:absolute; top:1rem; z-index:2; font-size:.62rem; letter-spacing:.26em; text-transform:uppercase; font-weight:600; padding:.55em 1.1em; border-radius:99px; background:rgba(14,12,9,.72); backdrop-filter:blur(6px); color:var(--t-hi); pointer-events:none; }
+    .cmp-tag--a { left:1rem; } .cmp-tag--b { right:1rem; color:var(--copper-2); }
+    .cmp-note { text-align:center; margin-top:1.1rem; font-size:.72rem; color:var(--t-lo); letter-spacing:.08em; }
+
+    /* metrics */
+    .p-metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; }
+    .m-card { border:1px solid var(--hair-d); border-radius:6px; padding:1.6rem 1.5rem; background:var(--coal); }
+    .m-card h4 { font-size:.62rem; letter-spacing:.26em; text-transform:uppercase; color:var(--t-lo); font-weight:600; margin-bottom:1rem; }
+    .m-vals { display:flex; align-items:baseline; gap:1rem; }
+    .m-new { font-family:var(--serif); font-size:2.8rem; line-height:1; color:var(--copper-2); }
+    .m-old { font-size:.95rem; color:var(--t-lo); text-decoration:line-through; text-decoration-color:rgba(196,120,74,.6); }
+    .m-sub { display:block; margin-top:.7rem; font-size:.72rem; color:var(--t-mid); }
+    .p-foot-note { margin-top:1.2rem; font-size:.68rem; color:var(--t-lo); text-align:center; letter-spacing:.05em; }
+
+    /* film strip */
+    .strip { display:flex; gap:1rem; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:.6rem; scrollbar-width:none; }
+    .strip::-webkit-scrollbar { display:none; }
+    .strip figure { flex:none; width:clamp(260px, 30vw, 420px); scroll-snap-align:start; }
+    .strip img { width:100%; border-radius:4px; border:1px solid var(--hair-d); display:block; }
+    .strip figcaption { font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--t-lo); padding-top:.6rem; }
+
+    /* what changes + next */
+    .p-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+    .w-card { border:1px solid var(--hair-d); border-radius:6px; padding:1.6rem; }
+    .w-card h4 { font-family:var(--serif); font-weight:500; font-size:1.35rem; margin-bottom:.6rem; }
+    .w-card p { font-size:.85rem; color:var(--t-mid); }
+    .steps { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; counter-reset:step; }
+    .step { border-top:1px solid var(--copper); padding-top:1.1rem; }
+    .step em { font-style:normal; font-family:var(--serif); color:var(--copper-2); font-size:1.05rem; display:block; margin-bottom:.4rem; }
+    .step span { font-size:.8rem; color:var(--t-mid); }
+    .p-cta { text-align:center; padding:clamp(3rem,6vw,5rem) 0; border-top:1px solid var(--hair-d); }
+    .p-cta h2 { font-family:var(--serif); font-weight:500; font-size:clamp(2rem,4.5vw,3.4rem); margin-bottom:1.6rem; }
+    .p-footer { padding:1.6rem var(--pad); border-top:1px solid var(--hair-d); display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; font-size:.68rem; color:var(--t-lo); }
+    @media (max-width:900px) { .p-metrics, .p-grid { grid-template-columns:1fr 1fr; } .steps { grid-template-columns:1fr 1fr; } }
+    @media (max-width:560px) { .p-metrics, .p-grid, .steps { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+
+  <header class="p-head">
+    <span class="p-brand">EZHD<i>.</i></span>
+    <p>Website concept proposal<br>Prepared for Entrada at Snow Canyon Country Club — August 2026</p>
+  </header>
+
+  <section class="p-hero p-wrap">
+    <h1>Same club.<br>A new <em>gateway.</em></h1>
+    <p>Entrada is Golfweek's No. 5 private club in Utah — a David McLay Kidd design through
+    thousand-year-old lava. The current website doesn't tell that story. This concept does.
+    Drag the divider to compare, then explore the live experience.</p>
+  </section>
+
+  <section class="p-sec p-wrap">
+    <span class="p-label">Today vs. Proposed — drag to compare</span>
+    <div class="cmp" id="cmp" role="slider" aria-label="Before and after comparison" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
+      <img src="pitch-assets/before-hero.png" alt="Current golfentrada.com homepage">
+      <div class="cmp-after"><img src="pitch-assets/after-hero.png" alt="Proposed Entrada website concept"></div>
+      <span class="cmp-tag cmp-tag--a">Today</span>
+      <span class="cmp-tag cmp-tag--b">Proposed</span>
+      <div class="cmp-handle" id="cmpHandle"></div>
+    </div>
+    <p class="cmp-note">Live concept: <a href="index.html" style="color:var(--copper-2)">open the full experience →</a></p>
+  </section>
+
+  <section class="p-sec p-wrap">
+    <span class="p-label">The numbers</span>
+    <div class="p-metrics">
+      <div class="m-card"><h4>Lighthouse Performance</h4>
+        <div class="m-vals"><span class="m-new" id="mPerfNew">94</span><span class="m-old" id="mPerfOld">72</span></div>
+        <span class="m-sub">Concept vs. current site — desktop audit</span></div>
+      <div class="m-card"><h4>Largest Contentful Paint</h4>
+        <div class="m-vals"><span class="m-new" id="mLcpNew">1.6s</span><span class="m-old" id="mLcpOld">3.2s</span></div>
+        <span class="m-sub">How fast the hero actually appears</span></div>
+      <div class="m-card"><h4>Page Weight</h4>
+        <div class="m-vals"><span class="m-new" id="mWtNew">2.5<small style="font-size:.45em">MB</small></span><span class="m-old" id="mWtOld">35.9MB</span></div>
+        <span class="m-sub">Bytes shipped on first load</span></div>
+      <div class="m-card"><h4>Network Requests</h4>
+        <div class="m-vals"><span class="m-new" id="mReqNew">23</span><span class="m-old" id="mReqOld">82</span></div>
+        <span class="m-sub">Fewer round-trips, faster feel</span></div>
+    </div>
+    <p class="p-foot-note">Both figures from Lighthouse 12 desktop audits run on the same machine, same day — the concept served locally, golfentrada.com live. Production hosting preserves the gap: the difference is payload and architecture, not the wire.</p>
+  </section>
+
+  <section class="p-sec p-wrap">
+    <span class="p-label">Inside the concept</span>
+    <div class="strip">
+      <figure><img src="pitch-assets/after-course.png" alt=""><figcaption>The course, cinematic</figcaption></figure>
+      <figure><img src="pitch-assets/after-hole15.png" alt=""><figcaption>Signature holes, scrollytold</figcaption></figure>
+      <figure><img src="pitch-assets/after-gallery.png" alt=""><figcaption>Club life, in motion</figcaption></figure>
+      <figure><img src="pitch-assets/after-membership.png" alt=""><figcaption>Membership, elevated</figcaption></figure>
+      <figure><img src="pitch-assets/after-setting.png" alt=""><figcaption>The setting, felt</figcaption></figure>
+      <figure><img src="pitch-assets/after-mobile-hero.png" alt=""><figcaption>Flawless on mobile</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="p-sec p-wrap">
+    <span class="p-label">What changes</span>
+    <div class="p-grid">
+      <div class="w-card"><h4>A brand, not a template</h4><p>Bespoke design system built from Entrada's own identity — the spiral sun, sandstone, lava, and light — instead of a shared club CMS theme.</p></div>
+      <div class="w-card"><h4>Storytelling that sells</h4><p>The Kidd redesign, the signature stretch, Sol Mesa at sunset — sequenced like a film, so prospects feel the club before they ever visit.</p></div>
+      <div class="w-card"><h4>Real interactivity</h4><p>Scroll-driven hole tours, a living routing map, tactile cards and cursors — engagement that keeps prospects exploring.</p></div>
+      <div class="w-card"><h4>Mobile-first polish</h4><p>Native swipe galleries, a persistent inquiry action, and type that holds its elegance on a phone screen.</p></div>
+      <div class="w-card"><h4>Measurably faster</h4><p>Self-hosted fonts, tuned images, zero template bloat — speed a member feels and Google rewards.</p></div>
+      <div class="w-card"><h4>Accessible &amp; findable</h4><p>Semantic structure, keyboard support, reduced-motion respect, and clean metadata — modern standards, no plugins.</p></div>
+    </div>
+  </section>
+
+  <section class="p-sec p-wrap">
+    <span class="p-label">Path to launch</span>
+    <div class="steps">
+      <div class="step"><em>01 — Discovery</em><span>Stakeholder goals, membership funnel, photography audit.</span></div>
+      <div class="step"><em>02 — Design</em><span>Full design system and page suite on this foundation.</span></div>
+      <div class="step"><em>03 — Build</em><span>CMS integration, member login handoff, forms and analytics.</span></div>
+      <div class="step"><em>04 — Launch</em><span>Migration, redirects, performance and SEO verification.</span></div>
+    </div>
+  </section>
+
+  <section class="p-cta">
+    <h2>Ready when you are.</h2>
+    <a class="btn btn--solid" href="index.html"><span>View the Live Concept</span></a>
+  </section>
+
+  <footer class="p-footer">
+    <span>Confidential concept preview — prepared exclusively for Entrada at Snow Canyon Country Club.</span>
+    <span>Photography courtesy of the club · Digital experience by <a href="https://ez-hd.co" style="color:var(--t-mid)">EZHD</a></span>
+  </footer>
+
+  <script>
+    (() => {
+      const cmp = document.getElementById('cmp');
+      const after = cmp.querySelector('.cmp-after');
+      const handle = document.getElementById('cmpHandle');
+      let pos = 0.5;
+      const set = (p) => {
+        pos = Math.min(0.985, Math.max(0.015, p));
+        after.style.clipPath = `inset(0 0 0 ${pos * 100}%)`;
+        handle.style.left = `${pos * 100}%`;
+        cmp.setAttribute('aria-valuenow', Math.round(pos * 100));
+      };
+      const fromEvent = (e) => {
+        const r = cmp.getBoundingClientRect();
+        set((e.clientX - r.left) / r.width);
+      };
+      let dragging = false;
+      cmp.addEventListener('pointerdown', (e) => { dragging = true; cmp.setPointerCapture(e.pointerId); fromEvent(e); });
+      cmp.addEventListener('pointermove', (e) => { if (dragging) fromEvent(e); });
+      cmp.addEventListener('pointerup', () => { dragging = false; });
+      cmp.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') { e.preventDefault(); set(pos - 0.05); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); set(pos + 0.05); }
+      });
+      set(0.5);
+    })();
+  </script>
+</body>
+</html>
