@@ -11,3 +11,8 @@ _src/entrada-pitch/pitch-assets/
 
 # Local editor / assistant config — never committed, never served.
 .claude/
+
+# Ledgeline: the verification harness borrows entrada's playwright via a
+# symlink, and its screenshots are regenerable output.
+_src/ledgeline/node_modules
+_src/ledgeline/verify/*.png

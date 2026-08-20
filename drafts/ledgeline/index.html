@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ledgeline Storage — an EZHD concept draft</title>
+<meta name="description" content="Ledgeline Storage — a fictional self-storage facility, drawn as a concept draft by EZHD. Every unit, rate and detail is placeholder. Claim this design for your facility at ez-hd.co.">
+<meta name="theme-color" content="#E9EAE6">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ledgeline Storage — an EZHD concept draft">
+<meta property="og:description" content="A fictional self-storage facility drawn as a demonstration. Claim this design at ez-hd.co.">
+<meta property="og:image" content="og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-latin-700-normal.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-latin-400-normal.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/ibm-plex-mono-latin-500-normal.woff2" crossorigin>
+<link rel="stylesheet" href="css/main.css">
+
+<!-- Fictional facility: never let it into an index anywhere it is served. -->
+<meta name="robots" content="noindex,nofollow">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SelfStorage",
+  "name": "Ledgeline Storage",
+  "description": "Drive-up, climate-controlled and covered RV self storage in Washington County, Utah, with live unit availability and transparent move-in pricing.",
+  "telephone": "+1-435-555-0148",
+  "email": "office@ledgelinestorage.com",
+  "priceRange": "$49-$239",
+  "currenciesAccepted": "USD",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "2200 N Ledgeline Way",
+    "addressLocality": "Washington",
+    "addressRegion": "UT",
+    "postalCode": "84780",
+    "addressCountry": "US"
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Washington" },
+    { "@type": "City", "name": "St. George" },
+    { "@type": "City", "name": "Hurricane" },
+    { "@type": "City", "name": "La Verkin" },
+    { "@type": "City", "name": "Santa Clara" },
+    { "@type": "City", "name": "Ivins" }
+  ],
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "name": "Gate",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "06:00", "closes": "22:00" },
+    { "@type": "OpeningHoursSpecification", "name": "Office",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "09:00", "closes": "18:00" },
+    { "@type": "OpeningHoursSpecification", "name": "Office",
+      "dayOfWeek": "Saturday", "opens": "09:00", "closes": "16:00" }
+  ],
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Drive-up access", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Climate controlled units", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "24-hour gate access", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Covered RV and boat parking", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Video surveillance", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Gated with keypad entry", "value": true }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Storage units",
+    "itemListElement": [
+      { "@type": "Offer", "name": "5 × 5 climate unit",  "price": "49",  "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+      { "@type": "Offer", "name": "5 × 10 climate unit", "price": "79",  "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+      { "@type": "Offer", "name": "10 × 10 drive-up unit","price": "109","priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+      { "@type": "Offer", "name": "10 × 15 drive-up unit","price": "139","priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+      { "@type": "Offer", "name": "10 × 20 drive-up unit","price": "179","priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+      { "@type": "Offer", "name": "10 × 30 drive-up unit","price": "239","priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+      { "@type": "Offer", "name": "12 × 40 RV space",    "price": "129", "priceCurrency": "USD", "availability": "https://schema.org/InStock" }
+    ]
+  }
+}
+</script>
+
+<script>
+  /* Arm the CSS reveal rules only when scripting is alive, and keep a hard
+     failsafe on the intro door so a thrown exception can never leave the
+     page behind a closed curtain. */
+  document.documentElement.className = 'js';
+  setTimeout(function () {
+    var c = document.querySelector('.curtain');
+    if (c) c.classList.add('done');
+  }, 3000);
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- intro: a row of doors rolls up -->
+<div class="curtain" aria-hidden="true">
+  <div class="curtain__slat"></div><div class="curtain__slat"></div><div class="curtain__slat"></div>
+  <div class="curtain__slat"></div><div class="curtain__slat"></div><div class="curtain__slat"></div>
+  <div class="curtain__slat"></div><div class="curtain__slat"></div><div class="curtain__slat"></div>
+  <div class="curtain__slat"></div><div class="curtain__slat"></div><div class="curtain__slat"></div>
+</div>
+
+<!-- ops rail: live facility state, not navigation chrome -->
+<aside class="rail" aria-label="Facility status">
+  <div class="rail__led">
+    <span class="led" id="railLed" aria-hidden="true"></span>
+    <span class="rail__stat" id="railState">Gate</span>
+  </div>
+  <nav class="rail__marks" aria-label="Section">
+    <a class="rail__mark" href="#units">01</a>
+    <a class="rail__mark" href="#sizes">02</a>
+    <a class="rail__mark" href="#cost">03</a>
+    <a class="rail__mark" href="#access">04</a>
+    <a class="rail__mark" href="#find">05</a>
+    <a class="rail__mark" href="#answers">06</a>
+    <a class="rail__mark" href="#reserve">07</a>
+  </nav>
+  <p class="rail__count"><b id="railOpen">–</b> open</p>
+</aside>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="2.4" y="9" width="6" height="12.6" fill="#E0512A"/>
+      <g fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M2.4 9h19.2M2.4 21.6h19.2M2.4 9v12.6M21.6 9v12.6"/>
+        <path d="M8.4 9v12.6M15.6 9v12.6" stroke-width="1.1"/>
+        <path d="M2.4 9 12 3.6 21.6 9" stroke-linejoin="round"/>
+      </g>
+    </svg>
+    <span><b>Ledgeline</b><span>Self Storage</span></span>
+  </a>
+  <nav class="nav__links" aria-label="Primary">
+    <a href="#units">Units</a>
+    <a href="#sizes">Sizes</a>
+    <a href="#cost">Cost</a>
+    <a href="#access">Access</a>
+    <a href="#find">Find us</a>
+  </nav>
+  <a class="btn btn--sig" href="#units">Check availability</a>
+</header>
+
+<main id="main">
+
+<!-- ============================================================ HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <p class="hero__status">
+      <span class="led on" id="gateLed" aria-hidden="true"></span>
+      <span class="hs-strong" id="gateChip">Gate open until 10p</span>
+      <span class="hs-sep" aria-hidden="true">·</span>
+      <span>Washington County, Utah</span>
+      <span class="hs-sep" aria-hidden="true">·</span>
+      <span id="openChip">— units open</span>
+    </p>
+
+    <div class="hero__grid">
+      <div>
+        <h1 class="h-xl">Every unit we have,<br><em>on one page.</em></h1>
+        <p class="lede" style="margin-top:20px">
+          Live availability, the real move-in total, and a reservation that takes about
+          ninety seconds. No “call for pricing.” No walk-through required.
+          No admin fee at the counter, because we don’t charge one.
+        </p>
+        <div class="hero__cta">
+          <a class="btn btn--sig" href="#units">See the board</a>
+          <a class="btn btn--ghost" href="#sizes">What fits in what</a>
+        </div>
+        <p class="hero__note" id="heroNote">95 units · 7 sizes · drive-up, climate &amp; covered RV</p>
+      </div>
+
+      <div class="board-strip" id="boardStrip">
+        <div class="board-strip__hd">
+          <span class="mono">Today’s board</span>
+          <span class="mono" id="stripStamp">—</span>
+        </div>
+        <div id="stripRows"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 01 THE BOARD -->
+<section class="sec board" id="units">
+  <div class="wrap">
+    <div class="shead r">
+      <span class="shead__n">01</span>
+      <div class="shead__rail">
+        <h2 class="h-lg">Pick your door.</h2>
+        <p class="lede">
+          This is the actual yard, drawn to scale. Green is open right now. Amber is held for
+          somebody who reserved online in the last 48 hours. Grey is taken. Click any door for
+          its dimensions, its rate, and what it costs to move in today.
+        </p>
+      </div>
+    </div>
+
+    <div class="console r" style="--d:90ms">
+      <!-- filters -->
+      <form class="filters" id="filters" aria-label="Filter units">
+        <div class="filters__hd">
+          <span class="mono">Filter</span>
+          <button class="freset" type="button" id="fReset">Reset</button>
+        </div>
+
+        <div class="fgroup">
+          <span class="mono">Size</span>
+          <div class="fchips" id="fSizes"></div>
+        </div>
+
+        <div class="fgroup">
+          <span class="mono">Features</span>
+          <div id="fFeats"></div>
+        </div>
+
+        <div class="fgroup">
+          <span class="mono">Monthly rate</span>
+          <label class="sr" for="fPrice">Maximum monthly rate</label>
+          <input class="frange" type="range" id="fPrice" min="49" max="239" step="10" value="239">
+          <p class="frange-val"><span>$49</span><span id="fPriceVal">$239 max</span></p>
+        </div>
+
+        <div class="fgroup">
+          <button class="fswitch" type="button" id="fOpen" aria-pressed="true">
+            <span class="fswitch__box" aria-hidden="true"></span>
+            <span>Available only</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- plan / list -->
+      <div class="plan">
+        <div class="plan__hd">
+          <div class="legend" aria-hidden="true">
+            <span><i class="swatch-open"></i>Open</span>
+            <span><i class="swatch-held"></i>Held</span>
+            <span><i class="swatch-full"></i>Rented</span>
+          </div>
+          <div class="views" role="group" aria-label="View">
+            <button type="button" id="vMap" aria-pressed="true">Plan</button>
+            <button type="button" id="vList" aria-pressed="false">List</button>
+          </div>
+        </div>
+
+        <div class="plan__body">
+          <p class="mono" id="planCount" aria-live="polite" style="margin-bottom:10px;color:#8C959C">—</p>
+
+          <div class="planwrap" id="planwrap">
+            <div id="planSvg"></div>
+            <div class="readout" id="readout" role="status" aria-live="polite"></div>
+          </div>
+
+          <div class="listwrap" id="listwrap" hidden>
+            <table class="ulist">
+              <caption class="sr">Units matching the current filter</caption>
+              <thead><tr>
+                <th scope="col">Unit</th><th scope="col">Size</th><th scope="col" class="hide-m">Ft²</th>
+                <th scope="col" class="hide-m">Type</th><th scope="col">Rate</th><th scope="col">Status</th><th scope="col"><span class="sr">Action</span></th>
+              </tr></thead>
+              <tbody id="listBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 02 SIZES -->
+<section class="sec" id="sizes">
+  <div class="wrap">
+    <div class="shead r">
+      <span class="shead__n">02</span>
+      <div class="shead__rail">
+        <h2 class="h-lg">What actually fits.</h2>
+        <p class="lede">
+          Every one of these is drawn to scale from the top down, door on the left, so you can
+          see the thing you’re renting instead of guessing from a stock photo of a smiling
+          family. If you’re between two sizes, take the smaller one and call us — we’ll swap
+          you up for free in the first thirty days.
+        </p>
+      </div>
+    </div>
+    <div class="sizes" id="sizeGrid"></div>
+  </div>
+</section>
+
+<!-- ============================================================ 03 COST -->
+<section class="sec" id="cost">
+  <div class="wrap">
+    <div class="shead r">
+      <span class="shead__n">03</span>
+      <div class="shead__rail">
+        <h2 class="h-lg">The whole move-in cost,<br>before you drive out.</h2>
+        <p class="lede">
+          Storage quotes go sideways at the counter. Here is the arithmetic instead: a
+          prorated first month from the day you move in, protection if you want it, a lock if
+          you need one. That’s the list. There isn’t a line below it.
+        </p>
+      </div>
+    </div>
+
+    <div class="calc r">
+      <div class="calc__in">
+        <label class="field">
+          <span class="mono">Unit</span>
+          <select id="cUnit"></select>
+        </label>
+
+        <label class="field">
+          <span class="mono">Move-in date</span>
+          <input type="date" id="cDate">
+        </label>
+
+        <fieldset class="field">
+          <legend class="mono" style="color:var(--steel);margin-bottom:7px">Protection plan</legend>
+          <div class="opts" id="cProt"></div>
+        </fieldset>
+
+        <fieldset class="field" style="margin-bottom:0">
+          <legend class="mono" style="color:var(--steel);margin-bottom:7px">Lock</legend>
+          <div class="opts">
+            <label class="opt">
+              <input type="radio" name="lock" value="0" checked>
+              <span class="opt__dot" aria-hidden="true"></span>
+              <span class="opt__l">I’ll bring my own<small>Disc lock, 70&nbsp;mm shackle or smaller</small></span>
+              <span class="opt__p">$0</span>
+            </label>
+            <label class="opt">
+              <input type="radio" name="lock" value="14.95">
+              <span class="opt__dot" aria-hidden="true"></span>
+              <span class="opt__l">Buy one here<small>Round disc lock, yours to keep</small></span>
+              <span class="opt__p">$14.95</span>
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="calc__out">
+        <p class="mono" style="color:var(--steel);margin-bottom:14px">Due today</p>
+        <div class="bill" id="cBill"></div>
+        <div class="bill__tot">
+          <span>Total today</span>
+          <b class="num" id="cTotal">$0.00</b>
+        </div>
+        <p class="mono" style="margin-top:16px;color:var(--steel)" id="cThen">—</p>
+        <p class="calc__note">
+          <b>Admin fee: $0.00.</b> Month to month, ten days’ notice to leave, and we prorate
+          your last month on the way out too. Rates shown are the concept build’s illustrative
+          pricing.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 04 ACCESS -->
+<section class="sec" id="access">
+  <div class="wrap">
+    <div class="shead r">
+      <span class="shead__n">04</span>
+      <div class="shead__rail">
+        <h2 class="h-lg">Getting in at 9:40<br>on a Tuesday night.</h2>
+        <p class="lede">
+          The gate is the whole product on a bad day — when the trailer is loaded, the light is
+          gone, and you just need the thing to open. Here’s exactly how it works.
+        </p>
+      </div>
+    </div>
+
+    <div class="access">
+      <div class="gate r" id="gate">
+        <div class="gate__scr">
+          <p class="gate__disp" id="gateDisp" role="status" aria-live="polite">— — — —</p>
+          <div class="keypad" id="keypad" aria-hidden="true">
+            <span class="key">1</span><span class="key">2</span><span class="key">3</span>
+            <span class="key">4</span><span class="key">5</span><span class="key">6</span>
+            <span class="key">7</span><span class="key">8</span><span class="key">9</span>
+            <span class="key">*</span><span class="key">0</span><span class="key">#</span>
+          </div>
+          <div class="gate__arm">
+            <svg width="120" height="24" viewBox="0 0 120 24" aria-hidden="true">
+              <line x1="0" y1="21" x2="120" y2="21" stroke="#2B3236" stroke-width="1.4"/>
+              <line x1="30" y1="21" x2="118" y2="21" stroke="#3A4247" stroke-width="1.4" stroke-dasharray="2 4"/>
+              <g clip-path="url(#gateclip)">
+                <g class="gate-panel">
+                  <rect x="32" y="5" width="84" height="13" fill="#E0512A"/>
+                  <path d="M42 5v13M54 5v13M66 5v13M78 5v13M90 5v13M102 5v13" stroke="#0E1214" stroke-width="2"/>
+                  <rect x="32" y="5" width="84" height="3" fill="#BE3F1C"/>
+                  <circle cx="40" cy="19.6" r="2.2" fill="#8C959C"/>
+                  <circle cx="108" cy="19.6" r="2.2" fill="#8C959C"/>
+                </g>
+              </g>
+              <rect x="18" y="3" width="10" height="18" fill="#1B2023" stroke="#3A4247" stroke-width="1"/>
+              <path d="M20 6l6 6M20 12l6 6" stroke="#3A4247" stroke-width="1"/>
+              <rect x="27.4" y="2" width="3.2" height="20" fill="#8C959C"/>
+              <defs><clipPath id="gateclip"><rect x="30" y="0" width="90" height="24"/></clipPath></defs>
+            </svg>
+            <span class="gate__state" id="gateState">Standby</span>
+          </div>
+        </div>
+        <button class="btn btn--ghost btn--sm" type="button" id="gateRun" style="margin-top:14px;--fg:#E7E9E6;border-color:#3A4247">Run it again</button>
+      </div>
+
+      <div class="specs r" style="--d:80ms" id="specs"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 05 FIND -->
+<section class="sec" id="find">
+  <div class="wrap">
+    <div class="shead r">
+      <span class="shead__n">05</span>
+      <div class="shead__rail">
+        <h2 class="h-lg">Where it is.</h2>
+        <p class="lede">
+          Off the Washington Parkway exit, three minutes from I-15, on the flat — no grade to
+          back a trailer up and no roundabout to swing a fifth wheel through.
+        </p>
+      </div>
+    </div>
+
+    <div class="find">
+      <div class="map r" id="mapBox"></div>
+
+      <div class="r" style="--d:80ms">
+        <p class="mono dim" style="margin-bottom:10px">Drive time</p>
+        <div class="drive">
+          <div class="drive__row"><span>Washington</span><b>5 min</b></div>
+          <div class="drive__row"><span>St. George</span><b>12 min</b></div>
+          <div class="drive__row"><span>Hurricane</span><b>14 min</b></div>
+          <div class="drive__row"><span>La Verkin</span><b>20 min</b></div>
+          <div class="drive__row"><span>Santa Clara &amp; Ivins</span><b>22 min</b></div>
+        </div>
+
+        <div class="hours">
+          <div class="hours__r"><span><b>Gate</b> · every day</span><b>6:00a – 10:00p</b></div>
+          <div class="hours__r"><span><b>Office</b> · Mon–Fri</span><b>9:00a – 6:00p</b></div>
+          <div class="hours__r"><span><b>Office</b> · Saturday</span><b>9:00a – 4:00p</b></div>
+          <div class="hours__r"><span><b>Office</b> · Sunday</span><b>Closed</b></div>
+        </div>
+
+        <p style="margin-top:20px;font-size:.93rem">
+          2200 N Ledgeline Way<br>Washington, UT 84780<br>
+          <a href="tel:+14355550148" style="color:var(--signal);text-decoration:none">(435) 555-0148</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 06 ANSWERS -->
+<section class="sec" id="answers">
+  <div class="wrap">
+    <div class="shead r">
+      <span class="shead__n">06</span>
+      <div class="shead__rail">
+        <h2 class="h-lg">Straight answers.</h2>
+      </div>
+    </div>
+
+    <div class="faq r">
+      <details class="q"><summary>Do I have to sign a long-term contract?</summary>
+        <div class="q__body"><div><p>No. Everything is month to month. Give us ten days’ notice before your paid-through date and you’re done — no termination fee, no “we need it in writing at the corporate office.”</p></div></div></details>
+
+      <details class="q"><summary>Is there an admin fee?</summary>
+        <div class="q__body"><div><p>No. Your first payment is a prorated month, plus protection if you choose it, plus a lock if you need one. That is the entire list, and the calculator above shows it to the cent before you leave the house.</p></div></div></details>
+
+      <details class="q"><summary>What do I need to bring to move in?</summary>
+        <div class="q__body"><div><p>A driver’s licence and a card. If you reserved online, your gate code is active by the time you park. If you didn’t, it takes about six minutes at the counter.</p></div></div></details>
+
+      <details class="q"><summary>Can I get in after hours?</summary>
+        <div class="q__body"><div><p>The main gate runs 6:00a to 10:00p, seven days. Rows A and B are wired for true 24-hour access — add it to any unit in those rows for $10 a month and your code stops caring what time it is.</p></div></div></details>
+
+      <details class="q"><summary>Do I actually need climate control here?</summary>
+        <div class="q__body"><div><p>In Washington County, a closed metal unit runs well past 110° in July. If you’re storing electronics, leather, vinyl records, candles, photographs, musical instruments or solid-wood furniture, take Building&nbsp;E. Patio furniture, tools and tubs of Christmas decorations are fine outside.</p></div></div></details>
+
+      <details class="q"><summary>What can’t I store?</summary>
+        <div class="q__body"><div><p>Anything alive, anything perishable, anything flammable, and anything illegal. Drain the fuel and disconnect the battery on mowers and generators. Tyres are fine; fifty-five gallons of diesel is not.</p></div></div></details>
+
+      <details class="q"><summary>Is my property insured?</summary>
+        <div class="q__body"><div><p>Not by us automatically — that’s true of every facility, whatever the sign says. Many homeowner and renter policies already extend to off-site storage, so check yours first. If it doesn’t, our protection plans start at $11 a month.</p></div></div></details>
+
+      <details class="q"><summary>What if I picked the wrong size?</summary>
+        <div class="q__body"><div><p>Move up or down for free inside the first thirty days, subject to what’s open on the board. After that it’s a normal transfer with the rate difference prorated.</p></div></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 07 RESERVE -->
+<section class="sec reserve" id="reserve">
+  <div class="wrap">
+    <div class="shead r">
+      <span class="shead__n">07</span>
+      <div class="shead__rail">
+        <h2 class="h-lg">Hold a unit.</h2>
+        <p class="lede">
+          A reservation holds the door for 48 hours at the rate on the board. Nothing is charged
+          until you sign in person.
+        </p>
+      </div>
+    </div>
+
+    <form class="form r" id="resForm" novalidate>
+      <div class="form__msg" id="resMsg" hidden></div>
+
+      <label class="field"><span class="mono">Name</span>
+        <input type="text" name="name" id="rName" autocomplete="name" required></label>
+
+      <label class="field"><span class="mono">Phone</span>
+        <input type="tel" name="phone" id="rPhone" autocomplete="tel" required></label>
+
+      <label class="field"><span class="mono">Email</span>
+        <input type="email" name="email" id="rEmail" autocomplete="email" required></label>
+
+      <label class="field"><span class="mono">Unit</span>
+        <select name="unit" id="rUnit"></select></label>
+
+      <label class="field full"><span class="mono">Anything we should know?</span>
+        <textarea name="note" id="rNote" rows="3" placeholder="Moving a 26-ft truck in, arriving after 8, that kind of thing."></textarea></label>
+
+      <div class="full" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+        <button class="btn btn--sig" type="submit">Hold this unit</button>
+        <span class="mono" style="color:var(--steel)">Concept build — nothing is submitted</span>
+      </div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- unit drawer -->
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerId" hidden>
+  <div class="drawer__door" aria-hidden="true"></div>
+  <div class="drawer__hd">
+    <div>
+      <p class="drawer__id" id="drawerId">—</p>
+      <p class="drawer__sub" id="drawerSub">—</p>
+    </div>
+    <button class="drawer__x" type="button" id="drawerX" aria-label="Close unit details">
+      <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true"><path d="M1 1l11 11M12 1L1 12" stroke="currentColor" stroke-width="1.6"/></svg>
+    </button>
+  </div>
+  <div class="drawer__body" id="drawerBody"></div>
+  <div class="drawer__ft" id="drawerFt"></div>
+</aside>
+
+<div class="mstick" id="mstick">
+  <a class="btn btn--ghost btn--sm" href="#sizes">Sizes</a>
+  <a class="btn btn--sig btn--sm" href="#units">Check availability</a>
+</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__brand">
+      <b>Ledgeline Storage</b>
+      <p>Drive-up, climate-controlled and covered RV storage in Washington County, Utah.</p>
+      <p style="margin-top:12px">2200 N Ledgeline Way<br>Washington, UT 84780</p>
+    </div>
+    <div>
+      <h4>Facility</h4>
+      <ul>
+        <li><a href="#units">Live availability</a></li>
+        <li><a href="#sizes">Size guide</a></li>
+        <li><a href="#cost">Move-in cost</a></li>
+        <li><a href="#access">Access &amp; security</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Reach us</h4>
+      <ul>
+        <li><a href="tel:+14355550148">(435) 555-0148</a></li>
+        <li><a href="mailto:office@ledgelinestorage.com">office@ledgelinestorage.com</a></li>
+        <li>Gate 6:00a – 10:00p daily</li>
+        <li>Office Mon–Fri 9–6, Sat 9–4</li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap">
+    <p class="foot__note">
+      <b>This is a concept draft.</b> Ledgeline Storage is a fictional facility invented to
+      demonstrate what a modern self-storage site can do. The yard, the unit inventory, the
+      rates, the address and the phone number are all illustrative — nothing here is a real
+      business and nothing on this page can be booked. If you run a real facility,
+      <a href="/#drafts" style="color:var(--signal)">claim this design at ez-hd.co</a> and we
+      rebuild it around your yard.
+    </p>
+    <p class="foot__ez">
+      <span>Ledgeline Storage · Concept draft 04 · <a href="/#drafts">Claim this design</a></span>
+      <span>Digital experience by <a href="https://ez-hd.co">EZHD</a></span>
+    </p>
+  </div>
+</footer>
+
+<!-- EZHD draft ribbon: routes the demo back to the studio. -->
+<a class="draft-ribbon" href="/#drafts" aria-label="This is EZHD concept draft 04 — claim it at ez-hd.co">
+  <b>DRAFT 04</b><span>LEDGELINE — an EZHD concept</span><i>Claim this design →</i>
+</a>
+<style>
+  .draft-ribbon{position:fixed;left:14px;bottom:14px;z-index:100;display:flex;align-items:center;gap:10px;
+    padding:10px 15px;background:rgba(20,24,26,.94);border:1px solid rgba(224,81,42,.4);border-radius:9px;
+    font-family:'Plex Mono',ui-monospace,monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+    color:#E9EAE6;text-decoration:none;transition:border-color .2s;}
+  .draft-ribbon b{color:#E0512A;font-weight:600;}
+  .draft-ribbon i{font-style:normal;color:rgba(233,234,230,.55);transition:color .2s;}
+  .draft-ribbon:hover{border-color:rgba(224,81,42,.85);}
+  .draft-ribbon:hover i{color:#E0512A;}
+  /* clear the fixed ops rail on wide screens */
+  @media (min-width:1200px){.draft-ribbon{left:calc(60px + 14px);}}
+  @media (max-width:700px){.draft-ribbon span{display:none;}}
+  /* phones: lift above the sticky action bar while it is on screen */
+  @media (max-width:899.98px){
+    .draft-ribbon{transition:bottom .35s cubic-bezier(.16,.86,.28,1),border-color .2s;}
+    .mstick.on ~ .draft-ribbon{bottom:calc(72px + env(safe-area-inset-bottom));}
+  }
+</style>
+
+<script src="js/inventory.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
