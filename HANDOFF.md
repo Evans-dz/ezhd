@@ -136,7 +136,7 @@ When editing, change the master and re-copy, or the two silently diverge.
 
 Draft 03 is **Iron Never Changes** (added 2026-08-19) and it breaks the pattern on
 purpose: a REAL prospect (gym-wear brand), so the card reads "Claimed", links OUT to
-the brand's own deploy at ironneverchanges.vercel.app, and has no claim button —
+the brand's own deploy at www.ironneverchanges.com, and has no claim button —
 "Start yours" prefills the contact form instead. Nothing is copied into `drafts/`;
 the whole site lives in its own repo at `~/Downloads/iron-never-changes` (own
 git history, own Vercel project, `node server.js` → :4175). Its brand truth is
