@@ -1,0 +1,119 @@
+EZHD — audit baseline
+date: 2026-09-03
+commit: 2348adb
+url: http://localhost:5070
+harness: ezhd-lab/verify/audit.mjs
+
+
+═══ http://localhost:5070 @ 1440x900 (desktop) ═══
+
+— document —
+  ✓ <html lang> set ("en")
+  ✗ <title> present and ≤65 chars (66)
+  ✓ meta viewport present
+  ✓ <main> landmark present
+  ✓ exactly one <h1> (found 1)
+  ✓ no skipped heading levels
+  ✓ skip link to main content
+
+— accessibility —
+  ✓ every <img> has alt (0 missing)
+  ✓ every button/link has an accessible name (0 unnamed)
+  ✓ every form control is labelled (0 unlabelled)
+
+— layout —
+  ✓ no horizontal scroll (0px overflow)
+  ✓ CLS under 0.1 (0.0099)
+  ✗ all targets ≥24px (17 under)
+      a  66x19
+      a  58x19
+      a  58x19
+      a  33x19
+      a  41x19
+      a  58x19
+  ! sticky header + 22 anchor targets with no scroll-margin-top
+      section#intro.intro
+      section#hero.sec.hero
+      section#system.sec.sys
+      section#services.sec
+      h3#svc-n-1.svc__name
+      h3#svc-n-2.svc__name
+
+— motion —
+  ✓ transitions stay off layout properties (0 rendered offenders)
+  ✓ prefers-reduced-motion honoured (1 sheets read)
+
+— forms —
+  ✓ input types match their purpose (0 wrong)
+  ! 13 inputs without autocomplete
+      input[type=checkbox]
+      input[type=checkbox]
+      input[type=checkbox]
+      input[type=checkbox]
+      input[name=cadence]
+      input[name=cadence]
+
+— focus —
+  ✓ visible focus ring on all 60 tab stops checked (0 without)
+
+═══ http://localhost:5070 @ 390x844 (mobile) ═══
+
+— document —
+  ✓ <html lang> set ("en")
+  ✗ <title> present and ≤65 chars (66)
+  ✓ meta viewport present
+  ✓ <main> landmark present
+  ✓ exactly one <h1> (found 1)
+  ✓ no skipped heading levels
+  ✓ skip link to main content
+
+— accessibility —
+  ✓ every <img> has alt (0 missing)
+  ✓ every button/link has an accessible name (0 unnamed)
+  ✓ every form control is labelled (0 unlabelled)
+
+— layout —
+  ✓ no horizontal scroll (0px overflow)
+  ✓ CLS under 0.1 (0.0000)
+  ✗ all targets ≥24px (11 under)
+      input[type=checkbox]  1x1
+      input[type=checkbox]  1x1
+      input[type=checkbox]  1x1
+      input[type=checkbox]  1x1
+      input[name=cadence]  1x1
+      input[name=cadence]  1x1
+  ! 28 targets between 24 and 44px on mobile
+      a.nav__mark  87x26
+      a.nav__cta  141x38
+      a.svc__more  105x38
+      a.svc__more  105x38
+      a.svc__more  105x38
+      a.svc__more  105x38
+  ! sticky header + 22 anchor targets with no scroll-margin-top
+      section#intro.intro
+      section#hero.sec.hero
+      section#system.sec.sys
+      section#services.sec
+      h3#svc-n-1.svc__name
+      h3#svc-n-2.svc__name
+
+— motion —
+  ✓ transitions stay off layout properties (0 rendered offenders)
+  ✓ prefers-reduced-motion honoured (1 sheets read)
+
+— forms —
+  ✓ input types match their purpose (0 wrong)
+  ! 13 inputs without autocomplete
+      input[type=checkbox]
+      input[type=checkbox]
+      input[type=checkbox]
+      input[type=checkbox]
+      input[name=cadence]
+      input[name=cadence]
+
+— focus —
+  ✓ visible focus ring on all 60 tab stops checked (0 without)
+
+────────────────────────────────────────────────────────────
+  4 failing, 5 warnings
+

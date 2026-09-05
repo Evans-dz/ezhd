@@ -26,7 +26,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>EZHD — Utah Marketing Agency | Websites, SEO, Content, Brand &amp; Ads</title>
+<title>EZHD — Utah Marketing Agency | Websites, SEO, Content, Brand, Ads</title>
 <meta name="description" content="One accountable partner for your website, local SEO, content, brand, and paid ads. Utah-based marketing agency. Build your scope and we price it on a twenty-minute call.">
 <link rel="canonical" href="https://ez-hd.co/">
 <meta name="theme-color" content="#04060A">
@@ -488,6 +488,10 @@ body::before{
    unprefixed rule in this file and it sets a single additive property. */
 html{scroll-padding-top:4.6rem;}
 
+/* Anchor targets must clear the 66px sticky bar, or every in-page nav link
+   drops its heading behind the header. */
+:where(h1[id],h2[id],h3[id],h4[id],section[id]){ scroll-margin-top:5.25rem; }
+
 /* ── NAV ───────────────────────────────────────────────────────────────── */
 .nav__bar{
   position:sticky;top:0;z-index:100;
@@ -534,10 +538,13 @@ html{scroll-padding-top:4.6rem;}
   position:relative;font-family:var(--mno);font-size:var(--label);letter-spacing:.12em;
   text-transform:uppercase;text-decoration:none;color:var(--dash);
   transition:color .2s cubic-bezier(.4,0,.2,1);white-space:nowrap;
+  /* the text is 19px; the bar is 66px and its height is set by the CTA (~41px).
+     Padding the link out to 41px buys a real tap target and moves nothing. */
+  display:flex;align-items:center;padding-block:.68rem;
 }
 .nav__links a:hover{color:var(--white);}
 .nav__links a::after{
-  content:"";position:absolute;left:0;right:0;bottom:-.42rem;height:1px;
+  content:"";position:absolute;left:0;right:0;bottom:.26rem;height:1px;
   background-image:var(--grad);transform:scaleX(0);transform-origin:left center;
   transition:transform .24s cubic-bezier(.4,0,.2,1);
 }
@@ -3594,6 +3601,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 <div class="xh__tag" id="xhTag" aria-hidden="true"></div>
 <div class="xh__vf" id="xhVf" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 
+<script src="js/config.js"></script>
 <script>
 /* ═══ 00-core.js ═══ */
 /* ══════════════════════════════════════════════════════════════════════════
@@ -4921,13 +4929,16 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 
   var $ = EZ.$, $$ = EZ.$$;
 
-  var EMAIL = 'ezhdco@gmail.com';
+  /* The facts live in js/config.js. Each read falls back to its previous
+     literal, so if that file ever fails to load the form still works. */
+  var CFG = window.EZ_CONFIG || {};
+  var EMAIL = (CFG.contact && CFG.contact.email) || 'ezhdco@gmail.com';
 
   /* Form delivery. Web3Forms access key — public by design: it ships in the
      HTML and only permits submitting to this form, never reading what was
-     submitted. Swap it at web3forms.com if it ever needs rotating. */
-  var ACCESS_KEY = 'a785fe44-2b8c-4e40-8dfd-db35478bb123';
-  var ENDPOINT = 'https://api.web3forms.com/submit';
+     submitted. Swap it in js/config.js if it ever needs rotating. */
+  var ACCESS_KEY = (CFG.form && CFG.form.accessKey) || 'a785fe44-2b8c-4e40-8dfd-db35478bb123';
+  var ENDPOINT = (CFG.form && CFG.form.endpoint) || 'https://api.web3forms.com/submit';
   var ITEM_LEAD = 210;  /* ms — items start after the panel's own fade is underway */
   var ITEM_STEP = 55;   /* ms between list items */
 
