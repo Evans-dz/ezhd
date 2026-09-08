@@ -81,29 +81,32 @@ Do not use port 5060 — that is SIP and browsers block it as an unsafe port.
 
 ## Page structure
 
-Ten sections, in order:
+Thirteen sections after the Build/Create/Grow restructure (2026-09-05), in order:
 
 | id | what |
 |---|---|
 | `intro` | Title card: badge + EZHD wordmark over a receding ring field (`#introC`, canvas 2D). Nav is hidden here and fades in once you scroll past |
 | `hero` | "Your marketing isn't seven vendors." Full-measure type, lede, CTAs, four stats |
 | `system` | **01 — The system.** Exploded axonometric of the marketing system (`#sysC`), assembled by scroll. Sticky stage inside a 270vh track. **Seven layers**, bottom-up: brand, domain+hosting, site, local search, content, paid ads, reporting |
-| `services` | 02 — Six offerings in a 2×3 grid, 3D card tilt |
-| `process` | 03 — Edit-bay timeline banner (`#flowC`) + scroll-scrubbed rail |
-| `airtime` | 04 — **AIRTIME.** The content/social half of the pitch. Two movements: "what we shoot" (six 9:16 storyboard frames, inline SVG line art, each annotated with a real camera move) and "where it goes" (a five-channel platform rack — no YouTube: EZHD does not offer it). Nav links here as "Content" |
-| `proof` | 05 — Active projects: browser-chrome cards over real screenshots (`work/*.jpg`) — Alloy Homes + ConnectShield, third slot is an open CTA. Nav links here as "Work" |
-| `drafts` | 06 — The Drafts: debranded concept builds served as live demos under `drafts/` (see below). Claim buttons carry `data-claim`; 90-broadcast.js prefills the contact form's message |
-| `work` | 07 — Capability marquee + filterable grid (12 tiles) |
-| `scope` | 08 — Scope builder. **No prices anywhere** — deliberate |
+| `services` | 02 — What we run: three Build / Create / Grow panels, a third each. The six full spec cards moved to `services/build|create|grow/` — edit scope THERE |
+| `airtime` | 03 — **AIRTIME.** The content/social half: "what we shoot" (six 9:16 storyboard frames, inline SVG) and the five-channel platform rack (no YouTube: EZHD does not offer it). Nav links here as "Content" |
+| `process` | 04 — How it goes: the edit-bay banner (`#flowC`) + a three-phase rail — BUILD (weeks 1–2), CREATE (from launch), GROW (every month) |
+| `proof` | 05 — Active accounts: browser-chrome cards over real screenshots (`work/*.webp`) — Alloy Homes + ConnectShield, third slot is an open CTA. Nav links here as "Work" |
+| `report` | 06 — The monthly report: the only section proving the ongoing half. Deliberately no client numbers — the posture is the proof |
+| `drafts` | 07 — The Drafts: debranded concept builds served as live demos under `drafts/` (see below). All seven are unclaimed; claim buttons carry `data-claim` and 90-broadcast.js prefills the contact form |
+| `work` | Capability marquee only, unnumbered — the 12-tile filter grid was cut (it was a third copy of the service list) |
+| `scope` | 08 — Set the pace: three cadence cards (Steady / Active / Full). Replaced the checkbox scope builder. **No prices anywhere** — deliberate |
 | `duty` | 09 — Who does what + "straight talk on results" |
 | `contact` | 10 — Form + direct card (Zac Evans, Dylan Evans) |
+
+The title block tracks the printed eyebrow numbers ("SHEET n OF 10" — derived
+from the eyebrows at runtime, so it cannot disagree with the page again).
 
 **Two client rules that outrank design taste**, both set 2026-08-17:
 1. **Never state a content quantity.** No "8 pieces a month", no included-post
    counts, no "up to N reels" — cadence is custom per client and quoted on the
-   call. The scope builder expresses this as light/standard/heavy tiers
-   (`#tierBox`, radios named `cadence`); `read()` in the estimator appends the
-   choice to the content row's summary line. If a piece-count reappears
+   call. The pace section expresses this as Steady/Active/Full cadences with no
+   counts anywhere in the cards. If a piece-count reappears
    anywhere on the page, it is a bug.
 2. **Never show client social content.** The `#airtime` storyboard frames are
    permanent illustration, not placeholders waiting for real reels — the client
@@ -196,7 +199,7 @@ fully if the script never runs.
 - `#services` cards carry `CH 01–06` chips whose tally dot lights on hover;
   `#sysC` draws an ON AIR tally in the sheet corner once assembly completes;
   the proof feature card runs an audio-waveform canvas (`#wkWave`); the form's
-  success state stamps APPROVED; the footer signs off with "End of transmission".
+  success state stamps APPROVED; the footer sign-off ("End of transmission") was cut in the restructure — the footer was carrying too many rows.
 - The drafting-sheet grid is `.sheet`, the FIRST child of `<body>` — it must
   stay first: positioned sections paint over it in DOM order.
 

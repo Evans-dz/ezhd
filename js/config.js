@@ -36,12 +36,6 @@ var EZ_CONFIG = {
     endpoint:  'https://api.web3forms.com/submit'
   },
 
-  /* Title block, bottom-left. The sheet NUMBER is derived at
-     runtime from the sections in <main>; only the labels live here. */
-  sheet: {
-    project:   'Marketing system',
-    drawnBy:   'EZHD',
-    checkedBy: 'EZHD · Utah'
-  }
-
+  /* Title-block labels (project / drawn by / checked by) live in the markup —
+     a config entry nothing reads is a fact file lying about its own reach. */
 };

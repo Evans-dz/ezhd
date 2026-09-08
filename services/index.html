@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="theme-color" content="#04060A">
+<meta name="color-scheme" content="dark">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Individual Services, Hired One at a Time | EZHD</title>
+<meta name="description" content="Twelve things EZHD does, hired one at a time — website build, SEO, Google profile, content, ads, hosting, brand, print, editing. One piece, done properly.">
+<link rel="canonical" href="https://ez-hd.co/services/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EZHD">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="Individual Services, Hired One at a Time | EZHD">
+<meta property="og:description" content="Twelve things we do, hired one at a time. For businesses that already have someone covering the rest.">
+<meta property="og:url" content="https://ez-hd.co/services/">
+<meta property="og:image" content="https://ez-hd.co/og.png">
+<link rel="icon" type="image/svg+xml" href="../brand/ezhd-badge-silver.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=block">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=block" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "EZHD — individual services",
+  "url": "https://ez-hd.co/services/",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Custom design + build", "url": "https://ez-hd.co/services/web-design/" },
+    { "@type": "ListItem", "position": 2, "name": "Responsive to every screen", "url": "https://ez-hd.co/services/web-design/" },
+    { "@type": "ListItem", "position": 3, "name": "Copy + information architecture", "url": "https://ez-hd.co/services/web-design/" },
+    { "@type": "ListItem", "position": 4, "name": "On-page SEO foundation", "url": "https://ez-hd.co/services/local-seo/" },
+    { "@type": "ListItem", "position": 5, "name": "Logo + brand identity", "url": "https://ez-hd.co/services/brand-design/" },
+    { "@type": "ListItem", "position": 6, "name": "Graphic design + print", "url": "https://ez-hd.co/services/brand-design/" },
+    { "@type": "ListItem", "position": 7, "name": "Editing + post-production", "url": "https://ez-hd.co/services/social-media-management/" },
+    { "@type": "ListItem", "position": 8, "name": "Hosting, SSL + backups", "url": "https://ez-hd.co/services/website-hosting/" },
+    { "@type": "ListItem", "position": 9, "name": "Analytics + monthly reporting", "url": "https://ez-hd.co/services/website-hosting/" },
+    { "@type": "ListItem", "position": 10, "name": "Google Business Profile", "url": "https://ez-hd.co/services/local-seo/" },
+    { "@type": "ListItem", "position": 11, "name": "Social content + reels", "url": "https://ez-hd.co/services/social-media-management/" },
+    { "@type": "ListItem", "position": 12, "name": "Paid ads, managed", "url": "https://ez-hd.co/services/paid-advertising/" }
+  ]
+}
+</script>
+<style>
+/* Service sheet — same tokens and language as the main site, none of its JS.
+   These pages are deliberately static: no canvas, no script, fast to load. */
+:root{
+  --void:#04060A;--pit:#06090E;--panel:#0A0E15;--raise:#0F141D;
+  --dline:#1A2231;--edge:#26303F;
+  --silver:#DDE3EA;--white:#F4F6F8;--dash:#939FAE;--dash-2:#7C889A;
+  --ion:#4FC3F7;--ion-2:#1E9BD7;--ion-3:#0A5F91;--glow:#9BE0FF;
+  --grad:linear-gradient(96deg,#1E9BD7 0%,#4FC3F7 52%,#9BE0FF 100%);
+  --dsp:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --bdy:"IBM Plex Sans",system-ui,sans-serif;
+  --mno:"IBM Plex Mono",ui-monospace,monospace;
+  --label:.72rem;--label-sm:.66rem;--body-sm:.95rem;--fine:.82rem;
+  --pad:clamp(1.15rem,4.5vw,4.5rem);
+}
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;background:var(--void);color:var(--silver);
+  font-family:var(--bdy);line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:clip;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(221,227,234,.03) 0 1px,transparent 1px 96px),
+    repeating-linear-gradient(90deg,rgba(221,227,234,.03) 0 1px,transparent 1px 96px);
+}
+.wrap{max-width:880px;margin:0 auto;padding-inline:var(--pad);}
+a{color:var(--ion);}
+
+/* nav-lite */
+.bar{display:flex;align-items:center;gap:1rem;padding:.85rem var(--pad);
+  border-bottom:1px solid var(--dline);background:rgba(4,6,10,.85);}
+.bar__mark{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--white);margin-right:auto;}
+.bar__mark img{width:1.55rem;height:1.55rem;display:block;}
+.bar__name{font-family:var(--dsp);font-variation-settings:"wdth" 112,"wght" 850;
+  font-size:1rem;text-transform:uppercase;letter-spacing:-.012em;}
+.bar__cta{font-family:var(--mno);font-size:var(--label);letter-spacing:.14em;
+  text-transform:uppercase;text-decoration:none;color:var(--void);
+  background-image:var(--grad);padding:.6rem 1.05rem;font-weight:500;}
+
+/* header */
+.crumb{margin:2.6rem 0 0;font-family:var(--mno);font-size:var(--label-sm);
+  letter-spacing:.22em;text-transform:uppercase;color:var(--dash-2);}
+.crumb a{color:var(--dash-2);text-decoration:none;}
+.crumb a:hover{color:var(--silver);}
+.crumb b{color:var(--ion);font-weight:500;}
+h1{margin:.65rem 0 1.1rem;font-family:var(--dsp);
+  font-variation-settings:"wdth" 116,"wght" 900;font-weight:900;
+  font-size:clamp(2.1rem,6.2vw,3.9rem);line-height:.92;letter-spacing:-.035em;
+  text-transform:uppercase;color:var(--white);}
+h1 em{font-style:normal;color:var(--ion);font-variation-settings:"wdth" 64,"wght" 850;}
+.lede{margin:0 0 2.4rem;font-size:clamp(1.02rem,1.6vw,1.2rem);line-height:1.65;color:var(--dash);max-width:60ch;}
+
+/* body sections */
+h2{margin:2.6rem 0 .9rem;font-family:var(--dsp);
+  font-variation-settings:"wdth" 108,"wght" 820;
+  font-size:clamp(1.25rem,2.6vw,1.7rem);line-height:1.05;letter-spacing:-.02em;
+  text-transform:uppercase;color:var(--white);}
+h2 .k{color:var(--ion);font-family:var(--mno);font-size:var(--label);
+  letter-spacing:.2em;display:block;margin-bottom:.5rem;font-weight:400;}
+p{margin:0 0 1.05rem;max-width:66ch;}
+.inc{list-style:none;margin:1.1rem 0 0;padding:0;
+  border:1px solid var(--dline);background:var(--panel);}
+.inc li{padding:.72rem 1rem;border-top:1px solid var(--dline);
+  font-size:var(--body-sm);color:var(--silver);display:flex;gap:.7rem;}
+.inc li:first-child{border-top:0;}
+.inc li::before{content:"—";color:var(--ion);flex:none;}
+.note{margin:1.4rem 0 0;font-size:var(--fine);line-height:1.55;color:var(--dash-2);
+  border-left:3px solid var(--ion-3);padding-left:.9rem;max-width:60ch;}
+
+/* FAQ */
+.faq{margin:1.2rem 0 0;padding:0;border-top:1px solid var(--dline);}
+.faq dt{padding:1rem 0 .3rem;font-weight:600;color:var(--white);font-size:var(--body-sm);}
+.faq dd{margin:0;padding:0 0 1rem;border-bottom:1px solid var(--dline);
+  color:var(--dash);font-size:var(--body-sm);max-width:64ch;}
+
+/* cross-links */
+.also{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.7rem;margin-top:1.1rem;}
+.also a{display:block;padding:.85rem 1rem;border:1px solid var(--dline);background:var(--panel);
+  text-decoration:none;color:var(--silver);font-size:var(--body-sm);transition:border-color .2s;}
+.also a:hover{border-color:rgba(79,195,247,.45);}
+.also b{display:block;font-family:var(--mno);font-size:var(--label-sm);font-weight:400;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--dash-2);margin-bottom:.25rem;}
+
+/* CTA + footer signature */
+.cta{margin:3rem 0 0;padding:clamp(1.5rem,3.5vw,2.4rem);border:1px solid var(--dline);
+  background:var(--pit);text-align:left;}
+.cta h2{margin-top:0;}
+.cta .btn{display:inline-block;margin-top:.6rem;font-family:var(--mno);font-size:var(--label);
+  letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--void);
+  background-image:var(--grad);padding:.85rem 1.4rem;font-weight:500;}
+.sig{margin:3.2rem 0 2.4rem;display:flex;flex-wrap:wrap;gap:.4rem 2rem;
+  font-family:var(--mno);font-size:var(--label-sm);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--dash-2);border-top:1px solid var(--dline);padding-top:1.1rem;}
+.sig b{font-weight:500;color:var(--ion);}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}.also a{transition:none;}}
+
+/* ── Individual services index ────────────────────────────────────────────
+   A directory, not a pitch: plainer than the main site's service cards
+   because this reader already knows which item he came for. Grouped by
+   whether the job ENDS or RUNS — the only split that changes what he signs. */
+.skip{position:absolute;left:-9999px;top:0;z-index:10;padding:.7rem 1.1rem;
+  background:var(--ion);color:var(--void);font-family:var(--mno);font-size:.72rem;}
+.skip:focus{left:0;}
+.grp{margin:0 0 clamp(2.4rem,5vw,3.6rem);}
+.grp__h{padding-bottom:.65rem;margin:0 0 1.15rem;border-bottom:1px solid var(--dline);}
+.grp__n{margin:0 0 .3rem;font-family:var(--dsp);font-weight:700;font-size:1.4rem;
+  line-height:1;text-transform:uppercase;color:var(--white);}
+.grp__n::before{content:"";display:inline-block;inline-size:3px;block-size:.72em;
+  background:var(--ion);margin-inline-end:.55rem;}
+.grp__d{margin:0;color:var(--dash);font-size:.9rem;max-inline-size:62ch;}
+.items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem;}
+.item{display:block;padding:1.15rem 1.25rem;background:var(--panel);
+  border:1px solid var(--dline);text-decoration:none;color:inherit;
+  transition:border-color .22s ease,background-color .22s ease;}
+.item:hover,.item:focus-visible{border-color:var(--edge);background:var(--raise);}
+.item__ix{display:block;margin:0 0 .35rem;font-family:var(--mno);font-size:.66rem;
+  letter-spacing:.2em;color:var(--dash-2);}
+.item__t{display:block;margin:0 0 .4rem;font-weight:600;color:var(--white);}
+.item__d{display:block;margin:0;color:var(--dash);font-size:.88rem;line-height:1.5;}
+.item__a{display:block;margin:.6rem 0 0;padding-top:.55rem;border-top:1px solid var(--dline);
+  color:var(--dash-2);font-size:.8rem;line-height:1.5;}
+.item__a b{font-family:var(--mno);font-size:.64rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--dash);font-weight:400;margin-inline-end:.4rem;}
+.item__s{display:block;margin:.55rem 0 0;font-family:var(--mno);font-size:.66rem;
+  letter-spacing:.14em;color:var(--ion);}
+.fits{border:1px solid var(--dline);padding:clamp(1.2rem,2.6vw,1.8rem);
+  margin:clamp(1.8rem,4vw,2.6rem) 0 clamp(2.2rem,5vw,3.2rem);}
+.fits__k{margin:0 0 .5rem;font-family:var(--mno);font-size:.66rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--dash-2);}
+.fits__h{margin:0 0 .9rem;font-family:var(--dsp);font-weight:700;font-size:1.25rem;
+  line-height:1.15;text-transform:uppercase;color:var(--white);}
+.fits p{margin:0 0 .8rem;}
+.fits p:last-child{margin-bottom:0;}
+.handoff{margin:clamp(2rem,4.5vw,3rem) 0 0;padding-top:1.2rem;
+  border-top:1px solid var(--dline);color:var(--dash);font-size:.92rem;}
+@media (max-width:680px){.items{grid-template-columns:minmax(0,1fr);}}
+@media (prefers-reduced-motion:reduce){.item{transition:none;}}
+
+/* crumb links: underline affordance and a >=24px tap target (audit floor) */
+.crumb a{display:inline-block;padding:.45rem .15rem;margin:-.45rem -.15rem;color:var(--dash);text-decoration:underline;text-underline-offset:3px;}
+.crumb a:hover{color:var(--ion);}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="bar" aria-label="Primary">
+  <a class="bar__mark" href="/"><img src="../brand/ezhd-badge-silver.svg" alt="" width="25" height="25"><span class="bar__name">EZHD</span></a>
+  <a class="bar__cta" href="/#contact">Start a project</a>
+</nav>
+
+<main class="wrap" id="main">
+
+  <p class="crumb"><a href="/">EZHD</a> // <b>One at a time</b></p>
+  <h1>You already know <em>what you need</em>.</h1>
+  <p class="lede">Twelve things we do, listed one at a time, so you can hire the one you came for. If you already have a marketing person, an in-house designer, or a web guy who covers the rest, you don&rsquo;t need us to be any of those. You need the one thing they don&rsquo;t do, done properly, and then you need us out of the way.</p>
+
+  <div class="fits">
+    <p class="fits__k">How this fits</p>
+    <p class="fits__h">One thing isn&rsquo;t seven vendors.</p>
+    <p>One thing is one thing. You ask for a logo, you get a logo &mdash; drawn, delivered, yours, and scoped in writing before we start.</p>
+    <p>The seven-vendors problem was never buying one thing. It&rsquo;s owning the seam between four of them: nobody checking that the ads say what the site says, that last month&rsquo;s photos ever got posted, that the profile and the site tell the same story. That coordination is a separate job, and it&rsquo;s the only thing our monthly work is. If you already have somebody doing it, you don&rsquo;t need us for it. Take the item you came for.</p>
+  </div>
+
+  <section class="grp">
+    <div class="grp__h">
+      <h2 class="grp__n">Built once.</h2>
+      <p class="grp__d">A site, and the work that makes one. It ends. Then it&rsquo;s yours.</p>
+    </div>
+    <div class="items">
+      <a class="item" href="web-design/">
+        <span class="item__ix">01</span>
+        <span class="item__t">Custom design + build</span>
+        <span class="item__d">A custom marketing site built around your brand and your market — not a bought template.</span>
+        <span class="item__s">Sheet 01 &#8594;</span>
+      </a>
+      <a class="item" href="web-design/">
+        <span class="item__ix">02</span>
+        <span class="item__t">Responsive to every screen</span>
+        <span class="item__d">Layouts drawn and checked on phone, tablet, and desktop before anything goes live.</span>
+        <span class="item__a"><b>On its own</b>Part of a build. We don&rsquo;t sell it apart from one.</span>
+        <span class="item__s">Sheet 01 &#8594;</span>
+      </a>
+      <a class="item" href="web-design/">
+        <span class="item__ix">03</span>
+        <span class="item__t">Copy + information architecture</span>
+        <span class="item__d">Pages ordered and written so a visitor finds what they came for without hunting.</span>
+        <span class="item__a"><b>On its own</b>Part of a build. We don&rsquo;t sell it apart from one.</span>
+        <span class="item__s">Sheet 01 &#8594;</span>
+      </a>
+      <a class="item" href="local-seo/">
+        <span class="item__ix">04</span>
+        <span class="item__t">On-page SEO foundation</span>
+        <span class="item__d">Titles, meta, headings, alt text, and a sitemap set correctly at launch.</span>
+        <span class="item__s">Sheet 03 &#8594;</span>
+      </a>
+    </div>
+  </section>
+  <section class="grp">
+    <div class="grp__h">
+      <h2 class="grp__n">Made to order.</h2>
+      <p class="grp__d">Job in, finished piece out. A name for a truck door, a stack of yard signs, a card full of footage.</p>
+    </div>
+    <div class="items">
+      <a class="item" href="brand-design/">
+        <span class="item__ix">05</span>
+        <span class="item__t">Logo + brand identity</span>
+        <span class="item__d">A mark and identity system designed to work on a truck door as well as a screen.</span>
+        <span class="item__a"><b>On its own</b>Complete. Files delivered, yours, nothing owed after.</span>
+        <span class="item__s">Sheet 04 &#8594;</span>
+      </a>
+      <a class="item" href="brand-design/">
+        <span class="item__ix">06</span>
+        <span class="item__t">Graphic design + print</span>
+        <span class="item__d">Business cards, yard signs, vehicle graphics, and flyers — designed print-ready.</span>
+        <span class="item__a"><b>On its own</b>Complete. Print-ready files, yours, nothing owed after.</span>
+        <span class="item__s">Sheet 04 &#8594;</span>
+      </a>
+      <a class="item" href="social-media-management/">
+        <span class="item__ix">07</span>
+        <span class="item__t">Editing + post-production</span>
+        <span class="item__d">Footage — ours or yours — cut, colour-graded, and captioned into finished pieces.</span>
+        <span class="item__a"><b>On its own</b>Complete. Finished cuts delivered. Where they get posted is up to you.</span>
+        <span class="item__s">Sheet 05 &#8594;</span>
+      </a>
+    </div>
+  </section>
+  <section class="grp">
+    <div class="grp__h">
+      <h2 class="grp__n">Runs every month.</h2>
+      <p class="grp__d">None of these finish. Someone owns them every month &mdash; you, or us.</p>
+    </div>
+    <div class="items">
+      <a class="item" href="website-hosting/">
+        <span class="item__ix">08</span>
+        <span class="item__t">Hosting, SSL + backups</span>
+        <span class="item__d">Fast, secure hosting with DNS, certificates, monitoring, and regular backups.</span>
+        <span class="item__a"><b>On its own</b>Fine, and common. We host sites we did not build.</span>
+        <span class="item__s">Sheet 02 &#8594;</span>
+      </a>
+      <a class="item" href="website-hosting/">
+        <span class="item__ix">09</span>
+        <span class="item__t">Analytics + monthly reporting</span>
+        <span class="item__d">Analytics 4 and Search Console wired up, with one plain-language report a month.</span>
+        <span class="item__a"><b>On its own</b>The numbers, monthly, in plain language. Acting on them is somebody&rsquo;s job, and on this arrangement it is yours.</span>
+        <span class="item__s">Sheet 02 &#8594;</span>
+      </a>
+      <a class="item" href="local-seo/">
+        <span class="item__ix">10</span>
+        <span class="item__t">Google Business Profile</span>
+        <span class="item__d">Profile posts and upkeep, maintained alongside ongoing local SEO.</span>
+        <span class="item__a"><b>On its own</b>We can set the profile up right. Posts and upkeep are the part that works, and that part is monthly.</span>
+        <span class="item__s">Sheet 03 &#8594;</span>
+      </a>
+      <a class="item" href="social-media-management/">
+        <span class="item__ix">11</span>
+        <span class="item__t">Social content + reels</span>
+        <span class="item__d">Shot on site, edited into reels and posts, captioned, scheduled, published.</span>
+        <span class="item__a"><b>On its own</b>We shoot and cut a batch. Publishing stops when the batch runs out.</span>
+        <span class="item__s">Sheet 05 &#8594;</span>
+      </a>
+      <a class="item" href="paid-advertising/">
+        <span class="item__ix">12</span>
+        <span class="item__t">Paid ads, managed</span>
+        <span class="item__d">Google and Meta campaigns built, monitored, and adjusted as an add-on.</span>
+        <span class="item__a"><b>On its own</b>If the ads point at a page we did not build and cannot change, that is the ceiling. We will say so before you spend.</span>
+        <span class="item__s">Sheet 06 &#8594;</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="cta">
+    <h2><span class="k">Start</span>Tell us which one</h2>
+    <p>Name the item and what you&rsquo;re working with &mdash; what exists already, who else is touching it, when you need it. We come back with what it takes, what it costs, and how long. If it isn&rsquo;t something we should be doing, or you&rsquo;d be better served by somebody local who only does that, we&rsquo;ll say so on the call.</p>
+    <p>There&rsquo;s no cart on this page and no boxes to tick. You tell us the item, we quote that item. We don&rsquo;t publish rates &mdash; the same work costs differently on a five-page site than on a fifty-page one, and a number here would only ever be honest about one of them. Twenty minutes on a call and you get a real one.</p>
+    <a class="btn" href="/#contact">Start a project</a>
+    <p class="note" style="margin-top:1.1rem">Not included &mdash; ongoing management. Everything under <b>Runs every month</b> is only running while somebody is running it. Nothing on this page renews quietly.</p>
+  </div>
+
+  <p class="handoff">Most of this page is work that finishes &mdash; hired once, delivered, done. If you would rather we ran the whole presence instead of one piece, that is the plans: everything included, you set the pace. <a href="/#scope">See what we run &#8594;</a></p>
+
+  <p class="sig"><span>Drawn by <b>EZHD</b></span><span>Checked by <b>EZHD</b></span><span>St. George · Utah</span><span>&copy; 2026 EZHD</span></p>
+</main>
+</body>
+</html>

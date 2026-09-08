@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://ez-hd.co/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url>
+    <loc>https://ez-hd.co/about/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url>
+    <loc>https://ez-hd.co/services/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url>
+    <loc>https://ez-hd.co/services/build/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url>
+    <loc>https://ez-hd.co/services/create/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url>
+    <loc>https://ez-hd.co/services/grow/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://ez-hd.co/services/web-design/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://ez-hd.co/services/website-hosting/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://ez-hd.co/services/local-seo/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>

@@ -26,8 +26,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>EZHD — Utah Marketing Agency | Websites, SEO, Content, Brand, Ads</title>
-<meta name="description" content="One accountable partner for your website, local SEO, content, brand, and paid ads. Utah-based marketing agency. Build your scope and we price it on a twenty-minute call.">
+<title>EZHD — Utah Marketing Agency | We Run Your Online Presence</title>
+<meta name="description" content="We build, create, and grow the whole online presence for Utah businesses — website, content, Google Business Profile, ads. One partner, not seven vendors.">
 <link rel="canonical" href="https://ez-hd.co/">
 <meta name="theme-color" content="#04060A">
 <meta name="robots" content="index, follow">
@@ -36,7 +36,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="EZHD">
 <meta property="og:title" content="EZHD — Utah Marketing Agency">
-<meta property="og:description" content="Your website, SEO, content, brand, and ads handled by one accountable partner. Pick your scope, we price it on a call.">
+<meta property="og:description" content="We build, create, and grow the whole online presence for Utah businesses — one accountable partner, not seven vendors.">
 <meta property="og:url" content="https://ez-hd.co/">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://ez-hd.co/og.png">
@@ -66,7 +66,7 @@
   "employee": { "@type": "Person", "name": "Dylan Evans", "jobTitle": "Social & Content Lead" },
   "address": { "@type": "PostalAddress", "addressRegion": "UT", "addressCountry": "US" },
   "areaServed": { "@type": "State", "name": "Utah" },
-  "description": "Utah marketing agency. Websites, hosting, local SEO, Google Business Profile management, photo and video content, social media, brand and logo design, graphic design, and paid advertising — one accountable partner.",
+  "description": "Utah marketing agency that builds, creates, and grows the whole online presence for local businesses — one accountable partner instead of seven vendors. Websites, hosting, local SEO, Google Business Profile management, photo and video content, social media, brand and logo design, and paid advertising",
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Services",
@@ -494,7 +494,10 @@ html{scroll-padding-top:4.6rem;}
 
 /* ── NAV ───────────────────────────────────────────────────────────────── */
 .nav__bar{
-  position:sticky;top:0;z-index:100;
+  /* fixed, not sticky: sticky kept a 66px flow slot at the top of the document,
+     so the intro title card started 66px down and the bare sheet grid showed
+     through the invisible bar — the "top eighth of the screen" bug. */
+  position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;align-items:center;gap:1.5rem;
   padding:.78rem var(--pad);
   background:rgba(4,6,10,.72);
@@ -571,10 +574,10 @@ html{scroll-padding-top:4.6rem;}
 @media(max-width:900px){
   .nav__bar{gap:1.1rem;}
   .nav__links{gap:1.2rem;}
-  /* Six links up top: Services, Process, Content, Work, Scope, Contact. On
+  /* Six links up top: Services, Content, Process, Work, Plans, Contact. On
      tablet keep Services + Content + Work; Contact is redundant beside the
-     CTA, and Process/Scope survive in the footer. */
-  .nav__links a:nth-child(2),
+     CTA, and Process/Plans survive in the footer. */
+  .nav__links a:nth-child(3),
   .nav__links a:nth-child(5),
   .nav__links a:nth-child(6){display:none;}
 }
@@ -592,7 +595,10 @@ html{scroll-padding-top:4.6rem;}
   padding-block:clamp(3rem,6vw,5rem);
 }
 .foot__grid{
-  display:grid;grid-template-columns:minmax(0,1fr) auto auto auto;gap:2.5rem;align-items:end;
+  /* start-aligned: end-alignment staggered the column headings whenever the
+     columns held different link counts, which read as clutter. */
+  display:grid;grid-template-columns:minmax(0,1fr) auto auto;
+  gap:2.5rem clamp(2.5rem,6vw,5.5rem);align-items:start;
 }
 /* Badge above the wordmark rather than beside it — the footer wordmark runs to
    7rem, and a badge scaled to match would overpower the whole footer. */
@@ -759,8 +765,10 @@ body.is-live.has-xh.in-vf .xh__x,body.is-live.has-xh.in-vf .xh__y{opacity:0;}
   text-transform:uppercase;transform:rotate(-2.5deg);}
 
 /* ── sign-off ── */
-.foot__end{margin:0 0 1.4rem;font-family:var(--mno);font-size:var(--label-sm);
-  letter-spacing:.3em;text-transform:uppercase;color:var(--dash-2);text-align:center;}
+.foot__ig{font-family:var(--mno);font-size:var(--label);letter-spacing:.1em;
+  text-transform:uppercase;text-decoration:none;color:var(--silver);
+  transition:color .2s cubic-bezier(.4,0,.2,1);}
+.foot__ig:hover{color:var(--ion);}
 .foot__end b{font-weight:500;color:var(--ion);}
 
 /* the LIVE word in the hero availability pill */
@@ -1040,228 +1048,53 @@ body.is-live.has-xh.in-vf .xh__x,body.is-live.has-xh.in-vf .xh__y{opacity:0;}
 .svc__hot{color:var(--ion);font-variation-settings:"wdth" 64,"wght" 850;}
 
 /* ── Grid: six cards, two columns, three rows ────────────────────────── */
-.svc__grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:clamp(1rem,2vw,1.35rem);
-  perspective:1200px;
-  perspective-origin:50% 42%;
+/* ── Build / Create / Grow trio panels ───────────────────────────────────
+   The full spec cards moved to /services/build/, /services/create/ and
+   /services/grow/ — each bucket is now a compact panel, a third of the row,
+   ending in a "full specs" link. The homepage sells the shape; the pages
+   carry the scope (and give Google three more pages to rank). */
+.svc__trio{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(1rem,2vw,1.35rem);align-items:stretch;
 }
-
-@media (max-width:820px){
-  .svc__grid{grid-template-columns:1fr;perspective:none;}
-}
-
-/* ── Card ────────────────────────────────────────────────────────────── */
-.svc__card{
-  position:relative;
-  display:flex;
-  flex-direction:column;
+.svc__panel{
+  position:relative;display:flex;flex-direction:column;
   padding:var(--pad-panel);
-  background:var(--panel);
-  border:1px solid var(--dline);
-  transform-style:preserve-3d;
-  transition:border-color .26s cubic-bezier(.4,0,.2,1),
-             box-shadow .32s cubic-bezier(.4,0,.2,1),
-             background-color .26s cubic-bezier(.4,0,.2,1);
+  background:var(--panel);border:1px solid var(--dline);
+  transition:border-color .26s var(--ez-ui),background-color .26s var(--ez-ui);
 }
-
-/* Top accent hairline — draws in from the left on hover. */
-.svc__card::before{
-  content:"";
-  position:absolute;left:-1px;right:-1px;top:-1px;height:2px;
-  background:var(--grad);
-  transform:scaleX(0);
-  transform-origin:0 50%;
-  opacity:0;
-  transition:transform .42s cubic-bezier(.16,1,.3,1),opacity .28s cubic-bezier(.4,0,.2,1);
-  pointer-events:none;
+.svc__panel::before{
+  content:"";position:absolute;inset:0 auto 0 0;
+  inline-size:var(--accent-edge);background:var(--ion);
+  transform:scaleY(0);transform-origin:0 0;transition:transform .3s var(--ez-out);
 }
-
-/* Cursor-tracked ion highlight. --mx/--my are written by 30-services.js. */
-.svc__card::after{
-  content:"";
-  position:absolute;inset:0;
-  pointer-events:none;
-  opacity:0;
-  mix-blend-mode:screen;
-  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),
-    rgba(79,195,247,.14),rgba(79,195,247,0) 62%);
-  transition:opacity .3s cubic-bezier(.4,0,.2,1);
-}
-
-/* ── Card contents ───────────────────────────────────────────────────── */
-/* Editorial index number, top-right, sitting behind the content. */
-.svc__ix{
-  position:absolute;
-  top:clamp(.85rem,1.9vw,1.35rem);
-  right:clamp(1.05rem,2.3vw,1.75rem);
-  margin:0;
-  font-family:var(--mno);
-  font-weight:500;
-  font-size:clamp(2.35rem,3.6vw,3rem);
-  line-height:1;
-  letter-spacing:-.02em;
-  font-variant-numeric:tabular-nums;
-  color:var(--edge);
-  opacity:.62;
-  pointer-events:none;
-  user-select:none;
-}
-.svc__name{
-  margin:0 0 .7rem;
-  padding-right:3.4rem;
-  font-family:var(--dsp);
-  font-variation-settings:"wdth" 105,"wght" 800;
-  font-size:1.45rem;
-  line-height:1.08;
-  /* Reserve two lines. Card 1 wraps and card 2 doesn't, and without this
-     their rules and bullet lists sit 25px apart side by side. */
-  min-height:calc(2 * 1.08em);
-  letter-spacing:-.03em;
-  text-transform:uppercase;
-  color:var(--white);
-}
-.svc__blurb{
-  margin:0 0 1.4rem;
-  padding-bottom:1.4rem;
-  border-bottom:1px solid var(--dline);
-  max-width:52ch;
-  font-size:var(--body-sm);
-  line-height:1.6;
-  color:var(--dash);
-}
-
-.svc__list{list-style:none;margin:0;padding:0;}
-.svc__list li{
-  position:relative;
-  padding-left:1.35rem;
-  margin:0 0 .78rem;
-  font-size:var(--body-sm);
-  line-height:1.58;
-  color:var(--silver);
-}
-.svc__list li:last-child{margin-bottom:0;}
-/* Ion dash — a rule, not a bullet. */
-.svc__list li::before{
-  content:"";
-  position:absolute;left:0;top:.78em;
-  width:.55rem;height:1px;
-  background:var(--ion);
-  opacity:.85;
-}
-
-.svc__note{
-  margin:1.15rem 0 0;
-  padding-top:1.1rem;
-  border-top:1px solid var(--dline);
-  font-size:var(--fine);
-  line-height:1.55;
-  color:var(--dash-2);
-}
-/* Pushed to the floor of the card so all cards bottom-align — every card
-   ends on its sheet link, which is also the local-SEO doorway to /services/. */
-.svc__more{
-  margin-top:auto;padding-top:1.2rem;align-self:flex-start;
-  font-family:var(--mno);font-size:var(--label);letter-spacing:.16em;
-  text-transform:uppercase;color:var(--dash);text-decoration:none;
-  transition:color .2s var(--ez-ui);
-}
-.svc__more i{font-style:normal;color:var(--ion);}
-.svc__more:hover{color:var(--white);}
-@media (prefers-reduced-motion:reduce){.svc__more{transition:none;}}
-
-.svc__note-k{
-  display:block;
-  margin-bottom:.3rem;
-  font-family:var(--mno);
-  font-size:var(--label-sm);
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  color:var(--dash-2);
-}
-
-/* ── Platform pills (card 03) ────────────────────────────────────────── */
-.svc__plat{
-  margin-top:auto;
-  padding-top:1.45rem;
-  border-top:1px solid var(--dline);
-}
-.svc__plat-k{
-  margin:0 0 .75rem;
-  font-family:var(--mno);
-  font-size:var(--label-sm);
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  color:var(--dash-2);
-}
-.svc__tags{
-  list-style:none;
-  display:flex;
-  flex-wrap:wrap;
-  gap:.45rem;
-  margin:0;padding:0;
-}
-.svc__tags li{
-  padding:.42rem .82rem;
-  border:1px solid var(--dline);
-  border-radius:999px;
-  background:var(--raise);
-  font-family:var(--mno);
-  font-size:var(--label-sm);
-  letter-spacing:.11em;
-  text-transform:uppercase;
-  color:var(--dash);
-  white-space:nowrap;
-  transition:border-color .22s cubic-bezier(.4,0,.2,1),color .22s cubic-bezier(.4,0,.2,1);
-}
-
-/* ── Fine-pointer enrichment: lift, glow, and parallax depth ─────────── */
 @media (hover:hover) and (pointer:fine){
-  .svc__card{will-change:transform;}
-  /* JS writes the tilt matrix inline; this is the fallback lift and the
-     resting transition when the pointer leaves before JS settles. */
-  .svc__card:hover{
-    transform:translateY(-6px);
-    background:var(--raise);
-    border-color:rgba(79,195,247,.34);
-    box-shadow:0 30px 70px -34px rgba(79,195,247,.3),
-               0 20px 54px -30px rgba(4,6,10,.92);
-  }
-  .svc__card:hover::before{transform:scaleX(1);opacity:1;}
-  .svc__card:hover::after{opacity:1;}
-  .svc__card:hover .svc__tags li{border-color:var(--edge);}
-  .svc__tags li:hover{border-color:rgba(79,195,247,.38);color:var(--silver);}
-
-  /* Depth is applied only while hovered, so the resting card is unscaled. */
-  .svc__ix,.svc__name,.svc__blurb,.svc__list,.svc__note,.svc__plat{
-    transition:transform .38s cubic-bezier(.16,1,.3,1);
-  }
-  .svc__card:hover .svc__ix{transform:translateZ(38px);}
-  .svc__card:hover .svc__name{transform:translateZ(26px);}
-  .svc__card:hover .svc__blurb{transform:translateZ(16px);}
-  .svc__card:hover .svc__list{transform:translateZ(10px);}
-  .svc__card:hover .svc__note,
-  .svc__card:hover .svc__plat{transform:translateZ(6px);}
+  .svc__panel:hover{border-color:var(--edge);background:var(--raise);}
+  .svc__panel:hover::before{transform:scaleY(1);}
 }
-
-/* ── Calm mode: everything static, nothing lost ──────────────────────── */
+.svc__panel-ch{margin:0 0 .5rem;font-family:var(--mno);font-size:var(--label-sm);
+  letter-spacing:.2em;color:var(--dash-2);}
+.svc__panel-n{margin:0 0 .35rem;font-family:var(--dsp);font-weight:700;
+  font-size:clamp(1.3rem,2.3vw,1.8rem);line-height:1;text-transform:uppercase;
+  color:var(--white);}
+.svc__panel-r{margin:0 0 .8rem;color:var(--ion);font-size:var(--body-sm);}
+.svc__panel-d{margin:0 0 1.1rem;color:var(--dash);font-size:var(--body-sm);}
+.svc__panel-l{margin:0 0 1.2rem;padding:0;list-style:none;border-top:1px solid var(--dline);}
+.svc__panel-l li{
+  padding:.55rem 0;border-bottom:1px solid var(--dline);
+  color:var(--silver);font-size:var(--body-sm);
+}
+.svc__panel-l b{font-family:var(--mno);font-weight:400;font-size:var(--label-sm);
+  letter-spacing:.16em;color:var(--dash-2);margin-inline-end:.55rem;}
+.svc__panel .svc__more{margin-top:auto;}
+@media (max-width:900px){
+  .svc__trio{grid-template-columns:minmax(0,1fr);}
+}
 @media (prefers-reduced-motion:reduce){
-  .svc__grid{perspective:none;}
-  .svc__card,
-  .svc__card::before,
-  .svc__card::after,
-  .svc__ix,.svc__name,.svc__blurb,.svc__list,.svc__note,.svc__plat,
-  .svc__tags li{transition:none;}
-  .svc__card:hover{transform:none;box-shadow:none;}
-  .svc__card:hover::after{opacity:0;}
-  .svc__card:hover .svc__ix,
-  .svc__card:hover .svc__name,
-  .svc__card:hover .svc__blurb,
-  .svc__card:hover .svc__list,
-  .svc__card:hover .svc__note,
-  .svc__card:hover .svc__plat{transform:none;}
+  .svc__panel,.svc__panel::before{transition:none;}
 }
+
+/* svc__card/svc__grid CSS removed with the cards (now on services/build|create|grow/). */
 
 /* ═══ 40-process.css ═══ */
 /* ══ 02 · PROCESS / TIMELINE ═══════════════════════════════════════
@@ -1350,7 +1183,7 @@ body.is-live.has-xh.in-vf .xh__x,body.is-live.has-xh.in-vf .xh__y{opacity:0;}
   margin:0;
   padding:0;
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(3,1fr);   /* three phases since the Build/Create/Grow rewrite */
   border-top:1px solid var(--dline);
 }
 
@@ -1690,121 +1523,33 @@ body.is-live.has-xh.in-vf .xh__x,body.is-live.has-xh.in-vf .xh__y{opacity:0;}
 
 /* Archivo's width axis is the brand fingerprint: one condensed ion word
    inside an expanded headline. */
-.cap__acc{font-variation-settings:"wdth" 64,"wght" 850;color:var(--ion);}
-
 /* ── FILTER BAR ──────────────────────────────────────────────────────── */
 
-.cap__bar{
-  display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;
-  margin:clamp(1.9rem,3.6vw,2.8rem) 0 clamp(1.4rem,2.8vw,2rem);
-}
-.cap__filters{display:flex;flex-wrap:wrap;gap:.45rem;}
-
-.cap__f{
-  font-family:var(--mno);font-size:var(--label);letter-spacing:.18em;text-transform:uppercase;
-  color:var(--dash);background:transparent;
-  border:1px solid var(--dline);border-radius:0;
-  padding:.62rem 1.1rem;cursor:pointer;
-  transition:color .2s cubic-bezier(.4,0,.2,1),
-             border-color .2s cubic-bezier(.4,0,.2,1),
-             background-color .2s cubic-bezier(.4,0,.2,1);
-}
-.cap__f:hover{color:var(--white);border-color:var(--edge);}
-.cap__f:focus-visible{outline:2px solid var(--ion);outline-offset:3px;}
 /* Selected reads like the primary CTA: ion gradient, near-black text. */
-.cap__f.is-sel{background:var(--grad);color:var(--void);border-color:transparent;}
-
-.cap__stat{
-  margin:0 0 0 auto;
-  font-family:var(--mno);font-size:var(--label);letter-spacing:.16em;text-transform:uppercase;
-  color:var(--dash-2);font-variant-numeric:tabular-nums;
-}
-
 /* ── CAPABILITY GRID ─────────────────────────────────────────────────── */
 
 /* 1px gap + outline (not border): adjacent outlines coincide inside the gap,
    so the grid reads as a single hairline lattice while a partly-filled last
    row still looks correct after filtering. */
-.cap__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;}
-
-.cap__tile{
-  position:relative;display:flex;flex-direction:column;
-  background:var(--panel);outline:1px solid var(--dline);border-radius:0;
-  padding:var(--pad-panel);
-  min-height:clamp(188px,19vw,230px);
-  overflow:hidden;
-  transition:background-color .24s cubic-bezier(.4,0,.2,1),
-             outline-color .24s cubic-bezier(.4,0,.2,1);
-}
 /* display:flex would otherwise beat the hidden attribute. */
-.cap__tile[hidden]{display:none;}
-
 /* Ion wash, centred on the pointer when JS is tracking it. */
-.cap__tile::before{
-  content:"";position:absolute;inset:0;pointer-events:none;opacity:0;
-  transition:opacity .3s cubic-bezier(.4,0,.2,1);
-  background:radial-gradient(320px circle at var(--cap-mx,50%) var(--cap-my,0%),
-             rgba(79,195,247,.13),rgba(79,195,247,0) 62%);
-}
 /* Ion rule that draws itself across the top edge on hover. */
-.cap__tile::after{
-  content:"";position:absolute;top:0;right:0;height:1px;width:0;
-  background:var(--ion);opacity:.9;
-  transition:width .38s cubic-bezier(.16,1,.3,1);
-}
-.cap__tile:hover,.cap__tile:focus-within{
-  background:var(--raise);outline-color:var(--ion-2);z-index:1;
-}
-.cap__tile:hover::before,.cap__tile:focus-within::before{opacity:1;}
-.cap__tile:hover::after,.cap__tile:focus-within::after{width:42%;}
-
-.cap__ix{
-  display:inline-flex;align-items:center;justify-content:center;flex:none;
-  width:2.15rem;height:2.15rem;
-  border:1px solid var(--ion-3);color:var(--ion);
-  font-family:var(--mno);font-size:var(--label);letter-spacing:.04em;
-  font-variant-numeric:tabular-nums;
-  transition:border-color .24s cubic-bezier(.4,0,.2,1),
-             box-shadow .24s cubic-bezier(.4,0,.2,1);
-}
-.cap__tile:hover .cap__ix,.cap__tile:focus-within .cap__ix{
-  border-color:var(--ion-2);box-shadow:0 0 0 3px rgba(79,195,247,.07);
-}
-
-.cap__t{
-  font-family:var(--dsp);
-  font-variation-settings:"wdth" 106,"wght" 780;
-  font-size:clamp(1.1rem,1.65vw,1.3rem);
-  line-height:1.06;letter-spacing:-.026em;text-transform:uppercase;
-  color:var(--white);
-  margin:auto 0 .55rem;          /* index pinned top, title/desc sit at the base */
-}
-.cap__d{margin:0;font-size:var(--body-sm);line-height:1.55;color:var(--dash);}
-
 /* Re-entry animation for tiles that survive a filter change. */
 @keyframes cap__rise{
   from{opacity:0;transform:translate3d(0,14px,0);}
   to  {opacity:1;transform:none;}
 }
-.cap__tile.on{animation:cap__rise .44s cubic-bezier(.16,1,.3,1) both;}
-
 /* ── RESPONSIVE ──────────────────────────────────────────────────────── */
 
 @media (max-width:980px){
-  .cap__grid{grid-template-columns:repeat(2,1fr);}
-}
+  }
 @media (max-width:620px){
-  .cap__grid{grid-template-columns:1fr;}
-  .cap__tile{min-height:0;}
-  .cap__stat{margin:.25rem 0 0;width:100%;}
-}
+  }
 
 /* ── REDUCED MOTION ──────────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion:reduce){
   .mq__track.is-live{animation:none;transform:none;will-change:auto;}
-  .cap__tile.on{animation:none;}
-  .cap__tile,.cap__tile::before,.cap__tile::after,.cap__f,.cap__ix{transition:none;}
   /* the hover rule still resolves instantly, so nothing is lost — only the
      travel is removed */
 }
@@ -1846,7 +1591,7 @@ a.wk__card:hover,a.wk__card:focus-visible,div.wk__card:hover{
 /* draft cards: the chrome+shot are one link, the meta row holds its own CTAs */
 .wk__demo{display:block;color:inherit;text-decoration:none;}
 .wk__acts{display:inline-flex;flex:none;gap:.6rem;margin-left:auto;flex-wrap:wrap;}
-.wk__acts .btn{padding:.62rem 1.05rem;}
+.wk__acts .btn{padding:.62rem 1.05rem;min-block-size:44px;}
 
 /* fake browser chrome — mono, quiet, with a live dot on the right */
 .wk__chrome{
@@ -1929,231 +1674,94 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 }
 
 /* ═══ 60-scope.css ═══ */
-/* ══ 04 · SCOPE BUILDER ══ prefixes: scope__ / row__ / qty__ ════════════════ */
+/* ══ 03b · THE MONTHLY REPORT ══ prefix: rp__ ══════════════════════════════
+   Two plain columns. Deliberately the least decorated section on the page —
+   it is arguing that the reporting is unglamorous and honest, so chrome here
+   would undercut the claim. */
+.rp__cols{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(1.6rem,4vw,3.4rem);align-items:start;
+  margin-top:clamp(1.8rem,3.5vw,2.8rem);
+}
+.rp__list{margin:0;padding:0;list-style:none;}
+.rp__list li{
+  position:relative;padding:.72rem 0 .72rem 1.15rem;
+  border-bottom:1px solid var(--dline);
+  color:var(--silver);font-size:var(--body-sm);
+}
+.rp__list li::before{content:"\2014";position:absolute;left:0;color:var(--ion);}
+.rp__fine{
+  margin:clamp(1.5rem,3vw,2.2rem) 0 0;max-inline-size:74ch;
+  color:var(--dash-2);font-size:var(--fine);
+}
+@media (max-width:820px){.rp__cols{grid-template-columns:minmax(0,1fr);}}
 
-/* One condensed ion word inside the expanded headline — the width-axis contrast
-   is the brand fingerprint, so it gets used once per headline, never twice. */
-.scope__ac{font-style:normal;color:var(--ion);font-variation-settings:"wdth" 64,"wght" 850;}
-
-.scope__grid{
-  display:grid;grid-template-columns:minmax(0,1fr) 340px;
-  gap:clamp(1.6rem,3.4vw,3.2rem);align-items:start;
-  margin-top:clamp(2rem,4.2vw,3.2rem);
+/* ══ 04 · SET THE PACE ══ prefix: pace__ ═══════════════════════════════════
+   Three cadence cards. Replaced the checkbox scope builder — the buyer picks
+   how hard we run it, never which parts they get. Card chrome deliberately
+   matches .svc__card so the two sections read as one system. */
+.pace__head{margin-bottom:clamp(2.2rem,4.5vw,3.4rem);}
+.pace__grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(1rem,2vw,1.35rem);align-items:start;
 }
-
-/* ── picker ─────────────────────────────────────────────────────────────── */
-.scope__pick{min-width:0;}
-.scope__g{border:0;margin:0 0 clamp(1.7rem,3vw,2.6rem);padding:0;min-width:0;}
-.scope__g:last-of-type{margin-bottom:0;}
-.scope__lg{
-  display:block;width:100%;margin:0;padding:0 0 .75rem;
-  font-family:var(--mno);font-size:var(--label-sm);letter-spacing:.18em;text-transform:uppercase;
-  color:var(--dash-2);border-bottom:1px solid var(--dline);
-}
-
-.row{
-  position:relative;display:flex;align-items:flex-start;gap:1rem;
-  padding:1.05rem .9rem;border-bottom:1px solid var(--dline);
-  cursor:pointer;background-color:transparent;
-  transition:background-color .2s cubic-bezier(.4,0,.2,1);
-}
-/* accent bar overlaps the hairlines above and below so checked rows read as one block */
-.row::before{
-  content:"";position:absolute;left:0;top:-1px;bottom:-1px;width:2px;
-  background:var(--grad);transform:scaleY(0);transform-origin:50% 50%;
-  transition:transform .26s cubic-bezier(.16,1,.3,1);
-}
-.row:hover{background-color:var(--panel);}
-.row.is-on{
-  background-color:var(--panel);
-  background-image:linear-gradient(90deg,rgba(79,195,247,.075),rgba(79,195,247,0) 46%);
-}
-.row.is-on::before{transform:scaleY(1);}
-
-/* real input stays in the a11y tree and in tab order; only the square is drawn */
-.row input[type=checkbox]{
-  position:absolute;width:1px;height:1px;margin:0;padding:0;opacity:0;
-  clip:rect(0 0 0 0);clip-path:inset(50%);overflow:hidden;white-space:nowrap;
-}
-.row__box{
-  flex:none;width:1.2rem;height:1.2rem;margin-top:.14rem;position:relative;
-  border:1.5px solid var(--dash-2);background:var(--void);
-  transition:border-color .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,.2,1);
-}
-.row__box::after{
-  content:"";position:absolute;inset:3px;background:var(--grad);
-  transform:scale(0);transition:transform .2s cubic-bezier(.16,1,.3,1);
-}
-.row:hover .row__box{border-color:var(--dash);}
-.row input:checked~.row__box{
-  border-color:var(--ion-2);
-  box-shadow:0 0 0 1px rgba(79,195,247,.16),0 0 14px rgba(79,195,247,.18);
-}
-.row input:checked~.row__box::after{transform:scale(1);}
-/* Ordered so engines without :focus-visible keep the plain :focus ring (they drop
-   the two rules below as invalid), while modern ones show it on keyboard only. */
-.row input:focus~.row__box{outline:2px solid var(--ion);outline-offset:3px;}
-.row input:focus:not(:focus-visible)~.row__box{outline:none;}
-.row input:focus-visible~.row__box{outline:2px solid var(--ion);outline-offset:3px;}
-
-.row__b{flex:1 1 auto;min-width:0;}
-.row__n{
-  display:block;font-size:var(--body-sm);font-weight:600;line-height:1.32;
-  letter-spacing:-.005em;color:var(--silver);transition:color .2s cubic-bezier(.4,0,.2,1);
-}
-.row.is-on .row__n{color:var(--white);}
-.row__note{display:block;margin-top:.24rem;font-size:var(--fine);line-height:1.46;color:var(--dash-2);}
-
-/* ── quantity rows ──────────────────────────────────────────────────────── */
-.row--q{align-items:center;cursor:default;}
-.row--q:hover{background-color:transparent;}
-.row--q.is-on:hover{background-color:var(--panel);}
-
-.qty{
-  flex:none;display:flex;align-items:center;
-  border:1px solid var(--dash-2);background:var(--void);
-  transition:border-color .2s cubic-bezier(.4,0,.2,1);
-}
-.qty.is-on{border-color:var(--ion-2);}
-.qty__b{
-  width:2.15rem;height:2.15rem;border:0;background:transparent;color:var(--dash);
-  font-family:var(--mno);font-size:1rem;line-height:1;cursor:pointer;
-  transition:background-color .18s cubic-bezier(.4,0,.2,1),color .18s cubic-bezier(.4,0,.2,1);
-}
-/* Touch pointers get a 44px target; fine pointers keep the tighter stepper. */
-@media (pointer:coarse){
-  .qty__b{width:2.75rem;height:2.75rem;}
-}
-.qty__b:hover{background-color:var(--ion-3);color:var(--white);}
-.qty__b:active{background-color:var(--ion-2);color:var(--void);}
-.qty__b:focus-visible{outline:2px solid var(--ion);outline-offset:-2px;}
-.qty__v{
-  width:2.9rem;height:2.15rem;border:0;border-inline:1px solid var(--edge);
-  background:transparent;text-align:center;color:var(--white);
-  font-family:var(--mno);font-size:var(--small);font-variant-numeric:tabular-nums;
-  -moz-appearance:textfield;appearance:textfield;
-}
-.qty__v::-webkit-outer-spin-button,
-.qty__v::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
-.qty__v:focus-visible{outline:2px solid var(--ion);outline-offset:-2px;}
-
-/* ── summary panel ──────────────────────────────────────────────────────── */
-.scope__aside{
-  position:relative;min-width:0;
-  background:var(--panel);border:1px solid rgba(79,195,247,.22);
+.pace__card{
+  position:relative;display:flex;flex-direction:column;
   padding:var(--pad-panel);
+  background:var(--panel);border:1px solid var(--dline);
+  transition:border-color .26s var(--ez-ui),background-color .26s var(--ez-ui);
 }
-.scope__aside::before{
-  content:"";position:absolute;left:-1px;right:-1px;top:-1px;height:2px;
-  background:var(--grad);
+.pace__card::before{
+  content:"";position:absolute;inset:0 auto 0 0;
+  inline-size:var(--accent-edge);background:var(--ion);
+  transform:scaleY(0);transform-origin:0 0;
+  transition:transform .3s var(--ez-out);
 }
-/* a single ion wipe across the top edge acknowledges each change to the scope */
-.scope__aside::after{
-  content:"";position:absolute;left:-1px;right:-1px;top:-1px;height:2px;
-  background:var(--glow);opacity:0;transform:scaleX(0);transform-origin:0 50%;
-  pointer-events:none;
+@media (hover:hover) and (pointer:fine){
+  .pace__card:hover{border-color:var(--edge);background:var(--raise);}
+  .pace__card:hover::before{transform:scaleY(1);}
 }
-.scope__aside.is-pulse::after{animation:scope-pulse .72s cubic-bezier(.16,1,.3,1);}
-@keyframes scope-pulse{from{opacity:.85;transform:scaleX(0);}to{opacity:0;transform:scaleX(1);}}
-
-/* stick only when there is genuinely room for it */
-@media (min-width:901px) and (min-height:620px){
-  .scope__aside{position:sticky;top:5.5rem;}
+.pace__ix{
+  margin:0 0 .5rem;font-family:var(--mno);font-size:var(--label-sm);
+  letter-spacing:.2em;color:var(--dash-2);
 }
-
-.scope__l{
-  margin:0 0 .85rem;font-family:var(--mno);font-size:var(--label-sm);
-  letter-spacing:.18em;text-transform:uppercase;color:var(--dash-2);
+.pace__name{
+  margin:0 0 .55rem;font-family:var(--dsp);font-weight:700;
+  font-size:clamp(1.25rem,2.2vw,1.7rem);line-height:1;
+  text-transform:uppercase;color:var(--white);
 }
-.scope__count{
-  margin:0 0 1.05rem;color:var(--white);font-family:var(--dsp);
-  font-variation-settings:"wdth" 108,"wght" 850;
-  font-size:clamp(1.22rem,2.3vw,1.6rem);line-height:1.04;
-  letter-spacing:-.03em;text-transform:uppercase;font-variant-numeric:tabular-nums;
+.pace__who{margin:0 0 .7rem;color:var(--ion);font-size:var(--body-sm);}
+.pace__what{margin:0 0 1.1rem;color:var(--dash);font-size:var(--body-sm);}
+.pace__list{margin:0;padding:0;list-style:none;border-top:1px solid var(--dline);}
+.pace__list li{
+  padding:.62rem 0 .62rem 1.05rem;position:relative;
+  border-bottom:1px solid var(--dline);
+  color:var(--silver);font-size:var(--body-sm);
 }
-.scope__list{list-style:none;margin:0 0 1.2rem;padding:0;display:grid;gap:.44rem;}
-.scope__list li{
-  position:relative;padding-left:1.2rem;
-  font-size:var(--small);line-height:1.46;color:var(--dash);
+.pace__list li::before{
+  content:"\2014";position:absolute;left:0;color:var(--dash-2);
 }
-.scope__list li::before{
-  content:"";position:absolute;left:0;top:.62em;width:.62rem;height:1.5px;background:var(--ion);
+.pace__note,.pace__excl{
+  margin:.95rem 0 0;color:var(--dash-2);font-size:var(--fine);
 }
-.scope__list li.is-none{padding-left:0;color:var(--dash-2);}
-.scope__list li.is-none::before{display:none;}
-/* only lines that just appeared animate — re-animating the whole list on every
-   keystroke turns the panel into a strobe */
-.scope__list li.is-new{animation:scope-in .42s cubic-bezier(.16,1,.3,1) backwards;}
-@keyframes scope-in{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
-
-.scope__fine{margin:0 0 1.15rem;font-size:var(--fine);line-height:1.5;color:var(--dash-2);}
-/* belt-and-braces: the core .btn--full owns this, but the CTA must never sit
-   half-width if the modifier ever changes */
-.scope__cta{width:100%;justify-content:center;text-align:center;}
-
-/* ── responsive ─────────────────────────────────────────────────────────── */
+.pace__note-k{
+  display:inline-block;margin-right:.5rem;font-family:var(--mno);
+  font-size:var(--label-sm);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dash);
+}
+.pace__foot{margin-top:clamp(1.8rem,3.6vw,2.8rem);max-inline-size:66ch;}
+.pace__move{margin:0 0 .8rem;color:var(--silver);font-size:var(--small);}
+.pace__price{margin:0 0 .9rem;color:var(--dash);font-size:var(--small);}
+.pace__foot .btn{margin-top:.9rem;}
 @media (max-width:900px){
-  .scope__grid{grid-template-columns:1fr;}
+  .pace__grid{grid-template-columns:minmax(0,1fr);}
 }
-@media (max-width:560px){
-  .row{padding:.95rem .55rem;gap:.85rem;}
-  .row--q{flex-wrap:wrap;row-gap:.85rem;}
-  .row--q .row__b{flex:1 1 100%;}
-  .scope__list li{font-size:var(--small);}
-}
-
-/* ── calm mode ──────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion:reduce){
-  .row,.row::before,.row__box,.row__box::after,.row__n,.qty,.qty__b{transition:none;}
-  .row.is-on::before{transform:scaleY(1);}
-  .row input:checked~.row__box::after{transform:scale(1);}
-  .scope__aside.is-pulse::after{animation:none;}
-  .scope__list li.is-new{animation:none;}
+  .pace__card,.pace__card::before{transition:none;}
 }
 
-/* ── Cadence tiers ────────────────────────────────────────────────────────
-   Belongs to the content row above it, so it carries the same ion edge the
-   selected rows use. Radios are visually hidden but keep real keyboard and
-   screen-reader behaviour; the pill is the label's span. */
-.tier{
-  margin:-.15rem 0 .15rem;
-  padding:.85rem 0 .95rem 1.05rem;
-  border-left:var(--accent-edge) solid var(--ion-3);
-  transition:opacity .26s var(--ez-ui);
-}
-.tier.is-off{opacity:.34;}
-.tier__k{
-  margin:0 0 .55rem;font-family:var(--mno);font-size:var(--label-sm);
-  letter-spacing:.2em;text-transform:uppercase;color:var(--dash-2);
-}
-.tier__opts{display:flex;flex-wrap:wrap;gap:.5rem;}
-.tier__o{position:relative;cursor:pointer;}
-.tier__o input{position:absolute;width:1px;height:1px;opacity:0;margin:0;}
-.tier__o span{
-  display:inline-block;padding:.42rem .95rem;
-  border:1px solid var(--dline);
-  font-family:var(--mno);font-size:var(--label-sm);letter-spacing:.14em;
-  text-transform:uppercase;color:var(--dash);
-  transition:border-color .22s var(--ez-ui),color .22s var(--ez-ui),
-             background-color .22s var(--ez-ui);
-}
-.tier__o:hover span{border-color:var(--edge);color:var(--silver);}
-/* Checked state is CSS-owned, exactly like the .row checkboxes above: with JS
-   off the radios still work, so the lit pill has to follow the real DOM state
-   rather than the JS-written .is-on class. */
-.tier__o input:checked + span,
-.tier__o.is-on span{border-color:var(--ion);color:var(--ion);background:rgba(79,195,247,.07);}
-/* Ordered so engines without :focus-visible keep the plain :focus ring — the
-   input itself is 1px and transparent, so this sibling is the only indicator. */
-.tier__o input:focus + span{outline:2px solid var(--ion);outline-offset:2px;}
-.tier__o input:focus:not(:focus-visible) + span{outline:none;}
-.tier__o input:focus-visible + span{outline:2px solid var(--ion);outline-offset:2px;}
-.tier__note{margin:.7rem 0 0;font-size:var(--fine);line-height:1.5;
-  color:var(--dash-2);max-width:48ch;}
-
-@media (prefers-reduced-motion:reduce){
-  .tier,.tier__o span{transition:none;}
-}
+/* Scope-builder CSS removed with its markup. One survivor — the pace headline uses it: */
+.scope__ac{font-style:normal;color:var(--ion);font-variation-settings:"wdth" 64,"wght" 850;}
 
 /* ═══ 70-contact.css ═══ */
 /* ══════════════════════════════════════════════════════════════════════════
@@ -2398,6 +2006,9 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
    JS that is every element below the hero, so hand them back unconditionally.
    Same reason the preloader is dismissed here rather than left to its script. */
 .rv{opacity:1 !important;transform:none !important;}
+/* The nav ships at opacity:0 until JS lights it — hand it back too, or a
+   no-JS visitor gets a page with no navigation at all. */
+.nav__bar{opacity:1 !important;pointer-events:auto !important;transform:none !important;}
 </style></noscript>
 </head>
 <body>
@@ -2420,10 +2031,10 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 
   <nav class="nav__links" aria-label="Primary">
     <a href="#services">Services</a>
-    <a href="#process">Process</a>
     <a href="#airtime">Content</a>
+    <a href="#process">Process</a>
     <a href="#proof">Work</a>
-    <a href="#scope">Scope</a>
+    <a href="#scope">Plans</a>
     <a href="#contact">Contact</a>
   </nav>
 
@@ -2445,7 +2056,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
     <img class="intro__badge" src="brand/ezhd-badge-silver.svg" alt=""
          aria-hidden="true" width="150" height="150">
     <p class="intro__word">EZHD</p>
-    <p class="intro__line">Websites &middot; SEO &middot; Content &middot; Brand &middot; Ads
+    <p class="intro__line">Build &middot; Create &middot; Grow
       <span class="intro__sep">&mdash;</span> Utah</p>
     <p class="intro__sig">Signal acquired &middot; Utah</p>
   </div>
@@ -2495,22 +2106,22 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
     <div class="hero__stats">
 
       <div class="hero__stat">
-        <p class="hero__statN">1&#8211;<span class="ct" data-to="2" data-suffix=" WKS">0</span></p>
+        <p class="hero__statN">1&#8211;<span class="ct" data-to="2" data-suffix=" WKS">2 WKS</span></p>
         <p class="hero__statL">Typical build</p>
       </div>
 
       <div class="hero__stat">
-        <p class="hero__statN"><span class="ct" data-to="6">0</span></p>
+        <p class="hero__statN"><span class="ct" data-to="6">6</span></p>
         <p class="hero__statL">Services, one invoice</p>
       </div>
 
       <div class="hero__stat">
-        <p class="hero__statN"><span class="ct" data-to="14" data-suffix=" DAYS">0</span></p>
+        <p class="hero__statN"><span class="ct" data-to="14" data-suffix=" DAYS">14 DAYS</span></p>
         <p class="hero__statL">Post-launch support</p>
       </div>
 
       <div class="hero__stat">
-        <p class="hero__statN"><span class="ct" data-to="100" data-suffix="%">0</span></p>
+        <p class="hero__statN"><span class="ct" data-to="100" data-suffix="%">100%</span></p>
         <p class="hero__statL">You own everything</p>
       </div>
 
@@ -2559,202 +2170,60 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
   <div class="wrap">
 
     <header class="svc__head">
-      <p class="eyebrow rv">02 — WHAT WE DO</p>
-      <h2 class="h2 rv svc__h">SIX SERVICES.<br><span class="svc__hot">ONE</span> ACCOUNTABLE PARTNER.</h2>
-      <p class="lede rv svc__lede">Every line item below is real scope — the same language that goes into our services agreement. If it isn't listed, it's quoted separately before any work starts.</p>
+      <p class="eyebrow rv">02 — WHAT WE RUN</p>
+      <h2 class="h2 rv svc__h">THE WHOLE PRESENCE.<br><span class="svc__hot">ONE</span> ACCOUNTABLE PARTNER.</h2>
+      <p class="lede rv svc__lede">The website is one output. We build it, fill it, and promote it. Same people, every month. The full scope is one click in &mdash; the same language that goes into our services agreement. If it isn&rsquo;t listed there, we quote it before we start.</p>
     </header>
 
-    <div class="svc__grid">
-
-      <article class="svc__card rv" data-tilt aria-labelledby="svc-n-1">
-        <p class="svc__ix" aria-hidden="true">01</p>
-        <p class="svc__ch" aria-hidden="true"><i></i>CH 01</p>
-        <h3 class="svc__name" id="svc-n-1">Website design &amp; development</h3>
-        <p class="svc__blurb">A custom, mobile-responsive marketing site built around your brand and your market.</p>
-        <ul class="svc__list">
-          <li>Custom design tailored to your brand</li>
-          <li>Up to 5 page templates</li>
-          <li>Contact and inquiry form</li>
-          <li>Photo gallery or project showcase</li>
-          <li>On-page SEO: titles, meta, headings, alt text, sitemap</li>
-          <li>Google Analytics 4 and Search Console</li>
-          <li>Deployment, domain connection, SSL</li>
-          <li>Two rounds of revisions</li>
-          <li>14-day post-launch support</li>
+    <!-- The six full spec cards moved to services/build/, services/create/ and
+         services/grow/ — one page per bucket, so the scope ranks on its own and
+         the homepage stays a summary. Edit scope THERE; these panels only name it. -->
+    <div class="svc__trio">
+      <article class="svc__panel rv">
+        <p class="svc__panel-ch" aria-hidden="true">CH 01&ndash;03</p>
+        <h3 class="svc__panel-n">Build</h3>
+        <p class="svc__panel-r">Where it lives.</p>
+        <p class="svc__panel-d">The site itself, designed and built in one to two weeks, then kept patched, backed up, and current. Plus your Google Business Profile and the local search work that keeps the listing accurate and current.</p>
+        <ul class="svc__panel-l">
+        <li><b>01</b>Website design &amp; development</li>
+        <li><b>02</b>Website care plan</li>
+        <li><b>03</b>Local SEO &amp; Google Business Profile</li>
         </ul>
-        <a class="svc__more" href="services/web-design/">Full sheet <i>&#8594;</i></a>
+        <a class="svc__more" href="services/build/">Full Build specs <i aria-hidden="true">&#8594;</i></a>
       </article>
-
-      <article class="svc__card rv" data-tilt aria-labelledby="svc-n-2">
-        <p class="svc__ix" aria-hidden="true">02</p>
-        <p class="svc__ch" aria-hidden="true"><i></i>CH 02</p>
-        <h3 class="svc__name" id="svc-n-2">Website care plan</h3>
-        <p class="svc__blurb">Keeps the site online, fast, secure, and current after launch.</p>
-        <ul class="svc__list">
-          <li>Fast, secure hosting</li>
-          <li>Domain and DNS management</li>
-          <li>SSL certificate management</li>
-          <li>Uptime and security monitoring</li>
-          <li>Regular backups</li>
-          <li>Content edits up to 2 hours per month</li>
-          <li>Monthly performance check and email support</li>
+      <article class="svc__panel rv">
+        <p class="svc__panel-ch" aria-hidden="true">CH 04</p>
+        <h3 class="svc__panel-n">Create</h3>
+        <p class="svc__panel-r">What fills it.</p>
+        <p class="svc__panel-d">Photos and video of your actual work, shot on site &mdash; no stock. We edit, caption, and publish to the website and the social feeds, month after month.</p>
+        <ul class="svc__panel-l">
+        <li><b>04</b>Content &amp; social media management</li>
         </ul>
-        <p class="svc__note"><span class="svc__note-k">Not included</span> New page builds, redesigns, and new feature work — quoted separately before any work starts.</p>
-        <a class="svc__more" href="services/website-hosting/">Full sheet <i>&#8594;</i></a>
+        <a class="svc__more" href="services/create/">Full Create specs <i aria-hidden="true">&#8594;</i></a>
       </article>
-
-      <article class="svc__card rv" data-tilt aria-labelledby="svc-n-3">
-        <p class="svc__ix" aria-hidden="true">03</p>
-        <p class="svc__ch" aria-hidden="true"><i></i>CH 03</p>
-        <h3 class="svc__name" id="svc-n-3">Local SEO &amp; Google Business Profile</h3>
-        <p class="svc__blurb">Getting found by people nearby who are already looking for what you do.</p>
-        <ul class="svc__list">
-          <li>Google Business Profile setup and management</li>
-          <li>Profile posts, photos, and Q&amp;A upkeep</li>
-          <li>Review monitoring and responses</li>
-          <li>Local SEO: citations and listing consistency</li>
-          <li>On-page local SEO improvements</li>
-          <li>Search Console and local ranking tracking</li>
+      <article class="svc__panel rv">
+        <p class="svc__panel-ch" aria-hidden="true">CH 05&ndash;06</p>
+        <h3 class="svc__panel-n">Grow</h3>
+        <p class="svc__panel-r">Who we put it in front of.</p>
+        <p class="svc__panel-d">Paid advertising on search and social, spent against a budget you set and reported every month. And the brand work under it: logo, colors, ad creative, print.</p>
+        <ul class="svc__panel-l">
+        <li><b>05</b>Paid advertising</li>
+        <li><b>06</b>Brand &amp; design</li>
         </ul>
-        <a class="svc__more" href="services/local-seo/">Full sheet <i>&#8594;</i></a>
+        <a class="svc__more" href="services/grow/">Full Grow specs <i aria-hidden="true">&#8594;</i></a>
       </article>
-
-      <article class="svc__card rv" data-tilt aria-labelledby="svc-n-4">
-        <p class="svc__ix" aria-hidden="true">04</p>
-        <p class="svc__ch" aria-hidden="true"><i></i>CH 04</p>
-        <h3 class="svc__name" id="svc-n-4">Brand &amp; design</h3>
-        <p class="svc__blurb">The identity everything else is built on — designed once, used everywhere.</p>
-        <ul class="svc__list">
-          <li>Logo design and refinement</li>
-          <li>Brand identity: colour, type, and usage rules</li>
-          <li>Business cards, yard signs, and vehicle graphics</li>
-          <li>Flyers, brochures, and print collateral</li>
-          <li>Social profile and post templates</li>
-          <li>Delivered as a complete brand kit, print-ready and web-ready</li>
-        </ul>
-        <a class="svc__more" href="services/brand-design/">Full sheet <i>&#8594;</i></a>
-      </article>
-
-      <article class="svc__card rv" data-tilt aria-labelledby="svc-n-5">
-        <p class="svc__ix" aria-hidden="true">05</p>
-        <p class="svc__ch" aria-hidden="true"><i></i>CH 05</p>
-        <h3 class="svc__name" id="svc-n-5">Content &amp; social media management</h3>
-        <p class="svc__blurb">Original content — shot, edited, and published — at a cadence built around your business rather than a package.</p>
-        <ul class="svc__list">
-          <li>Content shot, edited, and published on a cadence we set with you</li>
-          <li>On-site capture sessions scheduled to your plan</li>
-          <li>Professional editing into reels, stories, and feed posts</li>
-          <li>Captions, hashtags, scheduling, publishing</li>
-          <li>Monthly content calendar</li>
-          <li>Community management on business days</li>
-          <li>Monthly reporting</li>
-        </ul>
-        <div class="svc__plat">
-          <p class="svc__plat-k" id="svc-plat-k">Platforms</p>
-          <ul class="svc__tags" aria-labelledby="svc-plat-k">
-            <li>Instagram</li>
-            <li>Facebook</li>
-            <li>TikTok</li>
-            <li>LinkedIn</li>
-            <li>Google Business Profile</li>
-          </ul>
-        </div>
-        <p class="svc__note"><span class="svc__note-k">Your call</span> Light, standard, or heavy — you pick the cadence and the channels, and we quote that. We don't sell content by the piece.</p>
-        <a class="svc__more" href="services/social-media-management/">Full sheet <i>&#8594;</i></a>
-      </article>
-
-      <article class="svc__card rv" data-tilt aria-labelledby="svc-n-6">
-        <p class="svc__ix" aria-hidden="true">06</p>
-        <p class="svc__ch" aria-hidden="true"><i></i>CH 06</p>
-        <h3 class="svc__name" id="svc-n-6">Paid advertising</h3>
-        <p class="svc__blurb">Campaigns built, monitored, and adjusted — never set and forgotten.</p>
-        <ul class="svc__list">
-          <li>Google ads: search and local</li>
-          <li>Meta ads: Facebook and Instagram</li>
-          <li>Audience, geography, and budget setup</li>
-          <li>Ad creative built from your content library</li>
-          <li>Landing-page checks so ads land somewhere that converts</li>
-          <li>Monthly performance reporting</li>
-        </ul>
-        <p class="svc__note"><span class="svc__note-k">Straight up</span> Ad spend is billed to you by the platform — we never mark it up or hold your accounts.</p>
-        <a class="svc__more" href="services/paid-advertising/">Full sheet <i>&#8594;</i></a>
-      </article>
-
     </div>
   </div>
 </section>
 
-<!-- ══ 03 · PROCESS / TIMELINE ═══════════════════════════════════════
+<!-- ══ 03 · AIRTIME (was 04; the airtime/process swap moved sections, not banners) ═══════════════════════════════════════
      Dark inset panel: edit-bay timeline banner (flowC) sitting above a
      four-step timeline whose ion progress rail is scrubbed by scroll.
      Prefix: proc__ / flow__ ─────────────────────────────────────── -->
-<section class="sec sec--pit" id="process">
-  <div class="wrap">
-
-    <p class="eyebrow rv">03 — HOW IT GOES</p>
-    <h2 class="h2 rv">KICKOFF TO LIVE IN <span class="proc__hl">ONE TO TWO</span> WEEKS.</h2>
-    <p class="lede rv">Assuming assets and feedback come back inside two business days. The schedule moves when they don't — that's the one thing that shifts a launch date.</p>
-
-    <div class="proc__inset rv">
-
-      <!-- decorative banner: projected wireframe terrain flowing toward the camera -->
-      <div class="flow__stage" aria-hidden="true">
-        <canvas class="flow__c" id="flowC" aria-hidden="true"></canvas>
-        <span class="flow__veil"></span>
-      </div>
-
-      <div class="proc__body">
-        <div class="proc__rail">
-          <span class="proc__bar" id="tlBar" aria-hidden="true"></span>
-
-          <ol class="proc__tl" id="tl">
-            <li class="proc__step">
-              <span class="proc__node" aria-hidden="true"></span>
-              <p class="proc__wk"><span class="proc__mk" aria-hidden="true"></span>DAY 0</p>
-              <h3 class="proc__t">KICKOFF</h3>
-              <p class="proc__d">Discovery call, brand assets, goals, and content gathering.</p>
-            </li>
-
-            <li class="proc__step">
-              <span class="proc__node" aria-hidden="true"></span>
-              <p class="proc__wk"><span class="proc__mk" aria-hidden="true"></span>DAYS 1&#8211;6</p>
-              <h3 class="proc__t">BUILD</h3>
-              <p class="proc__d">Design and development of the site.</p>
-            </li>
-
-            <li class="proc__step">
-              <span class="proc__node" aria-hidden="true"></span>
-              <p class="proc__wk"><span class="proc__mk" aria-hidden="true"></span>DAYS 7&#8211;9</p>
-              <h3 class="proc__t">REVIEW</h3>
-              <p class="proc__d">You review. Up to two rounds of revisions applied.</p>
-            </li>
-
-            <li class="proc__step">
-              <span class="proc__node" aria-hidden="true"></span>
-              <p class="proc__wk"><span class="proc__mk" aria-hidden="true"></span>DAYS 10&#8211;14</p>
-              <h3 class="proc__t">LAUNCH</h3>
-              <p class="proc__d">Final checks, domain connection, go live. Monthly services begin.</p>
-            </li>
-          </ol>
-        </div>
-
-        <p class="proc__note"><span class="proc__mk proc__mk--n" aria-hidden="true"></span>Monthly services begin at launch.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ══ 04 · AIRTIME ═════════════════════════════════════════════════════
-     The content half of the pitch. Two movements: what we shoot (a storyboard
-     sheet of 9:16 frames drawn in the site's own line language — deliberately
-     illustration, never client footage) and where it goes (the channel rack).
-     No piece counts anywhere: cadence is set per client, never sold by the
-     piece. If a quantity ever creeps back into this section, it is a bug. -->
 <section class="sec sec--pit" id="airtime" aria-labelledby="atTitle">
   <div class="wrap">
 
-    <p class="eyebrow rv">04 — AIRTIME</p>
+    <p class="eyebrow rv">03 — AIRTIME</p>
     <h2 class="h2 rv" id="atTitle">SHOT HERE. <span class="sl__hot">SEEN EVERYWHERE.</span></h2>
     <p class="lede rv">Your website is where people land. Content is how they find it. We shoot it, cut it, caption it, and put it out — so the business keeps showing up in the feeds your customers are already scrolling.</p>
 
@@ -2897,16 +2366,72 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
   </div>
 </section>
 
-<!-- ══ 05 · ACTIVE PROJECTS ══════════════════════════════════════════════
+<!-- ══ 04 · PROCESS / TIMELINE ═════════════════════════════════════════════════════
+     The content half of the pitch. Two movements: what we shoot (a storyboard
+     sheet of 9:16 frames drawn in the site's own line language — deliberately
+     illustration, never client footage) and where it goes (the channel rack).
+     No piece counts anywhere: cadence is set per client, never sold by the
+     piece. If a quantity ever creeps back into this section, it is a bug. -->
+<section class="sec" id="process">
+  <div class="wrap">
+
+    <p class="eyebrow rv">04 — HOW IT GOES</p>
+    <h2 class="h2 rv">BUILD, CREATE, GROW. <span class="proc__hl">IN THAT ORDER.</span></h2>
+    <p class="lede rv">The build runs one to two weeks when assets and feedback come back within two business days. The schedule moves when feedback does. The phases don&rsquo;t.</p>
+
+    <div class="proc__inset rv">
+
+      <!-- decorative banner: projected wireframe terrain flowing toward the camera -->
+      <div class="flow__stage" aria-hidden="true">
+        <canvas class="flow__c" id="flowC" aria-hidden="true"></canvas>
+        <span class="flow__veil"></span>
+      </div>
+
+      <div class="proc__body">
+        <div class="proc__rail">
+          <span class="proc__bar" id="tlBar" aria-hidden="true"></span>
+
+          <ol class="proc__tl" id="tl">
+            <li class="proc__step">
+              <span class="proc__node" aria-hidden="true"></span>
+              <p class="proc__wk"><span class="proc__mk" aria-hidden="true"></span>WEEKS 1&#8211;2</p>
+              <h3 class="proc__t">BUILD</h3>
+              <p class="proc__d">The site is designed, built and taken live, with the care plan and Google Business Profile set up underneath it.</p>
+            </li>
+
+            <li class="proc__step">
+              <span class="proc__node" aria-hidden="true"></span>
+              <p class="proc__wk"><span class="proc__mk" aria-hidden="true"></span>FROM LAUNCH</p>
+              <h3 class="proc__t">CREATE</h3>
+              <p class="proc__d">Shoots, editing, publishing, on a schedule you can see.</p>
+            </li>
+
+            <li class="proc__step">
+              <span class="proc__node" aria-hidden="true"></span>
+              <p class="proc__wk"><span class="proc__mk" aria-hidden="true"></span>EVERY MONTH</p>
+              <h3 class="proc__t">GROW</h3>
+              <p class="proc__d">Paid advertising and brand work run month to month, each one closed out with a written report of what happened.</p>
+            </li>
+          </ol>
+        </div>
+
+        <p class="proc__note"><span class="proc__mk proc__mk--n" aria-hidden="true"></span>The build is the only phase with an end date. Create and Grow start at launch.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ 05 · ACTIVE ACCOUNTS ══════════════════════════════════════════════
      Proof before promises. Real screenshots of live client builds, framed in
      browser-chrome cards. Images live in work/ and ship with the deploy;
      the third slot is deliberately left open as a CTA. -->
-<section class="sec" id="proof" aria-labelledby="wkTitle">
+<section class="sec sec--pit" id="proof" aria-labelledby="wkTitle">
   <div class="wrap">
 
-    <p class="eyebrow rv">05 — ACTIVE PROJECTS</p>
+    <p class="eyebrow rv">05 — ACTIVE ACCOUNTS</p>
     <h2 class="h2 rv" id="wkTitle">PROOF, NOT <span class="wk__hot">PROMISES</span>.</h2>
-    <p class="lede rv">We'd rather show you than tell you. These are live builds for real businesses — click through and poke around.</p>
+    <p class="lede rv">We&rsquo;d rather show you than tell you. These are live sites for real businesses &mdash; click through and poke around. Each one is the visible part of an account we still run.</p>
 
     <div class="wk__grid">
 
@@ -2916,7 +2441,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
           <span class="wk__url">alloy.homes</span>
           <span class="wk__live"><span class="wk__pulse"></span>On air</span>
         </span>
-        <img class="wk__shot" src="work/alloy-homes.jpg" alt="The Alloy Homes website: an aerial photograph of a custom home with the headline 'Built around you. Built to endure.'" width="2000" height="1250" loading="lazy" decoding="async">
+        <img class="wk__shot" src="work/alloy-homes.webp" alt="The Alloy Homes website: an aerial photograph of a custom home with the headline 'Built around you. Built to endure.'" width="2000" height="1250" loading="lazy" decoding="async">
         <canvas class="wk__wave" id="wkWave" aria-hidden="true"></canvas>
         <span class="wk__meta">
           <span class="wk__client">Alloy Homes</span>
@@ -2931,7 +2456,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
           <span class="wk__url">connect-shield.com</span>
           <span class="wk__live"><span class="wk__pulse"></span>On air</span>
         </span>
-        <img class="wk__shot" src="work/connect-shield.jpg" alt="The ConnectShield website: a navy and gold landing page reading 'CMS is scoring your hospice — do you know your number?'" width="2000" height="1250" loading="lazy" decoding="async">
+        <img class="wk__shot" src="work/connect-shield.webp" alt="The ConnectShield website: a navy and gold landing page reading 'CMS is scoring your hospice — do you know your number?'" width="2000" height="1250" loading="lazy" decoding="async">
         <span class="wk__meta">
           <span class="wk__client">ConnectShield</span>
           <span class="wk__what">Compliance intelligence for hospice agencies &mdash; product site, design and build, live on our hosting.</span>
@@ -2940,9 +2465,9 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
       </a>
 
       <a class="wk__card wk__card--next rv" href="#contact">
-        <span class="wk__nextIx" aria-hidden="true">04</span>
+        <span class="wk__nextIx" aria-hidden="true">03</span>
         <span class="wk__nextT">Your project</span>
-        <span class="wk__nextD">This slot is open. Tell us what you're trying to fix, and we'll tell you — honestly — whether we're the right ones to fix it.</span>
+        <span class="wk__nextD">This slot is open. Tell us what you&rsquo;re trying to fix, and we&rsquo;ll tell you — honestly — whether we&rsquo;re the right ones to fix it.</span>
         <span class="btn btn--wire wk__nextB">Start a project</span>
       </a>
 
@@ -2950,7 +2475,55 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
   </div>
 </section>
 
-<!-- ══ 05 · THE DRAFTS ═══════════════════════════════════════════════════
+<!-- ══ 06 · THE MONTHLY REPORT — proof of the ongoing half ══════════════ -->
+<!-- Added in the Build/Create/Grow restructure. Every other proof block on this
+     page is a website, which is why the site read as a web shop. This is the only
+     section that proves the ongoing half. No client numbers appear here on
+     purpose — the posture is the proof, not the figures. -->
+<section class="sec" id="report" aria-labelledby="rpTitle">
+  <div class="wrap">
+
+    <p class="eyebrow rv">06 — THE MONTHLY REPORT</p>
+    <h2 class="h2 rv" id="rpTitle">A REPORT EVERY MONTH.<br>THE <span class="wk__hot">SLOW</span> ONES TOO.</h2>
+    <p class="lede rv">The site going live is the start of the work, not the end of it. Every month you get a
+      written report on what the site, the Google profile and the ads actually did &mdash; and what we did
+      about it. It is written to be read, not to impress you.</p>
+
+    <div class="rp__cols">
+
+      <div class="rp__col rv">
+        <p class="rack__k">What&rsquo;s in it</p>
+        <ul class="rp__list">
+          <li>What ran, across the site, the Google profile and the ads.</li>
+          <li>What we changed, and why we changed it.</li>
+          <li>What we&rsquo;re doing next month.</li>
+          <li>What we don&rsquo;t know yet, said plainly.</li>
+        </ul>
+      </div>
+
+      <div class="rp__col rv">
+        <p class="rack__k">How we report</p>
+        <ul class="rp__list">
+          <li>If a month produced no calls, messages or appointments, the report says so &mdash; and says
+            whether that&rsquo;s expected at this stage or a problem to fix.</li>
+          <li>If a number jumps, we say whether it jumped off a near-zero base. Growth like that is real,
+            but it isn&rsquo;t a repeatable monthly rate, and we won&rsquo;t hand it to you as one.</li>
+          <li>If two platforms count the same thing differently, we show both as reported rather than
+            quietly reconciling them into one tidier figure.</li>
+          <li>We tell you up front which numbers matter and which month to start judging them by.
+            Month one is not that month.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <p class="rp__fine rv"><span class="pace__note-k">Not shown here</span> Client numbers. Those are theirs,
+      not marketing material. Ask and we&rsquo;ll walk you through the format with the figures taken out.</p>
+
+  </div>
+</section>
+
+<!-- ══ 07 · THE DRAFTS ═══════════════════════════════════════════════════
      Concept builds for businesses that don't exist yet. Each draft is a real
      live demo under drafts/ (separate static pages — the single-file rule
      protects index.html, not the demos). Claim buttons carry data-claim;
@@ -2958,9 +2531,9 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 <section class="sec sec--pit" id="drafts" aria-labelledby="dfTitle">
   <div class="wrap">
 
-    <p class="eyebrow rv">06 — THE DRAFTS</p>
+    <p class="eyebrow rv">07 — THE DRAFTS</p>
     <h2 class="h2 rv" id="dfTitle">DRAWN FOR NOBODY. <span class="wk__hot">YET.</span></h2>
-    <p class="lede rv">Full concept builds for businesses that don't exist. Walk through the live demos — and if one feels like yours, claim it: we rebrand the whole design around your business and build it out for real. Four of the seven below already belong to somebody.</p>
+    <p class="lede rv">Full concept builds for businesses that don&rsquo;t exist. Walk through the live demos — and if one feels like yours, claim it: we rebrand the whole design around your business and build it out for real &mdash; then fill it and run it from there. All seven below are still unclaimed.</p>
 
     <div class="wk__grid">
 
@@ -2971,11 +2544,11 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
             <span class="wk__url">ez-hd.co/drafts/solmesa</span>
             <span class="wk__live"><span class="wk__pulse"></span>Draft 01 &middot; Unclaimed</span>
           </span>
-          <img class="wk__shot" src="work/draft-solmesa.jpg" alt="The Solmesa concept site: a serif headline reading 'Where the lava meets the light' over a red rock golf course at dusk." width="2000" height="1250" loading="lazy" decoding="async">
+          <img class="wk__shot" src="work/draft-solmesa.webp" alt="The Solmesa concept site: a serif headline reading 'Where the lava meets the light' over a red rock golf course at dusk." width="2000" height="1250" loading="lazy" decoding="async">
         </a>
         <span class="wk__meta">
           <span class="wk__client">Solmesa</span>
-          <span class="wk__what">A private golf club that doesn't exist &mdash; cinematic loader, scroll-driven signature holes, an illustrated routing map, membership tiers. Every word and image is placeholder, waiting for a real name.</span>
+          <span class="wk__what">A private golf club that doesn&rsquo;t exist &mdash; cinematic loader, scroll-driven signature holes, an illustrated routing map, membership tiers. Every word and image is placeholder, waiting for a real name.</span>
           <span class="wk__acts">
             <a class="btn btn--wire" href="drafts/solmesa/" target="_blank" rel="noopener">View live demo</a>
             <a class="btn btn--ion" href="#contact" data-claim="Draft 01 — Solmesa (private club concept)">Claim this draft</a>
@@ -2990,11 +2563,11 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
             <span class="wk__url">ez-hd.co/drafts/bridger-hollow</span>
             <span class="wk__live"><span class="wk__pulse"></span>Draft 02 &middot; Unclaimed</span>
           </span>
-          <img class="wk__shot" src="work/draft-bridger-hollow.jpg" alt="The Bridger Hollow concept site: a serif headline reading 'One herd, one valley' over an illustrated green valley with a red barn and grazing cows." width="2000" height="1250" loading="lazy" decoding="async">
+          <img class="wk__shot" src="work/draft-bridger-hollow.webp" alt="The Bridger Hollow concept site: a serif headline reading 'One herd, one valley' over an illustrated green valley with a red barn and grazing cows." width="2000" height="1250" loading="lazy" decoding="async">
         </a>
         <span class="wk__meta">
           <span class="wk__client">Bridger Hollow</span>
-          <span class="wk__what">A farmstead creamery that doesn't exist &mdash; every scene hand-drawn, not photographed: a layered valley that moves as you scroll, a cave of aging cheese, a product story, a subscription club. Illustration means no stock photos and nothing to license.</span>
+          <span class="wk__what">A farmstead creamery that doesn&rsquo;t exist &mdash; every scene hand-drawn, not photographed: a layered valley that moves as you scroll, a cave of aging cheese, a product story, a subscription club. Illustration means no stock photos and nothing to license.</span>
           <span class="wk__acts">
             <a class="btn btn--wire" href="drafts/bridger-hollow/" target="_blank" rel="noopener">View live demo</a>
             <a class="btn btn--ion" href="#contact" data-claim="Draft 02 — Bridger Hollow (farm &amp; food concept)">Claim this draft</a>
@@ -3007,16 +2580,16 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
           <span class="wk__chrome" aria-hidden="true">
             <span class="wk__dots"><i></i><i></i><i></i></span>
             <span class="wk__url">ironneverchanges.com</span>
-            <span class="wk__live"><span class="wk__pulse"></span>Draft 03 &middot; Claimed</span>
+            <span class="wk__live"><span class="wk__pulse"></span>Draft 03 &middot; Unclaimed</span>
           </span>
-          <img class="wk__shot" src="work/draft-iron-never-changes.jpg" alt="The Iron Never Changes concept site: IRON NEVER CHANGES. YOU DO. in huge white type on near-black, beside a grey skull-and-barbell badge." width="2000" height="1250" loading="lazy" decoding="async">
+          <img class="wk__shot" src="work/draft-iron-never-changes.webp" alt="The Iron Never Changes concept site: IRON NEVER CHANGES. YOU DO. in huge white type on near-black, beside a grey skull-and-barbell badge." width="2000" height="1250" loading="lazy" decoding="async">
         </a>
         <span class="wk__meta">
           <span class="wk__client">Iron Never Changes</span>
-          <span class="wk__what">The first one off the board &mdash; a heavyweight gym-wear brand for everyday men, being built out for a real client now: an eight-shirt shop drawn as spec sheets with a working cart, a slogan wall, and a manifesto that lights up as you scroll.</span>
+          <span class="wk__what">A heavyweight gym-wear brand for everyday men &mdash; an eight-shirt shop drawn as spec sheets with a working cart, a slogan wall, and a manifesto that lights up as you scroll.</span>
           <span class="wk__acts">
             <a class="btn btn--wire" href="https://www.ironneverchanges.com" target="_blank" rel="noopener">View live build</a>
-            <a class="btn btn--ion" href="#contact" data-claim="a build like Iron Never Changes (apparel / gym brand)">Start yours</a>
+            <a class="btn btn--ion" href="#contact" data-claim="Draft 03 — Iron Never Changes (apparel / gym brand)">Claim this draft</a>
           </span>
         </span>
       </div>
@@ -3028,11 +2601,11 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
             <span class="wk__url">ez-hd.co/drafts/ledgeline</span>
             <span class="wk__live"><span class="wk__pulse"></span>Draft 04 &middot; Unclaimed</span>
           </span>
-          <img class="wk__shot" src="work/draft-ledgeline.jpg" alt="The Ledgeline Storage concept site: 'Every unit we have, on one page' in bold type beside a live board listing unit sizes, availability and monthly rates." width="2000" height="1250" loading="lazy" decoding="async">
+          <img class="wk__shot" src="work/draft-ledgeline.webp" alt="The Ledgeline Storage concept site: 'Every unit we have, on one page' in bold type beside a live board listing unit sizes, availability and monthly rates." width="2000" height="1250" loading="lazy" decoding="async">
         </a>
         <span class="wk__meta">
           <span class="wk__client">Ledgeline Storage</span>
-          <span class="wk__what">A self-storage facility that doesn't exist &mdash; the whole yard drawn to scale as a live availability board, honest move-in math with a $0 admin fee line, a gate that opens as you scroll. Storage sites hide the price; this one leads with it.</span>
+          <span class="wk__what">A self-storage facility that doesn&rsquo;t exist &mdash; the whole yard drawn to scale as a live availability board, honest move-in math with a $0 admin fee line, a gate that opens as you scroll. Storage sites hide the price; this one leads with it.</span>
           <span class="wk__acts">
             <a class="btn btn--wire" href="drafts/ledgeline/" target="_blank" rel="noopener">View live demo</a>
             <a class="btn btn--ion" href="#contact" data-claim="Draft 04 — Ledgeline (self-storage concept)">Claim this draft</a>
@@ -3045,16 +2618,16 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
           <span class="wk__chrome" aria-hidden="true">
             <span class="wk__dots"><i></i><i></i><i></i></span>
             <span class="wk__url">butter-bakery-evans-5279s-projects.vercel.app</span>
-            <span class="wk__live"><span class="wk__pulse"></span>Draft 05 &middot; Claimed</span>
+            <span class="wk__live"><span class="wk__pulse"></span>Draft 05 &middot; Unclaimed</span>
           </span>
-          <img class="wk__shot" src="work/draft-butter-bakery.jpg" alt="The Butter Bakery site: 'Build the cake, then call us.' in a heavy serif over a soft blue wash, with the cake builder starting underneath." width="2000" height="1250" loading="lazy" decoding="async">
+          <img class="wk__shot" src="work/draft-butter-bakery.webp" alt="The Butter Bakery site: 'Build the cake, then call us.' in a heavy serif over a soft blue wash, with the cake builder starting underneath." width="2000" height="1250" loading="lazy" decoding="async">
         </a>
         <span class="wk__meta">
           <span class="wk__client">Butter Bakery</span>
           <span class="wk__what">Two bakers in St. George, no storefront and no checkout &mdash; every order starts as a conversation. So the site is a cake builder: set the tiers, size, flavour and finish and the cake is drawn in 3D to those exact dimensions, then written straight into the order they send.</span>
           <span class="wk__acts">
             <a class="btn btn--wire" href="https://butter-bakery-evans-5279s-projects.vercel.app" target="_blank" rel="noopener">View live build</a>
-            <a class="btn btn--ion" href="#contact" data-claim="a build like Butter Bakery (bakery / custom food orders)">Start yours</a>
+            <a class="btn btn--ion" href="#contact" data-claim="Draft 05 — Butter Bakery (bakery / custom food orders)">Claim this draft</a>
           </span>
         </span>
       </div>
@@ -3064,16 +2637,16 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
           <span class="wk__chrome" aria-hidden="true">
             <span class="wk__dots"><i></i><i></i><i></i></span>
             <span class="wk__url">sewtrue.vercel.app</span>
-            <span class="wk__live"><span class="wk__pulse"></span>Draft 06 &middot; Claimed</span>
+            <span class="wk__live"><span class="wk__pulse"></span>Draft 06 &middot; Unclaimed</span>
           </span>
-          <img class="wk__shot" src="work/draft-sew-true.jpg" alt="The Sew True site: 'Sewn true, one at a time.' in a vintage serif on warm paper, beside a red gingham bow drawn as a sewing-pattern envelope." width="2000" height="1250" loading="lazy" decoding="async">
+          <img class="wk__shot" src="work/draft-sew-true.webp" alt="The Sew True site: 'Sewn true, one at a time.' in a vintage serif on warm paper, beside a red gingham bow drawn as a sewing-pattern envelope." width="2000" height="1250" loading="lazy" decoding="async">
         </a>
         <span class="wk__meta">
           <span class="wk__client">Sew True</span>
           <span class="wk__what">Handmade fabric door bows, sewn one at a time. Built black-and-white and vintage against the obvious pink brief &mdash; the only colour on the whole site is the cloth itself, every bow drawn as a real fabric pattern so the shop was open before a single photo existed.</span>
           <span class="wk__acts">
             <a class="btn btn--wire" href="https://sewtrue.vercel.app" target="_blank" rel="noopener">View live build</a>
-            <a class="btn btn--ion" href="#contact" data-claim="a build like Sew True (handmade goods / small shop)">Start yours</a>
+            <a class="btn btn--ion" href="#contact" data-claim="Draft 06 — Sew True (handmade goods / small shop)">Claim this draft</a>
           </span>
         </span>
       </div>
@@ -3083,16 +2656,16 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
           <span class="wk__chrome" aria-hidden="true">
             <span class="wk__dots"><i></i><i></i><i></i></span>
             <span class="wk__url">shakespear-rental.vercel.app</span>
-            <span class="wk__live"><span class="wk__pulse"></span>Draft 07 &middot; Claimed</span>
+            <span class="wk__live"><span class="wk__pulse"></span>Draft 07 &middot; Unclaimed</span>
           </span>
-          <img class="wk__shot" src="work/draft-shakespeare-rentals.jpg" alt="The Shakespeare Rentals site: 'CHARGED. ON TIME. READY TO WORK.' in orange and white on near-black, beside a dimensioned side elevation of a scissor lift on drafting grid." width="2000" height="1250" loading="lazy" decoding="async">
+          <img class="wk__shot" src="work/draft-shakespeare-rentals.webp" alt="The Shakespeare Rentals site: 'CHARGED. ON TIME. READY TO WORK.' in orange and white on near-black, beside a dimensioned side elevation of a scissor lift on drafting grid." width="2000" height="1250" loading="lazy" decoding="async">
         </a>
         <span class="wk__meta">
           <span class="wk__client">Shakespeare Rentals</span>
           <span class="wk__what">A St. George equipment house with three electric scissor lifts and room to grow. Every machine drawn to one scale against a six-foot figure, and a calculator that sizes the job by ceiling height then prices the whole rental &mdash; delivery, waiver and tax &mdash; before anyone picks up the phone.</span>
           <span class="wk__acts">
             <a class="btn btn--wire" href="https://shakespear-rental.vercel.app" target="_blank" rel="noopener">View live build</a>
-            <a class="btn btn--ion" href="#contact" data-claim="a build like Shakespeare Rentals (equipment rental)">Start yours</a>
+            <a class="btn btn--ion" href="#contact" data-claim="Draft 07 — Shakespeare Rentals (equipment rental)">Claim this draft</a>
           </span>
         </span>
       </div>
@@ -3100,7 +2673,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
       <a class="wk__card wk__card--feat wk__card--next rv" href="#contact" data-claim="a new draft drawn for my industry">
         <span class="wk__nextIx" aria-hidden="true">08</span>
         <span class="wk__nextT">On the board</span>
-        <span class="wk__nextD">The next draft is being drawn now. Tell us your industry — restaurant, gym, builder, med-spa, you name it — and we'll draw yours first.</span>
+        <span class="wk__nextD">The next draft is being drawn now. Tell us your industry — restaurant, gym, builder, med-spa, you name it — and we&rsquo;ll draw yours first.</span>
         <span class="btn btn--wire wk__nextB">Request a draft</span>
       </a>
 
@@ -3108,8 +2681,12 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
   </div>
 </section>
 
-<!-- ══ 06 · CAPABILITY + MARQUEE ═════════════════════════════════════════ -->
-<section class="sec" id="work" aria-labelledby="capTitle">
+<!-- ══ CAPABILITY MARQUEE — unnumbered full-bleed divider + MARQUEE ═════════════════════════════════════════ -->
+<!-- The capability grid that used to live here was a third copy of the service
+     list (6 cards in #services, 12 tiles here, 11 checkboxes in the scope
+     picker). Cut in the Build/Create/Grow restructure. The kinetic strip stays
+     as a full-bleed divider — it carries breadth without re-listing it. -->
+<section class="sec sec--rule" id="work">
 
   <!-- Full-bleed kinetic strip. Decorative on purpose: every term below is
        also a grid tile, so screen readers would hear it twice. -->
@@ -3127,253 +2704,86 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
         <span class="mq__i mq__i--lit">PAID ADS</span>
         <span class="mq__i">GOOGLE BUSINESS PROFILE</span>
         <span class="mq__i">ANALYTICS</span>
-        <span class="mq__i">EMAIL MARKETING</span>
       </div>
     </div>
   </div>
 
-  <div class="wrap">
-
-    <p class="eyebrow rv">07 — CAPABILITIES</p>
-    <h2 class="h2 rv" id="capTitle">Everything the business needs.
-      Under <span class="cap__acc">one</span> roof.</h2>
-
-    <div class="cap__bar rv">
-      <div class="cap__filters" id="filters" role="group" aria-label="Filter capabilities">
-        <button type="button" class="cap__f is-sel" data-f="all"   aria-pressed="true">All</button>
-        <button type="button" class="cap__f"        data-f="build" aria-pressed="false">Build</button>
-        <button type="button" class="cap__f"        data-f="grow"  aria-pressed="false">Grow</button>
-        <button type="button" class="cap__f"        data-f="run"   aria-pressed="false">Run</button>
-      </div>
-      <p class="cap__stat" id="capCount" role="status" aria-live="polite">Showing 12 / 12</p>
-    </div>
-
-    <div class="cap__grid rv" id="grid">
-
-      <article class="cap__tile" data-cat="build">
-        <span class="cap__ix" aria-hidden="true">01</span>
-        <h3 class="cap__t">Custom design + build</h3>
-        <p class="cap__d">A custom marketing site built around your brand and your market — not a bought template.</p>
-      </article>
-
-      <article class="cap__tile" data-cat="build">
-        <span class="cap__ix" aria-hidden="true">02</span>
-        <h3 class="cap__t">Responsive to every screen</h3>
-        <p class="cap__d">Layouts drawn and checked on phone, tablet, and desktop before anything goes live.</p>
-      </article>
-
-      <article class="cap__tile" data-cat="build">
-        <span class="cap__ix" aria-hidden="true">03</span>
-        <h3 class="cap__t">Copy + information architecture</h3>
-        <p class="cap__d">Pages ordered and written so a visitor finds what they came for without hunting.</p>
-      </article>
-
-      <article class="cap__tile" data-cat="build grow">
-        <span class="cap__ix" aria-hidden="true">04</span>
-        <h3 class="cap__t">On-page SEO foundation</h3>
-        <p class="cap__d">Titles, meta, headings, alt text, and a sitemap set correctly at launch.</p>
-      </article>
-
-      <article class="cap__tile" data-cat="grow">
-        <span class="cap__ix" aria-hidden="true">05</span>
-        <h3 class="cap__t">Google Business Profile</h3>
-        <p class="cap__d">Profile posts and upkeep, maintained alongside ongoing local SEO.</p>
-      </article>
-
-      <article class="cap__tile" data-cat="grow">
-        <span class="cap__ix" aria-hidden="true">06</span>
-        <h3 class="cap__t">Social content + reels</h3>
-        <p class="cap__d">Shot on site, edited into reels and posts, captioned, scheduled, published.</p>
-      </article>
-
-      <article class="cap__tile" data-cat="grow">
-        <span class="cap__ix" aria-hidden="true">07</span>
-        <h3 class="cap__t">Paid ads, managed</h3>
-        <p class="cap__d">Google and Meta campaigns built, monitored, and adjusted as an add-on.</p>
-      </article>
-
-      <article class="cap__tile" data-cat="run">
-        <span class="cap__ix" aria-hidden="true">08</span>
-        <h3 class="cap__t">Hosting, SSL + backups</h3>
-        <p class="cap__d">Fast, secure hosting with DNS, certificates, monitoring, and regular backups.</p>
-      </article>
-
-      <article class="cap__tile" data-cat="run grow">
-        <span class="cap__ix" aria-hidden="true">09</span>
-        <h3 class="cap__t">Analytics + monthly reporting</h3>
-        <p class="cap__d">Analytics 4 and Search Console wired up, with one plain-language report a month.</p>
-      </article>
-
-      <article class="cap__tile" data-cat="build">
-        <span class="cap__ix" aria-hidden="true">10</span>
-        <h3 class="cap__t">Logo + brand identity</h3>
-        <p class="cap__d">A mark and identity system designed to work on a truck door as well as a screen.</p>
-      </article>
-
-      <article class="cap__tile" data-cat="build">
-        <span class="cap__ix" aria-hidden="true">11</span>
-        <h3 class="cap__t">Graphic design + print</h3>
-        <p class="cap__d">Business cards, yard signs, vehicle graphics, and flyers — designed print-ready.</p>
-      </article>
-
-      <article class="cap__tile" data-cat="grow">
-        <span class="cap__ix" aria-hidden="true">12</span>
-        <h3 class="cap__t">Editing + post-production</h3>
-        <p class="cap__d">Footage — ours or yours — cut, colour-graded, and captioned into finished pieces.</p>
-      </article>
-
-    </div>
-  </div>
 </section>
 
-<!-- ══ 06 · SCOPE BUILDER ═══════════════════════════════════════════════════
+<!-- ══ 08 · SET THE PACE (was the scope builder) ═══════════════════════════════════════════════════
      No prices anywhere on this site. The builder collects intent; the number
      happens on the call. Legends and the summary label are sentence-case in the
      markup and uppercased in CSS so screen readers don't spell them out.
      ═══════════════════════════════════════════════════════════════════════ -->
-<section class="sec sec--pit" id="scope">
+<!-- This replaced a checkbox scope-builder ("PICK WHAT YOU NEED", 11 checkboxes,
+     a live "4 services selected" counter). Asking the buyer to assemble their own
+     stack IS the seven-vendors problem the hero argues against, and it was the
+     last thing they touched before contacting. The choice is now cadence, not
+     coverage: every plan covers the whole presence. -->
+<section class="sec sec--pit" id="scope" aria-labelledby="paceTitle">
   <div class="wrap">
 
-    <p class="eyebrow rv">08 — BUILD YOUR SCOPE</p>
-    <h2 class="h2 rv">PICK WHAT YOU NEED. WE'LL <span class="scope__ac">PRICE</span> IT ON A CALL.</h2>
-    <p class="lede rv">Check the pieces that fit your business. It takes about thirty seconds, and it means our first call starts with substance instead of discovery.</p>
+    <header class="pace__head">
+      <p class="eyebrow rv">08 — SET THE PACE</p>
+      <h2 class="h2 rv" id="paceTitle">EVERYTHING&rsquo;S INCLUDED.<br>YOU SET THE <span class="scope__ac">PACE</span>.</h2>
+      <p class="lede rv">There&rsquo;s nothing to assemble. Every plan covers all of it &mdash; the site, the listing,
+        the photos, the posts, the ads. The only choice you make is how hard we run it.</p>
+    </header>
 
-    <div class="scope__grid">
-
-      <!-- ── PICKER ──────────────────────────────────────────────────────── -->
-      <form class="scope__pick rv" id="estimator" novalidate>
-
-        <fieldset class="scope__g">
-          <legend class="scope__lg">Core services</legend>
-
-          <label class="row is-on">
-            <input type="checkbox" data-kind="core" checked>
-            <span class="row__box" aria-hidden="true"></span>
-            <span class="row__b">
-              <span class="row__n">Website design &amp; development</span>
-              <span class="row__note">Custom marketing site, up to 5 pages, SEO foundation, launch</span>
-            </span>
-          </label>
-
-          <label class="row is-on">
-            <input type="checkbox" data-kind="core" checked>
-            <span class="row__box" aria-hidden="true"></span>
-            <span class="row__b">
-              <span class="row__n">Website care plan</span>
-              <span class="row__note">Hosting, domain, SSL, monitoring, backups, monthly edits</span>
-            </span>
-          </label>
-
-          <label class="row is-on">
-            <input type="checkbox" data-kind="core" checked>
-            <span class="row__box" aria-hidden="true"></span>
-            <span class="row__b">
-              <span class="row__n">Local SEO &amp; Google Business Profile</span>
-              <span class="row__note">Profile management, posts, listings, review responses</span>
-            </span>
-          </label>
-
-          <label class="row is-on">
-            <input type="checkbox" data-kind="core" data-tiered checked>
-            <span class="row__box" aria-hidden="true"></span>
-            <span class="row__b">
-              <span class="row__n">Content &amp; social media management</span>
-              <span class="row__note">On-site shoots, editing, scheduling, publishing</span>
-            </span>
-          </label>
-
-          <!-- Cadence, not counts. The radios are a sibling of the content row
-               rather than nested inside its <label>, which would swallow their
-               clicks; 65-estimator.js appends the choice to that row's summary
-               line and dims this group when content is unchecked. -->
-          <div class="tier" id="tierBox" role="group" aria-labelledby="tierLbl">
-            <p class="tier__k" id="tierLbl">Cadence</p>
-            <div class="tier__opts">
-              <label class="tier__o"><input type="radio" name="cadence" value="Light"><span>Light</span></label>
-              <label class="tier__o"><input type="radio" name="cadence" value="Standard" checked><span>Standard</span></label>
-              <label class="tier__o"><input type="radio" name="cadence" value="Heavy"><span>Heavy</span></label>
-            </div>
-            <p class="tier__note">A steady presence, a consistent month, or always-on. We set the exact rhythm and channels together on the call — nothing is sold by the piece.</p>
-          </div>
-
-          <label class="row">
-            <input type="checkbox" data-kind="core">
-            <span class="row__box" aria-hidden="true"></span>
-            <span class="row__b">
-              <span class="row__n">Brand &amp; design</span>
-              <span class="row__note">Logo, identity, print and social templates</span>
-            </span>
-          </label>
-
-          <label class="row">
-            <input type="checkbox" data-kind="core">
-            <span class="row__box" aria-hidden="true"></span>
-            <span class="row__b">
-              <span class="row__n">Google Workspace setup</span>
-              <span class="row__note">Email at your domain, Drive, calendar</span>
-            </span>
-          </label>
-        </fieldset>
-
-        <fieldset class="scope__g">
-          <legend class="scope__lg">Add-ons</legend>
-
-          <label class="row">
-            <input type="checkbox" data-kind="addon">
-            <span class="row__box" aria-hidden="true"></span>
-            <span class="row__b">
-              <span class="row__n">Paid ad management</span>
-              <span class="row__note">Google and Meta. Ad spend billed to you by the platform.</span>
-            </span>
-          </label>
-
-          <label class="row">
-            <input type="checkbox" data-kind="addon">
-            <span class="row__box" aria-hidden="true"></span>
-            <span class="row__b">
-              <span class="row__n">Email marketing / newsletters</span>
-              <span class="row__note">Written, designed, scheduled, and reported on</span>
-            </span>
-          </label>
-
-          <!-- Quantity rows are divs, not labels: a wrapping <label> would swallow
-               clicks meant for the stepper buttons. There is deliberately no
-               "extra posts" row — that only makes sense against a fixed
-               included count, and cadence replaced counts. -->
-          <div class="row row--q">
-            <span class="row__b">
-              <span class="row__n">Extra on-site shoot</span>
-              <span class="row__note">Additional half-day of photo and video capture</span>
-            </span>
-            <span class="qty">
-              <button type="button" class="qty__b" data-step="-1" aria-label="One fewer extra on-site shoot">&#8722;</button>
-              <input class="qty__v" type="number" value="0" min="0" max="12" step="1"
-                     inputmode="numeric" autocomplete="off"
-                     aria-label="Extra on-site shoots per month">
-              <button type="button" class="qty__b" data-step="1" aria-label="One more extra on-site shoot">+</button>
-            </span>
-          </div>
-        </fieldset>
-      </form>
-
-      <!-- ── SUMMARY ─────────────────────────────────────────────────────── -->
-      <aside class="scope__aside rv" aria-labelledby="scopeLabel">
-        <p class="scope__l" id="scopeLabel">Your scope</p>
-
-        <div class="scope__live" aria-live="polite">
-          <p class="scope__count" id="scopeCount">4 services selected</p>
-          <ul class="scope__list" id="scopeList"></ul>
-        </div>
-
-        <p class="scope__fine">We'll price this on a 20-minute call.</p>
-        <a class="btn btn--ion btn--full scope__cta" href="#contact" id="sendScope">Send this scope</a>
-      </aside>
-
+    <div class="pace__grid">
+      <article class="pace__card rv" aria-labelledby="pace-n-1">
+        <p class="pace__ix" aria-hidden="true">01</p>
+        <h3 class="pace__name" id="pace-n-1">Steady</h3>
+        <p class="pace__who">For a business whose phone already rings.</p>
+        <p class="pace__what">We keep everything current and accurate. We don&rsquo;t push it.</p>
+        <ul class="pace__list">
+          <li>Posting at a cadence we set with you</li>
+          <li>Google Business Profile kept current</li>
+          <li>Site hosted, backed up and monitored</li>
+          <li>Written report every month</li>
+        </ul>
+        <p class="pace__note"><span class="pace__note-k">Note</span> No ads running. If you want them, that&rsquo;s Active.</p>
+      </article>
+      <article class="pace__card rv" aria-labelledby="pace-n-2">
+        <p class="pace__ix" aria-hidden="true">02</p>
+        <h3 class="pace__name" id="pace-n-2">Active</h3>
+        <p class="pace__who">For a business that wants to be found by people who don&rsquo;t know its name yet.</p>
+        <p class="pace__what">Everything in Steady, plus we go looking for the people who aren&rsquo;t searching for you by name.</p>
+        <ul class="pace__list">
+          <li>On-site shoots on a set schedule</li>
+          <li>Higher posting cadence across your channels</li>
+          <li>Paid ads built, running and adjusted</li>
+          <li>Monthly report, walked through on a call</li>
+        </ul>
+      </article>
+      <article class="pace__card rv" aria-labelledby="pace-n-3">
+        <p class="pace__ix" aria-hidden="true">03</p>
+        <h3 class="pace__name" id="pace-n-3">Full</h3>
+        <p class="pace__who">For a business in growth or in a fight.</p>
+        <p class="pace__what">A new location, a new service line, or a competitor spending hard against you.</p>
+        <ul class="pace__list">
+          <li>Shoots often enough to stay ahead of the calendar</li>
+          <li>Ads reviewed and adjusted weekly</li>
+          <li>Brand and print work folded in as needed</li>
+          <li>Monthly report, walked through on a call</li>
+        </ul>
+      </article>
     </div>
+
+    <div class="pace__foot rv">
+      <p class="pace__move">Move up or down a cadence at any renewal.</p>
+      <p class="pace__price">We don&rsquo;t publish rates. Scope varies too much between a two-truck contractor
+        and a four-location clinic for a number on this page to be honest. Twenty minutes on a call
+        and you get a real one.</p>
+      <p class="pace__excl"><span class="pace__note-k">Not included</span> New page builds, redesigns and new
+        feature work &mdash; quoted separately before any work starts.</p>
+      <a class="btn btn--ion" href="#contact">Book the call <i aria-hidden="true">&#8594;</i></a>
+    </div>
+
   </div>
 </section>
 
-<!-- ══ 07 · WHO DOES WHAT ══════════════════════════════════════════════════════
+<!-- ══ 09 · WHO DOES WHAT ══════════════════════════════════════════════════════
      Two panels, one hairline apart. The EZHD column carries the ion edge so the
      eye lands on the longer list — the one the client doesn't have to do.
      ═════════════════════════════════════════════════════════════════════════ -->
@@ -3410,11 +2820,11 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
       </article>
     </div>
 
-    <p class="note__box rv"><b class="note__lead">Straight talk on results.</b> We'll put professional best effort into every piece of this. We won't promise specific rankings, traffic numbers, follower counts, or leads — those depend on search and social algorithms, your market, your competition, and how fast you get us what we need. Anyone guaranteeing you a number is guessing.</p>
+    <p class="note__box rv"><b class="note__lead">Straight talk on results.</b> We&rsquo;ll put professional best effort into every piece of this. We won&rsquo;t promise specific rankings, traffic numbers, follower counts, or leads — those depend on search and social algorithms, your market, your competition, and how fast you get us what we need. Anyone guaranteeing you a number is guessing.</p>
   </div>
 </section>
 
-<!-- ══ 08 · START A PROJECT ════════════════════════════════════════════════════
+<!-- ══ 10 · START A PROJECT ════════════════════════════════════════════════════
      The form POSTs to Web3Forms (the key is public and submit-only) and falls
      back to a mailto: handoff if the request fails or fetch is missing.
      ═════════════════════════════════════════════════════════════════════════ -->
@@ -3422,7 +2832,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
   <div class="wrap">
     <p class="eyebrow rv">10 — START A PROJECT</p>
     <h2 class="h2 rv">TELL US ABOUT THE <span class="cta__accent">BUSINESS</span>.</h2>
-    <p class="lede rv">A 20-minute call is usually enough to know whether this is a fit. If it isn't, we'll say so.</p>
+    <p class="lede rv">A 20-minute call is usually enough to know whether this is a fit. If it isn&rsquo;t, we&rsquo;ll say so.</p>
 
     <div class="cta__grid">
       <form class="form__box rv" id="contactForm">
@@ -3439,7 +2849,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 
           <div class="form__fld">
             <label class="form__lbl" for="f-email">Email</label>
-            <input class="form__in" id="f-email" name="email" type="email" autocomplete="email" required>
+            <input class="form__in" id="f-email" name="email" type="email" autocomplete="email" spellcheck="false" autocapitalize="off" required>
           </div>
 
           <div class="form__fld">
@@ -3459,9 +2869,12 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
           </div>
 
           <div class="form__send">
-            <p class="form__echo" id="scopeEcho">
-              <span class="form__echoK">Scope</span>
-              <span class="form__echoV">Nothing selected yet — we can sort it on the call.</span>
+            <!-- Was #scopeEcho, mirroring the deleted scope builder's selection. With
+                 nothing to select it read "Nothing selected yet" forever. The id is
+                 gone on purpose so 70-contact.js null-guards past it. -->
+            <p class="form__echo form__echo--on">
+              <span class="form__echoK">Next</span>
+              <span class="form__echoV">One call. If it isn&rsquo;t a fit, we&rsquo;ll say so.</span>
             </p>
             <button class="btn btn--ion btn--full" type="submit">Send it</button>
             <p class="form__fine">Goes straight to our inbox. Prefer to skip the form? <a class="form__link" href="mailto:ezhdco@gmail.com">Email us directly</a>.</p>
@@ -3509,6 +2922,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
           </div>
         </dl>
         <p class="card__note">Typical reply within one business day.</p>
+        <p class="card__note"><a class="card__a" href="about/">Who you&rsquo;d be working with &mdash; about the two of us &#8594;</a></p>
       </aside>
     </div>
   </div>
@@ -3526,25 +2940,18 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
       <div class="foot__brand rv">
         <img class="foot__badge" src="brand/ezhd-badge-silver.svg" alt="" aria-hidden="true" width="72" height="72">
         <p class="foot__mark">EZHD</p>
-        <p class="foot__tag">Websites &middot; SEO &middot; Content &middot; Brand &middot; Ads &middot; Utah</p>
+        <p class="foot__tag">Build &middot; Create &middot; Grow &middot; Utah</p>
       </div>
 
+      <!-- The footer links the hubs; the hubs link the six sheets. Eleven links
+           here made one column carry the whole tree. -->
       <nav class="foot__nav rv" aria-label="Service pages">
-        <p class="foot__navh">Service sheets</p>
+        <p class="foot__navh">Services</p>
         <ul class="foot__list">
-          <li><a href="services/web-design/">Web design</a></li>
-          <li><a href="services/website-hosting/">Hosting &amp; care</a></li>
-          <li><a href="services/local-seo/">Local SEO &amp; GBP</a></li>
-          <li><a href="services/brand-design/">Brand &amp; design</a></li>
-          <li><a href="services/social-media-management/">Social media</a></li>
-          <li><a href="services/paid-advertising/">Paid advertising</a></li>
-        </ul>
-      </nav>
-
-      <nav class="foot__nav rv" aria-label="Social profiles">
-        <p class="foot__navh">Follow</p>
-        <ul class="foot__list">
-          <li><a href="https://www.instagram.com/ezhd_co/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="services/build/">Build</a></li>
+          <li><a href="services/create/">Create</a></li>
+          <li><a href="services/grow/">Grow</a></li>
+          <li><a href="services/">One at a time</a></li>
         </ul>
       </nav>
 
@@ -3552,19 +2959,19 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
         <p class="foot__navh">Sections</p>
         <ul class="foot__list">
           <li><a href="#services">Services</a></li>
-          <li><a href="#process">Process</a></li>
           <li><a href="#airtime">Content</a></li>
+          <li><a href="#process">Process</a></li>
           <li><a href="#proof">Work</a></li>
-          <li><a href="#scope">Scope</a></li>
+          <li><a href="#scope">Plans</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
     </div>
 
-    <p class="foot__end" aria-hidden="true">&mdash; End of transmission &middot; <b>EZHD</b> &middot; drawn and broadcast in Utah &mdash;</p>
-
     <div class="foot__base">
       <p class="foot__legal">&copy; <span id="yr">2026</span> EZHD. All rights reserved.</p>
+      <p class="foot__legal"><a class="foot__ig" href="https://www.instagram.com/ezhd_co/" target="_blank" rel="noopener">Instagram &mdash; @ezhd_co</a></p>
+      <p class="foot__legal"><a class="foot__ig" href="about/">About &mdash; the two of us</a></p>
       <p class="foot__note">Pricing is quoted per project. Every scope is confirmed in writing before any work begins.</p>
     </div>
 
@@ -3965,8 +3372,6 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 
   /* ── Year ────────────────────────────────────────────────────────────── */
   /* The markup ships a literal year, so a JS failure here is invisible. */
-  var yr = $('#yr');
-  if (yr) yr.textContent = String(new Date().getFullYear());
 
   /* ── Scroll-driven chrome ────────────────────────────────────────────── */
   var nav = $('#nav');
@@ -4628,291 +4033,14 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
     });
   }
 
-  /* ═══ 2. FILTER GRID ═════════════════════════════════════════════════ */
-  var bar = $('#filters'), grid = $('#grid');
-
-  if (bar && grid) {
-    var tiles = $$('.cap__tile', grid);
-    var btns  = $$('button[data-f]', bar);
-    var out   = $('#capCount');
-    var total = tiles.length;
-
-    var applyFilter = function (f, animate) {
-      var shown = 0, i, t, cat, ok;
-
-      for (i = 0; i < tiles.length; i++) {
-        t = tiles[i];
-        cat = ' ' + (t.getAttribute('data-cat') || '') + ' ';
-        ok = (f === 'all') || cat.indexOf(' ' + f + ' ') > -1;
-        t.hidden = !ok;
-
-        if (ok) {
-          shown++;
-          if (animate && !EZ.CALM) {
-            /* Remove, force reflow, re-add: without the reflow the class
-               churn is coalesced and the animation never restarts. */
-            t.classList.remove('on');
-            t.style.animationDelay = ((shown - 1) * 26) + 'ms';
-            void t.offsetWidth;
-            t.classList.add('on');
-          }
-        }
-      }
-
-      if (out) out.textContent = 'Showing ' + shown + ' / ' + total;
-    };
-
-    var select = function (btn) {
-      for (var j = 0; j < btns.length; j++) {
-        var on = btns[j] === btn;
-        if (on) btns[j].classList.add('is-sel');
-        else btns[j].classList.remove('is-sel');
-        btns[j].setAttribute('aria-pressed', on ? 'true' : 'false');
-      }
-      applyFilter(btn.getAttribute('data-f') || 'all', true);
-    };
-
-    for (var b = 0; b < btns.length; b++) {
-      (function (btn) {
-        btn.addEventListener('click', function () { select(btn); });
-      }(btns[b]));
-    }
-
-    applyFilter('all', false);   /* sets the live count without animating on load */
-  }
-
-  /* ═══ 3. POINTER WASH ════════════════════════════════════════════════
-     Fine pointers only; the CSS default (--cap-mx 50%) already gives a
-     centred wash on touch and under reduced motion. */
-  if (grid && EZ.HOVER && !EZ.CALM) {
-    var all = $$('.cap__tile', grid);
-
-    for (var k = 0; k < all.length; k++) {
-      (function (tile) {
-        tile.addEventListener('pointermove', function (e) {
-          var r = tile.getBoundingClientRect();
-          if (!r.width || !r.height) return;
-          tile.style.setProperty('--cap-mx',
-            (EZ.clamp((e.clientX - r.left) / r.width, 0, 1) * 100).toFixed(1) + '%');
-          tile.style.setProperty('--cap-my',
-            (EZ.clamp((e.clientY - r.top) / r.height, 0, 1) * 100).toFixed(1) + '%');
-        });
-        tile.addEventListener('pointerleave', function () {
-          tile.style.setProperty('--cap-mx', '50%');
-          tile.style.setProperty('--cap-my', '0%');
-        });
-      }(all[k]));
-    }
-  }
+  /* Parts 2 (filter grid) and 3 (pointer wash) removed: they drove the 12-tile
+     capability grid, which the restructure cut. Only the marquee survives. */
 }());
 
 /* ═══ 60-scope.js ═══ */
-/* ══ 04 · SCOPE BUILDER ═══════════════════════════════════════════════════
-   Reads the picker, writes the summary, and publishes the selection as
-   window.__scope so the contact section can append it to its mailto body.
-   No money anywhere: this file only ever counts and names things.
-   ═══════════════════════════════════════════════════════════════════════ */
-(function () {
-  'use strict';
-  if (!window.EZ) return;
-
-  var $ = EZ.$, $$ = EZ.$$;
-
-  var form = $('#estimator');
-  if (!form) return;
-
-  var countEl = $('#scopeCount');
-  var listEl  = $('#scopeList');
-  var aside   = $('.scope__aside');
-  var checks  = $$('input[type=checkbox][data-kind]', form);
-  var qtys    = $$('.qty__v', form);
-  /* Cadence radios live inside the form, so the delegated change/input
-     listeners below already re-render on selection — they need reading, not
-     wiring. A row opts in by carrying data-tiered. */
-  var tiers   = $$('input[type=radio][name=cadence]', form);
-  var tierBox = $('#tierBox');
-
-  var prev  = [];
-  var first = true;
-  var pulseTimer = 0;
-
-  /* closest() with an explicit walk — cheaper to guarantee than to feature-test */
-  function up(el, cls) {
-    var n = el;
-    while (n && n.nodeType === 1) {
-      if (n.className && (' ' + n.className + ' ').indexOf(' ' + cls + ' ') > -1) return n;
-      n = n.parentNode;
-    }
-    return null;
-  }
-
-  function setCls(el, cls, on) {
-    if (!el) return;
-    if (on) { if ((' ' + el.className + ' ').indexOf(' ' + cls + ' ') < 0) el.className += ' ' + cls; }
-    else {
-      el.className = (' ' + el.className + ' ')
-        .split(' ' + cls + ' ').join(' ')
-        .replace(/^\s+|\s+$/g, '');
-    }
-  }
-
-  function num(v, fallback) {
-    var n = parseInt(v, 10);
-    return isNaN(n) ? fallback : n;
-  }
-
-  function nameOf(row) {
-    var n = row ? $('.row__n', row) : null;
-    return n ? n.textContent.replace(/^\s+|\s+$/g, '') : '';
-  }
-
-  function bounds(input) {
-    return { lo: num(input.getAttribute('min'), 0), hi: num(input.getAttribute('max'), 99) };
-  }
-
-  /* The selected cadence, or '' if the group is missing. Also keeps the
-     pills' is-on state in sync, since the radios themselves are hidden. */
-  function tierPick() {
-    var i, pick = '', lab;
-    for (i = 0; i < tiers.length; i++) {
-      lab = up(tiers[i], 'tier__o');
-      setCls(lab, 'is-on', tiers[i].checked);
-      if (tiers[i].checked) pick = tiers[i].value;
-    }
-    return pick;
-  }
-
-  /* Current selection, in document order, as plain display strings. */
-  function read() {
-    var items = [], i, row, label;
-    var cadence = tierPick();
-    var tiered = false;
-
-    for (i = 0; i < checks.length; i++) {
-      row = up(checks[i], 'row');
-      setCls(row, 'is-on', checks[i].checked);
-      if (checks[i].checked) {
-        label = nameOf(row);
-        /* The content row carries its cadence into the summary, so the lead
-           arrives knowing the rhythm as well as the service. */
-        if (label && checks[i].getAttribute('data-tiered') !== null) {
-          tiered = true;
-          if (cadence) label += ' — ' + cadence.toLowerCase() + ' cadence';
-        }
-        if (label) items.push(label);
-      }
-    }
-
-    /* Cadence is meaningless with no content service selected. */
-    setCls(tierBox, 'is-off', !tiered);
-
-    for (i = 0; i < qtys.length; i++) {
-      var q = qtys[i];
-      var b = bounds(q);
-      var n = EZ.clamp(num(q.value, 0), b.lo, b.hi);
-      row = up(q, 'row');
-      setCls(row, 'is-on', n > 0);
-      setCls(up(q, 'qty'), 'is-on', n > 0);
-      if (n > 0) {
-        label = nameOf(row);
-        /* escaped so the string survives any concatenation step that guesses at encoding */
-        if (label) items.push(label + ' \u00d7 ' + n);
-      }
-    }
-
-    return items;
-  }
-
-  function pulse() {
-    if (!aside || EZ.CALM) return;
-    setCls(aside, 'is-pulse', false);
-    /* forced reflow is the only reliable way to restart a CSS animation */
-    void aside.offsetWidth;
-    setCls(aside, 'is-pulse', true);
-    if (pulseTimer) clearTimeout(pulseTimer);
-    pulseTimer = setTimeout(function () { setCls(aside, 'is-pulse', false); }, 800);
-  }
-
-  function render() {
-    var items = read();
-    var changed = items.join('') !== prev.join('');
-    var i, li;
-
-    if (countEl) {
-      countEl.textContent = items.length
-        ? items.length + (items.length === 1 ? ' service selected' : ' services selected')
-        : 'Nothing selected yet';
-    }
-
-    if (listEl) {
-      while (listEl.firstChild) listEl.removeChild(listEl.firstChild);
-
-      if (!items.length) {
-        li = document.createElement('li');
-        li.className = 'is-none';
-        li.textContent = 'Check the pieces above that fit your business.';
-        listEl.appendChild(li);
-      } else {
-        for (i = 0; i < items.length; i++) {
-          li = document.createElement('li');
-          /* textContent only — these strings come off the page, never innerHTML */
-          li.textContent = items[i];
-          if (!first && !EZ.CALM && prev.indexOf(items[i]) < 0) li.className = 'is-new';
-          listEl.appendChild(li);
-        }
-      }
-    }
-
-    if (changed && !first) pulse();
-
-    window.__scope = items;
-    prev = items;
-    first = false;
-  }
-
-  /* Enter inside the number fields would otherwise submit and reload the page. */
-  form.addEventListener('submit', function (e) { e.preventDefault(); });
-  form.addEventListener('change', render);
-  form.addEventListener('input', render);
-
-  $$('.qty__b', form).forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var input = $('.qty__v', btn.parentNode);
-      if (!input) return;
-      var b = bounds(input);
-      input.value = EZ.clamp(num(input.value, b.lo) + num(btn.getAttribute('data-step'), 0), b.lo, b.hi);
-      render();
-    });
-  });
-
-  qtys.forEach(function (q) {
-    /* typed or pasted junk is tolerated while typing, normalised on the way out */
-    q.addEventListener('blur', function () {
-      var b = bounds(q);
-      q.value = EZ.clamp(num(q.value, b.lo), b.lo, b.hi);
-      render();
-    });
-    /* a scroll over a focused number field must not silently edit the scope */
-    q.addEventListener('wheel', function () {
-      if (document.activeElement === q) q.blur();
-    });
-  });
-
-  render();
-
-  /* The CTA is a plain anchor to #contact; once the scroll lands, put the caret
-     in the first field so the visitor never has to hunt for it. */
-  var send = $('#sendScope');
-  if (send) {
-    send.addEventListener('click', function () {
-      setTimeout(function () {
-        var f = $('#f-name');
-        if (!f || !f.focus) return;
-        try { f.focus({ preventScroll: true }); } catch (err) { f.focus(); }
-      }, EZ.CALM ? 120 : 560);
-    });
-  }
-})();
+/* The scope-builder module lived here. Its DOM (the checkbox picker) was
+   replaced by the cadence cards, so the whole IIFE was dead on arrival —
+   removed rather than left as a 200-line null-guard. */
 
 /* ═══ 70-contact.js ═══ */
 /* ══════════════════════════════════════════════════════════════════════════
@@ -4998,61 +4126,8 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
     }
   }
 
-  /* ═══ 2 · SCOPE ECHO ═══ */
-  var echo = $('#scopeEcho');
-  var echoVal = echo ? $('.form__echoV', echo) : null;
-
-  /* window.__scope is authored by another section; treat it as untrusted. */
-  var scopeList = function () {
-    var s = window.__scope, out = [], n, t;
-    if (!s || Object.prototype.toString.call(s) !== '[object Array]') return out;
-    for (n = 0; n < s.length; n++) {
-      t = trim(String(s[n]).replace(/\s+/g, ' '));
-      if (t) out.push(t);
-    }
-    return out;
-  };
-
-  var syncEcho = function () {
-    if (!echo) return;
-    var items = scopeList(), target = echoVal || echo, txt, extra;
-    if (!items.length) {
-      target.textContent = 'Nothing selected yet — we can sort it on the call.';
-      echo.classList.remove('form__echo--on');
-      return;
-    }
-    txt = items.length + ' selected · ' + items.slice(0, 2).join(' · ');
-    extra = items.length - 2;
-    if (extra > 0) txt += ' · +' + extra + ' more';
-    target.textContent = txt;
-    echo.classList.add('form__echo--on');
-  };
-
-  if (echo) {
-    syncEcho();
-
-    var est = $('#estimator');
-    if (est) {
-      est.addEventListener('change', syncEcho);
-      est.addEventListener('input', syncEcho);
-      /* Quantity steppers can rewrite __scope without firing a form event. */
-      est.addEventListener('click', function () { setTimeout(syncEcho, 0); });
-    }
-
-    /* The scope section may initialise after this file parses. */
-    setTimeout(syncEcho, 0);
-    window.addEventListener('load', syncEcho);
-
-    /* Last line of defence: re-read whenever the close comes into view. */
-    var closeSec = $('#contact');
-    if (closeSec && 'IntersectionObserver' in window) {
-      var cio = new IntersectionObserver(function (entries) {
-        var n;
-        for (n = 0; n < entries.length; n++) if (entries[n].isIntersecting) syncEcho();
-      }, { threshold: 0.12 });
-      cio.observe(closeSec);
-    }
-  }
+  /* ═══ 2 · SCOPE ECHO ═══ removed. It mirrored the deleted scope builder;
+     with no #scopeEcho and no window.__scope author it could never run. */
 
   /* ═══ 3 · CONTACT FORM → MAILTO ═══ */
   var form = $('#contactForm');
@@ -5082,15 +4157,12 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
     })(fields[i]);
   }
 
-  /* Reaching the form is the moment the echo has to be right. */
-  form.addEventListener('focusin', syncEcho);
-
   form.addEventListener('submit', function (ev) {
     ev.preventDefault(); /* native validation has already passed by now */
 
     var name = val('#f-name'), biz = val('#f-biz'), email = val('#f-email'),
         phone = val('#f-phone'), msg = val('#f-msg'),
-        items = scopeList(), L = [], n;
+        L = [];
 
     L.push('Name:     ' + (name || '—'));
     L.push('Business: ' + (biz || '—'));
@@ -5100,12 +4172,6 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
     L.push('What they are trying to fix:');
     L.push(msg || '—');
     L.push('');
-
-    if (items.length) {
-      L.push('--- Scope selected on the site ---');
-      for (n = 0; n < items.length; n++) L.push('  • ' + items[n]);
-      L.push('');
-    }
 
     L.push('Requested: a 20-minute call.');
 
@@ -5130,11 +4196,11 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
 
     if (trim((($('#f-co') || {}).value) || '')) return;   /* honeypot tripped */
 
+    if (!window.fetch) { handoff('This browser cannot send the form.'); return; }
+
     var btn = $('button[type=submit]', form);
     if (btn) { btn.disabled = true; btn.dataset.label = btn.textContent; btn.textContent = 'Sending…'; }
     if (status) { status.className = 'form__status'; status.textContent = 'Sending…'; }
-
-    if (!window.fetch) { handoff('This browser cannot send the form.'); return; }
 
     window.fetch(ENDPOINT, {
       method: 'POST',
@@ -5145,7 +4211,6 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
         from_name: 'EZHD website',
         name: name, business: biz, email: email, phone: phone,
         message: msg,
-        scope: items.length ? items.join(', ') : 'none selected',
         details: body
       })
     }).then(function (r) { return r.json().catch(function () { return { success: r.ok }; }); })
@@ -5516,6 +4581,17 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
   /* ── the title block's sheet number follows the numbered sections ── */
   var sheetEl = $('#tbSheet');
   var secs = EZ.$$('main > section[id]');
+  var nums = [], numMax = 0;
+  (function () {
+    var k, eye, mm, cur = 0;
+    for (k = 0; k < secs.length; k++) {
+      eye = secs[k].querySelector ? secs[k].querySelector('.eyebrow') : null;
+      mm = eye ? /^(\d+)/.exec((eye.textContent || '').replace(/^\s+/, '')) : null;
+      if (mm) cur = parseInt(mm[1], 10);
+      nums[k] = cur;
+      if (cur > numMax) numMax = cur;
+    }
+  })();
   if (sheetEl && secs.length && 'IntersectionObserver' in window) {
     var flipT = 0;
     var sheetIO = new IntersectionObserver(function (es) {
@@ -5525,10 +4601,11 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
       if (!hit) return;
       var ix = 0, k;
       for (k = 0; k < secs.length; k++) if (secs[k] === hit) ix = k;
-      var n = ix - 1;                       /* intro and hero share sheet 00 */
-      if (n < 0) n = 0;
-      if (n > 10) n = 10;
-      var txt = two(n) + ' of 10';
+      /* Track the printed eyebrow numbers so the title block can never
+         disagree with the page. Unnumbered sections inherit the previous
+         sheet; intro and hero read 00. */
+      var n = nums[ix], mx = numMax;
+      var txt = two(n) + ' of ' + two(mx);
       if (sheetEl.textContent === txt) return;
       sheetEl.textContent = txt;
       sheetEl.classList.add('is-flip');
@@ -5583,7 +4660,16 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
     var claimHandler = function () {
       var msg = $('#f-msg');
       var v = this.getAttribute('data-claim');
-      if (msg && v) msg.value = 'I want to claim ' + v + '. Build it for my business.';
+      if (msg && v) {
+        msg.value = 'I want to claim ' + v + '. Build it for my business.';
+        /* the label tracker listens for input; a silent .value write misses it */
+        try { msg.dispatchEvent(new Event('input', { bubbles: true })); }
+        catch (err) {
+          var ev = document.createEvent('Event');
+          ev.initEvent('input', true, false);
+          msg.dispatchEvent(ev);
+        }
+      }
     };
     var ci;
     for (ci = 0; ci < claims.length; ci++) {
@@ -5722,7 +4808,8 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
           : 'rgba(79,195,247,' + (a * 0.42 * (drawing ? 1 + (1 - di) * 0.6 : 1)).toFixed(3) + ')';
         g.lineWidth = 1;
         g.beginPath();
-        g.ellipse(cxx, cyy, r, r * 0.94, 0, a0, a0 + di * Math.PI * 2);
+        if (g.ellipse) { g.ellipse(cxx, cyy, r, r * 0.94, 0, a0, a0 + di * Math.PI * 2); }
+        else { g.arc(cxx, cyy, r, a0, a0 + di * Math.PI * 2); }
         g.stroke();
 
         if (!hot && drawing && di < 1) { penR = r; penAng = a0 + di * Math.PI * 2; penOn = true; }
@@ -5787,7 +4874,8 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
   new IntersectionObserver(function (es) {
     es.forEach(function (e) {
       /* lit once the intro is mostly gone, dark again when you return to it */
-      nav.classList.toggle('is-lit', e.intersectionRatio < 0.42);
+      if (e.intersectionRatio < 0.42) { nav.classList.add('is-lit'); }
+      else { nav.classList.remove('is-lit'); }
       /* If the title card is behind you, the signal is live by definition —
          this arm covers deep links, mid-page reloads under scroll
          restoration, and anyone who scrolls off before the pen finishes.
