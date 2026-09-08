@@ -588,6 +588,20 @@ html{scroll-padding-top:4.6rem;}
   .nav__cta{padding:.6rem .85rem;letter-spacing:.06em;}
 }
 
+/* Touch targets. Coarse pointers only — a mouse hits a 26px link precisely, a
+   thumb does not. The overlays grow the hit area without moving a pixel, so
+   the bar keeps its height and the layout is untouched. The CTA has to give up
+   overflow:hidden to let its overlay escape the box, which costs the sheen —
+   a hover pass no touch device can trigger anyway. */
+@media (hover:none),(pointer:coarse){
+  .nav__mark{position:relative;}
+  .nav__mark::after{content:"";position:absolute;inset:-9px 0;}
+
+  .nav__cta{overflow:visible;}
+  .nav__cta::after{display:none;}
+  .nav__cta::before{content:"";position:absolute;inset:-3px 0;}
+}
+
 /* ── FOOTER ────────────────────────────────────────────────────────────── */
 .foot__root{
   position:relative;z-index:2;
@@ -1087,6 +1101,12 @@ body.is-live.has-xh.in-vf .xh__x,body.is-live.has-xh.in-vf .xh__y{opacity:0;}
 .svc__panel-l b{font-family:var(--mno);font-weight:400;font-size:var(--label-sm);
   letter-spacing:.16em;color:var(--dash-2);margin-inline-end:.55rem;}
 .svc__panel .svc__more{margin-top:auto;}
+/* Same reasoning as the nav: the panel link is a 28px line of text, and the
+   overlay reaches into the panel's own padding rather than growing the card. */
+@media (hover:none),(pointer:coarse){
+  .svc__more{position:relative;}
+  .svc__more::after{content:"";position:absolute;inset:-8px 0;}
+}
 @media (max-width:900px){
   .svc__trio{grid-template-columns:minmax(0,1fr);}
 }
