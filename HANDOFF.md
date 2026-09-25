@@ -48,6 +48,15 @@ time and every URL had to be corrected. If you ever see `ezhd.co` without the hy
 the source, it is a bug. (`ezhdco@gmail.com` is the contact address and is correct —
 no dot, different string.)
 
+## Professional-polish pass (2026-09-25)
+
+Checked against two "vibe-coded vs professional" checklists. Added: `404.html` (Vercel serves it for any
+missing path; noindex), `privacy/` and `terms/` (plain-language, linked from every footer and in the
+sitemap; not lawyer-reviewed), `llms.txt`, BreadcrumbList JSON-LD on every sub-page. Removed: all 198
+visible em dashes (copy, titles, meta, JSON-LD), em-dash list bullets (now small squares), card tilt,
+crosshair cursor, count-up stats, pill corners, and the dead `sourceMappingURL` lines in the vendored
+Lenis builds. Still open: real photos for Zac and Dylan on `about/` (placeholders read unfinished).
+
 ## Deploying
 
 Vercel auto-deploys on push. There is nothing else to do.
@@ -85,15 +94,15 @@ Thirteen sections after the Build/Create/Grow restructure (2026-09-05), in order
 
 | id | what |
 |---|---|
-| `intro` | Title card: badge + EZHD wordmark over a receding ring field (`#introC`, canvas 2D). Nav is hidden here and fades in once you scroll past |
-| `hero` | "Your marketing isn't seven vendors." Full-measure type, lede, CTAs, four stats |
+| `hero` | **First screen (2026-09-25).** "Get found. Get called. Get hired." + lede (seven vendors now lives here as one sentence), CTAs *Get a free website check* + *Call (435) 224-6987*, four stats. The intro ring field (`#introC`, DRAW → LOCK → LIVE) plays behind it; the separate full-screen title card was cut because visitors from reels/Google saw only a logo. Nav is lit from the first frame and carries a tap-to-call button |
+| `why` | **Unnumbered, added 2026-09-25.** "Where your customers actually find you" — Google Maps / social / website, three `svc__panel`s. Its two figures are EZHD's own 2026-09-23 tests (the Map Pack + 3-Second Test reels); refresh or drop them, never inflate |
 | `system` | **01 — The system.** Exploded axonometric of the marketing system (`#sysC`), assembled by scroll. Sticky stage inside a 270vh track. **Seven layers**, bottom-up: brand, domain+hosting, site, local search, content, paid ads, reporting |
 | `services` | 02 — What we run: three Build / Create / Grow panels, a third each. The six full spec cards moved to `services/build|create|grow/` — edit scope THERE |
 | `airtime` | 03 — **AIRTIME.** The content/social half: "what we shoot" (six 9:16 storyboard frames, inline SVG) and the five-channel platform rack (no YouTube: EZHD does not offer it). Nav links here as "Content" |
 | `process` | 04 — How it goes: the edit-bay banner (`#flowC`) + a three-phase rail — BUILD (weeks 1–2), CREATE (from launch), GROW (every month) |
-| `proof` | 05 — Active accounts: browser-chrome cards over real screenshots (`work/*.webp`) — Alloy Homes + ConnectShield, third slot is an open CTA. Nav links here as "Work" |
+| `proof` | 05 — Live sites (was "Active accounts"; 2026-09-25): browser-chrome cards over real screenshots (`work/*.webp`) — Alloy Homes (feat), Armour Crete, ConnectShield, Sew True (sewtrue.shop), Iron Never Changes (ironneverchanges.com), then a full-width "06 · Your project" CTA. A swipeable row on phones. Lede no longer claims every site is an account we still run — only Alloy/ConnectShield carry Hosting tags. Nav links here as "Work" |
 | `report` | 06 — The monthly report: the only section proving the ongoing half. Deliberately no client numbers — the posture is the proof |
-| `drafts` | 07 — The Drafts: debranded concept builds served as live demos under `drafts/` (see below). All seven are unclaimed; claim buttons carry `data-claim` and 90-broadcast.js prefills the contact form |
+| `drafts` | 07 — The Drafts (a swipeable row on phones since 2026-09-25; Iron Never Changes + Sew True moved to `proof` as live client sites, leaving five: Solmesa 01, Bridger Hollow 02, Ledgeline 03 — ribbon renumbered — Butter Bakery 04, Shakespeare Rentals 05): debranded concept builds served as live demos under `drafts/` (see below). All seven are unclaimed; claim buttons carry `data-claim` and 90-broadcast.js prefills the contact form |
 | `work` | Capability marquee only, unnumbered — the 12-tile filter grid was cut (it was a third copy of the service list) |
 | `scope` | 08 — Set the pace: three cadence cards (Steady / Active / Full). Replaced the checkbox scope builder. **No prices anywhere** — deliberate |
 | `duty` | 09 — Who does what + "straight talk on results" |

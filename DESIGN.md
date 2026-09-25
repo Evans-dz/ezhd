@@ -23,7 +23,7 @@ side is the work going live — REC, running timecode, channel chips, ON AIR,
 waveform. The site performs its own service on itself.
 
 **How it shows up:** three places and no more.
-- **The intro** (`#introC`): DRAW (~1.3s plotter sweep, centre-out) → LOCK
+- **The intro** (`#introC`, behind the hero since 2026-09-25 — the full-screen title card was cut so the first screen says what EZHD does): DRAW (~1.3s plotter sweep, centre-out) → LOCK
   (~0.2s glitch tick: jitter, ghost pass, sync line) → LIVE. At lock, `<body>`
   gains `.is-live` and the HUD powers on.
 - **The HUD chrome**: `● REC` top-left (intro only), `TC` timecode top-right
@@ -125,6 +125,8 @@ Hold that — a neutral grey shadow anywhere in this build is a mistake.
   edit.**
 
 **Don't**
+- Don't use em dashes in copy, titles, meta or JSON-LD (removed site-wide 2026-09-25: they read as AI-written). Use a period, comma, colon or parentheses; label separators are " · ".
+- Don't add scroll gimmicks back (3D card tilt, crosshair cursor, count-up stats were removed 2026-09-25). No pill-shaped buttons or tags: corners are square (2px max).
 - Don't add a fourth colour.
 - Don't let the broadcast layer become load-bearing.
 - Don't reuse this motion language on a client build.
