@@ -98,7 +98,7 @@ Thirteen sections after the Build/Create/Grow restructure (2026-09-05), in order
 | `why` | **Unnumbered, added 2026-09-25.** "Where your customers actually find you" — Google Maps / social / website, three `svc__panel`s. Its two figures are EZHD's own 2026-09-23 tests (the Map Pack + 3-Second Test reels); refresh or drop them, never inflate |
 | `system` | **01 — The system.** Exploded axonometric of the marketing system (`#sysC`), assembled by scroll. Sticky stage inside a 270vh track. **Seven layers**, bottom-up: brand, domain+hosting, site, local search, content, paid ads, reporting |
 | `services` | 02 — What we run: three Build / Create / Grow panels, a third each. The six full spec cards moved to `services/build|create|grow/` — edit scope THERE |
-| `airtime` | 03 — **AIRTIME.** The content/social half: "what we shoot" (six 9:16 storyboard frames, inline SVG) and the five-channel platform rack (no YouTube: EZHD does not offer it). Nav links here as "Content" |
+| `airtime` | 03 — **AIRTIME.** The content/social half: "what we shoot" (six 9:16 storyboard frames; since 2026-09-25 photographic stills in `work/shots/`, cropped from an owner-supplied storyboard graphic, replacing the inline-SVG line art) and the five-channel platform rack (no YouTube: EZHD does not offer it). Nav links here as "Content" |
 | `process` | 04 — How it goes: the edit-bay banner (`#flowC`) + a three-phase rail — BUILD (weeks 1–2), CREATE (from launch), GROW (every month) |
 | `proof` | 05 — Live sites (was "Active accounts"; 2026-09-25): browser-chrome cards over real screenshots (`work/*.webp`) — Alloy Homes (feat), Armour Crete, ConnectShield, Sew True (sewtrue.shop), Iron Never Changes (ironneverchanges.com), then a full-width "06 · Your project" CTA. A swipeable row on phones. Lede no longer claims every site is an account we still run — only Alloy/ConnectShield carry Hosting tags. Nav links here as "Work" |
 | `report` | 06 — The monthly report: the only section proving the ongoing half. Deliberately no client numbers — the posture is the proof |
@@ -118,7 +118,7 @@ from the eyebrows at runtime, so it cannot disagree with the page again).
    counts anywhere in the cards. If a piece-count reappears
    anywhere on the page, it is a bug.
 2. **Never show client social content.** The `#airtime` storyboard frames are
-   permanent illustration, not placeholders waiting for real reels — the client
+   permanent illustration (now stills from the owner's storyboard graphic), not placeholders waiting for real reels — the client
    explicitly does not want other businesses' reels on this site.
 
 **The drafts** (`drafts/<name>/`): full multi-file demo sites for fictional

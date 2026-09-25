@@ -1404,6 +1404,10 @@ body.is-live.has-xh.in-vf .xh__x,body.is-live.has-xh.in-vf .xh__y{opacity:0;}
   background:linear-gradient(180deg,rgba(15,20,29,.55),rgba(4,6,10,.9));
 }
 .sl__art svg{display:block;width:100%;height:100%;}
+/* 2026-09-25: the frames carry photographic stills (work/shots/), cropped from the
+   owner-supplied storyboard; the SVG rules below are kept for any frame that
+   falls back to line art. */
+.sl__art img{display:block;width:100%;height:100%;object-fit:cover;}
 .sl__art svg .ln{fill:none;stroke:var(--dash-2);stroke-width:1.9;
   stroke-linecap:round;stroke-linejoin:round;opacity:.85;}
 .sl__art svg .ion{fill:none;stroke:var(--ion);stroke-width:1.9;
@@ -2341,11 +2345,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
       <figure class="sl__frame rv">
         <span class="sl__slate" aria-hidden="true"><b>Shot 01</b><i>Dolly in</i></span>
         <div class="sl__art">
-          <svg viewBox="0 0 90 160" aria-hidden="true" focusable="false">
-            <path class="ln" d="M28 106 V72 a17 17 0 0 1 34 0 V106"/>
-            <path class="ln" d="M24 106 H66"/>
-            <path class="ion" d="M45 140 V116 M37 124 L45 114 L53 124"/>
-          </svg>
+          <img src="work/shots/shot-01-walkthrough.webp" alt="A dolly shot moving through a modern kitchen and living room toward a wall of windows, with a dashed arrow tracing the camera path." width="258" height="460" loading="lazy" decoding="async">
         </div>
         <figcaption class="sl__cap">
           <h3 class="sl__t">Walkthrough</h3>
@@ -2356,11 +2356,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
       <figure class="sl__frame rv">
         <span class="sl__slate" aria-hidden="true"><b>Shot 02</b><i>Cut</i></span>
         <div class="sl__art">
-          <svg viewBox="0 0 90 160" aria-hidden="true" focusable="false">
-            <path class="fill faint" d="M45 58 a28 28 0 0 0 0 56 Z"/>
-            <circle class="ln" cx="45" cy="86" r="28"/>
-            <path class="ion" d="M45 58 V114"/>
-          </svg>
+          <img src="work/shots/shot-02-before-after.webp" alt="A split frame of the same house: bare framing on the left, the finished home on the right, divided by a slider." width="258" height="460" loading="lazy" decoding="async">
         </div>
         <figcaption class="sl__cap">
           <h3 class="sl__t">Before / after</h3>
@@ -2371,11 +2367,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
       <figure class="sl__frame rv">
         <span class="sl__slate" aria-hidden="true"><b>Shot 03</b><i>Locked off</i></span>
         <div class="sl__art">
-          <svg viewBox="0 0 90 160" aria-hidden="true" focusable="false">
-            <path class="ln" d="M20 60 H70 a7 7 0 0 1 7 7 V99 a7 7 0 0 1 -7 7 H49 L37 120 V106 H20 a7 7 0 0 1 -7 -7 V67 a7 7 0 0 1 7 -7 Z"/>
-            <path class="ion" d="M27 76 H63"/>
-            <path class="ln" d="M27 86 H63 M27 96 H50"/>
-          </svg>
+          <img src="work/shots/shot-03-testimonial.webp" alt="A smiling homeowner in a cap talking to camera in a locked-off interview frame." width="258" height="460" loading="lazy" decoding="async">
         </div>
         <figcaption class="sl__cap">
           <h3 class="sl__t">Testimonial</h3>
@@ -2386,14 +2378,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
       <figure class="sl__frame rv">
         <span class="sl__slate" aria-hidden="true"><b>Shot 04</b><i>Orbit</i></span>
         <div class="sl__art">
-          <svg viewBox="0 0 90 160" aria-hidden="true" focusable="false">
-            <rect class="ln" x="36" y="77" width="18" height="18" rx="4"/>
-            <path class="ln" d="M36 77 L26 67 M54 77 L64 67 M36 95 L26 105 M54 95 L64 105"/>
-            <circle class="ion" cx="23" cy="64" r="8"/>
-            <circle class="ion" cx="67" cy="64" r="8"/>
-            <circle class="ion" cx="23" cy="108" r="8"/>
-            <circle class="ion" cx="67" cy="108" r="8"/>
-          </svg>
+          <img src="work/shots/shot-04-aerial.webp" alt="A drone view from above circling a house with a pool, the orbit path drawn as a dashed ring." width="258" height="460" loading="lazy" decoding="async">
         </div>
         <figcaption class="sl__cap">
           <h3 class="sl__t">Aerial</h3>
@@ -2404,11 +2389,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
       <figure class="sl__frame rv">
         <span class="sl__slate" aria-hidden="true"><b>Shot 05</b><i>Rack focus</i></span>
         <div class="sl__art">
-          <svg viewBox="0 0 90 160" aria-hidden="true" focusable="false">
-            <circle class="ln" cx="41" cy="80" r="22"/>
-            <path class="ion" d="M57 96 L72 111"/>
-            <path class="ion" d="M33 72 a11 11 0 0 1 8 -8"/>
-          </svg>
+          <img src="work/shots/shot-05-detail.webp" alt="A close-up of a hand finishing wet concrete with a trowel, the background soft in a rack focus." width="258" height="460" loading="lazy" decoding="async">
         </div>
         <figcaption class="sl__cap">
           <h3 class="sl__t">Detail</h3>
@@ -2419,11 +2400,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
       <figure class="sl__frame rv">
         <span class="sl__slate" aria-hidden="true"><b>Shot 06</b><i>Time-lapse</i></span>
         <div class="sl__art">
-          <svg viewBox="0 0 90 160" aria-hidden="true" focusable="false">
-            <circle class="ln" cx="45" cy="86" r="26"/>
-            <path class="ion" d="M45 68 V86 L58 94"/>
-            <path class="ln" d="M45 52 V60 M45 112 V120 M11 86 H19 M71 86 H79"/>
-          </svg>
+          <img src="work/shots/shot-06-progress.webp" alt="Four stages of one house, from bare lot to framing to the finished home, stacked along a time-lapse rail." width="258" height="460" loading="lazy" decoding="async">
         </div>
         <figcaption class="sl__cap">
           <h3 class="sl__t">Progress</h3>
