@@ -4,8 +4,12 @@ brand/png/
 brand/preview.html
 brand/README.txt
 
-# Internal notes — repo only, never served.
+# Internal notes — repo only, never served. (DESIGN.md, CLAUDE.md and the
+# audit baseline were publicly readable at ez-hd.co until 2026-09-25.)
 HANDOFF.md
+DESIGN.md
+CLAUDE.md
+verify-baseline.txt
 
 # Draft master templates — source only, never served. The public demos are
 # the debranded copies under drafts/.

@@ -154,6 +154,6 @@ Known values that are currently hardcoded and should move:
 - [ ] Data extracted to `js/config.js`, nothing hardcoded in markup
 - [ ] Display type scale tokenised or declared deliberate (§3)
 - [ ] Breakpoints collapsed to the ones that are real (§5)
-- [ ] `node ~/Downloads/ezhd-lab/verify/audit.mjs --url http://localhost:5070` clean
+- [ ] `node ~/Projects/EZHD/ezhd-lab/verify/audit.mjs --url http://localhost:5070` clean, and again against https://ez-hd.co after deploy
 - [ ] Skill pass over source: `/web-design-guidelines`
 - [ ] `noindex` — n/a, this site is live

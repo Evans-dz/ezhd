@@ -23,7 +23,7 @@ is deliberate and the deploy depends on it.
 
 | | |
 |---|---|
-| Local | `~/Downloads/EZHD` |
+| Local | `~/Projects/EZHD/EZHD` (moved from `~/Downloads/EZHD` on 2026-09-19) |
 | Repo | https://github.com/Evans-dz/ezhd (public, branch `main`) |
 | Live | **https://ez-hd.co** — note the hyphen |
 | Vercel | project `ezhd`, team `evans-5279's projects` (`team_bhQiH15quSpv0dotYkkRIcog`) |
@@ -62,7 +62,7 @@ Lenis builds. Still open: real photos for Zac and Dylan on `about/` (placeholder
 Vercel auto-deploys on push. There is nothing else to do.
 
 ```bash
-cd ~/Downloads/EZHD && git add -A && git commit -m "..." && git push
+cd ~/Projects/EZHD/EZHD && git add <the files you changed> && git commit -m "..." && git push
 ```
 
 Project settings are Framework Preset **Other**, build command and output directory
@@ -83,7 +83,9 @@ The preview server script lives in the session scratchpad, which is **temporary 
 cleaned up between sessions**. If `preview_start` fails with `MODULE_NOT_FOUND`, that is
 why — recreate it, the project itself is fine.
 
-A minimal static server on port **5070** serving `~/Downloads/EZHD` is all it needs.
+The server is `_src/serve.js` (tracked, vercelignored): `node _src/serve.js` on port **5070**,
+or `PORT=5079 node _src/serve.js` if 5070 is taken. Stale servers started from the old
+`~/Downloads/EZHD` path may still hold 5070/5071 and 404 everything.
 Do not use port 5060 — that is SIP and browsers block it as an unsafe port.
 
 ---
@@ -150,7 +152,7 @@ Draft 03 is **Iron Never Changes** (added 2026-08-19) and it breaks the pattern 
 purpose: a REAL prospect (gym-wear brand), so the card reads "Claimed", links OUT to
 the brand's own deploy at www.ironneverchanges.com, and has no claim button —
 "Start yours" prefills the contact form instead. Nothing is copied into `drafts/`;
-the whole site lives in its own repo at `~/Downloads/iron-never-changes` (own
+the whole site lives in its own repo at `~/Projects/Iron Never Changes/iron-never-changes` (own
 git history, own Vercel project, `node server.js` → :4175). Its brand truth is
 `brand/BRAND-GUIDE.md` + `brand/SHIRT-CONCEPTS.md` in that repo — client materials,
 do not invent outside them. The "on the board" card renumbered 03 → 04.
@@ -323,4 +325,4 @@ documentation, website rescue/audit, lead-capture setup.
 - Shared: **ezhdco@gmail.com**
 
 Brand kit (24 SVG + 40 PNG, six colourways in badge/lockup/wordmark) is in `brand/`.
-Originals from the designer are at `~/Downloads/Vista Logos/` — untouched.
+Originals from the designer are at `~/Documents/Misc/Vista Logos.zip` (moved from `~/Downloads/Vista Logos/` on 2026-09-19) — untouched.
