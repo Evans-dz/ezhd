@@ -2090,6 +2090,26 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
     gtag('js', new Date());
     gtag('config', 'G-7MVHYGSGCV');
   </script>
+  <!-- Vercel Web Analytics: cookieless page views, plus taps on call, email and
+       Instagram links (the form's "Form sent" event lives in the form script). -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+      if (!a) return;
+      var h = a.getAttribute('href') || '', n = '';
+      if (h.indexOf('tel:') === 0) n = 'Call tap';
+      else if (h.indexOf('mailto:') === 0) n = 'Email tap';
+      else if (h.indexOf('instagram.com') !== -1) n = 'Instagram tap';
+      if (!n) return;
+      var s = a.closest('nav, header, footer, section[id]');
+      window.va('event', { name: n, data: {
+        to: h.replace(/^(tel:|mailto:)/, '').split('?')[0],
+        from: s ? (s.id || s.tagName.toLowerCase()) : 'page'
+      } });
+    }, true);
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -4252,18 +4272,18 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
         phone = val('#f-phone'), msg = val('#f-msg'),
         L = [];
 
-    L.push('Name:     ' + (name || '—'));
-    L.push('Business: ' + (biz || '—'));
-    L.push('Email:    ' + (email || '—'));
-    L.push('Phone:    ' + (phone || '—'));
+    L.push('Name:     ' + (name || '-'));
+    L.push('Business: ' + (biz || '-'));
+    L.push('Email:    ' + (email || '-'));
+    L.push('Phone:    ' + (phone || '-'));
     L.push('');
     L.push('What they are trying to fix:');
-    L.push(msg || '—');
+    L.push(msg || '-');
     L.push('');
 
     L.push('Requested: a 20-minute call.');
 
-    var subject = 'New project enquiry — ' + (biz || name || 'website');
+    var subject = 'New project enquiry: ' + (biz || name || 'website');
     var body = L.join('\r\n');
 
     /* The mailto handoff is the fallback, not the plan: it needs a configured
@@ -4272,7 +4292,7 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
     function handoff(note) {
       if (status) {
         status.className = 'form__status form__status--warn';
-        status.textContent = note + ' Opening your email app instead — if nothing happens, write to ' + EMAIL + '.';
+        status.textContent = note + ' Opening your email app instead. If nothing happens, write to ' + EMAIL + '.';
       }
       window.location.href = 'mailto:' + EMAIL +
         '?subject=' + encodeURIComponent(subject) +
@@ -4309,8 +4329,9 @@ a.wk__card--next:hover,a.wk__card--next:focus-visible{
           for (var q = 0; q < fields.length; q++) mark(fields[q]);
           if (status) {
             status.className = 'form__status form__status--ok is-approved';
-            status.textContent = 'Approved — we reply within one business day.';
+            status.textContent = 'Approved. We reply within one business day.';
           }
+          if (window.va) window.va('event', { name: 'Form sent' });
         } else {
           handoff('That did not go through.');
         }

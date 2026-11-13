@@ -145,6 +145,26 @@ p{margin:0 0 1.05rem;max-width:66ch;}
     gtag('js', new Date());
     gtag('config', 'G-7MVHYGSGCV');
   </script>
+  <!-- Vercel Web Analytics: cookieless page views, plus taps on call, email and
+       Instagram links (the form's "Form sent" event lives in the form script). -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+      if (!a) return;
+      var h = a.getAttribute('href') || '', n = '';
+      if (h.indexOf('tel:') === 0) n = 'Call tap';
+      else if (h.indexOf('mailto:') === 0) n = 'Email tap';
+      else if (h.indexOf('instagram.com') !== -1) n = 'Instagram tap';
+      if (!n) return;
+      var s = a.closest('nav, header, footer, section[id]');
+      window.va('event', { name: n, data: {
+        to: h.replace(/^(tel:|mailto:)/, '').split('?')[0],
+        from: s ? (s.id || s.tagName.toLowerCase()) : 'page'
+      } });
+    }, true);
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"EZHD","item":"https://ez-hd.co/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://ez-hd.co/services/"},{"@type":"ListItem","position":3,"name":"Create","item":"https://ez-hd.co/services/create/"}]}
 </script>

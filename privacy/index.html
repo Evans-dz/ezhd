@@ -147,6 +147,26 @@ p{margin:0 0 1.05rem;max-width:66ch;}
     gtag('js', new Date());
     gtag('config', 'G-7MVHYGSGCV');
   </script>
+  <!-- Vercel Web Analytics: cookieless page views, plus taps on call, email and
+       Instagram links (the form's "Form sent" event lives in the form script). -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+      if (!a) return;
+      var h = a.getAttribute('href') || '', n = '';
+      if (h.indexOf('tel:') === 0) n = 'Call tap';
+      else if (h.indexOf('mailto:') === 0) n = 'Email tap';
+      else if (h.indexOf('instagram.com') !== -1) n = 'Instagram tap';
+      if (!n) return;
+      var s = a.closest('nav, header, footer, section[id]');
+      window.va('event', { name: n, data: {
+        to: h.replace(/^(tel:|mailto:)/, '').split('?')[0],
+        from: s ? (s.id || s.tagName.toLowerCase()) : 'page'
+      } });
+    }, true);
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -163,7 +183,7 @@ p{margin:0 0 1.05rem;max-width:66ch;}
   <div class="legal">
   <h1>Privacy <em>policy</em>.</h1>
   <p class="lede">Plain English: we collect what you choose to send us, we use it to reply and do the work, and we never sell it.</p>
-  <p class="upd">Last updated September 25, 2026</p>
+  <p class="upd">Last updated November 13, 2026</p>
 
   <h2>Who we are</h2>
   <p>EZHD is a marketing studio based in St.&nbsp;George, Utah. This policy covers this website, ez-hd.co, and the concept demo sites under ez-hd.co/drafts. Questions go to <a href="mailto:ezhdco@gmail.com">ezhdco@gmail.com</a> or (435) 224-6987.</p>
@@ -171,7 +191,7 @@ p{margin:0 0 1.05rem;max-width:66ch;}
   <h2>What we collect</h2>
   <ul>
     <li><b>What you send us.</b> When you use the contact form, we receive your name, email, phone number, business details and message. When you email, call or message us, we receive whatever you include.</li>
-    <li><b>Usage data.</b> Google Analytics records which pages are visited, roughly where visitors are (city level), the device and browser, and how people arrived. It uses cookies to do this.</li>
+    <li><b>Usage data.</b> Google Analytics records which pages are visited, roughly where visitors are (city level), the device and browser, and how people arrived. It uses cookies to do this. Vercel Web Analytics also counts page views and taps on our call, email and Instagram links and the contact form being sent. It uses no cookies and doesn&rsquo;t identify you.</li>
     <li><b>Server logs.</b> Our host keeps standard technical logs (such as IP address and time of request) to run and protect the site.</li>
   </ul>
 
@@ -180,7 +200,7 @@ p{margin:0 0 1.05rem;max-width:66ch;}
     <li><b>Web3Forms</b> delivers contact form submissions to our inbox.</li>
     <li><b>Google Analytics</b> measures site traffic.</li>
     <li><b>Google Fonts</b> serves the typefaces, so your browser connects to Google when the page loads.</li>
-    <li><b>Vercel</b> hosts the website.</li>
+    <li><b>Vercel</b> hosts the website and runs Vercel Web Analytics.</li>
   </ul>
   <p>Each handles data under its own privacy policy. We don&rsquo;t share your information with anyone else unless the law requires it.</p>
 
